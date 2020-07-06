@@ -5,7 +5,6 @@ drop table if exists `order`;
 create table `item`
 (
     itemId int primary key,
-    picture blob,
     name char,
     place char,
     website char
