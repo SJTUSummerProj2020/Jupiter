@@ -1,11 +1,21 @@
 import React from 'react';
 import {withRouter} from "react-router-dom";
-
-export default class CustomerHome extends React.Component{
+import {ImageCarousel} from "../components/Carousel";
+import {Header} from "../components/Header";
+import {GoodsList} from "../components/GoodsList";
+import "../css/header.css";
+export class CustomerHome extends React.Component{
+    constructor(props) {
+        super(props);
+    }
     render() {
         return(
             <div>
-
+                <Header/>
+                <ImageCarousel/>
+                <div className={"goodsList"} style={{width: 1060,marginLeft: 88}}>
+                    <GoodsList/>
+                </div>
             </div>
         );
     }
