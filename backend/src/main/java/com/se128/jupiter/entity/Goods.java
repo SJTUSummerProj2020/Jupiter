@@ -29,4 +29,59 @@ public class Goods{
     @Column(name = "goods_id")
     private List<GoodsDetail> goodsDetails;
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public Integer getGoodsType() {
+        return goodsType;
+    }
+
+    public List<GoodsDetail> getGoodsDetails() {
+        return goodsDetails;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setGoodsDetails(List<GoodsDetail> goodsDetails) {
+        this.goodsDetails = goodsDetails;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public void setGoodsType(Integer goodsType) {
+        this.goodsType = goodsType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 }

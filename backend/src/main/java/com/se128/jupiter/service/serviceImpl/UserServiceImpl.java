@@ -16,21 +16,22 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User getUserByUserId(Integer userId){ return userDao.getUserByUserId(userId);}
-
-    @Override
-    public User getUserByUsernameAndPassword(String username, String password)
-    {
-        return userDao.getUserByUsernameAndPassword(username,password);
+    public User getUserByUserId(Integer userId) {
+        return userDao.getUserByUserId(userId);
     }
 
     @Override
-    public User addUser(User user){
+    public User getUserByUsernameAndPassword(String username, String password) {
+        return userDao.getUserByUsernameAndPassword(username, password);
+    }
+
+    @Override
+    public User addUser(User user) {
         return userDao.addUser(user);
     }
 
     @Override
-    public List<Order> getOrdersByUserId(Integer userId){
+    public List<Order> getOrdersByUserId(Integer userId) {
         return userDao.getOrdersByUserId(userId);
     }
 }

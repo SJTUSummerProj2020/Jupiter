@@ -1,6 +1,5 @@
 package com.se128.jupiter.controller;
 
-import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.UserService;
@@ -26,10 +25,12 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/getUserById")
-    public User getUserById(@RequestBody Map<String, String> params) {
-        System.out.println("getUserById");
+    public Msg getUserById(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        return userService.getUserByUserId(userId);
+        System.out.println("getUserById = " + userId);
+        User user = userService.getUserByUserId(userId);
+        JSONObject data = JSONObject.fromObject(user);
+        return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
     }
 
     @RequestMapping("/login")
