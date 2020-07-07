@@ -1,16 +1,16 @@
-.logo{
+.loginlogo{
     float: left;
     position: relative;
     margin-left:0px;
 }
 
-.logo img{
+.loginlogo img{
     width: 200px;
     height: 80px;
     margin-top: 0px;
 }
 
-.header{
+.loginheader{
     width: 100%;
     margin: 10px auto;
     display: inline-block;

@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import '../css/login.css';
 
 export class LoginForm extends React.Component{
     constructor(props) {
@@ -43,7 +44,7 @@ export class LoginForm extends React.Component{
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         登录
                     </Button>
-                    <a href="">立即注册</a>
+                    <a className={"register"} href="" >立即注册</a>
                 </Form.Item>
             </Form>
         );
