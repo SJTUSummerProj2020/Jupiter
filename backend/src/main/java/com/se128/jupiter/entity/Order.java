@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Time;
 
 @Entity
 @Table(name = "orderList")
@@ -12,15 +12,24 @@ import java.sql.Timestamp;
 public class Order {
 
     @Id
-    @Column(name = "listId")
+    @Column(name = "orderId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int listId;
+    private int orderId;
 
     @OneToOne
-    @Column(name = "userId")
+    @JoinColumn(name = "userId")
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "detailId")
+    private GoodsDetail goodsDetail;
+
+    private Integer sourceId;
+    private Integer number;
+
+    private Double price;
+
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Timestamp time;
+    private Time time;
 
 }
