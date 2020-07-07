@@ -21,7 +21,7 @@ public class User {
     private Integer userType;
 
     @OneToMany()
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="userId")
     private List<Order> orders;
 
     public Integer getUserId() {

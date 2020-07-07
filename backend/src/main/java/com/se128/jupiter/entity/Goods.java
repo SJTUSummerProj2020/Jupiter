@@ -3,6 +3,7 @@ package com.se128.jupiter.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "goods")
@@ -14,7 +15,18 @@ public class Goods{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer goodsId;
 
+    private String name;
+    private String place;
+    private String website;
+
+    private Integer goodsType;
+
     @Transient
     private String image;
+
+    @Transient
+    @OneToMany
+    @Column(name = "goodsId")
+    private List<GoodsDetail> goodsDetails;
 
 }

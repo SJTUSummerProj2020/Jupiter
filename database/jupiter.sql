@@ -17,11 +17,11 @@ drop table if exists user;
 /*==============================================================*/
 create table goods
 (
-   goodsId              int not null,
-   name                 varchar(32) not null,
-   place                varchar(32) not null,
-   website              varchar(1024) not null,
-   goodsType            tinyint,
+   goodsId int not null,
+   name varchar(32) not null,
+   place varchar(32) not null,
+   website varchar(1024) not null,
+   goodsType tinyint,
    primary key (goodsId)
 );
 
@@ -30,12 +30,12 @@ create table goods
 /*==============================================================*/
 create table goodsDetail
 (
-   detailId             int not null,
-   goodsId              int,
-   price                float not null,
-   time                 time not null,
-   sessions             varchar(32) not null,
-   TicketType           tinyint not null,
+   detailId int not null,
+   goodsId int,
+   price float not null,
+   time time not null,
+   sessions varchar(32) not null,
+   TicketType tinyint not null,
    primary key (detailId)
 );
 
@@ -44,14 +44,13 @@ create table goodsDetail
 /*==============================================================*/
 create table orderList
 (
-   orderId              int,
-   userId               int,
-   detailId             int,
-   sourceId             int,
-   number               int,
-   price                float,
-   time                 time,
-   sourceWebsite        varchar(32)
+   orderId int,
+   userId int,
+   detailId int,
+   sourceId int,
+   number int,
+   price float,
+   time time
 );
 
 /*==============================================================*/
@@ -59,20 +58,26 @@ create table orderList
 /*==============================================================*/
 create table user
 (
-   userId               int not null,
-   username             varchar(32) not null,
-   password             varchar(32) not null,
-   phone                varchar(11) not null,
-   userType             tinyint not null,
+   userId int not null,
+   username varchar(32) not null,
+   password varchar(32) not null,
+   phone varchar(11) not null,
+   userType tinyint not null,
    primary key (userId)
 );
 
 alter table goodsDetail add constraint FK_Reference_3 foreign key (goodsId)
-      references goods (goodsId) on delete restrict on update restrict;
+      references goods (goodsId)
+on delete restrict on
+update restrict;
 
 alter table orderList add constraint FK_Reference_2 foreign key (detailId)
-      references goodsDetail (detailId) on delete restrict on update restrict;
+      references goodsDetail (detailId)
+on delete restrict on
+update restrict;
 
 alter table orderList add constraint FK_Reference_4 foreign key (userId)
-      references user (userId) on delete restrict on update restrict;
+      references user (userId)
+on delete restrict on
+update restrict;
 
