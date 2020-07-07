@@ -3,7 +3,7 @@ package com.se128.jupiter.util.msgutils;
 import net.sf.json.JSONObject;
 
 public class Msg {
-    private int status;
+    private Integer status;
     private String msg;
     private JSONObject data;
 
