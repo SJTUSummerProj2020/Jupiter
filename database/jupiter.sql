@@ -22,7 +22,9 @@ create table goods
    
    name                 varchar
    (32) not null,
-   place                varchar
+   start_time date not null,
+   end_time date not null,
+   address                varchar
    (32) not null,
    website              varchar
    (1024) not null,
@@ -38,13 +40,13 @@ create table goods
    (
       detail_id int not null
       AUTO_INCREMENT,
-            surplus              int not null,
    goods_id             int,
    price                float not null,
-   time                 time not null,
-   sessions             varchar
+   surplus              int not null,
+   time          varchar
       (32) not null,
-   ticket_type          tinyint not null,
+   ticket_type          varchar
+      (32) not null,
    primary key
       (detail_id)
 );
