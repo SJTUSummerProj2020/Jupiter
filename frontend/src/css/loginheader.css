@@ -1,0 +1,29 @@
+.logo{
+    float: left;
+    position: relative;
+    margin-left:0px;
+}
+
+.logo img{
+    width: 200px;
+    height: 80px;
+    margin-top: 0px;
+}
+
+.header{
+    width: 100%;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+.img-responsive{
+    width: 150px;
+    height: 200px;
+    margin-left: 40px;
+}
+
+.img{
+    width: 60px;
+    height: 80px;
+    margin-left: 10px;
+}
