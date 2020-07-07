@@ -24,10 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="实现了注册功能">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../database/jupiter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../database/jupiter.sql" afterDir="false" />
-    </list>
+    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="实现了注册功能" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +96,7 @@
       <workItem from="1594030422601" duration="67000" />
       <workItem from="1594080556619" duration="6009000" />
       <workItem from="1594088258576" duration="2221000" />
-      <workItem from="1594102804173" duration="2999000" />
+      <workItem from="1594102804173" duration="3225000" />
     </task>
     <task id="LOCAL-00001" summary="实现了注册功能">
       <created>1594104241330</created>
