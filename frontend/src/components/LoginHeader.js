@@ -9,8 +9,8 @@ export class LoginHeader extends React.Component{
     }
     render() {
         return(
-            <div className="header">
-                <div className="logo">
+            <div className="loginheader">
+                <div className="loginlogo">
                     <img src={[require("../assets/logo2.png")]} alt="Website logo"/>
                 </div>
                 {/*<div className="searchBarContainer">*/}
