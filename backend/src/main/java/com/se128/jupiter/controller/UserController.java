@@ -24,10 +24,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/getUserByUserId")
-    public Msg getUserByUserId(@RequestBody Map<String, String> params) {
+    @RequestMapping("/getUserById")
+    public Msg getUserById(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        System.out.println("getUserByUserId = " + userId);
+        System.out.println("getUserById = " + userId);
         User user = userService.getUserByUserId(userId);
         JSONObject data = JSONObject.fromObject(user);
         return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
@@ -60,7 +60,6 @@ public class UserController {
     public Msg register(@RequestBody User user) {
         System.out.println("register");
 
-        user.setUserType(Constant.CUSTOMER);
         User user1 = userService.addUser(user);
 
         if (user1 != null) {
