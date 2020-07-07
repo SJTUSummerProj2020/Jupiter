@@ -8,4 +8,10 @@ public interface GoodsDao {
     List<Goods> getAllGoods();
 
     Goods getGoodsByGoodsId(Integer goodsId);
+
+    Goods editGoods(Goods goods);
+
+    Goods addGoods(Goods goods);
+
+    void deleteGoodsByGoodsId(Integer goodsId);
 }
