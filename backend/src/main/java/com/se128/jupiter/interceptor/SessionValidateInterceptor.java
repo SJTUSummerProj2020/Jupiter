@@ -17,13 +17,13 @@ public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception{
         System.out.println("preHandle");
-//        boolean status = SessionUtil.checkAuth();
-//        if(!status){
-//            System.out.println("Failed");
-//            Msg msg = MsgUtil.makeMsg(MsgCode.NOT_LOGGED_IN_ERROR);
-//            sendJsonBack(response, msg);
-//            return false;
-//        }
+        boolean status = SessionUtil.checkAuth();
+        if(!status){
+            System.out.println("Failed");
+            Msg msg = MsgUtil.makeMsg(MsgCode.NOT_LOGGED_IN_ERROR);
+            sendJsonBack(response, msg);
+            return false;
+        }
         System.out.println("Success");
         return true;
     }
