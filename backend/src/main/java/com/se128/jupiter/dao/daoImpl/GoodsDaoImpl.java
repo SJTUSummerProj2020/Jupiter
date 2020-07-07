@@ -20,7 +20,23 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
-    public Goods getGoodsByGoodsId(Integer goodsId){
+    public Goods getGoodsByGoodsId(Integer goodsId) {
         return goodsRepository.getGoodsByGoodsId(goodsId);
     }
+
+    @Override
+    public Goods editGoods(Goods goods) {
+        return goodsRepository.saveAndFlush(goods);
+    }
+
+    @Override
+    public Goods addGoods(Goods goods) {
+        return goodsRepository.saveAndFlush(goods);
+    }
+
+    @Override
+    public void deleteGoodsByGoodsId(Integer goodsId) {
+        goodsRepository.deleteById(goodsId);
+    }
+
 }

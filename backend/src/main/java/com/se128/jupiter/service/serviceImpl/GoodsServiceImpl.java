@@ -22,4 +22,19 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods getGoodsByGoodsId(Integer goodsId) {
         return goodsDao.getGoodsByGoodsId(goodsId);
     }
+
+    @Override
+    public Goods editGoods(Goods goods) {
+        return goodsDao.editGoods(goods);
+    }
+
+    @Override
+    public Goods addGoods(Goods goods) {
+        return goodsDao.addGoods(goods);
+    }
+
+    @Override
+    public void deleteGoodsByGoodsId(Integer goodsId) {
+        goodsDao.deleteGoodsByGoodsId(goodsId);
+    }
 }

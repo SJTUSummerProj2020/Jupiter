@@ -1,6 +1,7 @@
 package com.se128.jupiter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.se128.jupiter.util.msgutils.Msg;
 
 import javax.persistence.*;
 import java.util.List;
@@ -84,4 +85,5 @@ public class Goods{
     public void setWebsite(String website) {
         this.website = website;
     }
+
 }
