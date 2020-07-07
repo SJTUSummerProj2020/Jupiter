@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2020/7/7 13:48:11                            */
+/* Created on:     2020/7/7 14:27:06                            */
 /*==============================================================*/
 
 
@@ -20,7 +20,7 @@ create table goods
    goods_id             int not null,
    surplus              int,
    name                 varchar(32) not null,
-   place                varchar(32) not null,
+   address              varchar(32) not null,
    website              varchar(1024) not null,
    goods_type           tinyint,
    primary key (goods_id)
