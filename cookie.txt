@@ -1,6 +1,0 @@
-#LWP-Cookies-2.0
-Set-Cookie3: _samesite_flag_=true; path="/"; domain=".damai.cn"; path_spec; domain_dot; secure; discard; HttpOnly=None; version=0
-Set-Cookie3: _tb_token_=5e73eee5e3515; path="/"; domain=".damai.cn"; path_spec; domain_dot; discard; version=0
-Set-Cookie3: cookie2=18fc64daf957f8f7b97f5b7ec6a38e11; path="/"; domain=".damai.cn"; path_spec; domain_dot; discard; HttpOnly=None; version=0
-Set-Cookie3: t=ec74bf2e2a55c73709d6ab8016466b3a; path="/"; domain=".damai.cn"; path_spec; domain_dot; expires="2030-04-05 15:55:13Z"; version=0
-Set-Cookie3: XSRF-TOKEN="0634dee3-5dab-45ab-bb30-d98ca7263bb4"; path="/"; domain="ipassport.damai.cn"; path_spec; discard; HttpOnly=None; version=0
