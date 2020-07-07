@@ -1,7 +1,7 @@
 package com.se128.jupiter.util.sessionutils;
 
 import com.se128.jupiter.util.constant.Constant;
-import net.minidev.json.JSONObject;
+import net.sf.json.JSONObject;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

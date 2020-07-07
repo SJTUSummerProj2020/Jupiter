@@ -1,40 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/InterceptorConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/Msg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/MsgCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/MsgUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/sessionutils/SessionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_atteo_evo_inflector_1_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_rest_2_3_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_rest_core_3_3_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_rest_webmvc_3_3_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_hateoas_spring_hateoas_1_1_0_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_core_2_0_0_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/OrderDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/GoodsDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/GoodsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/JupiaonetApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/JupiterApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/dao/daoImpl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/service/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiaonet/util/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/se128/jupiaonet/JupiaonetApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/se128/jupiter/JupiterApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/Msg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/Msg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/MsgCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/MsgCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/MsgUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/msgutils/MsgUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/sessionutils/SessionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/sessionutils/SessionUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -60,6 +86,15 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.se128.jupiter.dao.daoImpl" />
+      <recent name="com.se128.jupiter.dao" />
+      <recent name="com.se128.jupiter.service.serviceImpl" />
+      <recent name="com.se128.jupiter.repository" />
+      <recent name="com.se128.jupiter.entity" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="JupiterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="backend" />
@@ -80,10 +115,32 @@
       <option name="presentableId" value="Default" />
       <updated>1594030418892</updated>
       <workItem from="1594030422601" duration="67000" />
+      <workItem from="1594080556619" duration="6009000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1594086937139">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594086937139" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594084369186">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594084369186" />
   </component>
 </project>
