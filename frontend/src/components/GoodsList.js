@@ -14,6 +14,15 @@ const data = [
     {image:require('../assets/goods/9.jpg'),name:"太阳马戏《X绮幻之境》",price:360},
     {image:require('../assets/goods/10.png'),name:"魔女宅急便",price:100}
 ];
+const displayData = [
+    {image:require('../assets/goods/2.jpg'),name:"上海屋檐下",price:138},
+    {image:require('../assets/goods/3.jpg'),name:"音乐剧《梵高》",price:100},
+    {image:require('../assets/goods/4.png'),name:"夜猫俱乐部",price:100},
+    {image:require('../assets/goods/5.png'),name:"千禧复古联盟 3.0 杭州站",price:80},
+    {image:require('../assets/goods/6.png'),name:"[包邮包裹] 说唱拼盘",price:66},
+    {image:require('../assets/goods/7.jpg'),name:"开心麻花爆笑舞台剧《乌龙山伯爵》",price:80},
+];
+
 export class GoodsList extends React.Component{
     constructor(props) {
         super(props);
@@ -22,14 +31,14 @@ export class GoodsList extends React.Component{
         return (
             <div>
                 <List
-                    grid={{gutter: 10, column: 5}}
-                    dataSource={data}
-                    pagination={{
-                        onChange: page => {
-                            console.log(page);
-                        },
-                        pageSize: 25,
-                    }}
+                    grid={{gutter: 10, column: 3}}
+                    dataSource={displayData}
+                    // pagination={{
+                    //     onChange: page => {
+                    //         console.log(page);
+                    //     },
+                    //     pageSize: 25,
+                    // }}
                     renderItem={item => (
                         <List.Item>
                             <Goods info={item} />

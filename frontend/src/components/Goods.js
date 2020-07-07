@@ -12,7 +12,7 @@ export class Goods extends React.Component{
         return(
             <Card
                 hoverable={true}
-                style={{width: 180}}
+                style={{width: 180, marginLeft: 30}}
                 cover={<img alt="image" src={info.image} className={"goodsImg"}/>}
             >
                 <Meta title={info.name} description={'¥' + info.price}/>

@@ -4,6 +4,7 @@ import {ImageCarousel} from "../components/Carousel";
 import {Header} from "../components/Header";
 import {GoodsList} from "../components/GoodsList";
 import "../css/header.css";
+import {ClassificationCard} from "../components/ClassificationCard";
 export class CustomerHome extends React.Component{
     constructor(props) {
         super(props);
@@ -14,7 +15,8 @@ export class CustomerHome extends React.Component{
                 <Header/>
                 <ImageCarousel/>
                 <div className={"goodsList"} style={{width: 1060,marginLeft: 88}}>
-                    <GoodsList/>
+                    {/*<GoodsList/>*/}
+                    <ClassificationCard/>
                 </div>
             </div>
         );
