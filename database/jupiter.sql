@@ -63,7 +63,7 @@ create table goods
    source_id            int not null,
    number               int not null,
    price                float not null,
-   time                 time not null,
+   time                 TIMESTAMP not null,
    primary key
          (order_id)
 );
