@@ -17,7 +17,7 @@ drop table if exists user;
 /*==============================================================*/
 create table goods
 (
-   goods_id             int not null,
+   goods_id             int not null AUTO_INCREMENT,
    surplus              int,
    name                 varchar(32) not null,
    place                varchar(32) not null,
@@ -31,7 +31,7 @@ create table goods
 /*==============================================================*/
 create table goodsDetail
 (
-   detail_id            int not null,
+   detail_id            int not null AUTO_INCREMENT,
    goods_id             int,
    price                float not null,
    time                 time not null,
@@ -45,13 +45,14 @@ create table goodsDetail
 /*==============================================================*/
 create table orderList
 (
-   order_id             int,
+   order_id             int NOT NULL AUTO_INCREMENT,
    user_id              int,
    detail_id            int,
    source_id            int,
    number               int,
    price                float,
-   time                 time
+   time                 time,
+   primary key (order_id)
 );
 
 /*==============================================================*/
@@ -59,7 +60,7 @@ create table orderList
 /*==============================================================*/
 create table user
 (
-   user_id              int not null,
+   user_id              int not null AUTO_INCREMENT,
    user_name            varchar(32) not null,
    password             varchar(32) not null,
    phone                varchar(11) not null,

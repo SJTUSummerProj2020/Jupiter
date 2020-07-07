@@ -24,13 +24,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="14:14">
+    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="实现了注册功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../database/jupiter.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../database/jupiter.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,8 +99,16 @@
       <workItem from="1594030422601" duration="67000" />
       <workItem from="1594080556619" duration="6009000" />
       <workItem from="1594088258576" duration="2221000" />
-      <workItem from="1594102804173" duration="1357000" />
+      <workItem from="1594102804173" duration="2999000" />
     </task>
+    <task id="LOCAL-00001" summary="实现了注册功能">
+      <created>1594104241330</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594104241330</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,7 +128,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="14:14" />
-    <option name="LAST_COMMIT_MESSAGE" value="14:14" />
+    <MESSAGE value="实现了注册功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了注册功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="662" y="302" key="#Assign_Data_Sources" timestamp="1594101111111">
@@ -143,38 +148,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="311" y="150" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1594089488806" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1594104173431">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173431" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1594104173431">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1594103518020">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173431" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1594104173431">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518020" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173431" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1594104173431">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173431" />
+    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1594104173432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
-    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.1.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173432" />
+    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1594104173432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
-    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.1.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173432" />
+    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1594104173431">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
-    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1594103518021">
+    <state width="1493" height="210" key="GridCell.Tab.1.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173431" />
+    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1594104173432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594103518021" />
+    <state width="1493" height="210" key="GridCell.Tab.1.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594104173432" />
     <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1594103417648">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

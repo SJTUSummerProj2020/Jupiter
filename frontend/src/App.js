@@ -21,7 +21,7 @@ function App() {
       {/*    Learn React*/}
       {/*  </a>*/}
       {/*</header>*/}
-      <CustomerHome/>
+      <LoginView/>
     </div>
   );
 }
