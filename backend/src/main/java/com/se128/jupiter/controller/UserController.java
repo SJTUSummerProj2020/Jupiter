@@ -1,5 +1,7 @@
 package com.se128.jupiter.controller;
 
+import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.UserService;
 import com.se128.jupiter.util.constant.Constant;
@@ -11,8 +13,10 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -84,6 +88,21 @@ public class UserController {
             return MsgUtil.makeMsg(MsgCode.NOT_LOGGED_IN_ERROR);
         } else {
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, auth);
+        }
+    }
+
+    @RequestMapping("/getOrdersByUserId")
+    public Msg getOrdersByUserId(@RequestParam("userId") Integer userId) {
+        System.out.println("getOrdersByUserId = " + userId);
+        List<Order> orders= userService.getOrdersByUserId(userId);
+
+        if(orders != null)
+        {
+            JSONObject data = JSONObject.fromObject(orders);
+            return MsgUtil.makeMsg(MsgCode.SUCCESS,data);
+        }
+        else{
+            return MsgUtil.makeMsg(MsgCode.ERROR);
         }
     }
 

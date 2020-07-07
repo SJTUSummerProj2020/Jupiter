@@ -12,16 +12,16 @@ import java.sql.Time;
 public class Order {
 
     @Id
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
 
     @OneToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToOne
-    @JoinColumn(name = "detailId")
+    @JoinColumn(name = "detail_id")
     private GoodsDetail goodsDetail;
 
     private Integer sourceId;

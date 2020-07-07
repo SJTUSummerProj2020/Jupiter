@@ -11,12 +11,12 @@ import java.sql.Time;
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
 public class GoodsDetail {
     @Id
-    @Column(name = "detailId")
+    @Column(name = "detail_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer detailId;
 
     @ManyToOne
-    @JoinColumn(name = "goodsId")
+    @JoinColumn(name = "goods_id")
     private Goods goods;
 
     private Double price;
@@ -26,7 +26,7 @@ public class GoodsDetail {
 
     private String sessions;
 
-    @Column(name = "TicketType")
+    @Column(name = "ticket_type")
     private Integer ticketType;
     @Transient
     private String image;

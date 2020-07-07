@@ -11,7 +11,7 @@ import java.util.List;
 public class Goods{
 
     @Id
-    @Column(name = "goodsId")
+    @Column(name = "goods_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer goodsId;
 
@@ -26,7 +26,7 @@ public class Goods{
 
     @Transient
     @OneToMany
-    @Column(name = "goodsId")
+    @Column(name = "goods_id")
     private List<GoodsDetail> goodsDetails;
 
 }

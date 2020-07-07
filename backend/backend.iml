@@ -7,7 +7,8 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="Entities" />
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="backend" value="2e9ea275-f22d-471e-bfee-eca0f8b87fae" />
+          <factory-entry name="entityManagerFactory" value="e62707fc-fe5a-45c0-babe-9d654c3d77e6" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -36,8 +37,6 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.springframework.session:spring-session-core:2.3.0.RELEASE" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: mysql:mysql-connector-java:8.0.20" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.3.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.3.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.2.7.RELEASE" level="project" />

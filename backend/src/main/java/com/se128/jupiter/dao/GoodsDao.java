@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GoodsDao {
     List<Goods> getAllGoods();
+
+    Goods getGoodsByGoodsId(Integer goodsId);
 }

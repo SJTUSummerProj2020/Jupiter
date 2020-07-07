@@ -11,17 +11,18 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "userId")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     private String username;
     private String password;
+
     private String phone;
     private Integer userType;
 
     @OneToMany()
-    @JoinColumn(name="userId")
+    @JoinColumn(name="user_id")
     private List<Order> orders;
 
     public Integer getUserId() {

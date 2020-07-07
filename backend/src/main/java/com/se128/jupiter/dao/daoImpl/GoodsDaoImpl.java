@@ -1,7 +1,6 @@
 package com.se128.jupiter.dao.daoImpl;
 
 import com.se128.jupiter.dao.GoodsDao;
-import com.se128.jupiter.dao.OrderDao;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +17,10 @@ public class GoodsDaoImpl implements GoodsDao {
     @Override
     public List<Goods> getAllGoods() {
         return goodsRepository.getAllGoods();
+    }
+
+    @Override
+    public Goods getGoodsByGoodsId(Integer goodsId){
+        return goodsRepository.getGoodsByGoodsId(goodsId);
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GoodsService {
     List<Goods> getAllGoods();
+
+    Goods getGoodsByGoodsId(Integer goodsId);
 }

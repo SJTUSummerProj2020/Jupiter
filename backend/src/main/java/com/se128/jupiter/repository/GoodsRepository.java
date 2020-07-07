@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface GoodsRepository extends JpaRepository<Goods,Integer> {
 
-    @Query("select g from Goods g")
+    @Query(value = "select g from Goods g")
     List<Goods> getAllGoods();
+
+    Goods getGoodsByGoodsId(Integer goodsId);
 }
