@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CustomerHome from "./view/CustomerHome";
+import {CustomerHome} from "./view/CustomerHome";
+import {LoginView} from "./view/LoginView";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       {/*    Learn React*/}
       {/*  </a>*/}
       {/*</header>*/}
-      <CustomerHome/>
+      <LoginView/>
     </div>
   );
 }
