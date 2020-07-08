@@ -13,7 +13,7 @@ export class DetailShowTab extends React.Component{
     }
     render() {
         return(
-            <Row>
+            <Row align = "top" gutter={16}>
                 <Col className={"detail-show-tab"}>
                     <Tabs defaultActiveKey="1" onChange={callback}>
                         <TabPane tab="项目详情" key="1" >

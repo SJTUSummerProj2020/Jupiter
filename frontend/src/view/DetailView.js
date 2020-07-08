@@ -23,18 +23,18 @@ export class DetailView extends React.Component {
     }
     render(){
         return(
-            <div>
+            <Row align="top" gutter={16}>
                 <Header/>
                 <DetailCard info={data} />
-                <Row>
-                    <Col span={12}>
+                <Row align = "top" gutter={16}>
+                    <Col span={16}>
                         <DetailShowTab/>
                     </Col>
-                    <Col span={4} offset={3}>
+                    <Col span={4}>
                         <DetailRecommend/>
                     </Col>
                 </Row>
-            </div>
+            </Row>
         );
     }
 }
