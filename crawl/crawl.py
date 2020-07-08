@@ -114,7 +114,10 @@ def analysis_detailpage(page, content):
     soup = BeautifulSoup(content, features='html.parser')
     # 图片
     image = soup.find('img', {'class': 'poster'})
-    image_url = str(image.get('src', ''))
+    if image is None:
+        image_url = 'None'
+    else:
+        image_url = str(image.get('src', ''))
     # 标题
     title = soup.find('div', {'class': 'title'})
     title_content = title.contents[2].get_text()
@@ -123,8 +126,12 @@ def analysis_detailpage(page, content):
     title_time_content = str(title_time.get_text())
     # 演出时间
     perform_time = soup.find('div', {'class': 'perform__order__select perform__order__select__performs'})
-    perform_time_content = str(perform_time.contents[2].div.div.span.find(text=True).strip())
-    tickets_status_text = perform_time.contents[2].div.div.span.span
+    if perform_time is None:
+        perform_time_content = 'Unknown'
+        tickets_status_text = None
+    else:
+        perform_time_content = str(perform_time.contents[2].div.div.span.find(text=True).strip())
+        tickets_status_text = perform_time.contents[2].div.div.span.span
     ticket_status = 'None'
     if tickets_status_text is not None:
         ticket_status = str(tickets_status_text.get_text()).strip().replace('\n','')
@@ -132,12 +139,14 @@ def analysis_detailpage(page, content):
     place = str(soup.find('div', {'class': 'addr'}).get_text())
     # 票种类和价钱
     tickets = []
+    tickets_container = None
     for i in soup.findAll('div', {'class': 'perform__order__select'}):
         if (str(i.contents[0].get_text()) == '票档'):
             tickets_container = i
-    for i in tickets_container.contents[2].findAll('div', {'class': 'sku_item'}):
-        price = str(i.find(text=True).strip())
-        tickets.append(price)
+    if tickets_container is not None:
+        for i in tickets_container.contents[2].findAll('div', {'class': 'sku_item'}):
+            price = str(i.find(text=True).strip())
+            tickets.append(price)
     # 组装演出信息
     date = split_time(title_time_content)   # 标题时间拆分成start&end
     raw_data = {
@@ -155,20 +164,25 @@ def analysis_detailpage(page, content):
         }]
     }
     # json_data = json.dumps(raw_data)
-    data.append(raw_data)
+    if dataLock.acquire():
+        data.append(raw_data)
+        dataLock.release()
 
 
 def split_time(time_str):
     rule = re.compile(r'[0-9]{4}\.[0-9]{2}\.[0-9]{2}')
     rule1 = re.compile(r'-[0-9]{2}\.[0-9]{2}')
+    start_date = '0000-00-00'
+    end_date = start_date
     m = rule.search(time_str)
     m1 = rule1.search(time_str)
-    start_date = str(m.group(0)).replace('.', '-')
-    if m1 is None:
-        end_date = start_date
-    else:
-        end_date = str(m1.group(0).replace('.', '-'))
-        end_date = start_date[:4] + end_date
+    if m:
+        start_date = str(m.group(0)).replace('.', '-')
+        if m1 is None:
+            end_date = start_date
+        else:
+            end_date = str(m1.group(0).replace('.', '-'))
+            end_date = start_date[:4] + end_date
     return [start_date, end_date]
 
 
@@ -182,10 +196,6 @@ def split_price(price_str):
 
 
 def save_data():
-    # file = open('data.txt', 'w')
-    # for i in range(len(data)):
-    #     file.write(data[i])
-    # file.close()
     conn = connect(
         host='localhost',
         port = 3306,
@@ -205,15 +215,15 @@ def save_data():
             data[i]['website'] + '\", ' + \
             str(data[i]['goods_type']) + ', \"' + \
             data[i]['image'] + '\")'
-        cur.execute(goods_insert_sql)
-        cur.execute(find_max)
-        max_goodsid = int(cur.fetchone()[0])
+        try: 
+            cur.execute(goods_insert_sql)
+            cur.execute(find_max)
+            max_goodsid = int(cur.fetchone()[0])
+        except:
+            print(goods_insert_sql)
+            continue
 
         tickets = data[i]['tickets']
-
-        # print(data[i]['end_date'])
-        # print(tickets)
-
         for ticket_index in range(len(tickets)):
             price = tickets[ticket_index]['price']
             ticket_time = tickets[ticket_index]['time']
@@ -229,7 +239,11 @@ def save_data():
                     str(status) + ', \"' + \
                     ticket_time + '\", \"' + \
                     price[price_index] + '\")'
-                cur.execute(ticket_insert_sql)
+                try:
+                    cur.execute(ticket_insert_sql)
+                except:
+                    print(ticket_insert_sql)
+                    continue
     conn.commit()
     cur.close()
     conn.close()
@@ -238,6 +252,7 @@ def save_data():
 
 
 def working(flag, count, n):
+    global NUM
     option = webdriver.ChromeOptions()
     option.add_experimental_option('excludeSwitches', ['enable-automation'])
     browser = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe", options=option)
@@ -281,20 +296,26 @@ def working(flag, count, n):
             if varLock.acquire():
                 crawled.append(page)
                 varLock.release()
-    save_data()
+    if countLock.acquire():
+        NUM = NUM - 1
+        countLock.release()
+    if NUM == 0:
+        save_data()
     
 
 
 if __name__ == "__main__":
     flag = True
     count = 0
-    maxpage = 20
-    NUM = 1
+    maxpage = 100
+    NUM = 4
     performance_type = 0        # 演出类型标记
     seed = 'https://www.damai.cn/'
     # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC%86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99'
     # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5%BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8%8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
     varLock = threading.Lock()
+    dataLock = threading.Lock()
+    countLock = threading.Lock()
     q = queue.Queue()
     crawled = []
     threads = []
