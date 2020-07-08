@@ -109,7 +109,40 @@ def get_searchpage_links(page, content):
     return links
 
 
-def analysis_detailpage(page, content):
+# soup经过soup解析 返回该页面上同一场次的所有票务信息
+def get_ticket_info(soup):
+    # 演出时间
+    perform_time = soup.find('div', {'class': 'perform__order__select perform__order__select__performs'})
+    if perform_time is None:
+        perform_time_content = 'Unknown'
+    else:
+        perform_time_content = str(perform_time.contents[2].div.find('div', {'class': 'select_right_list_item active'}).span.find(text=True).strip())
+    # 票种类和价钱
+    tickets = []
+    tickets_container = None
+    for i in soup.findAll('div', {'class': 'perform__order__select'}):
+        if (str(i.contents[0].get_text()) == '票档'):
+            tickets_container = i
+    if tickets_container is not None:
+        for i in tickets_container.contents[2].findAll('div', {'class': 'sku_item'}):
+            price = str(i.find(text=True).strip())
+            ticket_status_text = i.span
+            if ticket_status_text is not None:
+                ticket_status = str(ticket_status_text.get_text()).strip().replace('\n', '')
+            else:
+                ticket_status = 'None'
+            obj = {
+                'price': price,
+                'status': ticket_status
+            }
+            tickets.append(obj)
+    return {
+        'time': perform_time_content,
+        'price': tickets
+    }
+
+
+def analysis_detailpage(page, content, browser):
     global data
     soup = BeautifulSoup(content, features='html.parser')
     # 图片
@@ -120,33 +153,15 @@ def analysis_detailpage(page, content):
         image_url = str(image.get('src', ''))
     # 标题
     title = soup.find('div', {'class': 'title'})
-    title_content = title.contents[2].get_text()
+    if title is None:
+        title_content = 'None'
+    else:
+        title_content = title.contents[2].get_text()
     # 标题时间
     title_time = soup.find('div', {'class': 'time'})
     title_time_content = str(title_time.get_text())
-    # 演出时间
-    perform_time = soup.find('div', {'class': 'perform__order__select perform__order__select__performs'})
-    if perform_time is None:
-        perform_time_content = 'Unknown'
-        tickets_status_text = None
-    else:
-        perform_time_content = str(perform_time.contents[2].div.div.span.find(text=True).strip())
-        tickets_status_text = perform_time.contents[2].div.div.span.span
-    ticket_status = 'None'
-    if tickets_status_text is not None:
-        ticket_status = str(tickets_status_text.get_text()).strip().replace('\n','')
     # 演出地点
     place = str(soup.find('div', {'class': 'addr'}).get_text())
-    # 票种类和价钱
-    tickets = []
-    tickets_container = None
-    for i in soup.findAll('div', {'class': 'perform__order__select'}):
-        if (str(i.contents[0].get_text()) == '票档'):
-            tickets_container = i
-    if tickets_container is not None:
-        for i in tickets_container.contents[2].findAll('div', {'class': 'sku_item'}):
-            price = str(i.find(text=True).strip())
-            tickets.append(price)
     # 组装演出信息
     date = split_time(title_time_content)   # 标题时间拆分成start&end
     raw_data = {
@@ -157,12 +172,38 @@ def analysis_detailpage(page, content):
         'address': place,
         'website': str(page),
         'goods_type': performance_type,
-        'tickets': [{
-            'time': perform_time_content,
-            'status': ticket_status,
-            'price': tickets
-        }]
+        'tickets': []
     }
+    # 轮番遍历所有场次 并获得每种场次的票务信息
+    flag = True  # 标记这是否是第一个场次 Y: True  N: False
+    try:
+        father = browser.find_element_by_xpath('//div[@class="select_left" and contains(text(), "场次")]/../div[2]/div')
+    except:       # 遇到演出取消
+        if dataLock.acquire():
+            data.append(raw_data)
+            dataLock.release()
+        return
+
+    for i in father.find_elements_by_xpath('./div'):
+        if flag:
+            ticket_obj = get_ticket_info(soup)
+            raw_data['tickets'].append(ticket_obj)
+            flag = False
+        else:
+            try:
+                i.click()
+                time.sleep(0.15)
+            except:
+                btn = browser.find_element_by_xpath('//div[@class="button" and contains(text(), "知道了")]')
+                btn.click()
+                time.sleep(0.1)
+                i.click()
+                time.sleep(0.15)
+            content = browser.page_source
+            soup = BeautifulSoup(content, features='html.parser')
+            ticket_obj = get_ticket_info(soup)
+            raw_data['tickets'].append(ticket_obj)
+
     # json_data = json.dumps(raw_data)
     if dataLock.acquire():
         data.append(raw_data)
@@ -227,18 +268,20 @@ def save_data():
         for ticket_index in range(len(tickets)):
             price = tickets[ticket_index]['price']
             ticket_time = tickets[ticket_index]['time']
-            ticket_status = tickets[ticket_index]['status']
-            if ticket_status == '无票':
-                status = 0
-            else:
-                status = 1
+
             for price_index in range(len(price)):
+                if price[price_index]['status'] == '缺货登记':
+                    status = 0          # 缺票
+                elif price[price_index]['status'] == '开售提醒':
+                    status = 2          # 开售提醒
+                else:
+                    status = 1          # 有票
                 ticket_insert_sql = 'insert into goodsdetail VALUES(null, ' + \
                     str(max_goodsid) + ', ' + \
-                    str(split_price(price[price_index])) + ', ' + \
+                    str(split_price(price[price_index]['price'])) + ', ' + \
                     str(status) + ', \"' + \
                     ticket_time + '\", \"' + \
-                    price[price_index] + '\")'
+                    price[price_index]['price'] + '\")'
                 try:
                     cur.execute(ticket_insert_sql)
                 except:
@@ -259,9 +302,13 @@ def working(flag, count, n):
     rules = re.compile('.*search\\.damai\\.cn.*')
 
     while flag:
+        # queueLock.acquire()     # 加锁
         page = q.get()
-        if page == '-':
-            performance_type = performance_type + 1
+        # queueLock.release()     # 放锁
+        if page == '-':         # 填充用的
+            count += 1
+            if count >= maxpage:
+                flag = False
             continue
         if page not in crawled:
             try:
@@ -272,11 +319,12 @@ def working(flag, count, n):
             count += 1
             if count >= maxpage:
                 flag = False
-            if (page == seed):              # 主页
+            if (False):              # 主页
                 outlinks = get_mainpage_links(page, content)
                 for link in outlinks:
                     q.put(link)
             elif rules.match(str(page)):    # 搜索页
+                # queueLock.acquire()         # 加锁
                 while True:
                     outlinks = get_searchpage_links(page, content)
                     for link in outlinks:
@@ -289,9 +337,11 @@ def working(flag, count, n):
                     browser.execute_script(js)
                     time.sleep(0.25)
                     content = browser.page_source
-                q.put("-")                  # 类型划分标记
+                for i in range(50):
+                    q.put('-')  # 填充用的
+                # queueLock.release()         # 放锁
             else:                           # 票务详情页
-                analysis_detailpage(page, content)
+                analysis_detailpage(page, content, browser)
 
             if varLock.acquire():
                 crawled.append(page)
@@ -307,15 +357,17 @@ def working(flag, count, n):
 if __name__ == "__main__":
     flag = True
     count = 0
-    maxpage = 100
+    maxpage = 10
     NUM = 4
-    performance_type = 0        # 演出类型标记
-    seed = 'https://www.damai.cn/'
+    performance_type = 6        # 演出类型标记
+    # seed = 'https://www.damai.cn/'
     # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC%86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99'
     # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5%BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8%8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
+    seed = 'https://search.damai.cn/search.htm?spm=a2oeg.home.category.ditem_7.577723e1Nby1vX&ctl=%E8%88%9E%E8%B9%88%E8%8A%AD%E8%95%BE&order=1&cty='
     varLock = threading.Lock()
     dataLock = threading.Lock()
     countLock = threading.Lock()
+    queueLock = threading.Lock()
     q = queue.Queue()
     crawled = []
     threads = []
@@ -328,8 +380,11 @@ if __name__ == "__main__":
         threads.append(t)
 
     # start each thread
+    mark = True
     for t in threads:
         t.start()
+        # while mark:
+        #     time.sleep(1)
     
     # join threads
     for t in threads:
