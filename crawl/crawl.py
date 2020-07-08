@@ -15,12 +15,14 @@ import re
 import pickle
 import time
 import json
+from pymysql import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
+
 
 def get_cookies(url):
     values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin':'true'}
@@ -45,6 +47,7 @@ def get_cookies(url):
     for item in cookie:
         print(item.name + ':' + item.value)
     
+
 def get_page(url, browser):
     browser.get(url)
     rules = re.compile('.*search\\.damai\\.cn.*')
@@ -58,6 +61,7 @@ def get_page(url, browser):
     time.sleep(0.5)
     content = browser.page_source
     return content
+
 
 def get_mainpage_links(page, content):
     links = []
@@ -75,6 +79,7 @@ def get_mainpage_links(page, content):
         # print(modifiedurl)
     return links
 
+
 def rollpage(browser):
     next_btn = browser.find_element_by_xpath('//button[@class="btn-next"]')
     is_disabled = next_btn.get_attribute('disabled')
@@ -85,6 +90,7 @@ def rollpage(browser):
         return True
     else:
         return False
+
 
 def get_searchpage_links(page, content):
     links = []
@@ -101,6 +107,7 @@ def get_searchpage_links(page, content):
 
         # print(modifiedurl)
     return links
+
 
 def analysis_detailpage(page, content):
     global data
@@ -132,10 +139,12 @@ def analysis_detailpage(page, content):
         price = str(i.find(text=True).strip())
         tickets.append(price)
     # 组装演出信息
+    date = split_time(title_time_content)   # 标题时间拆分成start&end
     raw_data = {
         'name': title_content,
         'image': image_url,
-        'title_time': title_time_content,
+        'start_date': date[0],
+        'end_date': date[1],
         'address': place,
         'website': str(page),
         'goods_type': performance_type,
@@ -146,17 +155,87 @@ def analysis_detailpage(page, content):
         }]
     }
     # json_data = json.dumps(raw_data)
-    data.append(str(raw_data))
+    data.append(raw_data)
 
-    
+
+def split_time(time_str):
+    rule = re.compile(r'[0-9]{4}\.[0-9]{2}\.[0-9]{2}')
+    rule1 = re.compile(r'-[0-9]{2}\.[0-9]{2}')
+    m = rule.search(time_str)
+    m1 = rule1.search(time_str)
+    start_date = str(m.group(0)).replace('.', '-')
+    if m1 is None:
+        end_date = start_date
+    else:
+        end_date = str(m1.group(0).replace('.', '-'))
+        end_date = start_date[:4] + end_date
+    return [start_date, end_date]
+
+
+def split_price(price_str):
+    rule = re.compile(r'[0-9]+\.?[0-9]*')
+    m = rule.search(price_str)
+    if m:
+        return float(m.group(0))
+    else:
+        return 0
 
 
 def save_data():
-    file = open('data.txt', 'w')
+    # file = open('data.txt', 'w')
+    # for i in range(len(data)):
+    #     file.write(data[i])
+    # file.close()
+    conn = connect(
+        host='localhost',
+        port = 3306,
+        user='root',
+        password='123456',
+        database='jupiter',
+        charset='utf8'
+    )
+    cur = conn.cursor()
+    find_max = 'select max(goods_id) from goods'
     for i in range(len(data)):
-        file.write(data[i])
-        # print(data[i])
-    file.close()
+        goods_insert_sql = 'insert into goods VALUES(null, \"' + \
+            data[i]['name'] + '\", \"' + \
+            data[i]['start_date'] + '\", \"' + \
+            data[i]['end_date'] + '\", \"' + \
+            data[i]['address'] + '\", \"' + \
+            data[i]['website'] + '\", ' + \
+            str(data[i]['goods_type']) + ', \"' + \
+            data[i]['image'] + '\")'
+        cur.execute(goods_insert_sql)
+        cur.execute(find_max)
+        max_goodsid = int(cur.fetchone()[0])
+
+        tickets = data[i]['tickets']
+
+        # print(data[i]['end_date'])
+        # print(tickets)
+
+        for ticket_index in range(len(tickets)):
+            price = tickets[ticket_index]['price']
+            ticket_time = tickets[ticket_index]['time']
+            ticket_status = tickets[ticket_index]['status']
+            if ticket_status == '无票':
+                status = 0
+            else:
+                status = 1
+            for price_index in range(len(price)):
+                ticket_insert_sql = 'insert into goodsdetail VALUES(null, ' + \
+                    str(max_goodsid) + ', ' + \
+                    str(split_price(price[price_index])) + ', ' + \
+                    str(status) + ', \"' + \
+                    ticket_time + '\", \"' + \
+                    price[price_index] + '\")'
+                cur.execute(ticket_insert_sql)
+    conn.commit()
+    cur.close()
+    conn.close()
+                
+
+
 
 def working(flag, count, n):
     option = webdriver.ChromeOptions()
