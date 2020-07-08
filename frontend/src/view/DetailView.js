@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from "../components/Header";
 import {DetailCard} from "../components/DetailCard";
-import{ShowTab} from "../components/ShowTab";
+import{DetailShowTab} from "../components/DetailShowTab";
 import {DetailRecommend} from "../components/DetailRecommend";
 import { Row, Col,Card,Tabs} from 'antd';
 
@@ -28,7 +28,7 @@ export class DetailView extends React.Component {
                 <DetailCard info={data} />
                 <Row>
                     <Col span={12}>
-                        <ShowTab/>
+                        <DetailShowTab/>
                     </Col>
                     <Col span={4} offset={3}>
                         <DetailRecommend/>
