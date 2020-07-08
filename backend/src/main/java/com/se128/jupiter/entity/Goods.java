@@ -1,11 +1,10 @@
 package com.se128.jupiter.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.se128.jupiter.util.msgutils.Msg;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -20,11 +19,9 @@ public class Goods {
 
     private String name;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startTime;
+    private String startTime;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endTime;
+    private String endTime;
 
     private String address;
     private String website;
@@ -93,19 +90,19 @@ public class Goods {
         this.website = website;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
