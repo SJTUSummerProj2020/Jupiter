@@ -1,10 +1,10 @@
 package com.se128.jupiter.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.se128.jupiter.util.msgutils.Msg;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -19,15 +19,15 @@ public class Goods {
 
     private String name;
 
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+
+    private String endTime;
 
     private String address;
     private String website;
 
     private Integer goodsType;
 
-    @Transient
     private String image;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -90,19 +90,20 @@ public class Goods {
         this.website = website;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
+
 }
