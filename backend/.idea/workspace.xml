@@ -21,14 +21,17 @@
         <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:upstream/dev" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:add log4j2 as log output, the logs will be stored in D:/logs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:notation files in log" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +46,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/HaoningLan/Jupiter.git" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -129,7 +139,7 @@
       <workItem from="1594186336217" duration="1564000" />
       <workItem from="1594190830395" duration="1228000" />
       <workItem from="1594194406078" duration="660000" />
-      <workItem from="1594197334190" duration="1021000" />
+      <workItem from="1594197334190" duration="1127000" />
     </task>
     <task id="LOCAL-00001" summary="基础功能完成，欠缺数据库">
       <created>1594109055623</created>
@@ -159,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594177861220</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat:notation files in log">
+      <created>1594198420759</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1594198420759</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,7 +187,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="upstream/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -182,7 +211,8 @@
     <MESSAGE value="基础功能完成，欠缺数据库" />
     <MESSAGE value="feat:add getGoodsByGoodsType&#10;todo: add log to the application" />
     <MESSAGE value="feat:add log4j2 as log output, the logs will be stored in D:/logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:add log4j2 as log output, the logs will be stored in D:/logs" />
+    <MESSAGE value="feat:notation files in log" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat:notation files in log" />
   </component>
   <component name="WindowStateProjectService">
     <state x="662" y="302" key="#Assign_Data_Sources" timestamp="1594101111111">
@@ -201,46 +231,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="311" y="150" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1594089488806" />
-    <state width="1493" height="207" key="GridCell.Tab.0.bottom" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.0.bottom" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.0.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.0.center" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.0.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.0.center" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.0.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.0.left" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.0.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.0.left" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.0.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.0.right" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.0.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.0.right" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.0.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.1.bottom" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.0.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.1.bottom" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.1.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.1.center" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.1.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.1.center" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.1.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.1.left" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.1.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.1.left" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.1.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
-    <state width="1493" height="207" key="GridCell.Tab.1.right" timestamp="1594195065903">
+    <state width="1493" height="207" key="GridCell.Tab.1.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
+    <state width="1493" height="207" key="GridCell.Tab.1.right" timestamp="1594198461805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="207" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1594192058902" />
-    <state width="1493" height="207" key="GridCell.Tab.1.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594195065903" />
+    <state width="1493" height="207" key="GridCell.Tab.1.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594198461805" />
     <state width="1493" height="261" key="GridCell.Tab.2.bottom" timestamp="1594109060258">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
