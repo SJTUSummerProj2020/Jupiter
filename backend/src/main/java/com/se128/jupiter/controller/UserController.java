@@ -62,6 +62,7 @@ public class UserController {
     @RequestMapping("/register")
     public Msg register(@RequestBody User user) {
         new LogUtil().info("register");
+        user.setUserType(Constant.Customer);
         User user1 = userService.addUser(user);
 
         if (user1 != null) {
