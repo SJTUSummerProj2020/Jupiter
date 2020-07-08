@@ -22,14 +22,7 @@ export class ClassificationCard extends React.Component{
             <Card title={<span style={{float:"left"}}>话剧歌剧</span>} bordered={false} extra={<span>查看更多</span>} style={{ width: 1050 }}>
                <div className={"classification-content"}>
                    <div className={"most-popular"}>
-                       {/*<img alt="image" src={require("../assets/goods/1.jpg")} className={"mostPopularImg"}/>*/}
-                       {/*<Card*/}
-                       {/*    cover={<img alt="image" src={require("../assets/goods/1.jpg")} className={"mostPopularImg"}/>}*/}
-                       {/*     hoverable={true}*/}
-                       {/*    style={{width: 260, height: 400}}*/}
-                       {/*>*/}
-                       {/*    <Meta title={<p>求婚女王</p>} description={'¥50'}/>*/}
-                       {/*</Card>*/}
+
                        <Card
                            hoverable
                            style={{ width: 290, height: 560 }}
