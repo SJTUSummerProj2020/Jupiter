@@ -27,7 +27,7 @@
     position:relative;
     width: 600px;
     margin-top:30px;
-    margin-left:100px;
+    margin-left:60px;
 }
 
 .header .auth ul li{
@@ -59,4 +59,16 @@ a{
     width: 60px;
     height: 80px;
     margin-left: 10px;
+}
+
+.navigationList{
+    float: left;
+    margin-top: 40px;
+}
+
+.navigation{
+    list-style:none;
+    color: #6a7891;
+    float: left;
+    margin-right: 30px;
 }

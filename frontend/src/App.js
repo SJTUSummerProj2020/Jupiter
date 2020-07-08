@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import {CustomerHome} from "./view/CustomerHome";
 import {LoginView} from "./view/LoginView";
+import {PersonalInfoView} from "./view/PersonalInfoView";
+import {DetailListView} from "./view/DetailListView";
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
       {/*    Learn React*/}
       {/*  </a>*/}
       {/*</header>*/}
-      <CustomerHome/>
+      <DetailListView/>
     </div>
   );
 }

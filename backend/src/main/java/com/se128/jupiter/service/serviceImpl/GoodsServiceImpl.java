@@ -37,4 +37,9 @@ public class GoodsServiceImpl implements GoodsService {
     public void deleteGoodsByGoodsId(Integer goodsId) {
         goodsDao.deleteGoodsByGoodsId(goodsId);
     }
+
+    @Override
+    public List<Goods> getGoodsByGoodsType(Integer goodsType) {
+        return goodsDao.getGoodsByGoodsType(goodsType);
+    }
 }

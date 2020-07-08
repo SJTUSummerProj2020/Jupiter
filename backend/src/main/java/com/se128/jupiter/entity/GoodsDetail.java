@@ -15,75 +15,73 @@ public class GoodsDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer detailId;
 
-    @ManyToOne
-    @JoinColumn(name = "goods_id")
-    private Goods goods;
+    @Column(name = "goods_id")
+    private Integer goodsId;
 
     private Double price;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Time time;
+    private Integer surplus;
 
-    private String sessions;
+    private String time;
 
-    @Column(name = "ticket_type")
-    private Integer ticketType;
+    private String ticketType;
+
     @Transient
     private String image;
 
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public Time getTime() {
-        return time;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public Goods getGoods() {
-        return goods;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
     public Integer getDetailId() {
         return detailId;
     }
 
-    public Integer getTicketType() {
-        return ticketType;
-    }
-
     public String getImage() {
         return image;
-    }
-
-    public String getSessions() {
-        return sessions;
     }
 
     public void setDetailId(Integer detailId) {
         this.detailId = detailId;
     }
 
-    public void setGoods(Goods goods) {
-        this.goods = goods;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
     public void setImage(String image) {
         this.image = image;
     }
 
-    public void setSessions(String sessions) {
-        this.sessions = sessions;
+    public void setTicketType(String ticketType) {
+        this.ticketType = ticketType;
     }
 
-    public void setTicketType(Integer ticketType) {
-        this.ticketType = ticketType;
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Integer getSurplus() {
+        return surplus;
+    }
+
+    public String getTicketType() {
+        return ticketType;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setSurplus(Integer surplus) {
+        this.surplus = surplus;
     }
 }

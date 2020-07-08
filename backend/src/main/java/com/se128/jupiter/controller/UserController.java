@@ -4,10 +4,12 @@ import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.UserService;
 import com.se128.jupiter.util.constant.Constant;
+import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
 import com.se128.jupiter.util.sessionutils.SessionUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +28,7 @@ public class UserController {
 
     @RequestMapping("/getUserById")
     public Msg getUserById(@RequestBody Map<String, String> params) {
+
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
         System.out.println("getUserById = " + userId);
         User user = userService.getUserByUserId(userId);
@@ -35,6 +38,8 @@ public class UserController {
 
     @RequestMapping("/login")
     public Msg login(@RequestBody Map<String, String> params) {
+        // TODO:Test log
+        LogUtil.main();
         System.out.println("login");
         String username = params.get(Constant.USERNAME);
         String password = params.get(Constant.PASSWORD);
@@ -49,6 +54,8 @@ public class UserController {
 
             JSONObject data = JSONObject.fromObject(user);
             data.remove(Constant.PASSWORD);
+            data.remove(Constant.ORDERS);
+            data.remove(Constant.PHONE);
 
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
         } else {
@@ -93,18 +100,11 @@ public class UserController {
     }
 
     @RequestMapping("/getOrdersByUserId")
-    public Msg getOrdersByUserId(@RequestParam("userId") Integer userId) {
+    public List<Order> getOrdersByUserId(@RequestBody Map<String, String> params) {
+        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
         System.out.println("getOrdersByUserId = " + userId);
-        List<Order> orders= userService.getOrdersByUserId(userId);
 
-        if(orders != null)
-        {
-            JSONObject data = JSONObject.fromObject(orders);
-            return MsgUtil.makeMsg(MsgCode.SUCCESS,data);
-        }
-        else{
-            return MsgUtil.makeMsg(MsgCode.ERROR);
-        }
+        return userService.getOrdersByUserId(userId);
     }
 
 }

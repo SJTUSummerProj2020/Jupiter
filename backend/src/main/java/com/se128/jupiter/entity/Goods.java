@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.se128.jupiter.util.msgutils.Msg;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "goods")
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
-public class Goods{
+public class Goods {
 
     @Id
     @Column(name = "goods_id")
@@ -17,7 +18,11 @@ public class Goods{
     private Integer goodsId;
 
     private String name;
-    private String place;
+
+    private Date startTime;
+    private Date endTime;
+
+    private String address;
     private String website;
 
     private Integer goodsType;
@@ -25,9 +30,8 @@ public class Goods{
     @Transient
     private String image;
 
-    @Transient
-    @OneToMany
-    @Column(name = "goods_id")
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "goods_id")
     private List<GoodsDetail> goodsDetails;
 
     public void setImage(String image) {
@@ -54,8 +58,8 @@ public class Goods{
         return name;
     }
 
-    public String getPlace() {
-        return place;
+    public String getAddress() {
+        return address;
     }
 
     public String getWebsite() {
@@ -78,12 +82,27 @@ public class Goods{
         this.name = name;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 }
