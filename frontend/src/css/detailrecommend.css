@@ -1,12 +1,12 @@
-.stem{
+.detail-recommend-stem{
     margin-top:53px;
     padding-bottom: 14px;
     margin-bottom: 23px;
-    font-size: 20px;
+    font-size: 14px;
     color: #000;
     border-bottom: 1px solid #e2e2e2;
 }
-.list{
+.detail-recommend-list{
     display: table;
     border-radius: 14px;
     background-color: #fff;

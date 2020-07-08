@@ -1,0 +1,320 @@
+Index: ../backend/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:upstream\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227\" name=\"Default Changelist\" comment=\"feat:add log4j2 as log output, the logs will be stored in D:/logs\">\r\n      <change beforePath=\"$PROJECT_DIR$/../.vscode/settings.json\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/logutils/LogUtil.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/logutils/LogUtil.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHome\" value=\"D:/Program Files/apache-maven-3.6.3\" />\r\n        <option name=\"userSettingsFile\" value=\"D:\\Program Files\\apache-maven-3.6.3\\conf\\settings.xml\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1eJCgLD8UQO2WPxctUZ8W3dHaEN\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RequestMappingsPanelOrder0\" value=\"0\" />\r\n    <property name=\"RequestMappingsPanelOrder1\" value=\"1\" />\r\n    <property name=\"RequestMappingsPanelWidth0\" value=\"75\" />\r\n    <property name=\"RequestMappingsPanelWidth1\" value=\"75\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"configurable.group.build\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"com.se128.jupiter.dao.daoImpl\" />\r\n      <recent name=\"com.se128.jupiter.dao\" />\r\n      <recent name=\"com.se128.jupiter.service.serviceImpl\" />\r\n      <recent name=\"com.se128.jupiter.repository\" />\r\n      <recent name=\"com.se128.jupiter.entity\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\Workspace\\GitHub\\Jupiter\\backend\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.JupiterApplication\">\r\n    <configuration name=\"LogUtil\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.se128.jupiter.util.logutils.LogUtil\" />\r\n      <module name=\"backend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.se128.jupiter.util.logutils.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"JupiterApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <module name=\"backend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.se128.jupiter.JupiterApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.LogUtil\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1594030418892</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1594030418892</updated>\r\n      <workItem from=\"1594030422601\" duration=\"67000\" />\r\n      <workItem from=\"1594080556619\" duration=\"6009000\" />\r\n      <workItem from=\"1594088258576\" duration=\"2221000\" />\r\n      <workItem from=\"1594109140704\" duration=\"3512000\" />\r\n      <workItem from=\"1594167982487\" duration=\"9840000\" />\r\n      <workItem from=\"1594186336217\" duration=\"1564000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"基础功能完成，欠缺数据库\">\r\n      <created>1594109055623</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1594109055623</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"基础功能完成，欠缺数据库\">\r\n      <created>1594109154094</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1594109154094</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"feat:add getGoodsByGoodsType&#10;todo: add log to the application\">\r\n      <created>1594176535135</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1594176535135</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"feat:add log4j2 as log output, the logs will be stored in D:/logs\">\r\n      <created>1594177861220</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1594177861220</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"基础功能完成，欠缺数据库\" />\r\n    <MESSAGE value=\"feat:add getGoodsByGoodsType&#10;todo: add log to the application\" />\r\n    <MESSAGE value=\"feat:add log4j2 as log output, the logs will be stored in D:/logs\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"feat:add log4j2 as log output, the logs will be stored in D:/logs\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"662\" y=\"302\" key=\"#Assign_Data_Sources\" timestamp=\"1594101111111\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"662\" y=\"302\" key=\"#Assign_Data_Sources/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594101111111\" />\r\n    <state x=\"574\" y=\"118\" key=\"#com.intellij.ide.util.MemberChooser\" timestamp=\"1594175910922\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"574\" y=\"118\" key=\"#com.intellij.ide.util.MemberChooser/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594175910922\" />\r\n    <state x=\"499\" y=\"159\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog\" timestamp=\"1594084369186\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"499\" y=\"159\" key=\"#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594084369186\" />\r\n    <state x=\"311\" y=\"150\" key=\"FileChooserDialogImpl\" timestamp=\"1594089488806\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"311\" y=\"150\" key=\"FileChooserDialogImpl/0.0.1536.824@0.0.1536.824\" timestamp=\"1594089488806\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.bottom\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.0.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416091\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.center\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.0.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416090\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.left\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.0.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416090\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.right\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.0.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416090\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.bottom\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.1.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416091\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.center\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.1.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416091\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.left\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.1.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416091\" />\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.right\" timestamp=\"1594187900604\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"207\" key=\"GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824\" timestamp=\"1594187900604\" />\r\n    <state width=\"1493\" height=\"210\" key=\"GridCell.Tab.1.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594178416091\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.bottom\" timestamp=\"1594109060258\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594109060258\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.center\" timestamp=\"1594109060258\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594109060258\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.left\" timestamp=\"1594109060258\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594109060258\" />\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.right\" timestamp=\"1594109060258\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state width=\"1493\" height=\"261\" key=\"GridCell.Tab.2.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594109060258\" />\r\n    <state x=\"299\" y=\"67\" key=\"Maven.ArtifactSearchDialog\" timestamp=\"1594170456803\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"299\" y=\"67\" key=\"Maven.ArtifactSearchDialog/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594170456803\" />\r\n    <state x=\"32\" y=\"37\" key=\"SettingsEditor\" timestamp=\"1594089569396\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"32\" y=\"37\" key=\"SettingsEditor/0.0.1536.824@0.0.1536.824\" timestamp=\"1594089569396\" />\r\n    <state x=\"563\" y=\"325\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1594177927770\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"563\" y=\"325\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594177927770\" />\r\n    <state x=\"431\" y=\"145\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1594176328768\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"824\" />\r\n    </state>\r\n    <state x=\"431\" y=\"145\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/1920.0.1366.718/0.0.1536.824@0.0.1536.824\" timestamp=\"1594176328768\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/jupiter$JupiterApplication.ic\" NAME=\"JupiterApplication Coverage Results\" MODIFIED=\"1594101661876\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/.idea/workspace.xml	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/.idea/workspace.xml	(date 1594189818944)
+@@ -24,13 +24,17 @@
+     <select />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:add log4j2 as log output, the logs will be stored in D:/logs">
+-      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" />
++    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:add some feature in logUtils">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/logutils/LogUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/logutils/LogUtil.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/OrderController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/OrderDao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/GoodsDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/GoodsDetail.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/repository/OrderRepository.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/OrderService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -129,6 +133,8 @@
+       <workItem from="1594109140704" duration="3512000" />
+       <workItem from="1594167982487" duration="9840000" />
+       <workItem from="1594186336217" duration="1564000" />
++      <workItem from="1594187929484" duration="115000" />
++      <workItem from="1594188189710" duration="1338000" />
+     </task>
+     <task id="LOCAL-00001" summary="基础功能完成，欠缺数据库">
+       <created>1594109055623</created>
+@@ -158,7 +164,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1594177861220</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="feat:add some feature in logUtils">
++      <created>1594188031549</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1594188031549</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -180,16 +193,18 @@
+     <MESSAGE value="基础功能完成，欠缺数据库" />
+     <MESSAGE value="feat:add getGoodsByGoodsType&#10;todo: add log to the application" />
+     <MESSAGE value="feat:add log4j2 as log output, the logs will be stored in D:/logs" />
+-    <option name="LAST_COMMIT_MESSAGE" value="feat:add log4j2 as log output, the logs will be stored in D:/logs" />
++    <MESSAGE value="feat:add some feature in logUtils" />
++    <option name="LAST_COMMIT_MESSAGE" value="feat:add some feature in logUtils" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="662" y="302" key="#Assign_Data_Sources" timestamp="1594101111111">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
+     <state x="662" y="302" key="#Assign_Data_Sources/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594101111111" />
+-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1594175910922">
++    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1594188738850">
+       <screen x="0" y="0" width="1536" height="824" />
+     </state>
++    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1594188738850" />
+     <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594175910922" />
+     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594084369186">
+       <screen x="0" y="0" width="1536" height="824" />
+Index: ../backend/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.dao.daoImpl;\r\n\r\nimport com.se128.jupiter.dao.OrderDao;\r\nimport org.springframework.stereotype.Repository;\r\n\r\n@Repository\r\npublic class OrderDaoImpl implements OrderDao {\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java	(date 1594188856959)
+@@ -1,9 +1,22 @@
+ package com.se128.jupiter.dao.daoImpl;
+ 
+ import com.se128.jupiter.dao.OrderDao;
++import com.se128.jupiter.entity.Order;
++import com.se128.jupiter.repository.OrderRepository;
++import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Repository;
+ 
++import java.util.List;
++
+ @Repository
+ public class OrderDaoImpl implements OrderDao {
+ 
++    @Autowired
++    private OrderRepository orderRepository;
++
++    @Override
++    public List<Order> getAllOrders() {
++        return orderRepository.getAllOrders();
++    }
++
+ }
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ .idea/vcs.xml	(date 1594189818967)
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ../backend/src/main/java/com/se128/jupiter/service/OrderService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.service;\r\n\r\nimport com.se128.jupiter.entity.Order;\r\n\r\npublic interface OrderService {\r\n    void addOrder(Order order);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/service/OrderService.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/service/OrderService.java	(date 1594188856919)
+@@ -1,7 +1,12 @@
+ package com.se128.jupiter.service;
+ 
++import com.se128.jupiter.entity.Goods;
+ import com.se128.jupiter.entity.Order;
+ 
++import java.util.List;
++
+ public interface OrderService {
+     void addOrder(Order order);
++
++    List<Order> getAllOrders();
+ }
+Index: ../backend/src/main/java/com/se128/jupiter/controller/OrderController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.controller;\r\n\r\nimport com.se128.jupiter.service.OrderService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\n@RestController\r\npublic class OrderController {\r\n\r\n    @Autowired\r\n    private OrderService orderService;\r\n\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/controller/OrderController.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/controller/OrderController.java	(date 1594188856940)
+@@ -1,14 +1,28 @@
+ package com.se128.jupiter.controller;
+ 
++import com.se128.jupiter.entity.Order;
++import com.se128.jupiter.service.GoodsService;
+ import com.se128.jupiter.service.OrderService;
++import com.se128.jupiter.util.logutils.LogUtil;
+ import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.web.bind.annotation.RequestMapping;
+ import org.springframework.web.bind.annotation.RestController;
+ 
++import java.util.List;
++
+ @RestController
+ public class OrderController {
+ 
+     @Autowired
+     private OrderService orderService;
++    private GoodsService goodsService;
++
++    @RequestMapping("/getAllOrder")
++    public List<Order> getAllOrders() {
++        new LogUtil().info("getAllOrder");
++        return orderService.getAllOrders();
++    }
++
+ 
+ }
+ 
+Index: ../backend/src/main/java/com/se128/jupiter/entity/GoodsDetail.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.entity;\r\n\r\nimport com.fasterxml.jackson.annotation.JsonFormat;\r\nimport com.fasterxml.jackson.annotation.JsonIgnoreProperties;\r\n\r\nimport javax.persistence.*;\r\nimport java.sql.Time;\r\n\r\n@Entity\r\n@Table(name = \"goodsdetail\")\r\n@JsonIgnoreProperties(value = {\"handler\", \"hibernateLazyInitializer\", \"fieldHandler\"})\r\npublic class GoodsDetail {\r\n    @Id\r\n    @Column(name = \"detail_id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer detailId;\r\n\r\n    @Column(name = \"goods_id\")\r\n    private Integer goodsId;\r\n\r\n    private Double price;\r\n\r\n    private Integer surplus;\r\n\r\n    private String time;\r\n\r\n    private String ticketType;\r\n\r\n    @Transient\r\n    private String image;\r\n\r\n    public void setPrice(Double price) {\r\n        this.price = price;\r\n    }\r\n\r\n    public Double getPrice() {\r\n        return price;\r\n    }\r\n\r\n    public Integer getGoodsId() {\r\n        return goodsId;\r\n    }\r\n\r\n    public Integer getDetailId() {\r\n        return detailId;\r\n    }\r\n\r\n    public String getImage() {\r\n        return image;\r\n    }\r\n\r\n    public void setDetailId(Integer detailId) {\r\n        this.detailId = detailId;\r\n    }\r\n\r\n    public void setGoodsId(Integer goodsId) {\r\n        this.goodsId = goodsId;\r\n    }\r\n\r\n    public void setImage(String image) {\r\n        this.image = image;\r\n    }\r\n\r\n    public void setTicketType(String ticketType) {\r\n        this.ticketType = ticketType;\r\n    }\r\n\r\n    public void setTime(String time) {\r\n        this.time = time;\r\n    }\r\n\r\n    public Integer getSurplus() {\r\n        return surplus;\r\n    }\r\n\r\n    public String getTicketType() {\r\n        return ticketType;\r\n    }\r\n\r\n    public String getTime() {\r\n        return time;\r\n    }\r\n\r\n    public void setSurplus(Integer surplus) {\r\n        this.surplus = surplus;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/entity/GoodsDetail.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/entity/GoodsDetail.java	(date 1594188856930)
+@@ -1,10 +1,8 @@
+ package com.se128.jupiter.entity;
+ 
+-import com.fasterxml.jackson.annotation.JsonFormat;
+ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ 
+ import javax.persistence.*;
+-import java.sql.Time;
+ 
+ @Entity
+ @Table(name = "goodsdetail")
+Index: ../backend/src/main/java/com/se128/jupiter/entity/Goods.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.entity;\r\n\r\nimport com.fasterxml.jackson.annotation.JsonIgnoreProperties;\r\nimport com.se128.jupiter.util.msgutils.Msg;\r\n\r\nimport javax.persistence.*;\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\n@Entity\r\n@Table(name = \"goods\")\r\n@JsonIgnoreProperties(value = {\"handler\", \"hibernateLazyInitializer\", \"fieldHandler\"})\r\npublic class Goods {\r\n\r\n    @Id\r\n    @Column(name = \"goods_id\")\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Integer goodsId;\r\n\r\n    private String name;\r\n\r\n    private Date startTime;\r\n    private Date endTime;\r\n\r\n    private String address;\r\n    private String website;\r\n\r\n    private Integer goodsType;\r\n\r\n    @Transient\r\n    private String image;\r\n\r\n    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)\r\n    @JoinColumn(name = \"goods_id\")\r\n    private List<GoodsDetail> goodsDetails;\r\n\r\n    public void setImage(String image) {\r\n        this.image = image;\r\n    }\r\n\r\n    public String getImage() {\r\n        return image;\r\n    }\r\n\r\n    public Integer getGoodsId() {\r\n        return goodsId;\r\n    }\r\n\r\n    public Integer getGoodsType() {\r\n        return goodsType;\r\n    }\r\n\r\n    public List<GoodsDetail> getGoodsDetails() {\r\n        return goodsDetails;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public String getAddress() {\r\n        return address;\r\n    }\r\n\r\n    public String getWebsite() {\r\n        return website;\r\n    }\r\n\r\n    public void setGoodsDetails(List<GoodsDetail> goodsDetails) {\r\n        this.goodsDetails = goodsDetails;\r\n    }\r\n\r\n    public void setGoodsId(Integer goodsId) {\r\n        this.goodsId = goodsId;\r\n    }\r\n\r\n    public void setGoodsType(Integer goodsType) {\r\n        this.goodsType = goodsType;\r\n    }\r\n\r\n    public void setName(String name) {\r\n        this.name = name;\r\n    }\r\n\r\n    public void setAddress(String address) {\r\n        this.address = address;\r\n    }\r\n\r\n    public void setWebsite(String website) {\r\n        this.website = website;\r\n    }\r\n\r\n    public Date getEndTime() {\r\n        return endTime;\r\n    }\r\n\r\n    public Date getStartTime() {\r\n        return startTime;\r\n    }\r\n\r\n    public void setEndTime(Date endTime) {\r\n        this.endTime = endTime;\r\n    }\r\n\r\n    public void setStartTime(Date startTime) {\r\n        this.startTime = startTime;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/entity/Goods.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/entity/Goods.java	(date 1594188856945)
+@@ -1,7 +1,6 @@
+ package com.se128.jupiter.entity;
+ 
+ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+-import com.se128.jupiter.util.msgutils.Msg;
+ 
+ import javax.persistence.*;
+ import java.util.Date;
+Index: ../backend/src/main/java/com/se128/jupiter/dao/OrderDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.dao;\r\n\r\npublic interface OrderDao {\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/dao/OrderDao.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/dao/OrderDao.java	(date 1594188856950)
+@@ -1,5 +1,10 @@
+ package com.se128.jupiter.dao;
+ 
++import com.se128.jupiter.entity.Order;
++
++import java.util.List;
++
+ public interface OrderDao {
+ 
++    List<Order> getAllOrders();
+ }
+Index: ../backend/src/main/java/com/se128/jupiter/util/constant/Constant.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.util.constant;\r\n\r\npublic class Constant {\r\n    //user\r\n    public static final String USER_ID = \"userId\";\r\n    public static final String USER_TYPE = \"userType\";\r\n    public static final String USERNAME = \"username\";\r\n    public static final String PASSWORD = \"password\";\r\n    public static final String GOODSID = \"goodsId\";\r\n    public static final String ORDERS = \"orders\";\r\n    public static final String PHONE = \"phone\";\r\n    public static final Object GOODSTYPE = \"goodsType\";\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/util/constant/Constant.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/util/constant/Constant.java	(date 1594188283367)
+@@ -9,7 +9,7 @@
+     public static final String GOODSID = "goodsId";
+     public static final String ORDERS = "orders";
+     public static final String PHONE = "phone";
+-    public static final Object GOODSTYPE = "goodsType";
++    public static final String GOODSTYPE = "goodsType";
+ }
+ 
+ 
+Index: ../backend/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.service.serviceImpl;\r\n\r\nimport com.se128.jupiter.dao.OrderDao;\r\nimport com.se128.jupiter.entity.Order;\r\nimport com.se128.jupiter.service.OrderService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\n\r\n@Service\r\npublic class OrderServiceImpl implements OrderService {\r\n\r\n    @Autowired\r\n    private OrderDao orderDao;\r\n\r\n    @Override\r\n    public void addOrder(Order order) {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java	(date 1594188856964)
+@@ -1,11 +1,14 @@
+ package com.se128.jupiter.service.serviceImpl;
+ 
+ import com.se128.jupiter.dao.OrderDao;
++import com.se128.jupiter.entity.Goods;
+ import com.se128.jupiter.entity.Order;
+ import com.se128.jupiter.service.OrderService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ 
++import java.util.List;
++
+ 
+ @Service
+ public class OrderServiceImpl implements OrderService {
+@@ -16,5 +19,10 @@
+     @Override
+     public void addOrder(Order order) {
+ 
++    }
++
++    @Override
++    public List<Order> getAllOrders() {
++        return orderDao.getAllOrders();
+     }
+ }
+Index: ../backend/src/main/java/com/se128/jupiter/repository/OrderRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.se128.jupiter.repository;\r\n\r\nimport com.se128.jupiter.entity.Order;\r\nimport org.springframework.data.jpa.repository.JpaRepository;\r\n\r\npublic interface OrderRepository extends JpaRepository<Order,Integer> {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../backend/src/main/java/com/se128/jupiter/repository/OrderRepository.java	(revision 1240d924a2d7f1b75eca6dc4fbea01929dcf7e39)
++++ ../backend/src/main/java/com/se128/jupiter/repository/OrderRepository.java	(date 1594188856925)
+@@ -2,6 +2,12 @@
+ 
+ import com.se128.jupiter.entity.Order;
+ import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.data.jpa.repository.Query;
++
++import java.util.List;
+ 
+ public interface OrderRepository extends JpaRepository<Order,Integer> {
++
++    @Query(value = "select o from Order o")
++    List<Order> getAllOrders();
+ }

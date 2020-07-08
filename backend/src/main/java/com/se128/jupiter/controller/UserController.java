@@ -9,12 +9,10 @@ import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
 import com.se128.jupiter.util.sessionutils.SessionUtil;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -30,7 +28,7 @@ public class UserController {
     public Msg getUserById(@RequestBody Map<String, String> params) {
 
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        System.out.println("getUserById = " + userId);
+        new LogUtil().info("getUserById = " + userId);
         User user = userService.getUserByUserId(userId);
         JSONObject data = JSONObject.fromObject(user);
         return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
@@ -38,9 +36,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Msg login(@RequestBody Map<String, String> params) {
-        // TODO:Test log
-        LogUtil.main();
-        System.out.println("login");
+        new LogUtil().info("login");
         String username = params.get(Constant.USERNAME);
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
@@ -65,8 +61,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public Msg register(@RequestBody User user) {
-        System.out.println("register");
-
+        new LogUtil().info("register");
         User user1 = userService.addUser(user);
 
         if (user1 != null) {
@@ -78,8 +73,7 @@ public class UserController {
 
     @RequestMapping("/logout")
     public Msg logout() {
-        System.out.println("logout");
-
+        new LogUtil().info("logout");
         Boolean status = SessionUtil.removeSession();
         if (status) {
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGOUT_SUCCESS_MSG);
@@ -89,7 +83,7 @@ public class UserController {
 
     @RequestMapping("/checkSession")
     public Msg checkSession() {
-        System.out.println("checkSession");
+        new LogUtil().info("checkSession");
         JSONObject auth = SessionUtil.getAuth();
 
         if (auth == null) {
@@ -102,7 +96,7 @@ public class UserController {
     @RequestMapping("/getOrdersByUserId")
     public List<Order> getOrdersByUserId(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        System.out.println("getOrdersByUserId = " + userId);
+        new LogUtil().info("getOrdersByUserId = " + userId);
 
         return userService.getOrdersByUserId(userId);
     }

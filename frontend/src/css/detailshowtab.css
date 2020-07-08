@@ -1,0 +1,20 @@
+.detail-show-tab{
+    width:700px;
+    margin-top:5%;
+    margin-bottom:5%;
+    margin-left:230px;
+
+    display: inline-block;
+}
+.detail-show-cards{
+    width:95%;
+    margin-left: 1%;
+    margin-right: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: table;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #eee;
+    border: 1px solid #eee;
+}

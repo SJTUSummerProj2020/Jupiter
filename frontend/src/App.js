@@ -5,26 +5,11 @@ import {CustomerHome} from "./view/CustomerHome";
 import {LoginView} from "./view/LoginView";
 import {PersonalInfoView} from "./view/PersonalInfoView";
 import {DetailListView} from "./view/DetailListView";
+import BasicRoute from "./Router";
 
 function App() {
   return (
-    <div className="App">
-      {/*<header className="App-header">*/}
-      {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-      {/*  <p>*/}
-      {/*    Edit <code>src/App.js</code> and save to reload.*/}
-      {/*  </p>*/}
-      {/*  <a*/}
-      {/*    className="App-link"*/}
-      {/*    href="https://reactjs.org"*/}
-      {/*    target="_blank"*/}
-      {/*    rel="noopener noreferrer"*/}
-      {/*  >*/}
-      {/*    Learn React*/}
-      {/*  </a>*/}
-      {/*</header>*/}
-      <DetailListView/>
-    </div>
+      <BasicRoute/>
   );
 }
 

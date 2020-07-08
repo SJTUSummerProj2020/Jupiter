@@ -4,22 +4,31 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LogUtil {
-    private static Logger logger= LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
-    public void getHello() {
+    private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
-        for(int i=0;i<3;i++){
-            // 记录trace级别的信息
-            logger.trace("log4j2日志输出：This is trace message.");
-            // 记录debug级别的信息
-            logger.debug("log4j2日志输出：This is debug message.");
-            // 记录info级别的信息
-            logger.info("log4j2日志输出：This is info message.");
-            // 记录error级别的信息
-            logger.error("log4j2日志输出：This is error message.");
-        }
+    //输出级别：ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
+    public void trace(String msg) {
+        logger.trace(msg);
     }
 
-    public static void main() {
-        new LogUtil().getHello();
+    public void debug(String msg){
+        logger.debug(msg);
+    }
+
+    public void info(String msg){
+        logger.info(msg);
+    }
+
+    public void warn(String msg){
+        logger.warn(msg);
+    }
+
+    public void error(String msg){
+        logger.error(msg);
+    }
+
+    public void fatal(String msg){
+        logger.fatal(msg);
     }
 }
+

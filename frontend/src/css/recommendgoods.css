@@ -1,16 +1,19 @@
-.goodsImg{
-    height: 80px;
+.recommend-goods-goodsImg{
+    margin-top:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
 }
 
-.ant-card-meta-title{
+.recommend-goods-ant-card-meta-title{
     font-size:14px !important;
 }
 
-.ant-cart{
+.recommend-goods-ant-cart{
     margin:0 5px;
 }
-.recommend-cards{
-    width:50%;
+.recommend-goods-recommend-cards{
+    width:80%;
     height:auto;
     display: table;
     border-radius: 14px;
