@@ -1,6 +1,7 @@
 import React from "react";
 import '../css/classificationcard.css';
 import{Card} from "antd";
+import {Link} from 'react-router-dom';
 import {GoodsList} from "./GoodsList";
 const {Meta} = Card;
 
@@ -10,19 +11,18 @@ export class ClassificationCard extends React.Component{
     }
     render() {
         return(
-            // <div className={"classification-card"}>
-            //     <h1 className="classification-card-title" >话剧歌剧</h1>
-            //     <div className={"classification-content"}>
-            //         <div className={"most-popular"}>
-            //             <img alt="image" src={require("../assets/goods/1.jpg")} className={"mostPopularImg"}/>
-            //         </div>
-            //     </div>
-            //
-            // </div>
-            <Card title={<span style={{float:"left"}}>话剧歌剧</span>} bordered={false} extra={<span>查看更多</span>} style={{ width: 1050 }}>
+            <Card
+                title={<span style={{float:"left"}}>话剧歌剧</span>}
+                bordered={false}
+                extra={
+                    <Link to={{pathname: '/goodsList'}} target="_blank">
+                        <span>查看更多</span>
+                    </Link>
+                }
+                style={{ width: 1050 }}
+            >
                <div className={"classification-content"}>
                    <div className={"most-popular"}>
-
                        <Card
                            hoverable
                            style={{ width: 290, height: 560 }}
