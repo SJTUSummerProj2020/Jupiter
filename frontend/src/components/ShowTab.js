@@ -1,23 +1,23 @@
 import React from 'react';
 import { Row, Col,Card,Tabs} from 'antd';
-import '../css/detailshowtab.css';
+import '../css/showtab.css';
 const { TabPane } = Tabs;
 
 function callback(key) {
     console.log(key);
 }
 
-export class DetailShowTab extends React.Component{
+export class ShowTab extends React.Component{
     constructor(props) {
         super(props);
     }
     render() {
         return(
-            <Row align = "top" gutter={16}>
-                <Col className={"detail-show-tab"}>
+            <Row>
+                <Col className={"tab"}>
                     <Tabs defaultActiveKey="1" onChange={callback}>
                         <TabPane tab="项目详情" key="1" >
-                            <Card className={"detail-show-cards"} hoverable={false}>
+                            <Card className={"cards"} hoverable={true}>
                                 <p>在他的歌声中，你会找到Leonard Cohen和Tom Waits的踪影；</p>
                                 <p>他有多部代表作品，曾出现在诸多热门美剧和电影中；</p>
                                 <p>Sia、Matt Costa、Ingrid Michaelson等知名音乐人与他合作歌曲并一起同台巡演；</p>
@@ -25,7 +25,7 @@ export class DetailShowTab extends React.Component{
                             </Card>
                         </TabPane>
                         <TabPane tab="购票须知" key="2" >
-                            <Card className={"cards"} hoverable={false}>
+                            <Card className={"cards"} hoverable={true}>
                                 <h4>限购规则</h4>
                                 <p>每笔订单最多购买6张</p>
                                 <h4>退票/换票规则</h4>
@@ -35,7 +35,7 @@ export class DetailShowTab extends React.Component{
                             </Card>
                         </TabPane>
                         <TabPane tab="观演须知" key="3" >
-                            <Card className={"cards"} hoverable={false}>
+                            <Card className={"cards"} hoverable={true}>
                                 <h4>演出时长</h4>
                                 <p>约90分钟（以现场为准）</p>
                                 <h4>入场时间</h4>

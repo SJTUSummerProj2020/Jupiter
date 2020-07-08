@@ -1,7 +1,9 @@
 .ant-carousel {
     margin-top: 0 !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
+    /*margin-left:auto !important;*/
+    /*margin-right:auto !important;*/
+    margin-left: 8% !important;
+    margin-right: 8% !important;
     margin-bottom: 40px !important;
 
 }

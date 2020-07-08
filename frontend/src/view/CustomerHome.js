@@ -14,7 +14,7 @@ export class CustomerHome extends React.Component{
             <div>
                 <Header/>
                 <ImageCarousel/>
-                <div className={"goodsList"} style={{width: 1060,marginLeft: 88}}>
+                <div className={"goodsList"}>
                     {/*<GoodsList/>*/}
                     <ClassificationCard/>
                     <ClassificationCard/>

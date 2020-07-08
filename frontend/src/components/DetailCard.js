@@ -24,7 +24,7 @@ export class DetailCard extends React.Component{
     render(){
         const {info} = this.props;
         return(
-            <Card hoverable={true}
+            <Card hoverable={false}
                   className={"detail-card"}>
                 <Row>
                     <Col span={8} className={"poster"}>
