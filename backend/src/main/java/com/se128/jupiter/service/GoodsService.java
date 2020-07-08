@@ -15,4 +15,6 @@ public interface GoodsService {
     Goods addGoods(Goods goods);
 
     void deleteGoodsByGoodsId(Integer goodsId);
+
+    List<Goods> getGoodsByGoodsType(Integer goodsType);
 }

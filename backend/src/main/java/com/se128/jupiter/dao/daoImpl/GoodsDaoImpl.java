@@ -39,4 +39,9 @@ public class GoodsDaoImpl implements GoodsDao {
         goodsRepository.deleteById(goodsId);
     }
 
+    @Override
+    public List<Goods> getGoodsByGoodsType(Integer goodsType) {
+        return goodsRepository.getGoodsByGoodsType(goodsType);
+    }
+
 }

@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Time;
+import javax.persistence.criteria.CriteriaBuilder;
+
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "orderlist")
@@ -14,11 +16,10 @@ public class Order {
     @Id
     @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderId;
+    private Integer orderId;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
 
     @OneToOne
     @JoinColumn(name = "detail_id")
@@ -30,7 +31,7 @@ public class Order {
     private Double price;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Time time;
+    private Timestamp time;
 
     public Double getPrice() {
         return price;
@@ -40,7 +41,7 @@ public class Order {
         return goodsDetail;
     }
 
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
@@ -52,12 +53,12 @@ public class Order {
         return sourceId;
     }
 
-    public Time getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
     public void setGoodsDetail(GoodsDetail goodsDetail) {
@@ -68,7 +69,7 @@ public class Order {
         this.number = number;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -80,11 +81,11 @@ public class Order {
         this.sourceId = sourceId;
     }
 
-    public void setTime(Time time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

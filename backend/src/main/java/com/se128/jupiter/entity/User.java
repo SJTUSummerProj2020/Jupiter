@@ -18,10 +18,8 @@ public class User {
     @Column(name = "user_name")
     private String username;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "phone")
     private String phone;
     private Integer userType;
 
