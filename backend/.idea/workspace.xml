@@ -25,22 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:add log4j2 as log output, the logs will be stored in D:/logs">
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-1.log.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-2.log.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-3.log.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-4.log.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-5.log.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-6.log.gz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/2020-07/web-07-08-2020-7.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/JuPiao-Net.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/Goods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/GoodsDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/entity/GoodsDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +129,7 @@
       <workItem from="1594186336217" duration="1564000" />
       <workItem from="1594190830395" duration="1228000" />
       <workItem from="1594194406078" duration="660000" />
+      <workItem from="1594197334190" duration="1021000" />
     </task>
     <task id="LOCAL-00001" summary="基础功能完成，欠缺数据库">
       <created>1594109055623</created>

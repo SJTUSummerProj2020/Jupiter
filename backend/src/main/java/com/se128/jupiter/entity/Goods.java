@@ -2,6 +2,7 @@ package com.se128.jupiter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.se128.jupiter.util.msgutils.Msg;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,7 +20,10 @@ public class Goods {
 
     private String name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
 
     private String address;
