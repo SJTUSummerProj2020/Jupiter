@@ -24,14 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:add log4j2 as log output, the logs will be stored in D:/logs">
-      <change beforePath="$PROJECT_DIR$/../.vscode/settings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/interceptor/SessionValidateInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/logutils/LogUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/logutils/LogUtil.java" afterDir="false" />
-    </list>
+    <list default="true" id="4eaa70ff-c5b7-4af1-9ebb-af6f9c9ff227" name="Default Changelist" comment="feat:add log4j2 as log output, the logs will be stored in D:/logs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
