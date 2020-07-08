@@ -1,15 +1,15 @@
-.goodsImg{
+.recommend-goods-goodsImg{
     height: 80px;
 }
 
-.ant-card-meta-title{
+.recommend-goods-ant-card-meta-title{
     font-size:14px !important;
 }
 
-.ant-cart{
+.recommend-goods-ant-cart{
     margin:0 5px;
 }
-.recommend-cards{
+.recommend-goods-recommend-cards{
     width:50%;
     height:auto;
     display: table;

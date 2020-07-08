@@ -13,8 +13,8 @@ export class RecommendGoods extends React.Component{
         return(
             <Card
                 hoverable={true}
-                className={"recommend-cards"}
-                cover={<img alt="image" src={info.image} className={"goodsImg"}/>}
+                className={"recommend-goods-recommend-cards"}
+                cover={<img alt="image" src={info.image} className={"recommend-goods-goodsImg"}/>}
             >
                 <Meta title={info.name} description={'¥' + info.price}/>
             </Card>
