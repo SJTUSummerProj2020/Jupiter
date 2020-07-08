@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import {Header} from "../components/Header";
+import {Row,Col} from 'antd';
 import "../css/header.css";
 import {PersonalInfoSidebar} from "../components/PersonalInfo";
-import {Col, Row} from "antd";
+import {OrderList} from "../components/OrderList";
 
-export class PersonalInfoView extends React.Component{
+export class OrderListView extends React.Component{
     constructor(props) {
         super(props);
     }
@@ -15,6 +16,9 @@ export class PersonalInfoView extends React.Component{
                 <Row>
                     <Col span={8}>
                         <PersonalInfoSidebar/>
+                    </Col>
+                    <Col span={16}>
+                        <OrderList/>
                     </Col>
                 </Row>
             </div>
