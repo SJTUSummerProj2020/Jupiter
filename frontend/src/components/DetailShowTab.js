@@ -1,23 +1,23 @@
 import React from 'react';
 import { Row, Col,Card,Tabs} from 'antd';
-import '../css/showtab.css';
+import '../css/detailshowtab.css';
 const { TabPane } = Tabs;
 
 function callback(key) {
     console.log(key);
 }
 
-export class ShowTab extends React.Component{
+export class DetailShowTab extends React.Component{
     constructor(props) {
         super(props);
     }
     render() {
         return(
-            <Row>
-                <Col className={"tab"}>
+            <Row align = "top" gutter={16}>
+                <Col className={"detail-show-tab"}>
                     <Tabs defaultActiveKey="1" onChange={callback}>
                         <TabPane tab="项目详情" key="1" >
-                            <Card className={"cards"} hoverable={true}>
+                            <Card className={"detail-show-cards"} hoverable={true}>
                                 <p>在他的歌声中，你会找到Leonard Cohen和Tom Waits的踪影；</p>
                                 <p>他有多部代表作品，曾出现在诸多热门美剧和电影中；</p>
                                 <p>Sia、Matt Costa、Ingrid Michaelson等知名音乐人与他合作歌曲并一起同台巡演；</p>

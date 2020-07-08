@@ -28,17 +28,17 @@ export class DetailCard extends React.Component{
                   className={"detail-card"}>
                 <Row>
                     <Col span={8} className={"poster"}>
-                        <img alt = "image" src = {info.image} className={"detail-img"}/>
+                        <img alt = "image" src = {info.image} className={"detail-card-img"}/>
                     </Col>
                     <Col span = {16} >
-                        <Row className={"show-name"}>
+                        <Row className={"detail-card-show-name"}>
                             {info.name}
                         </Row>
-                        <Row className={"show-time"}>
+                        <Row className={"detail-card-show-time"}>
                             <Col>时间</Col>
                             <Col>{info.start_time} - {info.end_time}</Col>
                         </Row>
-                        <Row className={"show-address"}>
+                        <Row className={"detail-card-show-address"}>
                             <Col>
                                 地点
                             </Col>
@@ -46,9 +46,9 @@ export class DetailCard extends React.Component{
                                 {info.address}
                             </Col>
                         </Row>
-                        <Row className={"tips"}><ExclamationCircleFilled className={"icon"}/>场次时间均为演出当地时间</Row>
+                        <Row className={"detail-card-tips"}><ExclamationCircleFilled className={"icon"}/>场次时间均为演出当地时间</Row>
                         <Row>
-                            <Col className={"stems"}>
+                            <Col className={"detail-card-stems"}>
                                 场次
                             </Col>
                             <Col>
@@ -60,7 +60,7 @@ export class DetailCard extends React.Component{
                             </Col>
                         </Row>
                         <Row>
-                            <Col className={"stems"}>
+                            <Col className={"detail-card-stems"}>
                                 票档
                             </Col>
                             <Col>
@@ -71,27 +71,27 @@ export class DetailCard extends React.Component{
                             </Col>
                         </Row>
                         <Row>
-                            <Col className={"stems"}>
+                            <Col className={"detail-card-stems"}>
                                 数量
                             </Col>
-                            <Col className={"num-choice"}>
+                            <Col className={"detail-card-num-choice"}>
                                 <InputNumber min={1} max={6} defaultValue={1} onChange={onChange3} />
                             </Col>
-                            <Col className={"tips"}>
-                                <ExclamationCircleFilled className={"icon"}/>每笔订单最多限购6张
+                            <Col className={"detail-card-tips"}>
+                                <ExclamationCircleFilled className={"detail-card-icon"}/>每笔订单最多限购6张
                             </Col>
                         </Row>
                         <Row>
-                            <Col className={"stems"}>
+                            <Col className={"detail-card-stems"}>
                                 合计
                             </Col>
-                            <Col className={"money"}>
+                            <Col className={"detail-card-money"}>
                                 199.00
                             </Col>
-                            <Col className={"yuan"}>元</Col>
+                            <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
                         <Row>
-                            <button className={"buy-button"}>
+                            <button className={"detail-card-buy-button"}>
                                 立即购买
                             </button>
                         </Row>

@@ -8,7 +8,7 @@
     margin-left:auto;
     margin-right:auto;
 }
-.detail-img{
+.detail-card-img{
     width:70%;
     margin-left: 2%;
     margin-right: 2%;
@@ -16,7 +16,7 @@
     margin-bottom: 30%;
     background-color: #fff;
 }
-.show-name{
+.detail-card-show-name{
     font-size: 26px;
     font-weight: 500;
     color: #331612;
@@ -24,28 +24,28 @@
     margin-bottom: 3%;
     margin-top: 3%;
 }
-.show-time{
+.detail-card-show-time{
     color: #68676c;
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 1.5%;
     margin-top: 1.5%;
 }
-.show-address{
+.detail-card-show-address{
     color: #68676c;
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 1.5%;
     margin-top: 1.5%;
 }
-.tips{
+.detail-card-tips{
     color: #999;
     font-size: 12px;
     margin-top: 1%;
     margin-bottom:1%;
     padding-top: 1%;
 }
-.stems{
+.detail-card-stems{
     display: inline-block;
     font-size: 16px;
     color: #000;
@@ -54,22 +54,22 @@
     margin-bottom:1%;
     margin-right: 15px;
 }
-.num-choice{
+.detail-card-num-choice{
     margin-top: 1%;
     margin-bottom:1%;
     margin-right: 15px;
 }
-.money{
+.detail-card-money{
     font-size: 26px;
     color: #ff4655;
     line-height: 34px;
 }
-.yuan{
+.detail-card-yuan{
     color: #ff4655;
     line-height: 34px;
     padding-top: 1%;
 }
-.buy-button{
+.detail-card-buy-button{
     margin-top: 10px;
     margin-left: 25px;
     width: 210px;
@@ -80,6 +80,6 @@
     font-size: 14px;
     font-weight: 400;
 }
-.icon{
+.detail-card-icon{
     padding-top:0.5%;
 }

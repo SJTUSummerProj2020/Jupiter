@@ -10,11 +10,11 @@ export class DetailRecommend extends React.Component{
     render() {
         return (
             <div>
-                <Row className={"stem"}>
+                <Row className={"detail-recommend-stem"}>
                     为您推荐
                 </Row>
                 <Row>
-                    <Card hoverable={true} className={"list"}>
+                    <Card hoverable={true} className={"detail-recommend-list"}>
                         <RecommendList/>
                     </Card>
                 </Row>
