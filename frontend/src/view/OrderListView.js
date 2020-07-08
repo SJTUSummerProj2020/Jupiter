@@ -14,7 +14,7 @@ export class OrderListView extends React.Component{
             <div>
                 <Header/>
                 <Row>
-                    <Col span={8}>
+                    <Col span={7} push={1}>
                         <PersonalInfoSidebar/>
                     </Col>
                     <Col span={16}>

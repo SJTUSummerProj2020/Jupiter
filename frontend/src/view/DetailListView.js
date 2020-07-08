@@ -15,7 +15,7 @@ export class DetailListView extends React.Component{
             <div>
                 <Header/>
                 <Row>
-                    <Col span={16}>
+                    <Col span={15} push={1}>
                         <DetailGoodsList/>
                     </Col>
                     <Col span={8}>

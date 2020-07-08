@@ -14,7 +14,7 @@ export class DetailRecommend extends React.Component{
                     为您推荐
                 </Row>
                 <Row>
-                    <Card hoverable={true} className={"detail-recommend-list"}>
+                    <Card hoverable={false} className={"detail-recommend-list"}>
                         <RecommendList/>
                     </Card>
                 </Row>

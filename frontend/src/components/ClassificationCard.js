@@ -14,12 +14,13 @@ export class ClassificationCard extends React.Component{
             <Card
                 title={<span style={{float:"left"}}>话剧歌剧</span>}
                 bordered={false}
+                className={"classification-card"}
                 extra={
                     <Link to={{pathname: '/goodsList'}} target="_blank">
                         <span>查看更多</span>
                     </Link>
                 }
-                style={{ width: 1050 }}
+                style={{ width: 1050, marginLeft: "auto", marginRight: "auto", textAlign: "center"}}
             >
                <div className={"classification-content"}>
                    <div className={"most-popular"}>
