@@ -1,10 +1,8 @@
 package com.se128.jupiter.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
 @Table(name = "goodsdetail")
@@ -26,8 +24,6 @@ public class GoodsDetail {
 
     private String ticketType;
 
-    @Transient
-    private String image;
 
     public void setPrice(Double price) {
         this.price = price;
@@ -45,20 +41,12 @@ public class GoodsDetail {
         return detailId;
     }
 
-    public String getImage() {
-        return image;
-    }
-
     public void setDetailId(Integer detailId) {
         this.detailId = detailId;
     }
 
     public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public void setTicketType(String ticketType) {

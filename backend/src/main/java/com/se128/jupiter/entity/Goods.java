@@ -27,7 +27,6 @@ public class Goods {
 
     private Integer goodsType;
 
-    @Transient
     private String image;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -105,4 +104,5 @@ public class Goods {
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
+
 }
