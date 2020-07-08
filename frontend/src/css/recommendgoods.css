@@ -1,0 +1,21 @@
+.goodsImg{
+    height: 80px;
+}
+
+.ant-card-meta-title{
+    font-size:14px !important;
+}
+
+.ant-cart{
+    margin:0 5px;
+}
+.recommend-cards{
+    width:50%;
+    height:auto;
+    display: table;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #eee;
+    border: 1px solid #eee;
+    margin:auto
+}
