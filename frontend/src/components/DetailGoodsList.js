@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Avatar, Space } from 'antd';
+import { List, Avatar, Space,PageHeader, Menu, Dropdown, Button, Tag, Typography, Row } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined, HomeOutlined, CalendarOutlined} from '@ant-design/icons';
 import '../css/detailgoodslist.css';
 import {getAllGoods} from "../services/goodsService";
@@ -44,48 +44,73 @@ export class DetailGoodsList extends React.Component{
 
     render() {
         return(
-            <List
-                style={{marginBottom: 10}}
-                itemLayout="vertical"
-                size="large"
-                pagination={{
-                    onChange: page => {
-                        console.log(page);
-                    },
-                    pageSize: 20,
-                }}
-                dataSource={this.state.goodsList}
-                renderItem={item => (
-                    <List.Item>
-                        <div className={"detailGoods"}>
-                            <img
-                                width={200}
-                                className={"detailGoodsImg"}
-                                alt="cover"
-                                src={item.image}
-                            />
-                            <div className={"detailGoodsDescription"}>
-                                <div className={"detailGoodsName"}>
+            <div>
+                {/*<PageHeader*/}
+                {/*    title="Title"*/}
+                {/*    className="site-page-header"*/}
+                {/*    subTitle="This is a subtitle"*/}
+                {/*    tags={<Tag color="blue">Running</Tag>}*/}
+                {/*    extra={[*/}
+                {/*        <Button key="3">Operation</Button>,*/}
+                {/*        <Button key="2">Operation</Button>,*/}
+                {/*        <Button key="1" type="primary">*/}
+                {/*            Primary*/}
+                {/*        </Button>,*/}
+                {/*    ]}*/}
+                {/*    avatar={{ src: 'https://avatars1.githubusercontent.com/u/8186664?s=460&v=4' }}*/}
+                {/*>*/}
+                {/*</PageHeader>*/}
+                <List
+                    style={{marginBottom: 10}}
+                    itemLayout="vertical"
+                    size="large"
+                    pagination={{
+                        onChange: page => {
+                            console.log(page);
+                        },
+                        pageSize: 10,
+                    }}
+                    dataSource={this.state.goodsList}
+                    renderItem={item => (
+                        <List.Item>
+                            <div className={"detailGoods"}>
+                                <img
+                                    width={200}
+                                    className={"detailGoodsImg"}
+                                    alt="cover"
+                                    src={item.image}
+                                />
+                                <div className={"detailGoodsDescription"}>
+                                    <div className={"detailGoodsName"}>
                                     <span>
                                         {
                                             item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
                                         }
                                     </span>
-                                </div>
-                                <div className={"detailGoodsPlace"}>
-                                    <HomeOutlined/> {item.address}
-                                </div>
-                                <div className={"detailGoodsTime"}>
-                                    <CalendarOutlined/> {item.startTime}-{item.endTime}
-                                </div>
-                                <div className={"detailGoodsPrice"}>
-                                    ￥{item.goodsDetails[0].price}起
+                                    </div>
+                                    <div className={"detailGoodsPlace"}>
+                                        <HomeOutlined/> {item.address}
+                                    </div>
+                                    <div className={"detailGoodsTime"}>
+                                        <CalendarOutlined/> {item.startTime}-{item.endTime}
+                                    </div>
+                                    <div className={"detailGoodsPrice"}>
+                                        {
+                                            item.goodsDetails.length === 0 ?
+                                                (<span className={"canceled"}>演出取消</span>) :
+                                                (
+                                                    <span>
+                                                        ￥{item.goodsDetails[0].price}起
+                                                    </span>
+                                                )
+                                        }
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </List.Item>
-                )}
-            />
+                        </List.Item>
+                    )}
+                />
+            </div>
         );
     }
 }
