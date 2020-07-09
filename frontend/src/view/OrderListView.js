@@ -8,6 +8,7 @@ import {OrderList} from "../components/OrderList";
 export class OrderListView extends React.Component{
     constructor(props) {
         super(props);
+        this.state={key: '1'};
     }
     render() {
         return(
@@ -15,7 +16,7 @@ export class OrderListView extends React.Component{
                 <Header/>
                 <Row>
                     <Col span={7} push={1}>
-                        <PersonalInfoSidebar/>
+                        <PersonalInfoSidebar myKey={this.state.key}/>
                     </Col>
                     <Col span={16}>
                         <OrderList/>
