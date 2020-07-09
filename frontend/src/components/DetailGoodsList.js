@@ -2,6 +2,7 @@ import React from 'react';
 import { List, Avatar, Space } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined, HomeOutlined, CalendarOutlined} from '@ant-design/icons';
 import '../css/detailgoodslist.css';
+import {getAllGoods} from "../services/goodsService";
 
 const IconText = ({ icon, text }) => (
     <Space>
@@ -26,10 +27,25 @@ const listData = [
 export class DetailGoodsList extends React.Component{
     constructor(props) {
         super(props);
+        this.state={goodsList:[]}
     }
+    componentDidMount() {
+        const data = {};
+        const callback = (data) => {
+            console.log(data);
+            this.setState(
+                {
+                    goodsList:data
+                }
+            );
+        };
+        getAllGoods(data,callback);
+    }
+
     render() {
         return(
             <List
+                style={{marginBottom: 10}}
                 itemLayout="vertical"
                 size="large"
                 pagination={{
@@ -38,7 +54,7 @@ export class DetailGoodsList extends React.Component{
                     },
                     pageSize: 20,
                 }}
-                dataSource={listData}
+                dataSource={this.state.goodsList}
                 renderItem={item => (
                     <List.Item>
                         <div className={"detailGoods"}>
@@ -50,16 +66,20 @@ export class DetailGoodsList extends React.Component{
                             />
                             <div className={"detailGoodsDescription"}>
                                 <div className={"detailGoodsName"}>
-                                    <span>{item.name}</span>
+                                    <span>
+                                        {
+                                            item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name
+                                        }
+                                    </span>
                                 </div>
                                 <div className={"detailGoodsPlace"}>
-                                    <HomeOutlined/>{item.place}
+                                    <HomeOutlined/> {item.address}
                                 </div>
                                 <div className={"detailGoodsTime"}>
-                                    <CalendarOutlined/>{item.time}
+                                    <CalendarOutlined/> {item.startTime}-{item.endTime}
                                 </div>
                                 <div className={"detailGoodsPrice"}>
-                                    ￥{item.price}
+                                    ￥{item.goodsDetails[0].price}起
                                 </div>
                             </div>
                         </div>
