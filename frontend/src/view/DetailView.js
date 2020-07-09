@@ -27,7 +27,15 @@ const ticketsData = {
         "surplus": 0,
         "ticketType": "150元",
         "time": "2020-07-10 周五 19:30"
-    }
+    },
+        {
+            "detailId": 435,
+            "goodsId": 123,
+            "price": 180.0,
+            "surplus": 1,
+            "ticketType": "180元",
+            "time": "2020-07-11 周六 20:30"
+        }
 ],
     "goodsId": 123,
     "goodsType": 0,

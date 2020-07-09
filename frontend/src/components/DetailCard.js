@@ -2,48 +2,102 @@ import React from 'react';
 import { Row, Col,Card,List,InputNumber,Radio} from 'antd';
 import"../css/detailcard.css"
 import { ExclamationCircleFilled } from '@ant-design/icons';
-function onChange1(e) {
-    console.log('场次', e.target.value);
-}
+import {getGoodsByGoodsType} from "../services/goodsService";
+import {getGoodsByGoodsId} from "../services/goodsService";
 
-function onChange2(e) {
-    console.log('票档',e.target.value);
-}
+const RadioGroup = Radio.Group;
 
-function onChange3(value) {
-    console.log('数量',value)
-}
 export class DetailCard extends React.Component{
-    start_time;
-    end_time;
-    price;
     constructor(props) {
         super(props);
+        this.state = {
+            goodsData :"", //用后端返回的data进行初始化
+            goodsDetailTime:"aaa",
+            ticketsType:"bbb",
+            unitPrice:0,
+            ticketsNum:1,
+            goodDetailTimeArray:[],
+            ticketTypeArray:[],
+        };
+    }
+
+    componentDidMount() {
+        const callback = (data) => {
+            console.log(data);
+            this.setState({goodsData:data.data});
+            this.getGoodsDetailTime(data.data);
+            this.getTicketType(data.data);
+        };
+        const requestData = {goodsId:517};
+        getGoodsByGoodsId(requestData,callback);
+    }
+
+    onChange1=(e) =>{
+        this.setState({goodsDetailTime:e.target.value});
+        console.log('场次',e.target.value);
+    }
+
+    onChange2=(e)=> {
+        console.log('票档',e.target.value);
+        this.setState({ticketsType:e.target.value});
+    }
+
+    onChange3=(value)=> {
+        console.log('数量',value);
+        this.setState({ticketsNum:value});
+    }
+
+    getGoodsDetailTime=(data)=>{  //实际调用时参数应该为this.state.goodsData
+        if(data.goodsDetails == null)
+            return null;
+        let len = data.goodsDetails.length;
+        let i = 0;
+        let tmpArray = [];
+        for (i = 0; i < len; i++) {
+            if(tmpArray.indexOf(data.goodsDetails[i].time) === -1)
+                tmpArray.push(data.goodsDetails[i].time)
+        }
+        debugger;
+        this.setState({goodsDetailTimeArray:tmpArray});
+    }
+
+    getTicketType=(data)=> {
+        if(data.goodsDetails == null)
+            return null;
+        let len = data.goodsDetails.length;
+        let tmpArray = [];
+        let i = 0;
+        for (i = 0; i < len; i++) {
+            if (this.state.goodsData.goodsDetails[i].time === this.state.goodsDetailTime) {
+                tmpArray.push(data.goodsDetailTime[i].ticketType);
+                console.log("找到票档了");
+            }
+        }
+        this.setState({ticketTypeArray:tmpArray});
     }
 
     render(){
-        const {info} = this.props;
         return(
             <Card hoverable={false}
                   className={"detail-card"}>
                 <Row>
                     <Col span={8} className={"poster"}>
-                        <img alt = "image" src = {info.image} className={"detail-card-img"}/>
+                        <img alt = "image" src = {this.state.goodsData.image} className={"detail-card-img"}/>
                     </Col>
                     <Col span = {16} >
                         <Row className={"detail-card-show-name"}>
-                            {info.name}
+                            {this.state.goodsData.name}
                         </Row>
                         <Row className={"detail-card-show-time"}>
-                            <Col>时间</Col>
-                            <Col>{info.start_time} - {info.end_time}</Col>
+                            <Col>时间：</Col>
+                            <Col> {this.state.goodsData.startTime} - {this.state.goodsData.endTime}</Col>
                         </Row>
                         <Row className={"detail-card-show-address"}>
                             <Col>
-                                地点
+                                地点：
                             </Col>
                             <Col>
-                                {info.address}
+                                {this.state.goodsData.address}
                             </Col>
                         </Row>
                         <Row className={"detail-card-tips"}><ExclamationCircleFilled className={"icon"}/>场次时间均为演出当地时间</Row>
@@ -51,12 +105,8 @@ export class DetailCard extends React.Component{
                             <Col className={"detail-card-stems"}>
                                 场次
                             </Col>
-                            <Col>
-                                <Radio.Group size = "large" onChange={onChange1} defaultValue="a">
-                                    <Radio.Button value="a">7月22日星期三18：00</Radio.Button>
-                                    <Radio.Button value="b">7月23日星期四20：00</Radio.Button>
-                                    <Radio.Button value="c">7月26日星期日8：30</Radio.Button>
-                                </Radio.Group>
+                            <Col className={"detail-card-show-time"}>
+                                <RadioGroup options={this.state.goodsDetailTimeArray} onChange={this.onChange1} />
                             </Col>
                         </Row>
                         <Row>
@@ -64,10 +114,11 @@ export class DetailCard extends React.Component{
                                 票档
                             </Col>
                             <Col>
-                                <Radio.Group size="large" onChange={onChange2} defaultValue="a">
-                                    <Radio.Button value="a">1980元</Radio.Button>
-                                    <Radio.Button value="b">880元</Radio.Button>
-                                </Radio.Group>
+                                {/*<Radio.Group size="large" onChange={onChange2} defaultValue="a">*/}
+                                {/*    <Radio.Button value="a">1980元</Radio.Button>*/}
+                                {/*    <Radio.Button value="b">880元</Radio.Button>*/}
+                                {/*</Radio.Group>*/}
+                                <RadioGroup options={this.state.ticketTypeArray} onChange={this.onChange2}/>
                             </Col>
                         </Row>
                         <Row>
@@ -75,10 +126,10 @@ export class DetailCard extends React.Component{
                                 数量
                             </Col>
                             <Col className={"detail-card-num-choice"}>
-                                <InputNumber min={1} max={6} defaultValue={1} onChange={onChange3} />
+                                <InputNumber min={1} max={6} defaultValue={1} onChange={this.onChange3} />
                             </Col>
                             <Col className={"detail-card-tips"}>
-                                <ExclamationCircleFilled className={"detail-card-icon"}/>每笔订单最多限购6张
+                                <ExclamationCircleFilled className={"detail-card-icon"}/>每笔订单最多限购6张。库存：
                             </Col>
                         </Row>
                         <Row>
