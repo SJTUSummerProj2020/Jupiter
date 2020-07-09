@@ -2,6 +2,7 @@ package com.se128.jupiter.controller;
 
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.entity.Order;
+import com.se128.jupiter.repository.GoodsRepository;
 import com.se128.jupiter.util.msgutils.Msg;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,7 +76,6 @@ class GoodsControllerTest {
 
     @Test
     void editGoods() {
-
     }
 
     @Test
@@ -84,5 +84,14 @@ class GoodsControllerTest {
 
     @Test
     void deleteGoodsByGoodsId() {
+        try{
+            String goodsId = "563";
+            Map<String, String> map = new HashMap<>();
+            map.put("goodsId", goodsId);
+            Msg msg = goodsController.deleteGoodsByGoodsId(map);
+            System.out.println(msg);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
