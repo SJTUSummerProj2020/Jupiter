@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ee0e3fd1-8816-4991-98d7-e97f7c3e0f87" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/se128/jupiter/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/GoodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/dao/daoImpl/OrderDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/service/serviceImpl/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se128/jupiter/util/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/开发文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/开发文档.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/需求文档.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -27,6 +69,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -35,9 +78,50 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="settings.editor.selected.configurable" value="plugins.junitgenerator.application" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.se128.jupiter.service" />
+      <recent name="com.se128.jupiter.controller" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserServiceTest">
+    <configuration name="GoodsControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jupiter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se128.jupiter.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se128.jupiter.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.se128.jupiter.controller.GoodsControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jupiter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se128.jupiter.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se128.jupiter.service" />
+      <option name="MAIN_CLASS_NAME" value="com.se128.jupiter.service.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JupiterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="jupiter" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.se128.jupiter.JupiterApplication" />
@@ -45,6 +129,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.GoodsControllerTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -58,56 +148,103 @@
       <updated>1594261233611</updated>
       <workItem from="1594261237939" duration="3364000" />
       <workItem from="1594270615878" duration="576000" />
+      <workItem from="1594272122279" duration="2639000" />
+      <workItem from="1594274776481" duration="4218000" />
+      <workItem from="1594281362146" duration="995000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1594271192174">
+    <state x="662" y="302" key="#Assign_Data_Sources" timestamp="1594282040107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state x="662" y="302" key="#Assign_Data_Sources/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594282040107" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594276516186">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1594276516186" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1594282214606">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594282214606" />
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom" timestamp="1594279052997">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594279052997" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604789" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.0.center" timestamp="1594279052997">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1594279052997" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604788" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.0.left" timestamp="1594279052996">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1594279052996" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604788" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.0.right" timestamp="1594279052997">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1594279052997" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604788" />
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1594279052998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1594279052998" />
     <state width="1493" height="210" key="GridCell.Tab.1.bottom/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604789" />
-    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1594279052998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1594279052998" />
     <state width="1493" height="210" key="GridCell.Tab.1.center/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604789" />
-    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1594279052998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1594279052998" />
     <state width="1493" height="210" key="GridCell.Tab.1.left/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604789" />
-    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1594271192174">
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1594279052998">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1594271192174" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1594279052998" />
     <state width="1493" height="210" key="GridCell.Tab.1.right/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594264604789" />
-    <state x="270" y="57" key="SettingsEditor" timestamp="1594261593211">
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1594273260227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1594273260227" />
+    <state x="369" y="88" width="996" height="707" key="SettingsEditor" timestamp="1594274973327">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="369" y="88" width="996" height="707" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1594274973327" />
     <state x="270" y="57" key="SettingsEditor/1920.0.1366.718/0.0.1536.824@0.0.1536.824" timestamp="1594261593211" />
+    <state x="917" y="172" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1594275841601">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="917" y="172" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1594275841601" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/se128/jupiter/service/UserServiceTest.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
