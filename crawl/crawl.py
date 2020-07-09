@@ -25,11 +25,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 def get_cookies(url):
-    values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin':'true'}
+    values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin': 'true'}
     postdata = urllib.parse.urlencode(values).encode()
     user_agent = r'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
     headers = {'User-Agent': user_agent}
-    
+
     cookie_filename = 'cookie.txt'
     cookie = http.cookiejar.LWPCookieJar(cookie_filename)
     handler = urllib.request.HTTPCookieProcessor(cookie)
@@ -42,11 +42,11 @@ def get_cookies(url):
         response = opener.open(request)
     except urllib.error.URLError as e:
         print(e.reason)
-    
+
     cookie.save(ignore_discard=True, ignore_expires=True)
     for item in cookie:
         print(item.name + ':' + item.value)
-    
+
 
 def get_page(url, browser):
     browser.get(url)
@@ -116,7 +116,9 @@ def get_ticket_info(soup):
     if perform_time is None:
         perform_time_content = 'Unknown'
     else:
-        perform_time_content = str(perform_time.contents[2].div.find('div', {'class': 'select_right_list_item active'}).span.find(text=True).strip())
+        perform_time_content = str(
+            perform_time.contents[2].div.find('div', {'class': 'select_right_list_item active'}).span.find(
+                text=True).strip())
     # 票种类和价钱
     tickets = []
     tickets_container = None
@@ -163,7 +165,7 @@ def analysis_detailpage(page, content, browser):
     # 演出地点
     place = str(soup.find('div', {'class': 'addr'}).get_text())
     # 组装演出信息
-    date = split_time(title_time_content)   # 标题时间拆分成start&end
+    date = split_time(title_time_content)  # 标题时间拆分成start&end
     raw_data = {
         'name': title_content,
         'image': image_url,
@@ -178,7 +180,7 @@ def analysis_detailpage(page, content, browser):
     flag = True  # 标记这是否是第一个场次 Y: True  N: False
     try:
         father = browser.find_element_by_xpath('//div[@class="select_left" and contains(text(), "场次")]/../div[2]/div')
-    except:       # 遇到演出取消
+    except:  # 遇到演出取消
         if dataLock.acquire():
             data.append(raw_data)
             dataLock.release()
@@ -239,9 +241,9 @@ def split_price(price_str):
 def save_data():
     conn = connect(
         host='localhost',
-        port = 3306,
+        port=3306,
         user='root',
-        password='123456',
+        password='lhn684258.',
         database='jupiter',
         charset='utf8'
     )
@@ -249,14 +251,14 @@ def save_data():
     find_max = 'select max(goods_id) from goods'
     for i in range(len(data)):
         goods_insert_sql = 'insert into goods VALUES(null, \"' + \
-            data[i]['name'] + '\", \"' + \
-            data[i]['start_date'] + '\", \"' + \
-            data[i]['end_date'] + '\", \"' + \
-            data[i]['address'] + '\", \"' + \
-            data[i]['website'] + '\", ' + \
-            str(data[i]['goods_type']) + ', \"' + \
-            data[i]['image'] + '\")'
-        try: 
+                           data[i]['name'] + '\", \"' + \
+                           data[i]['start_date'] + '\", \"' + \
+                           data[i]['end_date'] + '\", \"' + \
+                           data[i]['address'] + '\", \"' + \
+                           data[i]['website'] + '\", ' + \
+                           str(data[i]['goods_type']) + ', \"' + \
+                           data[i]['image'] + '\")'
+        try:
             cur.execute(goods_insert_sql)
             cur.execute(find_max)
             max_goodsid = int(cur.fetchone()[0])
@@ -271,17 +273,17 @@ def save_data():
 
             for price_index in range(len(price)):
                 if price[price_index]['status'] == '缺货登记':
-                    status = 0          # 缺票
+                    status = 0  # 缺票
                 elif price[price_index]['status'] == '开售提醒':
-                    status = 2          # 开售提醒
+                    status = 2  # 开售提醒
                 else:
-                    status = 1          # 有票
+                    status = 1  # 有票
                 ticket_insert_sql = 'insert into goodsdetail VALUES(null, ' + \
-                    str(max_goodsid) + ', ' + \
-                    str(split_price(price[price_index]['price'])) + ', ' + \
-                    str(status) + ', \"' + \
-                    ticket_time + '\", \"' + \
-                    price[price_index]['price'] + '\")'
+                                    str(max_goodsid) + ', ' + \
+                                    str(split_price(price[price_index]['price'])) + ', ' + \
+                                    str(status) + ', \"' + \
+                                    ticket_time + '\", \"' + \
+                                    price[price_index]['price'] + '\")'
                 try:
                     cur.execute(ticket_insert_sql)
                 except:
@@ -290,8 +292,6 @@ def save_data():
     conn.commit()
     cur.close()
     conn.close()
-                
-
 
 
 def working(flag, count, n):
@@ -305,7 +305,7 @@ def working(flag, count, n):
         # queueLock.acquire()     # 加锁
         page = q.get()
         # queueLock.release()     # 放锁
-        if page == '-':         # 填充用的
+        if page == '-':  # 填充用的
             count += 1
             if count >= maxpage:
                 flag = False
@@ -319,11 +319,11 @@ def working(flag, count, n):
             count += 1
             if count >= maxpage:
                 flag = False
-            if (False):              # 主页
+            if False:  # 主页
                 outlinks = get_mainpage_links(page, content)
                 for link in outlinks:
                     q.put(link)
-            elif rules.match(str(page)):    # 搜索页
+            elif rules.match(str(page)):  # 搜索页
                 # queueLock.acquire()         # 加锁
                 while True:
                     outlinks = get_searchpage_links(page, content)
@@ -340,7 +340,7 @@ def working(flag, count, n):
                 for i in range(50):
                     q.put('-')  # 填充用的
                 # queueLock.release()         # 放锁
-            else:                           # 票务详情页
+            else:  # 票务详情页
                 analysis_detailpage(page, content, browser)
 
             if varLock.acquire():
@@ -351,7 +351,6 @@ def working(flag, count, n):
         countLock.release()
     if NUM == 0:
         save_data()
-    
 
 
 if __name__ == "__main__":
@@ -359,7 +358,7 @@ if __name__ == "__main__":
     count = 0
     maxpage = 10
     NUM = 4
-    performance_type = 6        # 演出类型标记
+    performance_type = 6  # 演出类型标记
     # seed = 'https://www.damai.cn/'
     # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC%86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99'
     # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5%BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8%8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
@@ -371,7 +370,7 @@ if __name__ == "__main__":
     q = queue.Queue()
     crawled = []
     threads = []
-    data = []       # 存票的各种信息 json
+    data = []  # 存票的各种信息 json
     q.put(seed)
 
     for i in range(NUM):
@@ -385,7 +384,7 @@ if __name__ == "__main__":
         t.start()
         # while mark:
         #     time.sleep(1)
-    
+
     # join threads
     for t in threads:
         t.join()

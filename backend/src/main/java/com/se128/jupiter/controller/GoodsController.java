@@ -26,6 +26,7 @@ public class GoodsController {
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
 
+        System.out.println("getGoodsWithGoodsId");
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
         new LogUtil().info("getGoodsWithGoodsId = " + goodsId);
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);

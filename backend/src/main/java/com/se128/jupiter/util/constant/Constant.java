@@ -10,9 +10,11 @@ public class Constant {
     public static final String ORDERS = "orders";
     public static final String PHONE = "phone";
     public static final Object GOODSTYPE = "goodsType";
+    public static final Object DETAIL_ID = "detailId";
     public static Integer ADMIN = 0;
     public static Integer Customer = 1;
     public static Integer BAN = -1;
+
 }
 
 

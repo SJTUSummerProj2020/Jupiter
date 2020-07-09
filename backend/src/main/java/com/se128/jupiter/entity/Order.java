@@ -24,6 +24,10 @@ public class Order {
     @JoinColumn(name = "detail_id")
     private GoodsDetail goodsDetail;
 
+    @OneToOne
+    @JoinColumn(name = "goods_id")
+    private Goods goods;
+
     private Integer sourceId;
     private Integer number;
 
@@ -86,5 +90,13 @@ public class Order {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Goods getGoods() {
+        return goods;
     }
 }

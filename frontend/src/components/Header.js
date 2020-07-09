@@ -1,39 +1,95 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {UserOutlined} from '@ant-design/icons';
-import { Menu, Dropdown } from 'antd';
+import {Menu, Dropdown, message} from 'antd';
 import '../css/header.css';
 import {SearchBar} from "./SearchBar";
+import {logout} from "../services/userService";
 
-const menu = (
-    <Menu>
-        <Menu.Item>
-            <Link to={{pathname: '/personalInfo'}}>
-                个人信息
-            </Link>
-        </Menu.Item>
-        <Menu.Item>
-            <Link to={{pathname: '/personalInfo'}}>
-               账号设置
-            </Link>
-        </Menu.Item>
-        <Menu.Item>
-            <Link to={{pathname: '/orderList'}}>
-                订单管理
-            </Link>
-        </Menu.Item>
-        <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer">
-                退出登录
-            </a>
-        </Menu.Item>
-    </Menu>
-);
+// const menu = (
+//     <Menu>
+//         <Menu.Item>
+//             <Link to={{pathname: '/personalInfo'}}>
+//                 个人信息
+//             </Link>
+//         </Menu.Item>
+//         <Menu.Item>
+//             <Link to={{pathname: '/personalInfo'}}>
+//                账号设置
+//             </Link>
+//         </Menu.Item>
+//         <Menu.Item>
+//             <Link to={{pathname: '/orderList'}}>
+//                 订单管理
+//             </Link>
+//         </Menu.Item>
+//         <Menu.Item>
+//             <a target="_blank" rel="noopener noreferrer">
+//                 退出登录
+//             </a>
+//         </Menu.Item>
+//     </Menu>
+// );
 export class Header extends React.Component{
     constructor(props) {
         super(props);
-        this.state={loggedIn:true}
+        this.state={loggedIn:false,user:null};
     }
+
+    componentDidMount() {
+        let userItem = localStorage.getItem("user");
+        console.log(userItem);
+        if(userItem != null){
+            let user = JSON.parse(userItem);
+            this.setState(
+                {
+                    loggedIn:true,
+                    user:user
+                }
+            )
+        }
+    }
+
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            localStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
+    menu = (
+        <Menu>
+            <Menu.Item>
+                <Link to={{pathname: '/personalInfo'}}>
+                    个人信息
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to={{pathname: '/personalInfo'}}>
+                    账号设置
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <Link to={{pathname: '/orderList'}}>
+                    订单管理
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
+                <div onClick={this.logout}>
+                    退出登录
+                </div>
+            </Menu.Item>
+        </Menu>
+    );
+
 
 
     render() {
@@ -61,17 +117,25 @@ export class Header extends React.Component{
                     <SearchBar/>
                 </div>
                 <div className="auth">
-                    {this.state.loggedIn ?
+                    {
+                        this.state.loggedIn ?
                         (
                             <li className="headerList">
-                                <Dropdown overlay={menu}>
+                                <Dropdown overlay={this.menu}>
                                     <div>
-                                        <UserOutlined/>欢迎
+                                        <UserOutlined/>{this.state.user.username}
                                     </div>
                                 </Dropdown>
                             </li>
                         ):
-                    (<li className="headerList"><UserOutlined />登录</li>)}
+                        (
+                            <li className="headerList">
+                                <Link to={{pathname:'/login'}}>
+                                    <UserOutlined />登录
+                                </Link>
+                            </li>
+                        )
+                    }
                 </div>
             </div>
         );
