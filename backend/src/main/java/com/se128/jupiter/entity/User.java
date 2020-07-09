@@ -23,7 +23,7 @@ public class User {
     private String phone;
     private Integer userType;
 
-    @OneToMany()
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Order> orders;
 

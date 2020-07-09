@@ -48,7 +48,7 @@ public class UserController {
             obj.put(Constant.USER_TYPE, user.getUserType());
             SessionUtil.setSession(obj);
 
-            JSONObject data = JSONObject.fromObject(user);
+            JSONObject data = (JSONObject) JSONObject.fromObject(user);
             data.remove(Constant.PASSWORD);
             data.remove(Constant.ORDERS);
             data.remove(Constant.PHONE);
