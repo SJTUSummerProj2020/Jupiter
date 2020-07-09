@@ -16,6 +16,12 @@ public class GoodsDetail {
     @Column(name = "goods_id")
     private Integer goodsId;
 
+    @Transient
+    private String name;
+
+    @Transient
+    private String place;
+
     private Double price;
 
     private Integer surplus;
@@ -71,5 +77,21 @@ public class GoodsDetail {
 
     public void setSurplus(Integer surplus) {
         this.surplus = surplus;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public String getName() {
+        return name;
     }
 }
