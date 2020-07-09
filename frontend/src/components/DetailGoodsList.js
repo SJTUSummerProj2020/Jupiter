@@ -68,7 +68,7 @@ export class DetailGoodsList extends React.Component{
                                 <div className={"detailGoodsName"}>
                                     <span>
                                         {
-                                            item.name.length > 15 ? item.name.substring(0,15) + "..." : item.name
+                                            item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
                                         }
                                     </span>
                                 </div>
