@@ -45,7 +45,7 @@ export class DetailCard extends React.Component{
     onChange2=(e)=> {
         console.log('票档',e.target.value);
         this.setState({ticketsType:e.target.value});
-    }
+    }    
 
     onChange3=(value)=> {
         console.log('数量',value);
