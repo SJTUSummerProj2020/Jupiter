@@ -25,8 +25,11 @@ export class DetailCard extends React.Component{
         const callback = (data) => {
             console.log(data);
             this.setState({goodsData:data.data});
+            this.setState({goodsDetailTime:data.data.goodsDetails[0].time});
+            this.setState(({ticketsType:data.data.goodsDetails[0].ticketType}));
             this.getGoodsDetailTime(data.data);
             this.getTicketType(data.data);
+
         };
         const requestData = {goodsId:517};
         getGoodsByGoodsId(requestData,callback);
@@ -34,7 +37,9 @@ export class DetailCard extends React.Component{
 
     onChange1=(e) =>{
         this.setState({goodsDetailTime:e.target.value});
-        console.log('场次',e.target.value);
+        this.getTicketType(this.state.goodsData,e.target.value);
+        this.setState({goodsDetailTime:e.target.value});
+        console.log('场次',this.state.goodsDetailTime);
     }
 
     onChange2=(e)=> {
@@ -57,19 +62,20 @@ export class DetailCard extends React.Component{
             if(tmpArray.indexOf(data.goodsDetails[i].time) === -1)
                 tmpArray.push(data.goodsDetails[i].time)
         }
-        debugger;
+
         this.setState({goodsDetailTimeArray:tmpArray});
     }
 
-    getTicketType=(data)=> {
+    getTicketType=(data,targetTime)=> {
         if(data.goodsDetails == null)
             return null;
+
         let len = data.goodsDetails.length;
         let tmpArray = [];
         let i = 0;
         for (i = 0; i < len; i++) {
-            if (this.state.goodsData.goodsDetails[i].time === this.state.goodsDetailTime) {
-                tmpArray.push(data.goodsDetailTime[i].ticketType);
+            if (this.state.goodsData.goodsDetails[i].time === targetTime) {
+                tmpArray.push(data.goodsDetails[i].ticketType);
                 console.log("找到票档了");
             }
         }
@@ -100,25 +106,27 @@ export class DetailCard extends React.Component{
                                 {this.state.goodsData.address}
                             </Col>
                         </Row>
-                        <Row className={"detail-card-tips"}><ExclamationCircleFilled className={"icon"}/>场次时间均为演出当地时间</Row>
+                        <Row className={"detail-card-tips"}><ExclamationCircleFilled className={"detail-card-icon"}/>
+                            场次时间均为演出当地时间
+                        </Row>
                         <Row>
                             <Col className={"detail-card-stems"}>
                                 场次
                             </Col>
                             <Col className={"detail-card-show-time"}>
-                                <RadioGroup options={this.state.goodsDetailTimeArray} onChange={this.onChange1} />
+                                <RadioGroup options={this.state.goodsDetailTimeArray} onChange={this.onChange1} value={this.state.goodsDetailTime} />
                             </Col>
                         </Row>
                         <Row>
                             <Col className={"detail-card-stems"}>
                                 票档
                             </Col>
-                            <Col>
+                            <Col className={"detail-card-show-time"}>
                                 {/*<Radio.Group size="large" onChange={onChange2} defaultValue="a">*/}
                                 {/*    <Radio.Button value="a">1980元</Radio.Button>*/}
                                 {/*    <Radio.Button value="b">880元</Radio.Button>*/}
                                 {/*</Radio.Group>*/}
-                                <RadioGroup options={this.state.ticketTypeArray} onChange={this.onChange2}/>
+                                <RadioGroup options={this.state.ticketTypeArray} onChange={this.onChange2} value={this.state.ticketsType}/>
                             </Col>
                         </Row>
                         <Row>
