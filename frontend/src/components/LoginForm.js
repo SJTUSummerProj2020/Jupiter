@@ -1,17 +1,39 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from 'antd';
+import {Form, Input, Button, Checkbox, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '../css/login.css';
+import {login} from "../services/userService";
+import {history} from "../utils/history";
 
 export class LoginForm extends React.Component{
     constructor(props) {
         super(props);
+    }
+    onFinish = values => {
+        console.log('Received values of form: ', values);
+        const data = {
+            username: values.username,
+            password: values.password
+        };
+        const callback = (data) => {
+            console.log(data);
+            if(data.status === 0){
+                message.success(data.msg);
+                localStorage.setItem('user', JSON.stringify(data.data));
+                history.push("/");
+            }
+            else if(data.status < 0){
+                message.error(data.msg);
+            }
+        }
+        login(data,callback);
     }
     render() {
         return(
             <Form
                 name="normal_login"
                 className="login-form"
+                onFinish={this.onFinish}
                 initialValues={{ remember: false }}
             >
                 <Form.Item
@@ -30,16 +52,6 @@ export class LoginForm extends React.Component{
                         placeholder="密码"
                     />
                 </Form.Item>
-                {/*<Form.Item>*/}
-                {/*    <Form.Item name="remember" valuePropName="checked" noStyle>*/}
-                {/*        <Checkbox>Remember me</Checkbox>*/}
-                {/*    </Form.Item>*/}
-
-                {/*    <a className="login-form-forgot" href="">*/}
-                {/*        Forgot password*/}
-                {/*    </a>*/}
-                {/*</Form.Item>*/}
-
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         登录
@@ -50,3 +62,4 @@ export class LoginForm extends React.Component{
         );
     }
 }
+
