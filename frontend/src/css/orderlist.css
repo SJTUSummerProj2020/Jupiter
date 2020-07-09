@@ -1,0 +1,60 @@
+.orderDetail{
+    clear: both;
+    float: left;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 76px;
+}
+
+.orderDetailId{
+    margin-bottom: 10px;
+}
+
+
+.orderGoods{
+    width: 100%;
+    height: 300px;
+}
+
+.orderGoodsImg{
+    float: left;
+}
+
+.orderGoodsDescription{
+    float: left;
+    margin-left: 30px;
+}
+
+.orderGoodsName{
+    display: block;
+    float: left;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.orderGoodsPrice{
+    clear: both;
+    float: left;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.orderGoodsPlace{
+    clear: both;
+    float: left;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+
+}
+
+.orderGoodsTime{
+    clear: both;
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+
+}

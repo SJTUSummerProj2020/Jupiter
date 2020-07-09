@@ -1,6 +1,9 @@
 import React from "react";
-import {List} from "antd";
+import {List, message} from "antd";
 import {CalendarOutlined, HomeOutlined} from "@ant-design/icons";
+import {checkSession, getOrdersByUserId} from "../services/userService";
+import '../css/orderlist.css';
+import {history} from "../utils/history";
 
 const listData = [
     {image:require('../assets/goods/1.jpg'),name:"求婚女王",price:50,place:"上海大剧院",time:"2019.02.23-2021.02.22 "},
@@ -18,7 +21,31 @@ const listData = [
 export class OrderList extends React.Component{
     constructor(props) {
         super(props);
+        this.state={user:null,orderList:[]};
     }
+    componentDidMount() {
+        const callback_checkSession = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        user:data.data
+                    }
+                );
+                const callback = (data) => {
+                    console.log(data);
+                    this.setState({orderList:data})
+                };
+                const requestData = {userId:data.data.userId};
+                getOrdersByUserId(requestData,callback);
+            }
+            else{
+                message.warning(data.msg);
+                history.push('login');
+            }
+        };
+        checkSession(callback_checkSession);
+    }
+
     render() {
         return(
             <List
@@ -30,28 +57,36 @@ export class OrderList extends React.Component{
                     },
                     pageSize: 20,
                 }}
-                dataSource={listData}
+                dataSource={this.state.orderList}
                 renderItem={item => (
                     <List.Item>
-                        <div className={"detailGoods"}>
+                        <div className={"orderGoods"}>
                             <img
                                 width={200}
-                                className={"detailGoodsImg"}
+                                className={"orderGoodsImg"}
                                 alt="cover"
-                                src={item.image}
+                                src={item.goods.image}
                             />
-                            <div className={"detailGoodsDescription"}>
-                                <div className={"detailGoodsName"}>
-                                    <span>{item.name}</span>
+                            <div className={"orderGoodsDescription"}>
+                                <div className={"orderGoodsName"}>
+                                    <span>{item.goods.name}</span>
                                 </div>
-                                <div className={"detailGoodsPlace"}>
-                                    <HomeOutlined/>{item.place}
+                                <div className={"orderGoodsPlace"}>
+                                    <HomeOutlined/> {item.goods.address}
                                 </div>
-                                <div className={"detailGoodsTime"}>
-                                    <CalendarOutlined/>{item.time}
+                                <div className={"orderGoodsTime"}>
+                                    <CalendarOutlined/> {item.goodsDetail.time}
                                 </div>
-                                <div className={"detailGoodsPrice"}>
-                                    ￥{item.price}
+                                <div className={"orderGoodsPrice"}>
+                                    ￥{item.goodsDetail.price}
+                                </div>
+                                <div className={"orderDetail"}>
+                                    <div className={"orderDetailId"}>
+                                        订单ID: {item.orderId}
+                                    </div>
+                                    <div className={"orderDetailTime"}>
+                                        下订单时间: {item.time}
+                                    </div>
                                 </div>
                             </div>
                         </div>
