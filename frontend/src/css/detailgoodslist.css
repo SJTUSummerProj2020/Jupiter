@@ -55,3 +55,8 @@
 .canceled{
     color: #91348b;
 }
+
+.classificationGroup{
+    float: left;
+    margin-right: 280px;
+}
