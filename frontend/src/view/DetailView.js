@@ -44,16 +44,28 @@ const ticketsData = {
     "startTime": "2020-07-10",
     "website": "https://detail.damai.cn/item.htm?id=619943654186&clicktitle=%E7%88%86%E7%AC%91%E8%84%B1%E5%8F%A3%E7%A7%80%E6%BC%94%E5%87%BA-%E5%96%9C%E5%89%A7%E8%81%94%E7%9B%92%E5%9B%BD"
 };
+let tmpId = null;
 
 export class DetailView extends React.Component {
     constructor(props) {
         super(props);
+        this.state={goodsId:null};
     }
+    componentDidMount() {
+        const query = this.props.location.search;
+        const arr = query.split('?');
+        tmpId = arr[1].substr(3);
+        this.setState({goodsId:tmpId});
+    }
+
     render(){
+        console.log('goodsID',this.state.goodsId)
+        if(tmpId === null)
+            return null;
         return(
             <Row align="top" gutter={16}>
                 <Header/>
-                <DetailCard info={ticketsData} />
+                <DetailCard info={tmpId} />
                 <Row align = "top" gutter={16}>
                     <Col span={16}>
                         <DetailShowTab/>
