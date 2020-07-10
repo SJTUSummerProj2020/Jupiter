@@ -4,6 +4,7 @@ import {CalendarOutlined, HomeOutlined} from "@ant-design/icons";
 import {checkSession, getOrdersByUserId} from "../services/userService";
 import '../css/orderlist.css';
 import {history} from "../utils/history";
+import {Link} from "react-router-dom";
 
 const listData = [
     {image:require('../assets/goods/1.jpg'),name:"求婚女王",price:50,place:"上海大剧院",time:"2019.02.23-2021.02.22 "},
@@ -61,12 +62,19 @@ export class OrderList extends React.Component{
                 renderItem={item => (
                     <List.Item>
                         <div className={"orderGoods"}>
-                            <img
-                                width={200}
-                                className={"orderGoodsImg"}
-                                alt="cover"
-                                src={item.goods.image}
-                            />
+                            <Link to={{
+                                pathname: '/detail',
+                                search: '?id=' + item.goods.goodsId}}
+                                  target="_blank"
+                            >
+                                <img
+                                    width={200}
+                                    className={"orderGoodsImg"}
+                                    alt="cover"
+                                    src={item.goods.image}
+                                />
+                            </Link>
+
                             <div className={"orderGoodsDescription"}>
                                 <div className={"orderGoodsName"}>
                                     <span>{item.goods.name}</span>

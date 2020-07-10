@@ -4,6 +4,7 @@ import { MessageOutlined, LikeOutlined, StarOutlined, HomeOutlined, CalendarOutl
 import '../css/detailgoodslist.css';
 import {getAllGoods} from "../services/goodsService";
 import {getGoodsByGoodsType} from "../services/goodsService";
+import {Link} from 'react-router-dom';
 
 const IconText = ({ icon, text }) => (
     <Space>
@@ -180,40 +181,46 @@ export class DetailGoodsList extends React.Component{
                     dataSource={this.state.goodsList}
                     renderItem={item => (
                         <List.Item>
-                            <div className={"detailGoods"}>
-                                <img
-                                    width={200}
-                                    className={"detailGoodsImg"}
-                                    alt="cover"
-                                    src={item.image}
-                                />
-                                <div className={"detailGoodsDescription"}>
-                                    <div className={"detailGoodsName"}>
+                            <Link to={{
+                                pathname: '/detail',
+                                search: '?id=' + item.goodsId}}
+                                  target="_blank"
+                            >
+                                <div className={"detailGoods"}>
+                                    <img
+                                        width={200}
+                                        className={"detailGoodsImg"}
+                                        alt="cover"
+                                        src={item.image}
+                                    />
+                                    <div className={"detailGoodsDescription"}>
+                                        <div className={"detailGoodsName"}>
                                     <span>
                                         {
                                             item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
                                         }
                                     </span>
-                                    </div>
-                                    <div className={"detailGoodsPlace"}>
-                                        <HomeOutlined/> {item.address}
-                                    </div>
-                                    <div className={"detailGoodsTime"}>
-                                        <CalendarOutlined/> {item.startTime}-{item.endTime}
-                                    </div>
-                                    <div className={"detailGoodsPrice"}>
-                                        {
-                                            item.goodsDetails.length === 0 ?
-                                                (<span className={"canceled"}>演出取消</span>) :
-                                                (
-                                                    <span>
+                                        </div>
+                                        <div className={"detailGoodsPlace"}>
+                                            <HomeOutlined/> {item.address}
+                                        </div>
+                                        <div className={"detailGoodsTime"}>
+                                            <CalendarOutlined/> {item.startTime}-{item.endTime}
+                                        </div>
+                                        <div className={"detailGoodsPrice"}>
+                                            {
+                                                item.goodsDetails.length === 0 ?
+                                                    (<span className={"canceled"}>演出取消</span>) :
+                                                    (
+                                                        <span>
                                                         ￥{item.goodsDetails[0].price}起
                                                     </span>
-                                                )
-                                        }
+                                                    )
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </List.Item>
                     )}
                 />
