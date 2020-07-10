@@ -97,7 +97,8 @@ export class Header extends React.Component{
             <div className="header">
                 <Link to={{pathname:'/'}}>
                     <div className="logo">
-                        <img src={[require("../assets/logo2.png")]} alt="Website logo"/>
+                        <img src={[require("../assets/planet.png")]} width={80} height={80} alt="Website logo"/>
+                        <img src={[require("../assets/logo2.png")]} width={200} height={80} alt="Website logo"/>
                     </div>
                 </Link>
                 <div className="navigationList">
