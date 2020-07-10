@@ -15,7 +15,7 @@ export class PersonalInfoView extends React.Component{
             <div>
                 <Header/>
                 <Row>
-                    <Col span={7} push={1}>
+                    <Col span={7} push={2}>
                         <PersonalInfoSidebar myKey={this.state.key}/>
                     </Col>
                     <Col span={16}>
