@@ -49,4 +49,9 @@ public class GoodsDaoImpl implements GoodsDao {
         return goodsRepository.getGoodsByGoodsType(goodsType);
     }
 
+    @Override
+    public List<Goods> getGoodsByName(String name) {
+        return goodsRepository.getGoodsByName(name);
+    }
+
 }

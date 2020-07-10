@@ -26,9 +26,9 @@ public class GoodsController {
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
 
-        System.out.println("getGoodsWithGoodsId");
+        System.out.println("getGoodsByGoodsId");
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
-        new LogUtil().info("getGoodsWithGoodsId = " + goodsId);
+        new LogUtil().info("getGoodsByGoodsId = " + goodsId);
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);
         if (goods != null) {
             JSONObject data = JSONObject.fromObject(goods);
@@ -37,6 +37,16 @@ public class GoodsController {
             return MsgUtil.makeMsg(MsgCode.ERROR);
         }
     }
+
+    @RequestMapping("/getGoodsByName")
+    public List<Goods> getGoodsByName(@RequestBody Map<String, String> params) {
+
+        System.out.println("getGoodsByName");
+        String name = params.get(Constant.NAME);
+        new LogUtil().info("getGoodsByName = " + name);
+        return goodsService.getGoodsByName(name);
+    }
+
 
     @RequestMapping("/getAllGoods")
     public List<Goods> getAllGoods() {
