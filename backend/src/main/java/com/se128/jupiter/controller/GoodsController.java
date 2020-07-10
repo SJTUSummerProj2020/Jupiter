@@ -7,6 +7,7 @@ import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,7 +58,12 @@ public class GoodsController {
     @RequestMapping("/getGoodsByGoodsType")
     public List<Goods> getGoodsByGoodsType(@RequestBody Map<String, String> params) {
         Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
-        new LogUtil().info("getGoodsWithGoodsId = " + goodsType);
+        new LogUtil().info("getGoodsByGoodsType = " + goodsType);
+//        List<Goods> goods = goodsService.getGoodsByGoodsType(goodsType);
+//        JSONArray jsonArray = JSONArray.fromObject(goods);
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("goods",jsonArray.toString());
+
         return goodsService.getGoodsByGoodsType(goodsType);
     }
 

@@ -2,6 +2,7 @@ package com.se128.jupiter.dao.daoImpl;
 
 import com.se128.jupiter.dao.GoodsDao;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.GoodsDetail;
 import com.se128.jupiter.repository.GoodsDetailRepository;
 import com.se128.jupiter.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Autowired
     GoodsRepository goodsRepository;
+
     @Autowired
     GoodsDetailRepository goodsDetailRepository;
 
@@ -34,14 +36,27 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public Goods addGoods(Goods goods) {
-        return goodsRepository.saveAndFlush(goods);
+
+        Goods goods1 = goodsRepository.saveAndFlush(goods);
+        Integer goodsId = goods1.getGoodsId();
+        List<GoodsDetail> goodsDetails = goods1.getGoodsDetails();
+        for(GoodsDetail item : goodsDetails)
+        {
+            item.setGoodsId(goodsId);
+        }
+        goodsDetailRepository.saveAll(goodsDetails);
+        return goods1;
     }
 
     @Override
     public void deleteGoodsByGoodsId(Integer goodsId) {
-
-        goodsRepository.deleteById(goodsId);
-        goodsDetailRepository.deleteByGoodsId(goodsId);
+        try{
+            goodsDetailRepository.deleteByGoodsId(goodsId);
+            goodsRepository.deleteById(goodsId);
+        }
+        catch (Exception e){
+            System.out.println("Can't delete");
+        }
     }
 
     @Override
