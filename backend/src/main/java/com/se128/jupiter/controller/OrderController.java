@@ -47,7 +47,6 @@ public class OrderController {
 
         if(order1 != null){
             JSONObject data = JSONObject.fromObject(order1);
-            data.remove()
             return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.BUY_SUCCESS_MSG,data);
         }
         else
