@@ -4,5 +4,5 @@ import com.se128.jupiter.entity.Order;
 
 public interface OrderDao {
 
-    Order addOrder(Order order);
+    Order addOrder(Order order,Integer detailId);
 }

@@ -17,4 +17,6 @@ public interface GoodsService {
     void deleteGoodsByGoodsId(Integer goodsId);
 
     List<Goods> getGoodsByGoodsType(Integer goodsType);
+
+    List<Goods> getGoodsByName(String name);
 }

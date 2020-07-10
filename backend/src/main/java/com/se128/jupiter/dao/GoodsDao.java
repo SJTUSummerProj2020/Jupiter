@@ -16,4 +16,6 @@ public interface GoodsDao {
     void deleteGoodsByGoodsId(Integer goodsId);
 
     List<Goods> getGoodsByGoodsType(Integer goodsType);
+
+    List<Goods> getGoodsByName(String name);
 }

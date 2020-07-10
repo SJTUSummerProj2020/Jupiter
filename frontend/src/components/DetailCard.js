@@ -25,7 +25,6 @@ export class DetailCard extends React.Component{
 
     componentDidMount() {
         const callback = (data) => {
-            console.log(data);
             this.setState({goodsData:data.data});
             this.setState({goodsDetailTime:data.data.goodsDetails[0].time});
             this.setState({ticketsType:data.data.goodsDetails[0].ticketType});
@@ -35,7 +34,10 @@ export class DetailCard extends React.Component{
             this.getTicketType(data.data,data.data.ticketsType);
             this.getUnitPrice(data.data,data.data.ticketsType);
         };
-        const requestData = {goodsId:517};
+        console.log('参数',this.props.info);
+        if(this.props.info === null)
+            return;
+        const requestData = {goodsId:this.props.info};
         getGoodsByGoodsId(requestData,callback);
     }
 
@@ -154,6 +156,8 @@ export class DetailCard extends React.Component{
     }
 
     render(){
+        if(this.props.info === null)
+            return null;
         return(
             <Card hoverable={false}
                   className={"detail-card"}>

@@ -7,6 +7,7 @@ import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +27,9 @@ public class GoodsController {
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
 
-        System.out.println("getGoodsWithGoodsId");
+        System.out.println("getGoodsByGoodsId");
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
-        new LogUtil().info("getGoodsWithGoodsId = " + goodsId);
+        new LogUtil().info("getGoodsByGoodsId = " + goodsId);
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);
         if (goods != null) {
             JSONObject data = JSONObject.fromObject(goods);
@@ -37,6 +38,16 @@ public class GoodsController {
             return MsgUtil.makeMsg(MsgCode.ERROR);
         }
     }
+
+    @RequestMapping("/getGoodsByName")
+    public List<Goods> getGoodsByName(@RequestBody Map<String, String> params) {
+
+        System.out.println("getGoodsByName");
+        String name = params.get(Constant.NAME);
+        new LogUtil().info("getGoodsByName = " + name);
+        return goodsService.getGoodsByName(name);
+    }
+
 
     @RequestMapping("/getAllGoods")
     public List<Goods> getAllGoods() {
@@ -47,7 +58,12 @@ public class GoodsController {
     @RequestMapping("/getGoodsByGoodsType")
     public List<Goods> getGoodsByGoodsType(@RequestBody Map<String, String> params) {
         Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
-        new LogUtil().info("getGoodsWithGoodsId = " + goodsType);
+        new LogUtil().info("getGoodsByGoodsType = " + goodsType);
+//        List<Goods> goods = goodsService.getGoodsByGoodsType(goodsType);
+//        JSONArray jsonArray = JSONArray.fromObject(goods);
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("goods",jsonArray.toString());
+
         return goodsService.getGoodsByGoodsType(goodsType);
     }
 

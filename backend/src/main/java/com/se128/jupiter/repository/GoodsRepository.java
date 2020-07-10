@@ -14,4 +14,7 @@ public interface GoodsRepository extends JpaRepository<Goods,Integer> {
     Goods getGoodsByGoodsId(Integer goodsId);
 
     List<Goods> getGoodsByGoodsType(Integer goodsType);
+
+    @Query(value = "from Goods where name = ?1")
+    List<Goods> getGoodsByName(String name);
 }

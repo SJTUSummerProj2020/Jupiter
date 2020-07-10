@@ -42,4 +42,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> getGoodsByGoodsType(Integer goodsType) {
         return goodsDao.getGoodsByGoodsType(goodsType);
     }
+
+    @Override
+    public List<Goods> getGoodsByName(String name) {
+        return goodsDao.getGoodsByName(name);
+    }
 }
