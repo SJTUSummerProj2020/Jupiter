@@ -21,6 +21,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/login").excludePathPatterns("/register")
                 .excludePathPatterns("/getAllGoods").excludePathPatterns("/getGoodsByType")
+                .excludePathPatterns("/getGoodsByGoodsId")
                 .excludePathPatterns("/checkSession").excludePathPatterns("/getUsers");
     }
 
