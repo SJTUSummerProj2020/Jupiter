@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col,Card,List,InputNumber,Radio} from 'antd';
+import { Row, Col,Card,List,InputNumber,Radio,Button} from 'antd';
 import"../css/detailcard.css"
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import {getGoodsByGoodsType} from "../services/goodsService";
@@ -15,9 +15,11 @@ export class DetailCard extends React.Component{
             goodsDetailTime:"aaa",
             ticketsType:"bbb",
             unitPrice:0,
+            totalPrice:0,
             ticketsNum:1,
             goodDetailTimeArray:[],
             ticketTypeArray:[],
+            surplus:0,
         };
     }
 
@@ -26,30 +28,37 @@ export class DetailCard extends React.Component{
             console.log(data);
             this.setState({goodsData:data.data});
             this.setState({goodsDetailTime:data.data.goodsDetails[0].time});
-            this.setState(({ticketsType:data.data.goodsDetails[0].ticketType}));
+            this.setState({ticketsType:data.data.goodsDetails[0].ticketType});
+            this.setState({unitPrice:data.data.goodsDetails[0].price});
+            this.setState({totalPrice:data.data.goodsDetails[0].price})
             this.getGoodsDetailTime(data.data);
-            this.getTicketType(data.data);
-
+            this.getTicketType(data.data,data.data.ticketsType);
+            this.getUnitPrice(data.data,data.data.ticketsType);
         };
         const requestData = {goodsId:517};
         getGoodsByGoodsId(requestData,callback);
     }
 
     onChange1=(e) =>{
-        this.setState({goodsDetailTime:e.target.value});
+        // this.setState({goodsDetailTime:e.target.value});
+        this.setState(()=>({goodsDetailTime:e.target.value}));
         this.getTicketType(this.state.goodsData,e.target.value);
-        this.setState({goodsDetailTime:e.target.value});
+        // this.setState({goodsDetailTime:e.target.value});
+        this.setState(()=>({goodsDetailTime:e.target.value}));
         console.log('场次',this.state.goodsDetailTime);
     }
 
     onChange2=(e)=> {
         console.log('票档',e.target.value);
-        this.setState({ticketsType:e.target.value});
+        // this.setState({ticketsType:e.target.value});
+        this.setState(()=>({ticketsType:e.target.value}));
+        let unitValue=this.getUnitPrice(this.state.goodsData,e.target.value);
+        this.getTotalPrice(this.state.goodsData,this.state.ticketsNum,unitValue);
     }    
 
     onChange3=(value)=> {
-        console.log('数量',value);
         this.setState({ticketsNum:value});
+        this.getTotalPrice(this.state.goodsData,value,this.state.unitPrice);
     }
 
     getGoodsDetailTime=(data)=>{  //实际调用时参数应该为this.state.goodsData
@@ -63,23 +72,85 @@ export class DetailCard extends React.Component{
                 tmpArray.push(data.goodsDetails[i].time)
         }
 
-        this.setState({goodsDetailTimeArray:tmpArray});
+        // this.setState({goodsDetailTimeArray:tmpArray});
+        this.setState(()=>({goodsDetailTimeArray:tmpArray}));
     }
 
-    getTicketType=(data,targetTime)=> {
+    getTicketType=(data,another)=> {
         if(data.goodsDetails == null)
             return null;
-
+        let tmp;
+        if(another===undefined) {
+            tmp = this.state.goodsDetailTime;
+        }
+        else{
+            tmp = another
+        }
         let len = data.goodsDetails.length;
         let tmpArray = [];
         let i = 0;
         for (i = 0; i < len; i++) {
-            if (this.state.goodsData.goodsDetails[i].time === targetTime) {
+            if (this.state.goodsData.goodsDetails[i].time === tmp) {
                 tmpArray.push(data.goodsDetails[i].ticketType);
-                console.log("找到票档了");
+                // console.log("找到票档了");
             }
         }
-        this.setState({ticketTypeArray:tmpArray});
+        // this.setState({ticketTypeArray:tmpArray});
+        this.setState(()=>({ticketTypeArray:tmpArray}));
+    }
+
+    getUnitPrice=(data,value)=>{  //value是ticketType
+        if(data.goodsDetails == null)
+            return null;
+        let len = data.goodsDetails.length;
+        let i = 0;
+        for(i=0;i<len;i++) {
+            if (data.goodsDetails[i].time === this.state.goodsDetailTime &&
+                data.goodsDetails[i].ticketType === value) {
+                this.setState({unitPrice: data.goodsDetails[i].price});
+                return data.goodsDetails[i].price;
+            }
+        }
+    }
+
+    getTotalPrice=(data,num,unitValue)=> {
+        let tmp = 0;
+        tmp = num*unitValue;
+        this.setState({totalPrice:tmp});
+    }
+    getSurplus=()=>{
+        if(this.state.goodsData.goodsDetails == null){
+            return 0;
+        }
+        let len = this.state.goodsData.goodsDetails.length;
+        let i = 0;
+        console.log(this.state.goodsDetailTime);
+        console.log(this.state.ticketsType);
+        for(i=0; i < len;i++){
+            if(this.state.goodsData.goodsDetails[i].time === this.state.goodsDetailTime &&
+            this.state.goodsData.goodsDetails[i].ticketType === this.state.ticketsType){
+                this.setState({surplus:this.state.goodsData.goodsDetails[i].surplus});
+                break;
+            }
+            console.log('库存',this.state.goodsData.goodsDetails[i].surplus);
+            return this.state.goodsData.goodsDetails[i].surplus;
+        }
+    }
+    clickSurplus=()=>{
+        this.getSurplus();
+        this.setState((state)=>({surplus:state.surplus}))
+    }
+    displaySurplus=()=>{
+        if(this.state.surplus === 0){
+            return"无货"
+        }
+        if(this.state.surplus === 1){
+            return"有货";
+        }
+        if(this.state.surplus === 2){
+            return"预售";
+        }
+        return"无货";
     }
 
     render(){
@@ -137,7 +208,9 @@ export class DetailCard extends React.Component{
                                 <InputNumber min={1} max={6} defaultValue={1} onChange={this.onChange3} />
                             </Col>
                             <Col className={"detail-card-tips"}>
-                                <ExclamationCircleFilled className={"detail-card-icon"}/>每笔订单最多限购6张。库存：
+                                <ExclamationCircleFilled className={"detail-card-icon"}/>每笔订单最多限购6张。
+                                <Button onClick={this.clickSurplus}>点击刷新库存状况  库存：{this.displaySurplus()}</Button>
+
                             </Col>
                         </Row>
                         <Row>
@@ -145,7 +218,7 @@ export class DetailCard extends React.Component{
                                 合计
                             </Col>
                             <Col className={"detail-card-money"}>
-                                199.00
+                                {this.state.totalPrice}
                             </Col>
                             <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
