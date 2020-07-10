@@ -1,6 +1,6 @@
 import React from "react";
 import {Header} from "../components/Header";
-import { Row, Col } from 'antd';
+import {Row, Col, BackTop} from 'antd';
 import "../css/header.css";
 import "../css/detailgoodslist.css";
 import {DetailGoodsList} from "../components/DetailGoodsList";
@@ -22,6 +22,8 @@ export class DetailListView extends React.Component{
                         <Recommendation/>
                     </Col>
                 </Row>
+                <BackTop/>
+
             </div>
         );
     }

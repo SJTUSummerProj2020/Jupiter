@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Avatar, Space,PageHeader, Menu, Dropdown, Button, Tag, Typography, Row } from 'antd';
+import { List, Avatar, Space,PageHeader, Menu, Dropdown, Button, Tag, Typography, Row, BackTop} from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined, HomeOutlined, CalendarOutlined} from '@ant-design/icons';
 import '../css/detailgoodslist.css';
 import {getAllGoods} from "../services/goodsService";
@@ -224,6 +224,7 @@ export class DetailGoodsList extends React.Component{
                         </List.Item>
                     )}
                 />
+                {/*<BackTop/>*/}
             </div>
         );
     }
