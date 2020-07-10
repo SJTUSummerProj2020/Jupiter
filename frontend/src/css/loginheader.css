@@ -1,12 +1,13 @@
 .loginlogo{
     float: left;
     position: relative;
-    margin-left:0px;
+    margin-left:40px;
 }
 
 .loginlogo img{
-    width: 200px;
-    height: 80px;
+    /*width: 200px;*/
+    /*height: 80px;*/
+    margin-left: 0px;
     margin-top: 0px;
 }
 
