@@ -2,6 +2,7 @@ package com.se128.jupiter.dao.daoImpl;
 
 import com.se128.jupiter.dao.GoodsDao;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.repository.GoodsDetailRepository;
 import com.se128.jupiter.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,8 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Autowired
     GoodsRepository goodsRepository;
+    @Autowired
+    GoodsDetailRepository goodsDetailRepository;
 
     @Override
     public List<Goods> getAllGoods() {
@@ -36,7 +39,9 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public void deleteGoodsByGoodsId(Integer goodsId) {
+
         goodsRepository.deleteById(goodsId);
+        goodsDetailRepository.deleteByGoodsId(goodsId);
     }
 
     @Override

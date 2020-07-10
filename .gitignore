@@ -57,3 +57,5 @@ hs_err_pid*
 
 #venv
 venv/
+backend/.idea/workspace.xml
+backend/.idea/workspace.xml

@@ -1,36 +1,36 @@
 package com.se128.jupiter.controller;
 
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.Order;
+import com.se128.jupiter.repository.GoodsRepository;
 import com.se128.jupiter.util.msgutils.Msg;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@WebAppConfiguration
 class GoodsControllerTest {
 
-    // 模拟request,response
-    private MockHttpServletRequest request;
-    private MockHttpServletResponse response;
-
-    // 注入loginController
     @Autowired
     private GoodsController goodsController ;
 
-    // 执行测试方法之前初始化模拟request,response
     @BeforeEach
     void setUp() {
-        request = new MockHttpServletRequest();
-        request.setCharacterEncoding("UTF-8");
-        response = new MockHttpServletResponse();
     }
 
     @AfterEach
@@ -39,18 +39,39 @@ class GoodsControllerTest {
 
     @Test
     void getGoodsByGoodsId() {
-        Map<String, String> map = new HashMap<>();
-        map.put("goodsId","513");
-        Msg msg = goodsController.getGoodsByGoodsId(map);
-        System.out.println(msg);
+        try{
+            String goodsId = "513";
+            Map<String, String> map = new HashMap<>();
+            map.put("goodsId", goodsId);
+
+            String name = "【杭州】「初夏人生」嘻哈派对";
+            Msg msg = goodsController.getGoodsByGoodsId(map);
+            assertEquals("get failed",0, msg.getStatus());
+            assertEquals("get right",name, msg.getData().get("name"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
     void getAllGoods() {
+        try{
+            List<Goods> orders = goodsController.getAllGoods();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
     void getGoodsByGoodsType() {
+        try{
+            String goodsType = "0";
+            Map<String, String> map = new HashMap<>();
+            map.put("goodsType", goodsType);
+            List<Goods> orders = goodsController.getGoodsByGoodsType(map);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -63,5 +84,14 @@ class GoodsControllerTest {
 
     @Test
     void deleteGoodsByGoodsId() {
+        try{
+            String goodsId = "563";
+            Map<String, String> map = new HashMap<>();
+            map.put("goodsId", goodsId);
+            Msg msg = goodsController.deleteGoodsByGoodsId(map);
+            System.out.println(msg);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
