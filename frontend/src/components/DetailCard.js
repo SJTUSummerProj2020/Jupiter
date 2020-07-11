@@ -92,7 +92,7 @@ export class DetailCard extends React.Component{
         let tmpArray = [];
         let i = 0;
         for (i = 0; i < len; i++) {
-            if (this.state.goodsData.goodsDetails[i].time === tmp) {
+            if (this.state.goodsData.goodsDetails[i].time === tmp && tmpArray.indexOf(data.goodsDetails[i].ticketType) === -1) {
                 tmpArray.push(data.goodsDetails[i].ticketType);
                 // console.log("找到票档了");
             }
