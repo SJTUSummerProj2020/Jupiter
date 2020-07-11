@@ -10,19 +10,22 @@ import com.se128.jupiter.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public class OrderDaoImpl implements OrderDao {
 
-    @Autowired
-    OrderRepository orderRepository;
+    private  final OrderRepository orderRepository;
+
+    private  final GoodsRepository goodsRepository;
+
+    private  final GoodsDetailRepository goodsDetailRepository;
 
     @Autowired
-    GoodsRepository goodsRepository;
+    public OrderDaoImpl(OrderRepository orderRepository, GoodsRepository goodsRepository, GoodsDetailRepository goodsDetailRepository) {
+        this.orderRepository = orderRepository;
+        this.goodsRepository = goodsRepository;
+        this.goodsDetailRepository = goodsDetailRepository;
+    }
 
-    @Autowired
-    GoodsDetailRepository goodsDetailRepository;
 
     @Override
     public Order addOrder(Order order,Integer detailId) {

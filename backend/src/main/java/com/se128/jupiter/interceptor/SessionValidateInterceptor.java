@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj){
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) {
         boolean status = SessionUtil.checkAuth();
 //        if(!status){
 //            System.out.println("Failed");
@@ -26,7 +26,7 @@ public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 
-    private void sendJsonBack(HttpServletResponse response, Msg msg){
+    private void sendJsonBack(HttpServletResponse response, Msg msg) {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         try (PrintWriter writer = response.getWriter()) {

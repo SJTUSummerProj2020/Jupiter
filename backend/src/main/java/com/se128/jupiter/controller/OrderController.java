@@ -3,6 +3,7 @@ package com.se128.jupiter.controller;
 import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.service.GoodsService;
 import com.se128.jupiter.service.OrderService;
+import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
@@ -18,16 +19,17 @@ import java.util.Map;
 @RestController
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
     @Autowired
-    private GoodsService goodsService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @RequestMapping("/addOrder")
     public Msg addOrder(@RequestBody Map<String,String> params)
     {
-        System.out.println("addOrder");
+        LogUtil.info("addOrder");
 
         Order order = new Order();
 

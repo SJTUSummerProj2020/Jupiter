@@ -13,11 +13,14 @@ import java.util.List;
 @Repository
 public class GoodsDaoImpl implements GoodsDao {
 
-    @Autowired
-    GoodsRepository goodsRepository;
+    private  final GoodsRepository goodsRepository;
+    private  final GoodsDetailRepository goodsDetailRepository;
 
     @Autowired
-    GoodsDetailRepository goodsDetailRepository;
+    public GoodsDaoImpl(GoodsRepository goodsRepository, GoodsDetailRepository goodsDetailRepository) {
+        this.goodsRepository = goodsRepository;
+        this.goodsDetailRepository = goodsDetailRepository;
+    }
 
     @Override
     public List<Goods> getAllGoods() {

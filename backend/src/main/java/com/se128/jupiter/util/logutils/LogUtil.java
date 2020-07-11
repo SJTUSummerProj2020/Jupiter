@@ -7,27 +7,27 @@ public class LogUtil {
     private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     //输出级别：ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
-    public void trace(String msg) {
+    public static void trace(String msg) {
         logger.trace(msg);
     }
 
-    public void debug(String msg){
+    public static void debug(String msg){
         logger.debug(msg);
     }
 
-    public void info(String msg){
+    public static void info(String msg){
         logger.info(msg);
     }
 
-    public void warn(String msg){
+    public static void warn(String msg){
         logger.warn(msg);
     }
 
-    public void error(String msg){
+    public static void error(String msg){
         logger.error(msg);
     }
 
-    public void fatal(String msg){
+    public static void fatal(String msg){
         logger.fatal(msg);
     }
 }

@@ -7,6 +7,7 @@ import {DetailGoodsList} from "../components/DetailGoodsList";
 import {Recommendation} from "../components/Recommendation";
 
 export class DetailListView extends React.Component{
+
     constructor(props) {
         super(props);
     }

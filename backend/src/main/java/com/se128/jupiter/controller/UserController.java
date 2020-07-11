@@ -1,9 +1,7 @@
 package com.se128.jupiter.controller;
 
-import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.entity.User;
-import com.se128.jupiter.service.GoodsService;
 import com.se128.jupiter.service.UserService;
 import com.se128.jupiter.util.constant.Constant;
 import com.se128.jupiter.util.logutils.LogUtil;
@@ -11,7 +9,6 @@ import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
 import com.se128.jupiter.util.sessionutils.SessionUtil;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,14 +21,19 @@ import java.util.Map;
 @RestController
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
 
     @RequestMapping("/getUserById")
     public Msg getUserById(@RequestBody Map<String, String> params) {
 
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        new LogUtil().info("getUserById = " + userId);
+        LogUtil.info("getUserById = " + userId);
         User user = userService.getUserByUserId(userId);
         JSONObject data = JSONObject.fromObject(user);
         return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
@@ -39,7 +41,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Msg login(@RequestBody Map<String, String> params) {
-        new LogUtil().info("login");
+        LogUtil.info("login");
         String username = params.get(Constant.USERNAME);
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
@@ -64,7 +66,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public Msg register(@RequestBody User user) {
-        new LogUtil().info("register");
+        LogUtil.info("register");
         user.setUserType(Constant.Customer);
         User user1 = userService.addUser(user);
 
@@ -77,7 +79,7 @@ public class UserController {
 
     @RequestMapping("/logout")
     public Msg logout() {
-        new LogUtil().info("logout");
+        LogUtil.info("logout");
         Boolean status = SessionUtil.removeSession();
         if (status) {
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGOUT_SUCCESS_MSG);
@@ -87,7 +89,7 @@ public class UserController {
 
     @RequestMapping("/checkSession")
     public Msg checkSession() {
-        new LogUtil().info("checkSession");
+        LogUtil.info("checkSession");
         JSONObject auth = SessionUtil.getAuth();
 
         if (auth == null) {
@@ -100,7 +102,7 @@ public class UserController {
     @RequestMapping("/getOrdersByUserId")
     public List<Order> getOrdersByUserId(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        new LogUtil().info("getOrdersByUserId = " + userId);
+        LogUtil.info("getOrdersByUserId = " + userId);
 
         return userService.getOrdersByUserId(userId);
     }

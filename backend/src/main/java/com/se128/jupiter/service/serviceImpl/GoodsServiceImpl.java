@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class GoodsServiceImpl implements GoodsService {
 
+    private final GoodsDao goodsDao;
+
     @Autowired
-    private GoodsDao goodsDao;
+    public GoodsServiceImpl(GoodsDao goodsDao) {
+        this.goodsDao = goodsDao;
+    }
 
     public List<Goods> getAllGoods(){
         return goodsDao.getAllGoods();

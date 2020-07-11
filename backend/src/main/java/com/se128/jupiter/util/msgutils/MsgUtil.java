@@ -1,6 +1,5 @@
 package com.se128.jupiter.util.msgutils;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class MsgUtil {

@@ -7,7 +7,6 @@ import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,15 +20,17 @@ import java.util.Map;
 @RestController
 public class GoodsController {
 
+    private final GoodsService goodsService;
+
     @Autowired
-    private GoodsService goodsService;
+    public GoodsController(GoodsService goodsService) {
+        this.goodsService = goodsService;
+    }
 
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
-
-        System.out.println("getGoodsByGoodsId");
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
-        new LogUtil().info("getGoodsByGoodsId = " + goodsId);
+        LogUtil.info("getGoodsByGoodsId = " + goodsId);
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);
         if (goods != null) {
             JSONObject data = JSONObject.fromObject(goods);
@@ -41,24 +42,22 @@ public class GoodsController {
 
     @RequestMapping("/getGoodsByName")
     public List<Goods> getGoodsByName(@RequestBody Map<String, String> params) {
-
-        System.out.println("getGoodsByName");
         String name = params.get(Constant.NAME);
-        new LogUtil().info("getGoodsByName = " + name);
+        LogUtil.info("getGoodsByName = " + name);
         return goodsService.getGoodsByName(name);
     }
 
 
     @RequestMapping("/getAllGoods")
     public List<Goods> getAllGoods() {
-        new LogUtil().info("getAllGoods");
+        LogUtil.info("getAllGoods");
         return goodsService.getAllGoods();
     }
 
     @RequestMapping("/getGoodsByGoodsType")
     public List<Goods> getGoodsByGoodsType(@RequestBody Map<String, String> params) {
         Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
-        new LogUtil().info("getGoodsByGoodsType = " + goodsType);
+        LogUtil.info("getGoodsByGoodsType = " + goodsType);
 //        List<Goods> goods = goodsService.getGoodsByGoodsType(goodsType);
 //        JSONArray jsonArray = JSONArray.fromObject(goods);
 //        JSONObject jsonObject = new JSONObject();
@@ -69,7 +68,7 @@ public class GoodsController {
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {
-        new LogUtil().info("editGoods");
+        LogUtil.info("editGoods");
         Goods goods1 = goodsService.editGoods(goods);
         if (goods1 != null) {
             JSONObject data = JSONObject.fromObject(goods);
@@ -81,7 +80,7 @@ public class GoodsController {
 
     @RequestMapping("/addGoods")
     public Msg addGoods(@RequestBody Goods goods) {
-        new LogUtil().info("addGoods");
+        LogUtil.info("addGoods");
         Goods goods1 = goodsService.addGoods(goods);
         if (goods1 != null) {
             JSONObject data = JSONObject.fromObject(goods);
@@ -94,10 +93,9 @@ public class GoodsController {
     @RequestMapping("/deleteGoodsByGoodsId")
     public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
-        new LogUtil().info("deleteGoodsWithGoodsId = " + goodsId);
+        LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
         goodsService.deleteGoodsByGoodsId(goodsId);
         return MsgUtil.makeMsg(MsgCode.SUCCESS);
     }
-
 
 }
