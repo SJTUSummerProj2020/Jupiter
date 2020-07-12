@@ -177,6 +177,8 @@ export class DetailGoodsList extends React.Component{
                             console.log(page);
                         },
                         pageSize: 10,
+                        defaultCurrent: 1,
+                        showSizeChanger: false
                     }}
                     dataSource={this.state.goodsList}
                     renderItem={item => (

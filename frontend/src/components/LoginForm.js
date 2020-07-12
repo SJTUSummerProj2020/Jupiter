@@ -4,6 +4,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '../css/login.css';
 import {login} from "../services/userService";
 import {history} from "../utils/history";
+import {Link} from 'react-router-dom';
 
 export class LoginForm extends React.Component{
     constructor(props) {
@@ -19,11 +20,11 @@ export class LoginForm extends React.Component{
             console.log(data);
             if(data.status === 0){
                 message.success(data.msg);
-                localStorage.setItem('user', JSON.stringify(data.data));
+                sessionStorage.setItem('user', JSON.stringify(data.data));
                 history.push("/");
             }
             else if(data.status < 0){
-                message.error(data.msg);
+                message.warning(data.msg);
             }
         }
         login(data,callback);
@@ -56,7 +57,9 @@ export class LoginForm extends React.Component{
                     <Button type="primary" htmlType="submit" className="login-form-button">
                         登录
                     </Button>
-                    <a className={"register"} href="" >立即注册</a>
+                    <Link to={{pathname: '/register'}} className={"register"}>
+                        立即注册
+                    </Link>
                 </Form.Item>
             </Form>
         );

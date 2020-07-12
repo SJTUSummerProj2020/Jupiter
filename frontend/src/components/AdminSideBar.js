@@ -1,12 +1,12 @@
 import React from "react";
 import { Menu } from 'antd';
 import {Link} from 'react-router-dom';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-export class PersonalInfoSidebar extends React.Component{
+
+export class AdminSideBar extends React.Component{
     constructor(props) {
         super(props);
-        console.log(this.props);
     }
+
     render() {
         return(
             <Menu
@@ -16,17 +16,12 @@ export class PersonalInfoSidebar extends React.Component{
                 mode="inline"
             >
                 <Menu.Item key="1">
-                    <Link to={{pathname:"/orderList"}}>
-                        订单管理
+                    <Link to={{pathname:"/userList"}}>
+                        用户管理
                     </Link>
                 </Menu.Item >
                 <Menu.Item key="2">
-                    账号设置
-                </Menu.Item>
-                <Menu.Item key="3">
-                    <Link to={{pathname:"/personalInfo"}}>
-                        个人信息
-                    </Link>
+                    系统订单
                 </Menu.Item>
             </Menu>
         );
