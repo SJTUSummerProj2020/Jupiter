@@ -1,9 +1,10 @@
 import React from 'react';
-import { Row, Col,Card,List,InputNumber,Radio,Button} from 'antd';
+import { Row, Col,Card,List,InputNumber,Radio,Button,message} from 'antd';
 import"../css/detailcard.css"
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import {getGoodsByGoodsType} from "../services/goodsService";
 import {getGoodsByGoodsId} from "../services/goodsService";
+import {addOrder} from "../services/userService";
 
 const RadioGroup = Radio.Group;
 
@@ -167,8 +168,61 @@ export class DetailCard extends React.Component{
         }
         return"无货";
     }
-    buyNow=()=>{
 
+    allMatch=()=>{ //查看票档和场次是否匹配
+        let len = this.state.goodsData.goodsDetails.length;
+        let i = 0;
+        for(i = 0;i<len;++i){
+            if(this.state.goodsDetailTime === this.state.goodsData.goodsDetails[i].time &&
+            this.state.ticketsType === this.state.goodsData.goodsDetails[i].ticketType) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    getDetailId=()=>{
+        let len = this.state.goodsData.goodsDetails.length;
+        let Id = 0;
+        let i = 0;
+        for(i = 0;i<len;++i){
+            if(this.state.goodsDetailTime === this.state.goodsData.goodsDetails[i].time &&
+                this.state.ticketsType === this.state.goodsData.goodsDetails[i].ticketType) {
+                Id = this.state.goodsData.goodsDetails[i].detailId;
+            }
+        }
+        return Id;
+    }
+
+    buyNow=()=>{
+        if(this.state.user !== null){
+            this.clickSurplus();
+            if(this.allMatch()){
+                let userId = this.state.user.userId;
+                let detailId = this.getDetailId();
+                let number = this.state.ticketsNum;
+                let json = {
+                    userId: userId,
+                    detailId:detailId,
+                    number:number,
+                }
+                const callback = (data)=>{
+                    if(data.status>=0){
+                        message.success(data.msg + "请至订单界面查询订单信息");
+                    }
+                    else{
+                        message.error(data.msg);
+                    }
+                }
+                addOrder(json,callback);
+            }
+            else{
+                message.error("该选项无货");
+            }
+        }
+        else{
+            message.error("请登录");
+        }
     }
 
     render(){
