@@ -20,6 +20,8 @@ export class DetailCard extends React.Component{
             goodDetailTimeArray:[],
             ticketTypeArray:[],
             surplus:0,
+            user:null,
+            loggedIn:false,
         };
     }
 
@@ -34,11 +36,22 @@ export class DetailCard extends React.Component{
             this.getTicketType(data.data,data.data.ticketsType);
             this.getUnitPrice(data.data,data.data.ticketsType);
         };
-        console.log('参数',this.props.info);
         if(this.props.info === null)
             return;
         const requestData = {goodsId:this.props.info};
         getGoodsByGoodsId(requestData,callback);
+
+        let userItem = localStorage.getItem("user");
+        console.log('DetailCard里的用户',userItem);
+        if(userItem != null){
+            let user = JSON.parse(userItem);
+            this.setState(
+                {
+                    loggedIn:true,
+                    user:user
+                }
+            )
+        }
     }
 
     onChange1=(e) =>{
@@ -47,11 +60,11 @@ export class DetailCard extends React.Component{
         this.getTicketType(this.state.goodsData,e.target.value);
         // this.setState({goodsDetailTime:e.target.value});
         this.setState(()=>({goodsDetailTime:e.target.value}));
-        console.log('场次',this.state.goodsDetailTime);
+        // console.log('场次',this.state.goodsDetailTime);
     }
 
     onChange2=(e)=> {
-        console.log('票档',e.target.value);
+        // console.log('票档',e.target.value);
         // this.setState({ticketsType:e.target.value});
         this.setState(()=>({ticketsType:e.target.value}));
         let unitValue=this.getUnitPrice(this.state.goodsData,e.target.value);
@@ -134,7 +147,7 @@ export class DetailCard extends React.Component{
                 this.setState({surplus:this.state.goodsData.goodsDetails[i].surplus});
                 break;
             }
-            console.log('库存',this.state.goodsData.goodsDetails[i].surplus);
+            // console.log('库存',this.state.goodsData.goodsDetails[i].surplus);
             return this.state.goodsData.goodsDetails[i].surplus;
         }
     }
@@ -153,6 +166,9 @@ export class DetailCard extends React.Component{
             return"预售";
         }
         return"无货";
+    }
+    buyNow=()=>{
+
     }
 
     render(){
@@ -227,7 +243,7 @@ export class DetailCard extends React.Component{
                             <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
                         <Row>
-                            <button className={"detail-card-buy-button"}>
+                            <button className={"detail-card-buy-button"} onClick={this.buyNow}>
                                 立即购买
                             </button>
                         </Row>
