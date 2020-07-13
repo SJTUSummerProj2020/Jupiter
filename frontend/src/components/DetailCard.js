@@ -4,7 +4,9 @@ import"../css/detailcard.css"
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import {getGoodsByGoodsType} from "../services/goodsService";
 import {getGoodsByGoodsId} from "../services/goodsService";
-import {addOrder} from "../services/userService";
+import {addOrder, checkSession, getOrdersByUserId} from "../services/userService";
+import {Link} from 'react-router-dom';
+import {history} from "../utils/history";
 
 const RadioGroup = Radio.Group;
 
@@ -20,9 +22,10 @@ export class DetailCard extends React.Component{
             ticketsNum:1,
             goodDetailTimeArray:[],
             ticketTypeArray:[],
-            surplus:0,
+            surplus:-1,
             user:null,
             loggedIn:false,
+            orderId:0,
         };
     }
 
@@ -42,17 +45,39 @@ export class DetailCard extends React.Component{
         const requestData = {goodsId:this.props.info};
         getGoodsByGoodsId(requestData,callback);
 
-        let userItem = localStorage.getItem("user");
-        console.log('DetailCard里的用户',userItem);
-        if(userItem != null){
-            let user = JSON.parse(userItem);
-            this.setState(
-                {
-                    loggedIn:true,
-                    user:user
-                }
-            )
-        }
+        // let userItem = localStorage.getItem("user");
+        // console.log('DetailCard里的用户',userItem);
+        // if(userItem != null){
+        //     let user = JSON.parse(userItem);
+        //     this.setState(
+        //         {
+        //             loggedIn:true,
+        //             user:user
+        //         }
+        //     )
+        // }
+
+
+        const callback_checkSession = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        user:data.data
+                    }
+                );
+                const callback = (data) => {
+                    console.log(data);
+                    this.setState({orderList:data})
+                };
+                const requestData = {userId:data.data.userId};
+                getOrdersByUserId(requestData,callback);
+            }
+            else{
+                message.warning(data.msg);
+                history.push('login');
+            }
+        };
+        checkSession(callback_checkSession);
     }
 
     onChange1=(e) =>{
@@ -166,7 +191,7 @@ export class DetailCard extends React.Component{
         if(this.state.surplus === 2){
             return"预售";
         }
-        return"无货";
+        return" ";
     }
 
     allMatch=()=>{ //查看票档和场次是否匹配
@@ -208,7 +233,8 @@ export class DetailCard extends React.Component{
                 }
                 const callback = (data)=>{
                     if(data.status>=0){
-                        message.success(data.msg + "请至订单界面查询订单信息");
+                        this.setState({orderId:data.data.orderId});
+                        message.success(data.msg + "请至订单界面查询订单信息" +"\n"+"您的订单号是"+data.data.orderId);
                     }
                     else{
                         message.error(data.msg);
@@ -297,9 +323,11 @@ export class DetailCard extends React.Component{
                             <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
                         <Row>
+                            <Link to={{ pathname: this.user!==null? '/detailOrder':'/login' , state : this.state}}>
                             <button className={"detail-card-buy-button"} onClick={this.buyNow}>
-                                立即购买
-                            </button>
+                                    立即购买
+                                </button>
+                            </Link>
                         </Row>
                     </Col>
                 </Row>
