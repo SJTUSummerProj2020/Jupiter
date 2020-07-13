@@ -243,7 +243,7 @@ def save_data():
         host='localhost',
         port=3306,
         user='root',
-        password='lhn684258.',
+        password='123456',
         database='jupiter',
         charset='utf8'
     )
@@ -257,7 +257,7 @@ def save_data():
                            data[i]['address'] + '\", \"' + \
                            data[i]['website'] + '\", ' + \
                            str(data[i]['goods_type']) + ', \"' + \
-                           data[i]['image'] + '\")'
+                           data[i]['image'] + '\", 0, 0)'
         try:
             cur.execute(goods_insert_sql)
             cur.execute(find_max)
