@@ -7,6 +7,7 @@ import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import com.se128.jupiter.util.sessionutils.SessionUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class GoodsController {
         LogUtil.info("getGoodsByGoodsId = " + goodsId);
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);
         if (goods != null) {
+            SessionUtil.addCounter(goodsId);
             JSONObject data = JSONObject.fromObject(goods);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } else {

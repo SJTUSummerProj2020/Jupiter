@@ -12,7 +12,7 @@ public class SessionUtil {
 
     public static boolean checkAuth() {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        // Session
+
         if (requestAttributes != null) {
             HttpServletRequest request = requestAttributes.getRequest();
             HttpSession session = request.getSession(false);
@@ -71,5 +71,29 @@ public class SessionUtil {
             }
         }
         return true;
+    }
+
+    public static boolean addCounter(Integer goodsId) {
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        // Session
+        if (requestAttributes != null) {
+            HttpServletRequest request = requestAttributes.getRequest();
+            HttpSession session = request.getSession(false);
+
+            if (session != null) {
+                Integer counter = (Integer) session.getAttribute(goodsId.toString());
+                if(counter == null)
+                {
+                    session.setAttribute(goodsId.toString(),"1");
+                }
+                else
+                {
+                    counter = counter+1;
+                    session.setAttribute(goodsId.toString(),counter.toString());
+                }
+                return true;
+            }
+        }
+        return false;
     }
 }
