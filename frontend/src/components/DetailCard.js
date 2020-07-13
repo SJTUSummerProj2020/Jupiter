@@ -4,8 +4,9 @@ import"../css/detailcard.css"
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import {getGoodsByGoodsType} from "../services/goodsService";
 import {getGoodsByGoodsId} from "../services/goodsService";
-import {addOrder} from "../services/userService";
+import {addOrder, checkSession, getOrdersByUserId} from "../services/userService";
 import {Link} from 'react-router-dom';
+import {history} from "../utils/history";
 
 const RadioGroup = Radio.Group;
 
@@ -44,17 +45,39 @@ export class DetailCard extends React.Component{
         const requestData = {goodsId:this.props.info};
         getGoodsByGoodsId(requestData,callback);
 
-        let userItem = localStorage.getItem("user");
-        console.log('DetailCard里的用户',userItem);
-        if(userItem != null){
-            let user = JSON.parse(userItem);
-            this.setState(
-                {
-                    loggedIn:true,
-                    user:user
-                }
-            )
-        }
+        // let userItem = localStorage.getItem("user");
+        // console.log('DetailCard里的用户',userItem);
+        // if(userItem != null){
+        //     let user = JSON.parse(userItem);
+        //     this.setState(
+        //         {
+        //             loggedIn:true,
+        //             user:user
+        //         }
+        //     )
+        // }
+
+
+        const callback_checkSession = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        user:data.data
+                    }
+                );
+                const callback = (data) => {
+                    console.log(data);
+                    this.setState({orderList:data})
+                };
+                const requestData = {userId:data.data.userId};
+                getOrdersByUserId(requestData,callback);
+            }
+            else{
+                message.warning(data.msg);
+                history.push('login');
+            }
+        };
+        checkSession(callback_checkSession);
     }
 
     onChange1=(e) =>{
@@ -300,7 +323,7 @@ export class DetailCard extends React.Component{
                             <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
                         <Row>
-                            <Link to={{ pathname : '/detailOrder' , state : this.state}}>
+                            <Link to={{ pathname: this.user!==null? '/detailOrder':'/login' , state : this.state}}>
                             <button className={"detail-card-buy-button"} onClick={this.buyNow}>
                                     立即购买
                                 </button>
