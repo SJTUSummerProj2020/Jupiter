@@ -16,7 +16,7 @@ export class UserListView extends React.Component{
         const callback = (data) => {
             if(data.status === 0){
                 if(data.data.userType !== 0){
-                    message.warning("对不起，你无权限访问此页面");
+                    message.warning("对不起，您无权限访问此页面");
                     history.push("/");
                 }
             }
