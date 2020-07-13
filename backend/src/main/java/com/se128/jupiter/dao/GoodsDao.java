@@ -1,11 +1,11 @@
 package com.se128.jupiter.dao;
 
 import com.se128.jupiter.entity.Goods;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface GoodsDao {
-    List<Goods> getAllGoods();
 
     Goods getGoodsByGoodsId(Integer goodsId);
 
@@ -18,4 +18,8 @@ public interface GoodsDao {
     List<Goods> getGoodsByGoodsType(Integer goodsType);
 
     List<Goods> getGoodsByName(String name);
+
+    List<Goods> getGoodsByPage(Integer pageId);
+
+    Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType);
 }

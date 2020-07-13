@@ -7,8 +7,10 @@ import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,37 +36,57 @@ public class GoodsController {
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);
         if (goods != null) {
             JSONObject data = JSONObject.fromObject(goods);
-            return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } else {
-            return MsgUtil.makeMsg(MsgCode.ERROR);
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
 
     @RequestMapping("/getGoodsByName")
-    public List<Goods> getGoodsByName(@RequestBody Map<String, String> params) {
+    public Msg getGoodsByName(@RequestBody Map<String, String> params) {
         String name = params.get(Constant.NAME);
         LogUtil.info("getGoodsByName = " + name);
-        return goodsService.getGoodsByName(name);
+        List<Goods> goods = goodsService.getGoodsByName(name);
+        if (goods != null) {
+            JSONObject data = new JSONObject();
+            JSONArray goodsList = JSONArray.fromObject(goods);
+            data.put("goods", goods.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        }
     }
 
 
     @RequestMapping("/getAllGoods")
-    public List<Goods> getAllGoods() {
-        LogUtil.info("getAllGoods");
-        return goodsService.getAllGoods();
-    }
-
-    @RequestMapping("/getGoodsByGoodsType")
-    public List<Goods> getGoodsByGoodsType(@RequestBody Map<String, String> params) {
+    public Msg getAllGoods(@RequestBody Map<String, String> params) {
+        Integer pageId = Integer.valueOf(params.get(Constant.PAGEID));
+        Integer pageSize = Integer.valueOf(params.get(Constant.PAGESIZE));
         Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
-        LogUtil.info("getGoodsByGoodsType = " + goodsType);
-//        List<Goods> goods = goodsService.getGoodsByGoodsType(goodsType);
-//        JSONArray jsonArray = JSONArray.fromObject(goods);
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("goods",jsonArray.toString());
 
-        return goodsService.getGoodsByGoodsType(goodsType);
+        Page<Goods> goodsPage = goodsService.getAllGoods(pageId, pageSize, goodsType);
+        if (goodsPage != null) {
+            JSONObject data = new JSONObject();
+            data.put("totalNum", goodsPage.getTotalElements());
+            JSONArray goods = JSONArray.fromObject(goodsPage.getContent());
+            data.put("goods", goods.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        }
     }
+
+//    @RequestMapping("/getGoodsByGoodsType")
+//    public List<Goods> getGoodsByGoodsType(@RequestBody Map<String, String> params) {
+//        Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
+//        LogUtil.info("getGoodsByGoodsType = " + goodsType);
+////        List<Goods> goods = goodsService.getGoodsByGoodsType(goodsType);
+////        JSONArray jsonArray = JSONArray.fromObject(goods);
+////        JSONObject jsonObject = new JSONObject();
+////        jsonObject.put("goods",jsonArray.toString());
+//
+//        return goodsService.getGoodsByGoodsType(goodsType);
+//    }
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {

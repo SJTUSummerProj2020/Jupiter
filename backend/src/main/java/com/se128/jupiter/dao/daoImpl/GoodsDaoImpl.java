@@ -6,6 +6,10 @@ import com.se128.jupiter.entity.GoodsDetail;
 import com.se128.jupiter.repository.GoodsDetailRepository;
 import com.se128.jupiter.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,11 +24,6 @@ public class GoodsDaoImpl implements GoodsDao {
     public GoodsDaoImpl(GoodsRepository goodsRepository, GoodsDetailRepository goodsDetailRepository) {
         this.goodsRepository = goodsRepository;
         this.goodsDetailRepository = goodsDetailRepository;
-    }
-
-    @Override
-    public List<Goods> getAllGoods() {
-        return goodsRepository.getAllGoods();
     }
 
     @Override
@@ -72,4 +71,29 @@ public class GoodsDaoImpl implements GoodsDao {
         return goodsRepository.getGoodsByName(name);
     }
 
+    @Override
+    public List<Goods> getGoodsByPage(Integer pageId) {
+        return goodsRepository.getGoodsByPageId(pageId);
+    }
+
+    @Override
+    public Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType) {
+        PageRequest pageRequest = PageRequest.of(pageId,pageSize);
+        if(goodsType==-1)
+        {
+            try {
+                Page<Goods> goods = goodsRepository.findAll(pageRequest);
+                return goodsRepository.findAll(pageRequest);
+            }
+            catch (Exception e)
+            {
+                System.out.println("error");
+                return null;
+            }
+        }
+        else
+        {
+            return goodsRepository.findByGoodsType(goodsType,pageRequest);
+        }
+    }
 }

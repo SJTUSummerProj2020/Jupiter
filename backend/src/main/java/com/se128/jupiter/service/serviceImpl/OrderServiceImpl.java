@@ -7,6 +7,8 @@ import com.se128.jupiter.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -22,5 +24,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order addOrder(Order order,Integer detailId) {
          return orderDao.addOrder(order,detailId);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderDao.getAllOrders();
     }
 }

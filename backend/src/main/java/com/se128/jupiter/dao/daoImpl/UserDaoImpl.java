@@ -51,4 +51,9 @@ public class UserDaoImpl implements UserDao {
         User user = userRepository.getUserByUserId(userId);
         return user.getOrders();
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }

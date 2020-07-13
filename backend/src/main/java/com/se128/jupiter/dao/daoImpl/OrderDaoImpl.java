@@ -10,6 +10,8 @@ import com.se128.jupiter.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class OrderDaoImpl implements OrderDao {
 
@@ -38,5 +40,10 @@ public class OrderDaoImpl implements OrderDao {
         Double totalPrice = price * order.getNumber();
         order.setPrice(totalPrice);
         return orderRepository.saveAndFlush(order);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 }

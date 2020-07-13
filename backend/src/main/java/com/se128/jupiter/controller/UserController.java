@@ -9,6 +9,7 @@ import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
 import com.se128.jupiter.util.sessionutils.SessionUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -100,11 +101,33 @@ public class UserController {
     }
 
     @RequestMapping("/getOrdersByUserId")
-    public List<Order> getOrdersByUserId(@RequestBody Map<String, String> params) {
+    public Msg getOrdersByUserId(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
         LogUtil.info("getOrdersByUserId = " + userId);
+        List<Order> orders = userService.getOrdersByUserId(userId);
 
-        return userService.getOrdersByUserId(userId);
+        JSONArray orderList = JSONArray.fromObject(orders);
+        JSONObject data = new JSONObject();
+        data.put("order",orderList);
+        if (orders == null) {
+            return MsgUtil.makeMsg(MsgCode.ERROR);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
+        }
+    }
+
+    @RequestMapping("/getAllUsers")
+    public Msg getAllUsers()
+    {
+        List<User> users = userService.getAllUsers();
+        if (users != null) {
+            JSONObject data = new JSONObject();
+            JSONArray orderList = JSONArray.fromObject(users);
+            data.put("users", orderList.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        }
     }
 
 }

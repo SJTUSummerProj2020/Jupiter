@@ -4,6 +4,7 @@ import com.se128.jupiter.dao.GoodsDao;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +17,6 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     public GoodsServiceImpl(GoodsDao goodsDao) {
         this.goodsDao = goodsDao;
-    }
-
-    public List<Goods> getAllGoods(){
-        return goodsDao.getAllGoods();
     }
 
     @Override
@@ -50,5 +47,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> getGoodsByName(String name) {
         return goodsDao.getGoodsByName(name);
+    }
+
+    @Override
+    public List<Goods> getGoodsByPageId(Integer pageId) {
+        return goodsDao.getGoodsByPage(pageId);
+    }
+
+    @Override
+    public Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType) {
+        return goodsDao.getAllGoods(pageId,pageSize,goodsType);
     }
 }

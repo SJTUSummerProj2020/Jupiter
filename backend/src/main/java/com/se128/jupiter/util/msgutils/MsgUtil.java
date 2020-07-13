@@ -11,9 +11,11 @@ public class MsgUtil {
     public static final int REGISTER_USER_ERROR = -102;
 
     public static final String SUCCESS_MSG = "成功！";
+    public static final String DATA_SUCCESS_MSG = "获取成功！";
     public static final String LOGIN_SUCCESS_MSG = "登录成功！";
     public static final String LOGOUT_SUCCESS_MSG = "登出成功！";
     public static final String LOGOUT_ERR_MSG = "登出异常！";
+    public static final String DATA_ERR_MSG = "获取失败！";
     public static final String ERROR_MSG = "错误！";
     public static final String LOGIN_USER_ERROR_MSG = "用户名或密码错误，请重新输入！";
     public static final String REGISTER_USER_ERROR_MSG = "存在相同用户名，请更换用户名";

@@ -7,6 +7,7 @@ import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -54,6 +56,20 @@ public class OrderController {
         else
         {
             return MsgUtil.makeMsg(MsgCode.ERROR);
+        }
+    }
+
+    @RequestMapping("/getAllOrders")
+    public Msg getAllOrders()
+    {
+        List<Order> orders = orderService.getAllOrders();
+        if (orders != null) {
+            JSONObject data = new JSONObject();
+            JSONArray orderList = JSONArray.fromObject(orders);
+            data.put("orders", orderList.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
 }
