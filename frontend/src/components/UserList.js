@@ -1,5 +1,6 @@
 import React from "react";
 import {List, Avatar} from 'antd';
+import {UserOutlined, NumberOutlined, PhoneOutlined, LockOutlined, SafetyCertificateOutlined} from "@ant-design/icons";
 
 const data = [
     {userId:2,userName:"user",password:"user",phone:110,userType:1}
@@ -19,20 +20,20 @@ export class UserList extends React.Component{
                     <List.Item>
                         <List.Item.Meta
                             avatar={<Avatar src={[require("../assets/avatar.jpg")]} />}
-                            title={<div>User name: {item.userName}</div>}
+                            title={<div><UserOutlined /> 用户名: {item.userName}</div>}
                             description={
                                 <div className={"userListDescription"}>
                                     <div className={"userId"}>
-                                        User ID: {item.userId}
+                                        <NumberOutlined /> 用户ID: {item.userId}
                                     </div>
                                     <div className={"phone"}>
-                                        Phone number: {item.phone}
+                                        <PhoneOutlined /> 电话号码: {item.phone}
                                     </div>
                                     <div className={"password"}>
-                                        Password: {item.password}
+                                        <LockOutlined /> 用户密码: {item.password}
                                     </div>
                                     <div className={"userType"}>
-                                        User type: {item.userType}
+                                        <SafetyCertificateOutlined /> 用户类别: {item.userType}
                                     </div>
                                 </div>
                             }
