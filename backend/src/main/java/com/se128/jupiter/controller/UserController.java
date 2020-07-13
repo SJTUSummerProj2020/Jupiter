@@ -54,7 +54,7 @@ public class UserController {
             obj.put(Constant.USER_TYPE, user.getUserType());
             SessionUtil.setSession(obj);
 
-            JSONObject data = (JSONObject) JSONObject.fromObject(user);
+            JSONObject data = JSONObject.fromObject(user);
             data.remove(Constant.PASSWORD);
             data.remove(Constant.ORDERS);
             data.remove(Constant.PHONE);
@@ -110,9 +110,9 @@ public class UserController {
         JSONObject data = new JSONObject();
         data.put("order",orderList);
         if (orders == null) {
-            return MsgUtil.makeMsg(MsgCode.ERROR);
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         } else {
-            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
         }
     }
 

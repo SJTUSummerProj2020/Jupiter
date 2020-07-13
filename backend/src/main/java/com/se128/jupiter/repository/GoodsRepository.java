@@ -18,7 +18,7 @@ public interface GoodsRepository extends JpaRepository<Goods,Integer> {
 
     List<Goods> getGoodsByGoodsType(Integer goodsType);
 
-    @Query(value = "from Goods where name = ?1")
+    @Query(value = "from Goods where name like %?1%")
     List<Goods> getGoodsByName(String name);
 
     @Query(nativeQuery=true,value = "select * from Goods order by goods_id limit 3")

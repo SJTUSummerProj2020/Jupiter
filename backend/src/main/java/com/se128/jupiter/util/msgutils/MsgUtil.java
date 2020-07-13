@@ -13,15 +13,21 @@ public class MsgUtil {
     public static final String SUCCESS_MSG = "成功！";
     public static final String DATA_SUCCESS_MSG = "获取成功！";
     public static final String LOGIN_SUCCESS_MSG = "登录成功！";
+    public static final String EDIT_SUCCESS_MSG = "修改成功！";
     public static final String LOGOUT_SUCCESS_MSG = "登出成功！";
+    public static final String ADD_SUCCESS_MSG = "添加成功！";
+    public static final String REGISTER_SUCCESS_MSG = "注册成功";
+    public static final String DELETE_SUCCESS_MSG = "删除成功";
+    public static final String BUY_SUCCESS_MSG = "购买成功";
     public static final String LOGOUT_ERR_MSG = "登出异常！";
+    public static final String ADD_ERR_MSG = "添加失败！";
     public static final String DATA_ERR_MSG = "获取失败！";
     public static final String ERROR_MSG = "错误！";
+    public static final String EDIT_ERR_MSG = "修改失败！";
     public static final String LOGIN_USER_ERROR_MSG = "用户名或密码错误，请重新输入！";
     public static final String REGISTER_USER_ERROR_MSG = "存在相同用户名，请更换用户名";
     public static final String NOT_LOGGED_IN_ERROR_MSG = "登录失效，请重新登录！";
-    public static final String REGISTER_SUCCESS_MSG = "注册成功";
-    public static final String BUY_SUCCESS_MSG = "购买成功";
+    public static final String DELETE_ERR_MSG = "删除失败";
 
 
     public static Msg makeMsg(MsgCode code, JSONObject data) {

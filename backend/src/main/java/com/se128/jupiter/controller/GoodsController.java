@@ -49,7 +49,7 @@ public class GoodsController {
         if (goods != null) {
             JSONObject data = new JSONObject();
             JSONArray goodsList = JSONArray.fromObject(goods);
-            data.put("goods", goods.toString());
+            data.put("goods", goodsList.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } else {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
@@ -81,9 +81,9 @@ public class GoodsController {
         Goods goods1 = goodsService.editGoods(goods);
         if (goods1 != null) {
             JSONObject data = JSONObject.fromObject(goods);
-            return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
+            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
         } else {
-            return MsgUtil.makeMsg(MsgCode.ERROR);
+            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
         }
     }
 
@@ -93,9 +93,9 @@ public class GoodsController {
         Goods goods1 = goodsService.addGoods(goods);
         if (goods1 != null) {
             JSONObject data = JSONObject.fromObject(goods);
-            return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
+            return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
         } else {
-            return MsgUtil.makeMsg(MsgCode.ERROR);
+            return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
         }
     }
 
@@ -104,7 +104,7 @@ public class GoodsController {
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
         LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
         goodsService.deleteGoodsByGoodsId(goodsId);
-        return MsgUtil.makeMsg(MsgCode.SUCCESS);
+        return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
     }
 
 }
