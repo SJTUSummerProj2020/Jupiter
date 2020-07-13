@@ -34,7 +34,7 @@ public class Order {
     private Double price;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Timestamp time;
+    private String time;
 
     public Double getPrice() {
         return price;
@@ -56,7 +56,7 @@ public class Order {
         return sourceId;
     }
 
-    public Timestamp getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -84,7 +84,7 @@ public class Order {
         this.sourceId = sourceId;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

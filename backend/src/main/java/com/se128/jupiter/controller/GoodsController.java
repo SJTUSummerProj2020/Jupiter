@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-
 @RestController
 public class GoodsController {
 
@@ -75,18 +74,6 @@ public class GoodsController {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
-
-//    @RequestMapping("/getGoodsByGoodsType")
-//    public List<Goods> getGoodsByGoodsType(@RequestBody Map<String, String> params) {
-//        Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
-//        LogUtil.info("getGoodsByGoodsType = " + goodsType);
-////        List<Goods> goods = goodsService.getGoodsByGoodsType(goodsType);
-////        JSONArray jsonArray = JSONArray.fromObject(goods);
-////        JSONObject jsonObject = new JSONObject();
-////        jsonObject.put("goods",jsonArray.toString());
-//
-//        return goodsService.getGoodsByGoodsType(goodsType);
-//    }
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {

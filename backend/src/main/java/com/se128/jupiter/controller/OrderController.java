@@ -43,7 +43,7 @@ public class OrderController {
         order.setNumber(number);
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        order.setTime(timestamp);
+        order.setTime(timestamp.toString());
 
         order.setSourceId(54749110);
 
