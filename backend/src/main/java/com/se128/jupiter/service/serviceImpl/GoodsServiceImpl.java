@@ -8,11 +8,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
 
     private final GoodsDao goodsDao;
+
+    private Map<Integer,Integer> goodsViewCounter;
+    private Map<Integer,Integer> goodsBuyCounter;
 
     @Autowired
     public GoodsServiceImpl(GoodsDao goodsDao) {
@@ -21,7 +25,13 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public Goods getGoodsByGoodsId(Integer goodsId) {
-        return goodsDao.getGoodsByGoodsId(goodsId);
+        Goods goods = goodsDao.getGoodsByGoodsId(goodsId);
+//        if(goods != null)
+//        {
+//            this.goodsViewCounter.merge(goodsId, 1, Integer::sum);
+//            System.out.println(goodsViewCounter.get(goodsId));
+//        }
+        return goods;
     }
 
     @Override

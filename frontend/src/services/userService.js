@@ -30,6 +30,16 @@ export const addOrder = (data,callback) => {
     postRequest(url, data, callback);
 };
 
+export const getAllUsers = (data,callback) => {
+    const url = `http://localhost:8080/getAllUsers`;
+    postRequest(url, data, callback);
+}
+
+export const getAllOrders = (data,callback) => {
+    const url = `http://localhost:8080/getAllOrders`;
+    postRequest(url, data, callback);
+}
+
 // export const getUsers = (data, callback) => {
 //     const url = `http://localhost:8080/getUsers`;
 //     postRequest(url, data, callback);

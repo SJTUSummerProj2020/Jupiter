@@ -21,7 +21,9 @@ export class AdminSideBar extends React.Component{
                     </Link>
                 </Menu.Item >
                 <Menu.Item key="2">
-                    系统订单
+                    <Link to={{pathname:"/adminOrderList"}}>
+                        系统订单
+                    </Link>
                 </Menu.Item>
             </Menu>
         );

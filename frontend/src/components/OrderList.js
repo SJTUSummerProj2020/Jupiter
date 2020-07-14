@@ -34,7 +34,7 @@ export class OrderList extends React.Component{
                 );
                 const callback = (data) => {
                     console.log(data);
-                    this.setState({orderList:data})
+                    this.setState({orderList:data.data.order})
                 };
                 const requestData = {userId:data.data.userId};
                 getOrdersByUserId(requestData,callback);

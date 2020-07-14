@@ -14,6 +14,6 @@ public interface GoodsDetailRepository extends JpaRepository<GoodsDetail,Integer
     @Query(value ="delete from GoodsDetail where goods_id = ?1", nativeQuery = true)
     void deleteByGoodsId(Integer goodsId);
 
-
+    
     GoodsDetail getGoodsDetailByDetailId(Integer detailId);
 }

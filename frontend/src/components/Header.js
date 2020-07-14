@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {UserOutlined} from '@ant-design/icons';
+import {checkSession} from "../services/userService";
 import {Menu, Dropdown, message} from 'antd';
 import '../css/header.css';
 import {SearchBar} from "./SearchBar";
-import {checkSession, logout} from "../services/userService";
-
+import {logout} from "../services/userService";
 
 export class Header extends React.Component{
     constructor(props) {
@@ -49,8 +49,6 @@ export class Header extends React.Component{
         };
         logout(callback);
     }
-
-
 
     menu = (
         <Menu>
@@ -142,35 +140,35 @@ export class Header extends React.Component{
                 <div className="auth">
                     {
                         this.state.loggedIn ?
-                        (
-                            this.state.user.userType === 0 ?
-                                (
-                                    <li className="headerList">
-                                        <Dropdown overlay={this.adminMenu}>
-                                            <div>
-                                                <UserOutlined/>{this.state.user.username}
-                                            </div>
-                                        </Dropdown>
-                                    </li>
-                                ):
-                                (
-                                    <li className="headerList">
-                                        <Dropdown overlay={this.menu}>
-                                            <div>
-                                                <UserOutlined/>{this.state.user.username}
-                                            </div>
-                                        </Dropdown>
-                                    </li>
-                                )
+                            (
+                                this.state.user.userType === 0 ?
+                                    (
+                                        <li className="headerList">
+                                            <Dropdown overlay={this.adminMenu}>
+                                                <div>
+                                                    <UserOutlined/>{this.state.user.username}
+                                                </div>
+                                            </Dropdown>
+                                        </li>
+                                    ):
+                                    (
+                                        <li className="headerList">
+                                            <Dropdown overlay={this.menu}>
+                                                <div>
+                                                    <UserOutlined/>{this.state.user.username}
+                                                </div>
+                                            </Dropdown>
+                                        </li>
+                                    )
 
-                        ):
-                        (
-                            <li className="headerList">
-                                <Link to={{pathname:'/login'}}>
-                                    <UserOutlined />登录
-                                </Link>
-                            </li>
-                        )
+                            ):
+                            (
+                                <li className="headerList">
+                                    <Link to={{pathname:'/login'}}>
+                                        <UserOutlined />登录
+                                    </Link>
+                                </li>
+                            )
                     }
                 </div>
             </div>

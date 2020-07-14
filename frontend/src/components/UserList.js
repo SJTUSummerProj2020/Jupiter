@@ -15,12 +15,12 @@ export class UserList extends React.Component{
         return(
             <List
                 itemLayout="horizontal"
-                dataSource={data}
+                dataSource={this.props.userList}
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
                             avatar={<Avatar src={[require("../assets/avatar.jpg")]} />}
-                            title={<div><UserOutlined /> 用户名: {item.userName}</div>}
+                            title={<div><UserOutlined /> 用户名: {item.username}</div>}
                             description={
                                 <div className={"userListDescription"}>
                                     <div className={"userId"}>

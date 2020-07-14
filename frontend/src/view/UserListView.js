@@ -4,20 +4,32 @@ import {Col, Row} from "antd";
 import {AdminSideBar} from "../components/AdminSideBar";
 import {UserList} from "../components/UserList";
 import {checkSession} from "../services/userService";
+import {getAllUsers} from "../services/userService";
 import {message} from "antd";
 import {history} from "../utils/history";
 
 export class UserListView extends React.Component{
     constructor(props) {
         super(props);
-        this.state={key: '1'};
+        this.state={key: '1',userList:[]};
     }
+
     componentDidMount() {
         const callback = (data) => {
             if(data.status === 0){
                 if(data.data.userType !== 0){
                     message.warning("对不起，您无权限访问此页面");
                     history.push("/");
+                }
+                else{
+                    const getUserListData = {};
+                    const getUserListCallback = (data) => {
+                        console.log(data);
+                        this.setState(
+                            {userList:data.data.users}
+                        );
+                    };
+                    getAllUsers(getUserListData,getUserListCallback);
                 }
             }
             else{
@@ -37,7 +49,7 @@ export class UserListView extends React.Component{
                         <AdminSideBar myKey={this.state.key}/>
                     </Col>
                     <Col span={16}>
-                        <UserList/>
+                        <UserList userList={this.state.userList} style={{marginBottom:10}}/>
                     </Col>
                 </Row>
             </div>
