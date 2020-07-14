@@ -8,6 +8,7 @@ import {OrderListView} from "./view/OrderListView";
 import {DetailView} from "./view/DetailView";
 import {LoginView} from "./view/LoginView";
 import {DetailOrderView} from "./view/DetailOrderView";
+import{SearchView} from "./view/SearchView";
 
 class BasicRoute extends React.Component{
     constructor(props) {
@@ -29,6 +30,7 @@ class BasicRoute extends React.Component{
                     <Route exact path="/personalInfo" component={PersonalInfoView}/>
                     <Route exact path="/orderList" component={OrderListView}/>
                     <Route exact path="/detailOrder" component={DetailOrderView}/>
+                    <Route exact path="/search" component={SearchView}/>
                 </Switch>
             </Router>
         );
