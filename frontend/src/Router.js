@@ -11,6 +11,7 @@ import {DetailOrderView} from "./view/DetailOrderView";
 import{SearchView} from "./view/SearchView";
 import {UserListView} from "./view/UserListView";
 import {AdminOrderListView} from "./view/AdminOrderListView";
+import {RegisterView} from "./view/RegisterView";
 
 class BasicRoute extends React.Component{
     constructor(props) {
@@ -35,6 +36,7 @@ class BasicRoute extends React.Component{
                     <Route exact path="/search" component={SearchView}/>
                     <Route exact path="/userList" component={UserListView}/>
                     <Route exact path="/adminOrderList" component={AdminOrderListView}/>
+                    <Route exact path="/register" component={RegisterView}/>
                 </Switch>
             </Router>
         );
