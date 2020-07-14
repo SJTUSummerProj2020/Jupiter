@@ -16,4 +16,6 @@ public interface UserService {
     List<Order> getOrdersByUserId(Integer userId);
 
     List<User> getAllUsers();
+
+    User changeUserStatusByUserId(Integer userId);
 }
