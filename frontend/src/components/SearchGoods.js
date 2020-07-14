@@ -15,7 +15,7 @@ export class SearchGoods extends React.Component{
                 style={{width: 180, marginLeft: 30}}
                 cover={<img alt="image" src={info.image} className={"goodsImg"}/>}
             >
-                <Meta title={info.name} description={'¥' + info.price}/>
+                <Meta title={info.name} description={'¥' + info.goodsDetails[0].price}/>
             </Card>
         );
     }
