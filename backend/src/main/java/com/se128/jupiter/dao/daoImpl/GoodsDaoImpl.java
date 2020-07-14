@@ -10,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class GoodsDaoImpl implements GoodsDao {
@@ -93,5 +95,16 @@ public class GoodsDaoImpl implements GoodsDao {
         {
             return goodsRepository.findByGoodsType(goodsType,pageRequest);
         }
+    }
+
+    @Override
+    public void saveViewCounter(HashMap<Integer, Integer> goodsViewCounter) {
+        for(Map.Entry<Integer, Integer> entry: goodsViewCounter.entrySet())
+        {
+           Goods goods = goodsRepository.getGoodsByGoodsId(entry.getKey());
+           goods.setViewCounter(goods.getViewCounter()+entry.getValue());
+           goodsRepository.save(goods);
+        }
+        goodsRepository.flush();
     }
 }

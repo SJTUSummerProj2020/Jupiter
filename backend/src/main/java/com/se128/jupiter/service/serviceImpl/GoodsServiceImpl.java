@@ -7,30 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
 
     private final GoodsDao goodsDao;
 
-    private Map<Integer,Integer> goodsViewCounter;
-    private Map<Integer,Integer> goodsBuyCounter;
+    private HashMap<Integer,Integer> goodsViewCounter;
 
     @Autowired
     public GoodsServiceImpl(GoodsDao goodsDao) {
         this.goodsDao = goodsDao;
+        this.goodsViewCounter = new HashMap<Integer,Integer>();
     }
 
     @Override
     public Goods getGoodsByGoodsId(Integer goodsId) {
         Goods goods = goodsDao.getGoodsByGoodsId(goodsId);
-//        if(goods != null)
-//        {
-//            this.goodsViewCounter.merge(goodsId, 1, Integer::sum);
-//            System.out.println(goodsViewCounter.get(goodsId));
-//        }
+        if(goods != null)
+        {
+            this.goodsViewCounter.merge(goodsId, 1, Integer::sum);
+            System.out.println(goodsViewCounter.get(goodsId));
+        }
         return goods;
     }
 
@@ -67,5 +66,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType) {
         return goodsDao.getAllGoods(pageId,pageSize,goodsType);
+    }
+
+    @Override
+    public void saveViewCounter() {
+        goodsDao.saveViewCounter(this.goodsViewCounter);
     }
 }

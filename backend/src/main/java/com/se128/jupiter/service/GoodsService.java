@@ -22,4 +22,6 @@ public interface GoodsService {
     List<Goods> getGoodsByPageId(Integer pageId);
 
     Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType);
+
+    void saveViewCounter();
 }
