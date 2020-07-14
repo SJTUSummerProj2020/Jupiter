@@ -8,8 +8,6 @@ import com.se128.jupiter.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -68,7 +66,8 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public List<Goods> getGoodsByName(String name) {
-        return goodsRepository.getGoodsByName(name);
+        //return goodsRepository.getGoodsByName(name);
+        return goodsRepository.findAllByNameLike("%"+name+"%");
     }
 
     @Override
@@ -82,7 +81,6 @@ public class GoodsDaoImpl implements GoodsDao {
         if(goodsType==-1)
         {
             try {
-                Page<Goods> goods = goodsRepository.findAll(pageRequest);
                 return goodsRepository.findAll(pageRequest);
             }
             catch (Exception e)
