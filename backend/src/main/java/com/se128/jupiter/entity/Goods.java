@@ -39,6 +39,9 @@ public class Goods {
     @JoinColumn(name = "goods_id")
     private List<GoodsDetail> goodsDetails;
 
+    @Transient
+    private String detail;
+
     public void setImage(String image) {
         this.image = image;
     }
@@ -125,5 +128,13 @@ public class Goods {
 
     public void setViewCounter(Integer viewCounter) {
         this.viewCounter = viewCounter;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public String getDetail() {
+        return detail;
     }
 }

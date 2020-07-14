@@ -1,8 +1,10 @@
 package com.se128.jupiter.dao.daoImpl;
 
 import com.se128.jupiter.dao.GoodsDao;
+import com.se128.jupiter.entity.Detail;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.entity.GoodsDetail;
+import com.se128.jupiter.repository.DetailRepository;
 import com.se128.jupiter.repository.GoodsDetailRepository;
 import com.se128.jupiter.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +21,21 @@ public class GoodsDaoImpl implements GoodsDao {
 
     private  final GoodsRepository goodsRepository;
     private  final GoodsDetailRepository goodsDetailRepository;
+    private  final DetailRepository detailRepository;
 
     @Autowired
-    public GoodsDaoImpl(GoodsRepository goodsRepository, GoodsDetailRepository goodsDetailRepository) {
+    public GoodsDaoImpl(GoodsRepository goodsRepository, GoodsDetailRepository goodsDetailRepository, DetailRepository detailRepository) {
         this.goodsRepository = goodsRepository;
         this.goodsDetailRepository = goodsDetailRepository;
+        this.detailRepository = detailRepository;
     }
 
     @Override
     public Goods getGoodsByGoodsId(Integer goodsId) {
-        return goodsRepository.getGoodsByGoodsId(goodsId);
+        Goods goods = goodsRepository.getGoodsByGoodsId(goodsId);
+        Detail detail = detailRepository.getDetailByGoodsId(goodsId);
+        goods.setDetail(detail.getDetail());
+        return goods;
     }
 
     @Override
@@ -68,7 +75,6 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public List<Goods> getGoodsByName(String name) {
-        //return goodsRepository.getGoodsByName(name);
         return goodsRepository.findAllByNameLike("%"+name+"%");
     }
 

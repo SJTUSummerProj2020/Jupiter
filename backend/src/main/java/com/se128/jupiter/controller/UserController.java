@@ -130,4 +130,18 @@ public class UserController {
         }
     }
 
+
+    @RequestMapping("/ChangeUserStatusByUserId")
+    public Msg ChangeUserStatusByUserId(@RequestBody Map<String, String> params)
+    {
+        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
+        User user = userService.getUserByUserId(userId);
+        if (user != null) {
+            Integer status = user.getUserType();
+            user.setUserType(-status);
+            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
+        }
+    }
 }
