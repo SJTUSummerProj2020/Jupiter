@@ -56,4 +56,12 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User changeUserStatusByUserId(Integer userId) {
+        User user = userRepository.getUserByUserId(userId);
+        Integer status = user.getUserType();
+        user.setUserType(-status);
+        return userRepository.saveAndFlush(user);
+    }
 }
