@@ -24,6 +24,7 @@ public class SessionListener implements HttpSessionListener{
         HttpSession session = event.getSession();
         // String login_id = (String) session.getAttribute("userId");
         goodsService.saveViewCounter();
+        // System.out.println("Session destroyed!");
     }
 
 }
