@@ -75,7 +75,6 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public List<Goods> getGoodsByName(String name) {
-        //return goodsRepository.getGoodsByName(name);
         return goodsRepository.findAllByNameLike("%"+name+"%");
     }
 
