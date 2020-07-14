@@ -72,4 +72,9 @@ public class GoodsServiceImpl implements GoodsService {
     public void saveViewCounter() {
         goodsDao.saveViewCounter(this.goodsViewCounter);
     }
+
+    @Override
+    public List<Goods> getPopularGoods(Integer number, Integer goodsType) {
+        return goodsDao.getPopularGoods(number,goodsType);
+    }
 }

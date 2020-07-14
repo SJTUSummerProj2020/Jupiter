@@ -113,4 +113,15 @@ public class GoodsDaoImpl implements GoodsDao {
         }
         goodsRepository.flush();
     }
+
+    @Override
+    public List<Goods> getPopularGoods(Integer number, Integer goodsType) {
+        if(goodsType==-1)
+        {
+            return goodsRepository.getPopularGoodsInAll(number);
+        }
+        else {
+            return goodsRepository.getPopularGoods(number,goodsType);
+        }
+    }
 }

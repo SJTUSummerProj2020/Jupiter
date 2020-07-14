@@ -14,6 +14,8 @@ public class Constant {
     public static final String NAME = "name";
     public static final String PAGEID = "pageId";
     public static final String PAGESIZE = "pageSize";
+    public static final String SIZE = "size";
+    public static final String NUMBER = "number";
     public static Integer ADMIN = 0;
     public static Integer Customer = 1;
     public static Integer BAN = -1;

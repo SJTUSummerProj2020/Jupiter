@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface GoodsRepository extends JpaRepository<Goods,Integer> {
+public interface GoodsRepository extends JpaRepository<Goods, Integer> {
 
     @Query(value = "select g from Goods g")
     List<Goods> getAllGoods();
@@ -20,9 +20,9 @@ public interface GoodsRepository extends JpaRepository<Goods,Integer> {
     @Query(value = "from Goods where name like %?1%")
     List<Goods> getGoodsByName(String name);
 
-    List<Goods>findAllByNameLike(String name);
+    List<Goods> findAllByNameLike(String name);
 
-    @Query(nativeQuery=true,value = "select * from Goods order by goods_id limit 3")
+    @Query(nativeQuery = true, value = "select * from Goods order by goods_id limit 3")
     List<Goods> getGoodsByPageId(Integer pageId);
 
     @Query(value = "SELECT * FROM Goods WHERE goods_type = ?1",
@@ -30,4 +30,11 @@ public interface GoodsRepository extends JpaRepository<Goods,Integer> {
             nativeQuery = true)
     Page<Goods> findByGoodsType(Integer goodsType, PageRequest pageable);
 
+    @Query(nativeQuery = true,
+            value = "select * from Goods where goods_type =?2 order by view_counter limit ?1")
+    List<Goods> getPopularGoods(Integer number, Integer goodsType);
+
+    @Query(nativeQuery = true,
+            value = "select * from Goods order by view_counter limit ?1")
+    List<Goods> getPopularGoodsInAll(Integer number);
 }

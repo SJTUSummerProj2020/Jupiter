@@ -24,4 +24,6 @@ public interface GoodsService {
     Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType);
 
     void saveViewCounter();
+
+    List<Goods> getPopularGoods(Integer number, Integer goodsType);
 }

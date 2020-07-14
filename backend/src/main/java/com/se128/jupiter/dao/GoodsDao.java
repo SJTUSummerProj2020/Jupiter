@@ -25,4 +25,6 @@ public interface GoodsDao {
     Page<Goods> getAllGoods(Integer pageId, Integer pageSize, Integer goodsType);
 
     void saveViewCounter(HashMap<Integer, Integer> goodsViewCounter);
+
+    List<Goods> getPopularGoods(Integer number, Integer goodsType);
 }

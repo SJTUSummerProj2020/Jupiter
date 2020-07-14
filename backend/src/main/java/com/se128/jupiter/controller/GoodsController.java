@@ -108,4 +108,19 @@ public class GoodsController {
         return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
     }
 
+    @RequestMapping("/getPopularGoods")
+    public Msg getPopularGoods(@RequestBody Map<String, String> params) {
+        Integer number = Integer.valueOf(params.get(Constant.NUMBER));
+        Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
+        List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
+        if (goods != null) {
+            JSONObject data = new JSONObject();
+            JSONArray goodsList = JSONArray.fromObject(goods);
+            data.put("goods",goodsList.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        }
+    }
+
 }
