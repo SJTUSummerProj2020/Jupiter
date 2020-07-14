@@ -190,11 +190,11 @@ def analysis_detailpage(page, content, browser):
         title_time_content = time_addr[0]
         place = time_addr[1]
     # 演出详细信息
-    detail = soup.find('div', {'class': 'center-content'})
+    detail = soup.find('div', {'id': 'intro_panel'})
     if detail is None:
         detail_content = 'None'
     else:
-        detail_content = str(detail)
+        detail_content = str(detail).replace(u'\xa0', u'').replace('\n', '')
     # 组装演出信息
     date = split_time(title_time_content)
     raw_data = {
@@ -241,14 +241,14 @@ def save_data():
         port=3306,
         user='root',
         password='123456',
-        database='jupiter_test',
+        database='jupiter',
         charset='utf8'
     )
     mysql_cur = mysql_conn.cursor()
 
     mongo_conn = MongoClient('mongodb://localhost:27017/')
     mongo_conn.jupiter_test.authenticate('root', '123456', mechanism='SCRAM-SHA-1')
-    mongo_db = mongo_conn['jupiter_test']
+    mongo_db = mongo_conn['jupiter']
     collection = mongo_db['goodsdetail']
 
     find_max = 'select max(goods_id) from goods'
@@ -269,7 +269,7 @@ def save_data():
             print(goods_insert_sql)
             continue
 
-        document = {'id': max_goodsid, 'detail': data[i]['detail']}
+        document = {'goods_id': max_goodsid, 'detail': data[i]['detail']}
         try:
             collection.insert_one(document=document)
         except:
@@ -299,7 +299,7 @@ def save_data():
                     continue
     mysql_conn.commit()
     mysql_cur.close()
-    mysql_conn.commit()
+    mysql_conn.close()
                     
 
 
@@ -365,10 +365,10 @@ def working(flag, count, n):
 if __name__ == '__main__':
     flag = True
     count = 0
-    maxpage = 8
-    NUM = 1
-    performance_type = 0  # 演出类型
-    seed = 'https://www.moretickets.com/list/3101-concerts/hottest'
+    maxpage = 6
+    NUM = 4
+    performance_type = 6  # 演出类型
+    seed = 'https://www.moretickets.com/list/3101-dance/hottest'
     varLock = threading.Lock()
     dataLock = threading.Lock()
     countLock = threading.Lock()
