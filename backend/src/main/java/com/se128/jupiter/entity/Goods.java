@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -29,6 +30,10 @@ public class Goods {
     private Integer goodsType;
 
     private String image;
+
+    private Integer viewCounter;
+
+    private Integer buyCounter;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "goods_id")
@@ -106,4 +111,19 @@ public class Goods {
         this.startTime = startTime;
     }
 
+    public Integer getBuyCounter() {
+        return buyCounter;
+    }
+
+    public Integer getViewCounter() {
+        return viewCounter;
+    }
+
+    public void setBuyCounter(Integer buyCounter) {
+        this.buyCounter = buyCounter;
+    }
+
+    public void setViewCounter(Integer viewCounter) {
+        this.viewCounter = viewCounter;
+    }
 }
