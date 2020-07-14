@@ -18,3 +18,15 @@
     box-shadow: 0 0 20px 0 #eee;
     border: 1px solid #eee;
 }
+
+.detail-show-tab-stem{
+    color: #999;
+    font-size: 13px;
+}
+
+.detail-show-content{
+    line-height: 26px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: #4a4a4a;
+}
