@@ -21,13 +21,14 @@ export class LoginForm extends React.Component{
             if(data.status === 0){
                 message.success(data.msg);
                 sessionStorage.setItem('user', JSON.stringify(data.data));
-                console.log(history.entries[history.index - 1]);
-                if(history.entries[history.index - 1].pathname === '/register'){
-                    history.push('/');
-                }
-                else{
-                    history.goBack();
-                }
+                // console.log(history.entries[history.index - 1]);
+                // if(history.entries[history.index - 1].pathname === '/register'){
+                //     history.push('/');
+                // }
+                // else{
+                //     history.goBack();
+                // }
+                history.push('/');
             }
             else if(data.status < 0){
                 message.warning(data.msg);
