@@ -21,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -52,11 +53,14 @@ public class UserControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
+
     private MockMvc mockMvc;
+    private MockHttpSession session;
 
     @Before
     public void setUp() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        session = new MockHttpSession();
     }
 
     @After
@@ -166,18 +170,6 @@ public class UserControllerTest {
     @Test
     public void logout() {
         try{
-            // 先登录才能登出
-            JSONObject userInfo = new JSONObject();
-            userInfo.put("username", "root");
-            userInfo.put("password", "root");
-            MvcResult loginResult = mockMvc.perform(MockMvcRequestBuilders
-                    .post("/login")
-                    .contentType(MediaType.APPLICATION_JSON_UTF8)
-                    .content(JSON.toJSONString(userInfo))
-                    .accept(MediaType.APPLICATION_JSON_UTF8)
-            ).andReturn();
-            System.out.println(loginResult.getResponse().getContentAsString());
-
             JSONObject param = new JSONObject();
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/logout")
@@ -188,21 +180,80 @@ public class UserControllerTest {
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             JSONObject respond = (JSONObject) JSON.parseObject(responseString);
+            assertEquals("登出失败", -1, respond.get("status"));
+            System.out.println(responseString);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            // 先登录才能登出
+            JSONObject userInfo = new JSONObject();
+            userInfo.put("username", "root");
+            userInfo.put("password", "root");
+            MvcResult loginResult = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/login")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(userInfo))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
+            ).andReturn();
+            System.out.println(loginResult.getResponse().getContentAsString());
+
+            JSONObject param = new JSONObject();
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/logout")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+            JSONObject respond = (JSONObject) JSON.parseObject(responseString);
             assertEquals("登出失败", 0, respond.get("status"));
             System.out.println(responseString);
         } catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     @Test
     public void checkSession() {
+
         try{
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/checkSession")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content("")
                     .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            JSONObject userInfo = new JSONObject();
+            userInfo.put("username", "root");
+            userInfo.put("password", "root");
+            MvcResult loginResult = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/login")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(userInfo))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
+            ).andReturn();
+            System.out.println(loginResult.getResponse().getContentAsString());
+
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/checkSession")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
@@ -253,6 +304,22 @@ public class UserControllerTest {
     {
         try{
             String userId = "1";
+            JSONObject param = new JSONObject();
+            param.put("userId", userId);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/changeUserStatusByUserId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toJSONString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            String userId = "100";
             JSONObject param = new JSONObject();
             param.put("userId", userId);
             String responseString = mockMvc.perform(MockMvcRequestBuilders

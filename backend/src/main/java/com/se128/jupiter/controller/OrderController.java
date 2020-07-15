@@ -30,7 +30,6 @@ public class OrderController {
     @RequestMapping("/addOrder")
     public Msg addOrder(@RequestBody Map<String, String> params) {
 
-        try {
             LogUtil.info("addOrder");
 
             Order order = new Order();
@@ -52,22 +51,15 @@ public class OrderController {
             JSONObject data = JSONObject.fromObject(order1);
             return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, MsgUtil.BUY_SUCCESS_MSG, data);
 
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
-        }
     }
 
     @RequestMapping("/getAllOrders")
     public Msg getAllOrders() {
-        try {
             List<Order> orders = orderService.getAllOrders();
             JSONObject data = new JSONObject();
             JSONArray orderList = JSONArray.fromObject(orders);
             data.put("orders", orderList.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        }
     }
 }
 

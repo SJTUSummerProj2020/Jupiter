@@ -9,6 +9,7 @@ public class MsgUtil {
     public static final int LOGIN_USER_ERROR = -100;
     public static final int NOT_LOGGED_IN_ERROR = -101;
     public static final int REGISTER_USER_ERROR = -102;
+    public static final int BODY_ERROR = -103;
 
     public static final String SUCCESS_MSG = "成功！";
     public static final String DATA_SUCCESS_MSG = "获取成功！";

@@ -36,86 +36,68 @@ public class GoodsController {
             Goods goods = goodsService.getGoodsByGoodsId(goodsId);
             JSONObject data = JSONObject.fromObject(goods);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        } catch (NullPointerException e) {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such goodsId");
         }
     }
 
     @RequestMapping("/getGoodsByName")
     public Msg getGoodsByName(@RequestBody Map<String, String> params) {
-        try {
-            String name = params.get(Constant.NAME);
-            LogUtil.info("getGoodsByName = " + name);
-            List<Goods> goods = goodsService.getGoodsByName(name);
-            JSONObject data = new JSONObject();
-            JSONArray goodsList = JSONArray.fromObject(goods);
-            data.put("goods", goodsList.toString());
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        }
+        String name = params.get(Constant.NAME);
+        LogUtil.info("getGoodsByName = " + name);
+        List<Goods> goods = goodsService.getGoodsByName(name);
+        JSONObject data = new JSONObject();
+        JSONArray goodsList = JSONArray.fromObject(goods);
+        data.put("goods", goodsList.toString());
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
 
 
     @RequestMapping("/getAllGoods")
     public Msg getAllGoods(@RequestBody Map<String, String> params) {
-        try {
-            Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
-            Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
-            Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
+        Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
+        Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
+        Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
 
-            Page<Goods> goodsPage = goodsService.getAllGoods(pageId, pageSize, goodsType);
-            JSONObject data = new JSONObject();
-            data.put("totalNum", goodsPage.getTotalElements());
-            JSONArray goods = JSONArray.fromObject(goodsPage.getContent());
-            data.put("goods", goods.toString());
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        }
+        Page<Goods> goodsPage = goodsService.getAllGoods(pageId, pageSize, goodsType);
+        JSONObject data = new JSONObject();
+        data.put("totalNum", goodsPage.getTotalElements());
+        JSONArray goods = JSONArray.fromObject(goodsPage.getContent());
+        data.put("goods", goods.toString());
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {
-        try {
             LogUtil.info("editGoods");
             Goods goods1 = goodsService.editGoods(goods);
             JSONObject data = JSONObject.fromObject(goods1);
             return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
-        }
     }
 
     @RequestMapping("/addGoods")
     public Msg addGoods(@RequestBody Goods goods) {
-        try {
             LogUtil.info("addGoods");
             goods.setBuyCounter(0);
             goods.setViewCounter(0);
             Goods goods1 = goodsService.addGoods(goods);
             JSONObject data = JSONObject.fromObject(goods1);
             return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
-        }
+
     }
 
     @RequestMapping("/deleteGoodsByGoodsId")
     public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
-        try {
             Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
             LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
             goodsService.deleteGoodsByGoodsId(goodsId);
             return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.DELETE_ERROR);
-        }
     }
 
     @RequestMapping("/getPopularGoods")
     public Msg getPopularGoods(@RequestBody Map<String, String> params) {
-        try {
             LogUtil.info("getPopularGoods");
             Integer number = Integer.valueOf(params.get(Constant.NUMBER));
             JSONObject data = new JSONObject();
@@ -129,8 +111,6 @@ public class GoodsController {
                 }
             }
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } catch (Exception e) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
-}
+

@@ -70,6 +70,11 @@ public class SessionUtil {
 
             if (session != null) {
                 session.invalidate();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         return true;

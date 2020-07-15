@@ -59,7 +59,7 @@ class GoodsControllerTest {
         } catch (Exception e){
             e.printStackTrace();
         }
-        //Error
+        //No such goodsId
         try{
             String goodsId = "200";
             JSONObject param = new JSONObject();
@@ -68,6 +68,20 @@ class GoodsControllerTest {
                     .post("/getGoodsByGoodsId")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //No goodsId
+        try{
+            JSONObject param = new JSONObject();
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getGoodsByGoodsId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toString())
                     .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
