@@ -1,7 +1,9 @@
 import React from "react";
 import {Header} from "../components/Header";
 import {getGoodsByName} from "../services/goodsService";
+import {Col, Row, BackTop} from 'antd';
 import {SearchList} from "../components/SearchList";
+import '../css/searchlist.css';
 
 // debugger;
 export class SearchView extends React.Component{
@@ -33,7 +35,12 @@ export class SearchView extends React.Component{
         return(
             <div>
                 <Header/>
-                <SearchList info={this.state.searchResultList}/>
+                <Row>
+                    <Col span={20} push={1} className={"searchList"}>
+                        <SearchList info={this.state.searchResultList} />
+                    </Col>
+                    <BackTop/>
+                </Row>
             </div>
 
         );

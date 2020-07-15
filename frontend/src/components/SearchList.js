@@ -1,5 +1,5 @@
 import React from 'react';
-import {List} from 'antd';
+import {List, Pagination} from 'antd';
 import {SearchGoods} from "./SearchGoods";
 import {Link} from "react-router-dom";
 
@@ -27,7 +27,13 @@ export class SearchList extends React.Component{
                     onChange: page => {
                         console.log(page);
                     },
-                    pageSize: 16,
+                    pageSize: 24,
+                    showSizeChanger: false,
+                    showTotal: total => {
+                        return(
+                            <span>总共 {total} 个结果</span>
+                        );
+                }
                 }}
                 renderItem={item => (
                     <List.Item>
