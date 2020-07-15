@@ -89,15 +89,6 @@ public class UserControllerTest {
     @Test
     public void login() {
         try{
-//            Map<String, String> map = new HashMap<>();
-//            String username = "root";
-//            String password = "root";
-//            map.put("username", username);
-//            map.put("password", password);
-//            Msg msg = userController.login(map);
-//            assertEquals("login failed",0, msg.getStatus());
-//            assertEquals("login failed", username, msg.getData().get("username"));
-
             JSONObject param = new JSONObject();
             param.put("username", "root");
             param.put("password", "root");
@@ -188,7 +179,7 @@ public class UserControllerTest {
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             JSONObject respond = (JSONObject) JSON.parseObject(responseString);
-            assertEquals("登出失败", -101, respond.get("status"));
+            assertEquals("登出失败", 0, respond.get("status"));
             System.out.println(responseString);
         } catch (Exception e){
             e.printStackTrace();
