@@ -32,11 +32,15 @@ public class GoodsController {
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
         LogUtil.info("getGoodsByGoodsId = " + goodsId);
-        Goods goods = goodsService.getGoodsByGoodsId(goodsId);
-        if (goods != null) {
-            JSONObject data = JSONObject.fromObject(goods);
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } else {
+        try {
+            Goods goods = goodsService.getGoodsByGoodsId(goodsId);
+            if (goods != null) {
+                JSONObject data = JSONObject.fromObject(goods);
+                return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+            } else {
+                return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+            }
+        } catch (Exception e) {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
