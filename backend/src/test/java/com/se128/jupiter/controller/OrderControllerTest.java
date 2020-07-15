@@ -63,4 +63,20 @@ class OrderControllerTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void getAllOrders(){
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getAllOrders")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

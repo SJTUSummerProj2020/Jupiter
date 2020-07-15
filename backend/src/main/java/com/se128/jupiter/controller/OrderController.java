@@ -48,11 +48,11 @@ public class OrderController {
 
         Order order1 = orderService.addOrder(order,detailId);
 
-        if(order1 != null){
+        try{
             JSONObject data = JSONObject.fromObject(order1);
             return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS,MsgUtil.BUY_SUCCESS_MSG,data);
         }
-        else
+       catch (Exception e)
         {
             return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
         }
@@ -62,12 +62,12 @@ public class OrderController {
     public Msg getAllOrders()
     {
         List<Order> orders = orderService.getAllOrders();
-        if (orders != null) {
+        try{
             JSONObject data = new JSONObject();
             JSONArray orderList = JSONArray.fromObject(orders);
             data.put("orders", orderList.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } else {
+        } catch (Exception e){
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }

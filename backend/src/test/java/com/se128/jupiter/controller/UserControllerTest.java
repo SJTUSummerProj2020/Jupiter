@@ -1,9 +1,16 @@
 package com.se128.jupiter.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.se128.jupiter.entity.Order;
+import com.se128.jupiter.entity.User;
+import com.se128.jupiter.util.constant.Constant;
+import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.se128.jupiter.util.msgutils.MsgCode;
+import com.se128.jupiter.util.msgutils.MsgUtil;
+import com.se128.jupiter.util.sessionutils.SessionUtil;
+import net.sf.json.JSONArray;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,9 +34,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -39,8 +49,7 @@ import static org.junit.Assert.*;
 @AutoConfigureMockMvc
 @WebAppConfiguration
 public class UserControllerTest {
-    @Autowired
-    private UserController userController;
+
     @Autowired
     private WebApplicationContext webApplicationContext;
     private MockMvc mockMvc;
@@ -89,15 +98,6 @@ public class UserControllerTest {
     @Test
     public void login() {
         try{
-//            Map<String, String> map = new HashMap<>();
-//            String username = "root";
-//            String password = "root";
-//            map.put("username", username);
-//            map.put("password", password);
-//            Msg msg = userController.login(map);
-//            assertEquals("login failed",0, msg.getStatus());
-//            assertEquals("login failed", username, msg.getData().get("username"));
-
             JSONObject param = new JSONObject();
             param.put("username", "root");
             param.put("password", "root");
@@ -198,17 +198,73 @@ public class UserControllerTest {
     @Test
     public void checkSession() {
         try{
-            // before login status should be 1
-            JSONObject param = new JSONObject();
-
-
-            // after login status should be 0
-        }catch(Exception e){
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/checkSession")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
 
     @Test
     public void getOrdersByUserId() {
+        try{
+            String userId = "1";
+            JSONObject param = new JSONObject();
+            param.put("userId", userId);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getOrdersByUserId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toJSONString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getAllUsers()
+    {
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getAllUsers")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void changeUserStatusByUserId()
+    {
+        try{
+            String userId = "1";
+            JSONObject param = new JSONObject();
+            param.put("userId", userId);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/changeUserStatusByUserId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toJSONString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
