@@ -50,11 +50,11 @@ public class OrderController {
 
         if(order1 != null){
             JSONObject data = JSONObject.fromObject(order1);
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS,MsgUtil.BUY_SUCCESS_MSG,data);
+            return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS,MsgUtil.BUY_SUCCESS_MSG,data);
         }
         else
         {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+            return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
         }
     }
 

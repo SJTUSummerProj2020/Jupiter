@@ -30,11 +30,10 @@ public class GoodsController {
 
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
-        Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
+        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
         LogUtil.info("getGoodsByGoodsId = " + goodsId);
         Goods goods = goodsService.getGoodsByGoodsId(goodsId);
         if (goods != null) {
-            //SessionUtil.addCounter(goodsId);
             JSONObject data = JSONObject.fromObject(goods);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } else {
@@ -60,9 +59,9 @@ public class GoodsController {
 
     @RequestMapping("/getAllGoods")
     public Msg getAllGoods(@RequestBody Map<String, String> params) {
-        Integer pageId = Integer.valueOf(params.get(Constant.PAGEID));
-        Integer pageSize = Integer.valueOf(params.get(Constant.PAGESIZE));
-        Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
+        Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
+        Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
+        Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
 
         Page<Goods> goodsPage = goodsService.getAllGoods(pageId, pageSize, goodsType);
         if (goodsPage != null) {
@@ -102,7 +101,7 @@ public class GoodsController {
 
     @RequestMapping("/deleteGoodsByGoodsId")
     public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
-        Integer goodsId = Integer.valueOf(params.get(Constant.GOODSID));
+        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
         LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
         goodsService.deleteGoodsByGoodsId(goodsId);
         return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
@@ -111,16 +110,18 @@ public class GoodsController {
     @RequestMapping("/getPopularGoods")
     public Msg getPopularGoods(@RequestBody Map<String, String> params) {
         Integer number = Integer.valueOf(params.get(Constant.NUMBER));
-        Integer goodsType = Integer.valueOf(params.get(Constant.GOODSTYPE));
-        List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
-        if (goods != null) {
-            JSONObject data = new JSONObject();
-            JSONArray goodsList = JSONArray.fromObject(goods);
-            data.put("goods",goodsList.toString());
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        JSONObject data = new JSONObject();
+        for (Integer goodsType = -1; goodsType < Constant.NUMBER_OF_TYPE; goodsType++) {
+            List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
+            if (goods != null) {
+                JSONArray goodsList = JSONArray.fromObject(goods);
+                data.put(goodsType.toString(), goodsList.toString());
+            } else {
+                return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+            }
         }
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
+
 
 }

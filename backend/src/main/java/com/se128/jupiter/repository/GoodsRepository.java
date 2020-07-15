@@ -22,6 +22,8 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
 
     List<Goods> findAllByNameLike(String name);
 
+    List<Goods> findAllByNameContains(String name);
+
     @Query(nativeQuery = true, value = "select * from Goods order by goods_id limit 3")
     List<Goods> getGoodsByPageId(Integer pageId);
 
@@ -31,10 +33,10 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
     Page<Goods> findByGoodsType(Integer goodsType, PageRequest pageable);
 
     @Query(nativeQuery = true,
-            value = "select * from Goods where goods_type =?2 order by view_counter limit ?1")
+            value = "select * from Goods where goods_type =?2 order by view_counter desc limit ?1")
     List<Goods> getPopularGoods(Integer number, Integer goodsType);
 
     @Query(nativeQuery = true,
-            value = "select * from Goods order by view_counter limit ?1")
+            value = "select * from Goods order by view_counter desc limit ?1")
     List<Goods> getPopularGoodsInAll(Integer number);
 }

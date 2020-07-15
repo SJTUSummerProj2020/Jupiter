@@ -50,7 +50,7 @@ public class SessionUtil {
             HttpServletRequest request = requestAttributes.getRequest();
             HttpSession session = request.getSession();
             // 设置session失效时间 单位为秒
-            // session.setMaxInactiveInterval(10);
+            session.setMaxInactiveInterval(5*60);
 
             for (Object str : data.keySet()) {
                 String key = (String) str;

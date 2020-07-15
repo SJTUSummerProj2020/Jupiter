@@ -32,16 +32,21 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public Order addOrder(Order order,Integer detailId) {
         GoodsDetail goodsDetail = goodsDetailRepository.getGoodsDetailByDetailId(detailId);
-        order.setGoodsDetail(goodsDetail);
-        Integer goodsId = goodsDetail.getGoodsId();
-        Goods goods = goodsRepository.getGoodsByGoodsId(goodsId);
-        goods.setBuyCounter(goods.getBuyCounter()+order.getNumber());
-        goodsRepository.saveAndFlush(goods);
-        order.setGoods(goods);
-        Double price = order.getGoodsDetail().getPrice();
-        Double totalPrice = price * order.getNumber();
-        order.setPrice(totalPrice);
-        return orderRepository.saveAndFlush(order);
+        if(goodsDetail.getSurplus()==1){
+            order.setGoodsDetail(goodsDetail);
+            Integer goodsId = goodsDetail.getGoodsId();
+            Goods goods = goodsRepository.getGoodsByGoodsId(goodsId);
+            goods.setBuyCounter(goods.getBuyCounter()+order.getNumber());
+            goodsRepository.saveAndFlush(goods);
+            order.setGoods(goods);
+            Double price = order.getGoodsDetail().getPrice();
+            Double totalPrice = price * order.getNumber();
+            order.setPrice(totalPrice);
+            return orderRepository.saveAndFlush(order);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
