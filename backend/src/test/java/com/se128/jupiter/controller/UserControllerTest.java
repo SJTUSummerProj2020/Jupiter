@@ -181,14 +181,14 @@ public class UserControllerTest {
             JSONObject param = new JSONObject();
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/logout")
-                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
-                    .accept(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             JSONObject respond = (JSONObject) JSON.parseObject(responseString);
-            assertEquals("登出失败", -101, respond.get("status"));
+            assertEquals("登出失败", 0, respond.get("status"));
             System.out.println(responseString);
         } catch (Exception e){
             e.printStackTrace();
