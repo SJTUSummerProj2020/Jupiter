@@ -1,14 +1,20 @@
 import React from "react";
-import {List, Avatar} from 'antd';
+import {List, Avatar, Button, message} from 'antd';
 import {UserOutlined, NumberOutlined, PhoneOutlined, LockOutlined, SafetyCertificateOutlined} from "@ant-design/icons";
-
-const data = [
-    {userId:2,userName:"user",password:"user",phone:110,userType:1}
-];
+import {changeUserStatusByUserId} from "../services/userService";
 
 export class UserList extends React.Component{
     constructor(props) {
         super(props);
+    }
+
+    changeUserStatus = (userId) => {
+        const data = {userId:userId};
+        const callback = (data) => {
+            message.success(data.msg);
+            this.props.changeUserStatus(userId);
+        };
+        changeUserStatusByUserId(data,callback);
     }
 
     render() {
@@ -33,11 +39,37 @@ export class UserList extends React.Component{
                                         <LockOutlined /> 用户密码: {item.password}
                                     </div>
                                     <div className={"userType"}>
-                                        <SafetyCertificateOutlined /> 用户类别: {item.userType}
+                                        <SafetyCertificateOutlined />
+                                        用户类别: {
+                                        (()=>{
+                                            switch (item.userType) {
+                                                case -1: return (<span>封禁用户</span>);break;
+                                                case 0: return(<span>管理员</span>);break;
+                                                case 1: return(<span>普通用户</span>);break;
+                                            }
+                                        })()
+                                    }
                                     </div>
                                 </div>
                             }
                         />
+                        <div className={"userListButton"} style={{float:"right"}}>
+                            {
+                                item.userType < 0 ?
+                                    (
+                                        <Button onClick={this.changeUserStatus.bind(this,item.userId)}>解禁</Button>
+                                    ) :
+                                    (
+                                        item.userType === 0 ?
+                                            (
+                                                <div></div>
+                                            ):
+                                            (
+                                                <Button onClick={this.changeUserStatus.bind(this,item.userId)}>封禁</Button>
+                                            )
+                                    )
+                            }
+                        </div>
                     </List.Item>
                 )}
             />
