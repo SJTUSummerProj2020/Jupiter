@@ -32,7 +32,7 @@ export class GoodsList extends React.Component{
             <div>
                 <List
                     grid={{gutter: 10, column: 3}}
-                    dataSource={displayData}
+                    dataSource={this.props.goodsList}
                     // pagination={{
                     //     onChange: page => {
                     //         console.log(page);
