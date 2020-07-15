@@ -22,6 +22,8 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
 
     List<Goods> findAllByNameLike(String name);
 
+    List<Goods> findAllByNameContains(String name);
+
     @Query(nativeQuery = true, value = "select * from Goods order by goods_id limit 3")
     List<Goods> getGoodsByPageId(Integer pageId);
 
