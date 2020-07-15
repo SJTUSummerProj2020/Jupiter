@@ -40,6 +40,20 @@ export class UserListView extends React.Component{
         checkSession(callback);
     }
 
+    changeUserStatus = (userId) => {
+        let users = this.state.userList;
+        let length = users.length;
+        for(let i = 0;i < length;++i){
+            if(users[i].userId === userId){
+                users[i].userType *= (-1);
+                break;
+            }
+        }
+        this.setState(
+            {userList:users}
+        );
+    }
+
     render() {
         return(
             <div>
@@ -49,7 +63,11 @@ export class UserListView extends React.Component{
                         <AdminSideBar myKey={this.state.key}/>
                     </Col>
                     <Col span={16}>
-                        <UserList userList={this.state.userList} style={{marginBottom:10}}/>
+                        <UserList
+                            userList={this.state.userList}
+                            style={{marginBottom:10}}
+                            changeUserStatus={this.changeUserStatus}
+                        />
                     </Col>
                 </Row>
             </div>
