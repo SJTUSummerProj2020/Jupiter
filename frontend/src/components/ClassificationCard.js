@@ -10,12 +10,9 @@ export class ClassificationCard extends React.Component{
         super(props);
     }
     render() {
-        if(this.props.goods === null){
-            return null;
-        }
         return(
             <Card
-                title={<span style={{float:"left"}}>{this.props.classification}</span>}
+                title={<span style={{float:"left"}}>话剧歌剧</span>}
                 bordered={false}
                 className={"classification-card"}
                 extra={
@@ -27,33 +24,16 @@ export class ClassificationCard extends React.Component{
             >
                <div className={"classification-content"}>
                    <div className={"most-popular"}>
-                       <Link to={{
-                           pathname: '/detail',
-                           search: '?id=' + this.props.goods.goodsId}}
-                             target="_blank"
+                       <Card
+                           hoverable
+                           style={{ width: 290, height: 560 }}
+                           cover={<img alt="image" src={require("../assets/goods/1.jpg")} className={"mostPopularImg"}/>}
                        >
-                           <Card
-                               hoverable
-                               style={{ width: 290, height: 560 }}
-                               cover={<img alt="image" src={this.props.goods.image} className={"mostPopularImg"}/>}
-                           >
-                               <Meta
-                                   title={this.props.goods.name}
-                                   description={
-                                       this.props.goods.goodsDetails.length===0 ?
-                                           (
-                                               <span className={"canceled"}>演出取消</span>
-                                           ):
-                                           (
-                                               <span>￥{this.props.goods.goodsDetails[0].price}起</span>
-                                           )
-                                   }
-                               />
-                           </Card>
-                       </Link>
+                           <Meta title="求婚女王" description="￥50" />
+                       </Card>
                    </div>
                    <div className={"popular-cards"}>
-                       <GoodsList goodsList={this.props.goodsList}/>
+                       <GoodsList/>
                    </div>
                </div>
             </Card>
