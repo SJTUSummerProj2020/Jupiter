@@ -3,7 +3,9 @@ import {Header} from "../components/Header";
 import {DetailCard} from "../components/DetailCard";
 import{DetailShowTab} from "../components/DetailShowTab";
 import {DetailRecommend} from "../components/DetailRecommend";
+import{Recommendation} from "../components/Recommendation";
 import { Row, Col,Card,Tabs} from 'antd';
+import {getGoodsByGoodsId} from "../services/goodsService";
 
 // const data = {
 //     image:require('../assets/goods/10.png'),
@@ -45,22 +47,37 @@ const ticketsData = {
     "website": "https://detail.damai.cn/item.htm?id=619943654186&clicktitle=%E7%88%86%E7%AC%91%E8%84%B1%E5%8F%A3%E7%A7%80%E6%BC%94%E5%87%BA-%E5%96%9C%E5%89%A7%E8%81%94%E7%9B%92%E5%9B%BD"
 };
 let tmpId = null;
-
+let goodsData = null;
 export class DetailView extends React.Component {
     constructor(props) {
         super(props);
-        this.state={goodsId:null};
+        this.state={
+            goodsId:null,
+            goodsData:null,
+        };
     }
     componentDidMount() {
         const query = this.props.location.search;
         const arr = query.split('?');
         tmpId = arr[1].substr(3);
         this.setState({goodsId:tmpId});
+
+        const callback = (data) =>{
+            goodsData = data.data;
+            this.setState({goodsData:data.data});
+        }
+        if(tmpId === null){
+            return;
+        }
+        const requestData = {goodsId:tmpId};
+        getGoodsByGoodsId(requestData,callback);
     }
 
     render(){
         console.log('goodsID',this.state.goodsId)
         if(tmpId === null)
+            return null;
+        if(goodsData === null)
             return null;
         return(
             <Row align="top" gutter={16}>
@@ -68,10 +85,10 @@ export class DetailView extends React.Component {
                 <DetailCard info={tmpId} />
                 <Row align = "top" gutter={16}>
                     <Col span={16}>
-                        <DetailShowTab/>
+                        <DetailShowTab info={goodsData}/>
                     </Col>
-                    <Col span={4}>
-                        <DetailRecommend/>
+                    <Col span={4} offset={3}>
+                        <Recommendation/>
                     </Col>
                 </Row>
             </Row>

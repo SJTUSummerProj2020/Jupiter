@@ -40,6 +40,11 @@ export const getAllOrders = (data,callback) => {
     postRequest(url, data, callback);
 }
 
+export const changeUserStatusByUserId = (data,callback) => {
+    const url = `http://localhost:8080/changeUserStatusByUserId`;
+    postRequest(url, data, callback);
+}
+
 // export const getUsers = (data, callback) => {
 //     const url = `http://localhost:8080/getUsers`;
 //     postRequest(url, data, callback);
