@@ -6,6 +6,7 @@ import {DetailRecommend} from "../components/DetailRecommend";
 import{Recommendation} from "../components/Recommendation";
 import { Row, Col,Card,Tabs} from 'antd';
 import {getGoodsByGoodsId} from "../services/goodsService";
+import "../css/detailview.css";
 
 // const data = {
 //     image:require('../assets/goods/10.png'),
@@ -87,7 +88,7 @@ export class DetailView extends React.Component {
                     <Col span={16}>
                         <DetailShowTab info={goodsData}/>
                     </Col>
-                    <Col span={4} offset={3}>
+                    <Col className={"recommend"}>
                         <Recommendation/>
                     </Col>
                 </Row>

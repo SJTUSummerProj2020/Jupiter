@@ -1,17 +1,16 @@
 .detail-show-tab{
     width:700px;
     margin-top:5%;
-    margin-bottom:5%;
-    margin-left:230px;
+    margin-right: 1%;
+    margin-left:200px;
 
-    display: inline-block;
+    /*display: inline-block;*/
 }
 .detail-show-cards{
-    width:95%;
-    margin-left: 1%;
-    margin-right: auto;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    /*width:90%;*/
+    /*margin-left: 1%;*/
+    /*margin-right: auto;*/
+    /*margin-top: 1%;*/
     display: table;
     border-radius: 14px;
     background-color: #fff;
