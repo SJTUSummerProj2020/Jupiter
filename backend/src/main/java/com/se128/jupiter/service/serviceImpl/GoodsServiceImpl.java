@@ -1,6 +1,8 @@
 package com.se128.jupiter.service.serviceImpl;
 
+import com.se128.jupiter.dao.AuctionDao;
 import com.se128.jupiter.dao.GoodsDao;
+import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,14 @@ public class GoodsServiceImpl implements GoodsService {
 
     private final GoodsDao goodsDao;
 
+    private final AuctionDao auctionDao;
+
     private HashMap<Integer,Integer> goodsViewCounter;
 
     @Autowired
-    public GoodsServiceImpl(GoodsDao goodsDao) {
+    public GoodsServiceImpl(GoodsDao goodsDao, AuctionDao auctionDao) {
         this.goodsDao = goodsDao;
+        this.auctionDao = auctionDao;
         this.goodsViewCounter = new HashMap<Integer,Integer>();
     }
 
@@ -76,5 +81,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> getPopularGoods(Integer number, Integer goodsType) {
         return goodsDao.getPopularGoods(number,goodsType);
+    }
+
+    @Override
+    public List<Auction> getAllAuctions() {
+        return auctionDao.getAllAuctions();
     }
 }

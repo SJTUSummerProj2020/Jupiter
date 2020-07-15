@@ -1,6 +1,8 @@
 package com.se128.jupiter.controller;
 
+import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.GoodsService;
 import com.se128.jupiter.util.constant.Constant;
 import com.se128.jupiter.util.logutils.LogUtil;
@@ -71,46 +73,58 @@ public class GoodsController {
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {
-            LogUtil.info("editGoods");
-            Goods goods1 = goodsService.editGoods(goods);
-            JSONObject data = JSONObject.fromObject(goods1);
-            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
+        LogUtil.info("editGoods");
+        Goods goods1 = goodsService.editGoods(goods);
+        JSONObject data = JSONObject.fromObject(goods1);
+        return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
     }
 
     @RequestMapping("/addGoods")
     public Msg addGoods(@RequestBody Goods goods) {
-            LogUtil.info("addGoods");
-            goods.setBuyCounter(0);
-            goods.setViewCounter(0);
-            Goods goods1 = goodsService.addGoods(goods);
-            JSONObject data = JSONObject.fromObject(goods1);
-            return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
+        LogUtil.info("addGoods");
+        goods.setBuyCounter(0);
+        goods.setViewCounter(0);
+        Goods goods1 = goodsService.addGoods(goods);
+        JSONObject data = JSONObject.fromObject(goods1);
+        return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
 
     }
 
     @RequestMapping("/deleteGoodsByGoodsId")
     public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
-            Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
-            LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
-            goodsService.deleteGoodsByGoodsId(goodsId);
-            return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
+        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
+        LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
+        goodsService.deleteGoodsByGoodsId(goodsId);
+        return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
     }
 
     @RequestMapping("/getPopularGoods")
     public Msg getPopularGoods(@RequestBody Map<String, String> params) {
-            LogUtil.info("getPopularGoods");
-            Integer number = Integer.valueOf(params.get(Constant.NUMBER));
-            JSONObject data = new JSONObject();
-            for (int goodsType = -1; goodsType < Constant.NUMBER_OF_TYPE; goodsType++) {
-                List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
-                JSONArray goodsList = JSONArray.fromObject(goods);
-                if (goodsType == -1) {
-                    data.put("itemAll", goodsList.toString());
-                } else {
-                    data.put("item" + goodsType, goodsList.toString());
-                }
+        LogUtil.info("getPopularGoods");
+        Integer number = Integer.valueOf(params.get(Constant.NUMBER));
+        JSONObject data = new JSONObject();
+        for (int goodsType = -1; goodsType < Constant.NUMBER_OF_TYPE; goodsType++) {
+            List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
+            JSONArray goodsList = JSONArray.fromObject(goods);
+            if (goodsType == -1) {
+                data.put("itemAll", goodsList.toString());
+            } else {
+                data.put("item" + goodsType, goodsList.toString());
             }
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         }
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
+
+    @RequestMapping("/getAllAuctions")
+    public Msg getAllAuctions() {
+        LogUtil.info("getAllAuctions");
+        List<Auction> auctions = goodsService.getAllAuctions();
+        JSONObject data = new JSONObject();
+        JSONArray auctionList = JSONArray.fromObject(auctions);
+        data.put("auctions", auctionList.toString());
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+    }
+}
+
+
 

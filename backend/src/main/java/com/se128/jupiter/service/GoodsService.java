@@ -1,5 +1,6 @@
 package com.se128.jupiter.service;
 
+import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
 import org.springframework.data.domain.Page;
 
@@ -26,4 +27,6 @@ public interface GoodsService {
     void saveViewCounter();
 
     List<Goods> getPopularGoods(Integer number, Integer goodsType);
+
+    List<Auction> getAllAuctions();
 }
