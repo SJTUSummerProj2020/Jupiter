@@ -5,31 +5,34 @@ import {Col, Row, BackTop} from 'antd';
 import {SearchList} from "../components/SearchList";
 import '../css/searchlist.css';
 
-// debugger;
 export class SearchView extends React.Component{
     constructor(props) {
         super(props);
-        // debugger;
         this.state={
-            searchName:this.props.location.state.itemCode,
             searchResultList:[],
         }
     }
 
     componentDidMount() {
         const callback = (data) => {
-            // debugger;
-            // let tmp = data.data.goods;
-            // console.log('tmp',tmp);
             console.log('searchView里的参数',data);
             this.setState({searchResultList:data.data.goods})
         };
-        // console.log(this.props.location.state.itemCode);
-        const requestData = {name:this.props.location.state.itemCode};
+        console.log(this.props.location.search.substring(6));
+        console.log(decodeURI(this.props.location.search.substring(6)));
+        const requestData = {name:decodeURI(this.props.location.search.substring(6))};
         getGoodsByName(requestData,callback);
-
-        // debugger;
     }
+
+    componentWillReceiveProps(nextProps,nextContext){
+        const requestData = {name:decodeURI(nextProps.location.search.substring(6))};
+        const callback = (data) => {
+            console.log('searchView里的参数',data);
+            this.setState({searchResultList:data.data.goods})
+        };
+        getGoodsByName(requestData,callback);
+    }
+
 
     render(){
         return(
