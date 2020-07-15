@@ -22,9 +22,9 @@ public class SessionListener implements HttpSessionListener{
     @Override
     public void sessionDestroyed(HttpSessionEvent event){
         HttpSession session = event.getSession();
-        // String login_id = (String) session.getAttribute("userId");
+        //String login_id = (String) session.getAttribute("userId");
         goodsService.saveViewCounter();
-        // System.out.println("Session destroyed!");
+        System.out.println("Session destroyed!");
     }
 
 }
