@@ -60,6 +60,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User changeUserStatusByUserId(Integer userId) {
         User user = userRepository.getUserByUserId(userId);
+        if(user == null)
+        {
+            return null;
+        }
         Integer status = user.getUserType();
         user.setUserType(-status);
         return userRepository.saveAndFlush(user);

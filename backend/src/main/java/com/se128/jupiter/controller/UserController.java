@@ -47,22 +47,19 @@ public class UserController {
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
 
-        if (user != null) {
-            JSONObject obj = new JSONObject();
-            obj.put(Constant.USER_ID, user.getUserId());
-            obj.put(Constant.USERNAME, user.getUsername());
-            obj.put(Constant.USER_TYPE, user.getUserType());
-            SessionUtil.setSession(obj);
+        JSONObject obj = new JSONObject();
+        obj.put(Constant.USER_ID, user.getUserId());
+        obj.put(Constant.USERNAME, user.getUsername());
+        obj.put(Constant.USER_TYPE, user.getUserType());
+        SessionUtil.setSession(obj);
 
-            JSONObject data = JSONObject.fromObject(user);
-            data.remove(Constant.PASSWORD);
-            data.remove(Constant.ORDERS);
-            data.remove(Constant.PHONE);
+        JSONObject data = JSONObject.fromObject(user);
+        data.remove(Constant.PASSWORD);
+        data.remove(Constant.ORDERS);
+        data.remove(Constant.PHONE);
 
-            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.LOGIN_USER_ERROR);
-        }
+        return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
+
     }
 
     @RequestMapping("/register")
@@ -108,33 +105,23 @@ public class UserController {
 
         JSONArray orderList = JSONArray.fromObject(orders);
         JSONObject data = new JSONObject();
-        data.put("order",orderList);
-        if (orders == null) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
-        }
+        data.put("order", orderList);
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
     }
 
     @RequestMapping("/getAllUsers")
-    public Msg getAllUsers()
-    {
+    public Msg getAllUsers() {
         LogUtil.info("getAllUsers");
         List<User> users = userService.getAllUsers();
-        if (users != null) {
-            JSONObject data = new JSONObject();
-            JSONArray orderList = JSONArray.fromObject(users);
-            data.put("users", orderList.toString());
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        }
+        JSONObject data = new JSONObject();
+        JSONArray orderList = JSONArray.fromObject(users);
+        data.put("users", orderList.toString());
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
 
 
     @RequestMapping("/changeUserStatusByUserId")
-    public Msg changeUserStatusByUserId(@RequestBody Map<String, String> params)
-    {
+    public Msg changeUserStatusByUserId(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
         LogUtil.info("changeUserStatusByUserId = " + userId);
         User user = userService.changeUserStatusByUserId(userId);

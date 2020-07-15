@@ -9,11 +9,13 @@ let showName = null;
 export class SearchBar extends React.Component{
 
     searchChange = (value) => {
-        showName = value;
-        history.push({
-            "pathname":'/search',
-            state: { itemCode: showName }
-        });
+        if(value === ""){
+            history.push('/');
+        }
+        else{
+            let pathname = '/search?name=' + value;
+            history.push(pathname);
+        }
     };
 
     render() {

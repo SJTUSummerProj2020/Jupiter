@@ -40,7 +40,21 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public Goods editGoods(Goods goods) {
-        return goodsRepository.saveAndFlush(goods);
+        Goods goods1 = goodsRepository.getGoodsByGoodsId(goods.getGoodsId());
+        if(goods1 == null)
+        {
+            return  null;
+        }
+        goods1.setName(goods.getName());
+        goods1.setStartTime(goods.getStartTime());
+        goods1.setEndTime(goods.getEndTime());
+        goods1.setAddress(goods.getAddress());
+        goods1.setWebsite(goods.getWebsite());
+        goods1.setGoodsType(goods.getGoodsType());
+        goods1.setImage(goods.getImage());
+        goods1.setViewCounter(goods.getViewCounter());
+        goods1.setBuyCounter(goods.getBuyCounter());
+        return goodsRepository.saveAndFlush(goods1);
     }
 
     @Override

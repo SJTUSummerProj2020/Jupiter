@@ -28,48 +28,38 @@ public class OrderController {
     }
 
     @RequestMapping("/addOrder")
-    public Msg addOrder(@RequestBody Map<String,String> params)
-    {
-        LogUtil.info("addOrder");
+    public Msg addOrder(@RequestBody Map<String, String> params) {
 
-        Order order = new Order();
+            LogUtil.info("addOrder");
 
-        Integer userId = Integer.valueOf(params.get("userId"));
-        Integer number = Integer.valueOf(params.get("number"));
-        Integer detailId = Integer.valueOf(params.get("detailId"));
+            Order order = new Order();
 
-        order.setUserId(userId);
-        order.setNumber(number);
+            Integer userId = Integer.valueOf(params.get("userId"));
+            Integer number = Integer.valueOf(params.get("number"));
+            Integer detailId = Integer.valueOf(params.get("detailId"));
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        order.setTime(timestamp.toString());
+            order.setUserId(userId);
+            order.setNumber(number);
 
-        order.setSourceId(54749110);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            order.setTime(timestamp.toString());
 
-        Order order1 = orderService.addOrder(order,detailId);
+            order.setSourceId(54749110);
 
-        if(order1 != null){
+            Order order1 = orderService.addOrder(order, detailId);
+
             JSONObject data = JSONObject.fromObject(order1);
-            return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS,MsgUtil.BUY_SUCCESS_MSG,data);
-        }
-        else
-        {
-            return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
-        }
+            return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, MsgUtil.BUY_SUCCESS_MSG, data);
+
     }
 
     @RequestMapping("/getAllOrders")
-    public Msg getAllOrders()
-    {
-        List<Order> orders = orderService.getAllOrders();
-        if (orders != null) {
+    public Msg getAllOrders() {
+            List<Order> orders = orderService.getAllOrders();
             JSONObject data = new JSONObject();
             JSONArray orderList = JSONArray.fromObject(orders);
             data.put("orders", orderList.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        }
     }
 }
 

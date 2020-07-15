@@ -20,3 +20,8 @@ export const getGoodsByName = (data,callback) => {
     const url = `http://localhost:8080/getGoodsByName`;
     postRequest(url, data, callback);
 };
+
+export const getPopularGoods = (data,callback) => {
+    const url = `http://localhost:8080/getPopularGoods`;
+    postRequest(url, data, callback);
+};

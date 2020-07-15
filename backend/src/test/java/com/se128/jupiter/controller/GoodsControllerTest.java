@@ -43,16 +43,80 @@ class GoodsControllerTest {
 
     @Test
     void getGoodsByGoodsId() {
+        //OK
         try{
             String goodsId = "513";
             JSONObject param = new JSONObject();
             param.put("goodsId", goodsId);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/getGoodsByGoodsId")
-                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
-                    .accept(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //No such goodsId
+        try{
+            String goodsId = "200";
+            JSONObject param = new JSONObject();
+            param.put("goodsId", goodsId);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getGoodsByGoodsId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //No goodsId
+        try{
+            JSONObject param = new JSONObject();
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getGoodsByGoodsId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void getGoodsByName() {
+        //Ok
+        try{
+            String name = "水";
+            JSONObject param = new JSONObject();
+            param.put("name", name);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getGoodsByName")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //Error
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getGoodsByName")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
@@ -62,32 +126,34 @@ class GoodsControllerTest {
 
     @Test
     void getAllGoods() {
+        //OK
         try{
+            String pageId = "0";
+            String pageSize = "10";
+            String goodsType = "-1";
+            JSONObject param = new JSONObject();
+            param.put("pageId", pageId);
+            param.put("pageSize", pageSize);
+            param.put("goodsType", goodsType);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/getAllGoods")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("")
-                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    @Test
-    void getGoodsByGoodsType() {
+        //Error
         try{
-            String goodsType = "0";
-            JSONObject param = new JSONObject();
-            param.put("goodsType", goodsType);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/getAllGoods")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(JSON.toJSONString(param))
-                    .accept(MediaType.APPLICATION_JSON)
-            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
@@ -97,6 +163,41 @@ class GoodsControllerTest {
 
     @Test
     void editGoods() {
+        //OK
+        try{
+            String goodsId = "2000";
+            String name = "SJTU毕业会";
+            String start_time = "2020-08-07";
+            String end_time = "2020-08-07";
+            String address = "菁菁堂";
+            String website = "i.sjtu.edu.cn";
+            String goodsType = "0";
+            String image = "0";
+            String viewCounter = "0";
+            String buyCounter = "0";
+            JSONObject param = new JSONObject();
+            param.put("goodsId", goodsId);
+            param.put("name", name);
+            param.put("startTime", start_time);
+            param.put("endTime", end_time);
+            param.put("address", address);
+            param.put("website", website);
+            param.put("goodsType", goodsType);
+            param.put("image", image);
+            param.put("viewCounter",viewCounter);
+            param.put("buyCounter",buyCounter);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/editGoods")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //Error
         try{
             String goodsId = "100";
             String name = "SJTU毕业会";
@@ -106,20 +207,24 @@ class GoodsControllerTest {
             String website = "i.sjtu.edu.cn";
             String goodsType = "0";
             String image = "0";
+            String viewCounter = "0";
+            String buyCounter = "0";
             JSONObject param = new JSONObject();
             param.put("goodsId", goodsId);
             param.put("name", name);
-            param.put("start_time", start_time);
-            param.put("end_time", end_time);
+            param.put("startTime", start_time);
+            param.put("endTime", end_time);
             param.put("address", address);
             param.put("website", website);
             param.put("goodsType", goodsType);
             param.put("image", image);
+            param.put("viewCounter",viewCounter);
+            param.put("buyCounter",buyCounter);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/editGoods")
-                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
-                    .accept(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
@@ -132,6 +237,7 @@ class GoodsControllerTest {
     @Transactional
     @Rollback(value = false)
     void addGoods() {
+        //OK
         try{
             String price = "188";
             String surplus = "0";
@@ -162,10 +268,23 @@ class GoodsControllerTest {
             param.put("goodsDetails",goodsDetails.toString());
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/addGoods")
-                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
-                    .accept(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //Error
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/addGoods")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
@@ -177,20 +296,68 @@ class GoodsControllerTest {
     @Transactional
     @Rollback(value = true)
     void deleteGoodsByGoodsId() {
+        //Ok
         try{
             String goodsId = "522";
             JSONObject param = new JSONObject();
             param.put("goodsId", goodsId);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/deleteGoodsByGoodsId")
-                    .contentType(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
-                    .accept(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
             e.printStackTrace();
         }
+        //Error
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/deleteGoodsByGoodsId")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
+    @Test
+    void getPopularGoods() {
+        //OK
+        try{
+            String number = "3";
+            JSONObject param = new JSONObject();
+            param.put("number", number);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getPopularGoods")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //Error
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getPopularGoods")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

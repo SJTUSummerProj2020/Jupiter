@@ -5,8 +5,11 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 import com.se128.jupiter.service.GoodsService;
+import com.se128.jupiter.util.logutils.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.logging.Logger;
 
 @Component
 public class SessionListener implements HttpSessionListener{
@@ -24,7 +27,7 @@ public class SessionListener implements HttpSessionListener{
         HttpSession session = event.getSession();
         //String login_id = (String) session.getAttribute("userId");
         goodsService.saveViewCounter();
-        System.out.println("Session destroyed!");
+        LogUtil.info("Session destroyed!");
     }
 
 }
