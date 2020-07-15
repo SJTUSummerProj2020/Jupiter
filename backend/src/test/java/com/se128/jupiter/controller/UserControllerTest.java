@@ -39,8 +39,7 @@ import static org.junit.Assert.*;
 @AutoConfigureMockMvc
 @WebAppConfiguration
 public class UserControllerTest {
-    @Autowired
-    private UserController userController;
+
     @Autowired
     private WebApplicationContext webApplicationContext;
     private MockMvc mockMvc;
@@ -89,15 +88,6 @@ public class UserControllerTest {
     @Test
     public void login() {
         try{
-//            Map<String, String> map = new HashMap<>();
-//            String username = "root";
-//            String password = "root";
-//            map.put("username", username);
-//            map.put("password", password);
-//            Msg msg = userController.login(map);
-//            assertEquals("login failed",0, msg.getStatus());
-//            assertEquals("login failed", username, msg.getData().get("username"));
-
             JSONObject param = new JSONObject();
             param.put("username", "root");
             param.put("password", "root");

@@ -43,10 +43,10 @@ public class GoodsController {
 
     @RequestMapping("/getGoodsByName")
     public Msg getGoodsByName(@RequestBody Map<String, String> params) {
-        String name = params.get(Constant.NAME);
-        LogUtil.info("getGoodsByName = " + name);
-        List<Goods> goods = goodsService.getGoodsByName(name);
         try {
+            String name = params.get(Constant.NAME);
+            LogUtil.info("getGoodsByName = " + name);
+            List<Goods> goods = goodsService.getGoodsByName(name);
             JSONObject data = new JSONObject();
             JSONArray goodsList = JSONArray.fromObject(goods);
             data.put("goods", goodsList.toString());
@@ -59,12 +59,12 @@ public class GoodsController {
 
     @RequestMapping("/getAllGoods")
     public Msg getAllGoods(@RequestBody Map<String, String> params) {
-        Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
-        Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
-        Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
-
-        Page<Goods> goodsPage = goodsService.getAllGoods(pageId, pageSize, goodsType);
         try{
+            Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
+            Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
+            Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
+
+            Page<Goods> goodsPage = goodsService.getAllGoods(pageId, pageSize, goodsType);
             JSONObject data = new JSONObject();
             data.put("totalNum", goodsPage.getTotalElements());
             JSONArray goods = JSONArray.fromObject(goodsPage.getContent());
@@ -117,7 +117,13 @@ public class GoodsController {
             List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
            try {
                 JSONArray goodsList = JSONArray.fromObject(goods);
-                data.put(goodsType.toString(), goodsList.toString());
+                if(goodsType == -1)
+                {
+                    data.put("itemAll", goodsList.toString());
+                }else
+                {
+                    data.put("item"+goodsType.toString(), goodsList.toString());
+                }
             } catch (Exception e){
                 return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
             }

@@ -47,7 +47,7 @@ public class UserController {
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
 
-        if (user != null) {
+       try {
             JSONObject obj = new JSONObject();
             obj.put(Constant.USER_ID, user.getUserId());
             obj.put(Constant.USERNAME, user.getUsername());
@@ -60,7 +60,7 @@ public class UserController {
             data.remove(Constant.PHONE);
 
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
-        } else {
+        } catch (Exception e){
             return MsgUtil.makeMsg(MsgCode.LOGIN_USER_ERROR);
         }
     }
@@ -106,13 +106,13 @@ public class UserController {
         LogUtil.info("getOrdersByUserId = " + userId);
         List<Order> orders = userService.getOrdersByUserId(userId);
 
-        JSONArray orderList = JSONArray.fromObject(orders);
-        JSONObject data = new JSONObject();
-        data.put("order",orderList);
-        if (orders == null) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        } else {
+        try {
+            JSONArray orderList = JSONArray.fromObject(orders);
+            JSONObject data = new JSONObject();
+            data.put("order",orderList);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
+        } catch (Exception e){
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
 
@@ -120,13 +120,13 @@ public class UserController {
     public Msg getAllUsers()
     {
         LogUtil.info("getAllUsers");
-        List<User> users = userService.getAllUsers();
-        if (users != null) {
+        try{
+            List<User> users = userService.getAllUsers();
             JSONObject data = new JSONObject();
             JSONArray orderList = JSONArray.fromObject(users);
             data.put("users", orderList.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } else {
+        } catch (Exception e){
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
