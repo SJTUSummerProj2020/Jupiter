@@ -30,9 +30,9 @@ public class GoodsController {
 
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
-        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
-        LogUtil.info("getGoodsByGoodsId = " + goodsId);
         try {
+            Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
+            LogUtil.info("getGoodsByGoodsId = " + goodsId);
             Goods goods = goodsService.getGoodsByGoodsId(goodsId);
             JSONObject data = JSONObject.fromObject(goods);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
@@ -59,7 +59,7 @@ public class GoodsController {
 
     @RequestMapping("/getAllGoods")
     public Msg getAllGoods(@RequestBody Map<String, String> params) {
-        try{
+        try {
             Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
             Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
             Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
@@ -70,66 +70,67 @@ public class GoodsController {
             JSONArray goods = JSONArray.fromObject(goodsPage.getContent());
             data.put("goods", goods.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        } catch (Exception e){
+        } catch (Exception e) {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
     }
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {
-        LogUtil.info("editGoods");
-        Goods goods1 = goodsService.editGoods(goods);
-        try{
+        try {
+            LogUtil.info("editGoods");
+            Goods goods1 = goodsService.editGoods(goods);
             JSONObject data = JSONObject.fromObject(goods1);
             return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
-        } catch (Exception e){
+        } catch (Exception e) {
             return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
         }
     }
 
     @RequestMapping("/addGoods")
     public Msg addGoods(@RequestBody Goods goods) {
-        LogUtil.info("addGoods");
-        goods.setBuyCounter(0);
-        goods.setViewCounter(0);
-        Goods goods1 = goodsService.addGoods(goods);
         try {
-            JSONObject data = JSONObject.fromObject(goods);
+            LogUtil.info("addGoods");
+            goods.setBuyCounter(0);
+            goods.setViewCounter(0);
+            Goods goods1 = goodsService.addGoods(goods);
+            JSONObject data = JSONObject.fromObject(goods1);
             return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
-        } catch (Exception e){
+        } catch (Exception e) {
             return MsgUtil.makeMsg(MsgCode.ADD_ERROR);
         }
     }
 
     @RequestMapping("/deleteGoodsByGoodsId")
     public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
-        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
-        LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
-        goodsService.deleteGoodsByGoodsId(goodsId);
-        return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
+        try {
+            Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
+            LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
+            goodsService.deleteGoodsByGoodsId(goodsId);
+            return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
+        } catch (Exception e) {
+            return MsgUtil.makeMsg(MsgCode.DELETE_ERROR);
+        }
     }
 
     @RequestMapping("/getPopularGoods")
     public Msg getPopularGoods(@RequestBody Map<String, String> params) {
-        Integer number = Integer.valueOf(params.get(Constant.NUMBER));
-        JSONObject data = new JSONObject();
-        for (Integer goodsType = -1; goodsType < Constant.NUMBER_OF_TYPE; goodsType++) {
-            List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
-           try {
+        try {
+            LogUtil.info("getPopularGoods");
+            Integer number = Integer.valueOf(params.get(Constant.NUMBER));
+            JSONObject data = new JSONObject();
+            for (int goodsType = -1; goodsType < Constant.NUMBER_OF_TYPE; goodsType++) {
+                List<Goods> goods = goodsService.getPopularGoods(number, goodsType);
                 JSONArray goodsList = JSONArray.fromObject(goods);
-                if(goodsType == -1)
-                {
+                if (goodsType == -1) {
                     data.put("itemAll", goodsList.toString());
-                }else
-                {
-                    data.put("item"+goodsType.toString(), goodsList.toString());
+                } else {
+                    data.put("item" + goodsType, goodsList.toString());
                 }
-            } catch (Exception e){
-                return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
             }
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } catch (Exception e) {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
         }
-        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
-
-
 }
