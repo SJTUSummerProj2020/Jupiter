@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AuctionDao {
     List<Auction> getAllAuctions();
+
+    Auction getAuctionByAuctionId(Integer auctionId);
 }

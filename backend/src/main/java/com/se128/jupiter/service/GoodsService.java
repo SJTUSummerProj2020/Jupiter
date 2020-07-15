@@ -29,4 +29,6 @@ public interface GoodsService {
     List<Goods> getPopularGoods(Integer number, Integer goodsType);
 
     List<Auction> getAllAuctions();
+
+    Auction getAuctionByAuctionId(Integer auctionId);
 }

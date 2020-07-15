@@ -87,4 +87,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Auction> getAllAuctions() {
         return auctionDao.getAllAuctions();
     }
+
+    @Override
+    public Auction getAuctionByAuctionId(Integer auctionId) {
+        return auctionDao.getAuctionByAuctionId(auctionId);
+    }
 }

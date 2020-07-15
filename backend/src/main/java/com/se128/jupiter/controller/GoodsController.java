@@ -124,6 +124,21 @@ public class GoodsController {
         data.put("auctions", auctionList.toString());
         return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
+
+    @RequestMapping("/getAuctionByAuctionId")
+    public Msg getAuctionByAuctionId(@RequestBody Map<String, String> params) {
+        try {
+            Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
+            LogUtil.info("getAuctionByAuctionsId = " + AuctionId);
+            Auction auction = goodsService.getAuctionByAuctionId(AuctionId);
+            JSONObject data = JSONObject.fromObject(auction);
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        } catch (NumberFormatException e) {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
+        } catch (NullPointerException e) {
+            return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such auctionId");
+        }
+    }
 }
 
 

@@ -22,4 +22,9 @@ public class AuctionDaoImpl implements AuctionDao {
     public List<Auction> getAllAuctions() {
         return auctionRepository.findAll();
     }
+
+    @Override
+    public Auction getAuctionByAuctionId(Integer auctionId) {
+        return auctionRepository.getAuctionByActionId(auctionId);
+    }
 }
