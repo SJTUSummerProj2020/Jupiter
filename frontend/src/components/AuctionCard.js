@@ -114,35 +114,12 @@ export class AuctionCard extends React.Component{
         checkSession(callback_checkSession);
     }
 
-    // componentWillReceiveProps(next){
-    //         this.timer = setTimeout(
-    //             () => {
-    //                 this.flushState();
-    //                 let bestOffer = this.state.bestOffer;
-    //                 this.setState({bestOffer:bestOffer});
-    //                 // console.log('刷新最高出价',this.state.bestOffer);
-    //             },
-    //             2000
-    //         );
-    //
-    // }
-    // componentWillUnmount() {
-    //     this.timer && clearTimeout(this.timer);
-    // }
-
-    // startTrigger(){
-    //     setInterval(this.flushState(),2000);
-    // }
-
-
-
     onFinish(){
 
     }
 
     flushState(){
         tmpId = this.state.auctionData.auctionId;
-
         const callback = (data) =>{
             auctionData = data.data;
             this.setState({auctionData:data.data});
@@ -157,6 +134,21 @@ export class AuctionCard extends React.Component{
         console.log('执行了flush');
     }
 
+    getTimetype(){  //判断时间类型，0是没到拍卖开始时间，1是可以拍卖，2是过了拍卖的时间了
+        let startTime = this.props.info.startTime;
+        startTime = startTime.replace(/-/g,"/");
+        startTime = startTime.replace(/(\.\d+)?/g,"");
+        let  startDate = new Date(startTime);
+        let startSecond = startDate.getTime();
+        let nowTime = new Date();
+        let nowSecond = nowTime.getTime();
+        if(nowSecond<startSecond)
+            return 0;
+        if(nowSecond>startSecond&&nowSecond&&nowSecond<startSecond+this.state.duration*1000)
+            return 1;
+        return 2;
+    }
+
     render(){
         if(this.state.bestOffer === null){
             this.componentDidMount();
@@ -168,6 +160,12 @@ export class AuctionCard extends React.Component{
         //     }, 2000);
         //     triggerFlag = true;
         // }
+        if(this.getTimetype()===0){
+            return(<Card hoverable={false} className={"auction-card"}> 拍卖还没开始</Card>);
+        }
+        if(this.getTimetype()===2){
+            return(<Card>拍卖已结束</Card>)
+        }
 
         if(triggerFlag === false){
             let startTrigger = setInterval( ()=>{
