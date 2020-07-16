@@ -22,14 +22,14 @@
 .recommendationName{
     display: block;
     float: left;
-    font-size: 15px;
+    font-size: 11px;
     margin-bottom: 10px;
 }
 
 .recommendationPrice{
     clear: both;
     float: left;
-    font-size: 10px;
+    font-size: 9px;
     display: block;
     margin-bottom: 10px;
 }
@@ -37,7 +37,7 @@
 .recommendationPlace{
     clear: both;
     float: left;
-    font-size: 10px;
+    font-size: 9px;
     display: block;
     margin-bottom: 10px;
 
@@ -47,7 +47,7 @@
     clear: both;
     display: block;
     float: left;
-    font-size: 10px;
+    font-size: 9px;
     margin-bottom: 10px;
 
 }
