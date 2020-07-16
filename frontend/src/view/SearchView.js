@@ -4,16 +4,30 @@ import {getGoodsByName} from "../services/goodsService";
 import {Col, Row, BackTop} from 'antd';
 import {SearchList} from "../components/SearchList";
 import '../css/searchlist.css';
+import {checkSession} from "../services/userService";
 
 export class SearchView extends React.Component{
     constructor(props) {
         super(props);
         this.state={
             searchResultList:[],
+            loggedIn:false,
+            user:null
         }
     }
 
     componentDidMount() {
+        const checkSession_callback = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                )
+            }
+        };
+        checkSession(checkSession_callback);
         const callback = (data) => {
             console.log('searchView里的参数',data);
             this.setState({searchResultList:data.data.goods})
@@ -37,7 +51,10 @@ export class SearchView extends React.Component{
     render(){
         return(
             <div>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                />
                 <Row>
                     <Col span={20} push={1} className={"searchList"}>
                         <SearchList info={this.state.searchResultList} />

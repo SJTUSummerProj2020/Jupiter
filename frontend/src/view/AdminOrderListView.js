@@ -10,12 +10,18 @@ import {AdminOrderList} from "../components/AdminOrderList";
 export class AdminOrderListView extends React.Component{
     constructor(props) {
         super(props);
-        this.state={key: '2',orderList:[]};
+        this.state={key: '2',orderList:[],loggedIn:false,user:null};
     }
 
     componentDidMount() {
         const callback = (data) => {
             if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                );
                 if(data.data.userType !== 0){
                     message.warning("对不起，你无权限访问此页面");
                     history.push("/");
@@ -41,13 +47,20 @@ export class AdminOrderListView extends React.Component{
     render() {
         return(
             <div>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                />
                 <Row>
                     <Col span={7} push={2}>
                         <AdminSideBar myKey={this.state.key}/>
                     </Col>
                     <Col span={16}>
-                        <AdminOrderList orderList={this.state.orderList}/>
+                        <AdminOrderList
+                            orderList={this.state.orderList}
+                            loggedIn={this.state.loggedIn}
+                            user={this.state.user}
+                        />
                     </Col>
                 </Row>
             </div>

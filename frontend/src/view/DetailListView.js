@@ -6,15 +6,36 @@ import "../css/detailgoodslist.css";
 import {DetailGoodsList} from "../components/DetailGoodsList";
 import {Recommendation} from "../components/Recommendation";
 import {getAllGoods} from "../services/goodsService";
+import {checkSession} from "../services/userService";
 
 export class DetailListView extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state={goodsList:[],currentType:-1,currentPage:1,pageSize:10,totalSize:0,haveLoaded:[]}
+        this.state={
+            goodsList:[],
+            currentType:-1,
+            currentPage:1,
+            pageSize:10,
+            totalSize:0,
+            haveLoaded:[],
+            loggedIn:false,
+            user:null
+        }
     }
     componentDidMount() {
         this.getType(-1);
+        const callback = (data) =>{
+            if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                )
+            }
+        };
+        checkSession(callback);
     }
 
     getType = (type) =>{
@@ -96,7 +117,10 @@ export class DetailListView extends React.Component{
     render() {
         return(
             <div>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                />
                 <Row>
                     <Col span={15} push={1}>
                         <DetailGoodsList
@@ -110,7 +134,10 @@ export class DetailListView extends React.Component{
                         />
                     </Col>
                     <Col span={8} push={1}>
-                        <Recommendation/>
+                        <Recommendation
+                            loggedIn={this.state.loggedIn}
+                            user={this.state.user}
+                        />
                     </Col>
                 </Row>
                 <BackTop/>
