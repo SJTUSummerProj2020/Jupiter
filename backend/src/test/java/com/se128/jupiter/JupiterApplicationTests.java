@@ -18,4 +18,11 @@ class JupiterApplicationTests {
     void testContext() {
 
     }
+    
+    @Test
+    void main()
+    {
+        String[] args = new String[0];
+        JupiterApplication.main(args);
+    }
 }

@@ -42,13 +42,14 @@ public class OrderDaoImpl implements OrderDao {
             Integer goodsId = goodsDetail.getGoodsId();
             Goods goods = goodsRepository.getGoodsByGoodsId(goodsId);
             goods.setBuyCounter(goods.getBuyCounter()+order.getNumber());
+            Integer goodsType = goods.getGoodsType();
             goodsRepository.saveAndFlush(goods);
             order.setGoods(goods);
             Double price = order.getGoodsDetail().getPrice();
             Double totalPrice = price * order.getNumber();
             order.setPrice(totalPrice);
             User user = userRepository.getUserByUserId(order.getUserId());
-            switch (order.getGoods().getGoodsType())
+            switch (goodsType)
             {
                 case 0:user.setBuy0(user.getBuy0()+1);break;
                 case 1:user.setBuy1(user.getBuy1()+1);break;
