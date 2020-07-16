@@ -2,7 +2,6 @@ package com.se128.jupiter.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import javax.persistence.*;
 
@@ -14,7 +13,7 @@ public class Auction {
     @Id
     @Column(name = "auction_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer actionId;
+    private Integer auctionId;
 
     @OneToOne
     @JoinColumn(name = "detail_id")
@@ -76,8 +75,8 @@ public class Auction {
         return startingPrice;
     }
 
-    public Integer getActionId() {
-        return actionId;
+    public Integer getAuctionId() {
+        return auctionId;
     }
 
     public String getDuration() {
@@ -88,8 +87,8 @@ public class Auction {
         return startTime;
     }
 
-    public void setActionId(Integer actionId) {
-        this.actionId = actionId;
+    public void setAuctionId(Integer actionId) {
+        this.auctionId = auctionId;
     }
 
     public void setAddingPrice(Double addingPrice) {
