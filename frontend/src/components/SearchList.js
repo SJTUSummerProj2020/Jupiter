@@ -1,16 +1,12 @@
 import React from 'react';
-import {List, Pagination} from 'antd';
+import {List} from 'antd';
 import {SearchGoods} from "./SearchGoods";
 import {Link} from "react-router-dom";
-
-//debugger;
 
 export class SearchList extends React.Component{
     constructor(props) {
         super(props);
         this.state={goodsList:[]}
-        // debugger;
-        //console.log('SearchList参数',this.props.info)
     }
 
     componentDidMount() {

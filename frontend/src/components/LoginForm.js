@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Input, Button, Checkbox, message} from 'antd';
+import {Form, Input, Button, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import '../css/login.css';
 import {login} from "../services/userService";
@@ -7,9 +7,7 @@ import {history} from "../utils/history";
 import {Link} from 'react-router-dom';
 
 export class LoginForm extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     onFinish = values => {
         console.log('Received values of form: ', values);
         const data = {

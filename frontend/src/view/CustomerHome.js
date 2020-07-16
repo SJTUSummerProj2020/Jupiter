@@ -1,7 +1,6 @@
 import React from 'react';
 import {ImageCarousel} from "../components/Carousel";
 import {Header} from "../components/Header";
-import {GoodsList} from "../components/GoodsList";
 import "../css/header.css";
 import {ClassificationCard} from "../components/ClassificationCard";
 import {BackTop} from "antd";

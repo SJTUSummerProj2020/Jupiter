@@ -5,9 +5,7 @@ import {Link} from "react-router-dom";
 const { Meta } = Card;
 
 export class Goods extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         const {info} = this.props;
         return(
@@ -19,7 +17,7 @@ export class Goods extends React.Component{
                 <Card
                     hoverable={true}
                     style={{width: 180, marginLeft: 30}}
-                    cover={<img alt="image" src={info.image} className={"goodsImg"}/>}
+                    cover={<img alt="goods" src={info.image} className={"goodsImg"}/>}
                 >
                     <Meta
                         title={info.name}

@@ -1,7 +1,6 @@
 import React from "react";
 import { Menu } from 'antd';
 import {Link} from 'react-router-dom';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 export class PersonalInfoSidebar extends React.Component{
     constructor(props) {
         super(props);

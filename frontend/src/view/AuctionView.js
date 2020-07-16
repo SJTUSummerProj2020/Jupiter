@@ -6,9 +6,6 @@ import {DetailShowTab} from "../components/DetailShowTab";
 import {DetailRecommend} from "../components/DetailRecommend";
 
 export class AuctionView extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
     render(){
         return(

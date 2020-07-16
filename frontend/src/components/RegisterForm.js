@@ -3,14 +3,10 @@ import '../css/register.css';
 import {Button, Form, Input, message, Select} from "antd";
 import {LockOutlined, UserOutlined, PhoneOutlined} from "@ant-design/icons";
 import {history} from "../utils/history";
-import {login} from "../services/userService";
 import {register} from "../services/userService";
 const{Option} = Select;
 
 export class RegisterForm extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
     onFinish = values => {
         console.log('Received values of form: ', values);

@@ -5,9 +5,6 @@ import {CalendarOutlined, HomeOutlined} from "@ant-design/icons";
 import '../css/adminorderlist.css'
 
 export class AdminOrderList extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return(

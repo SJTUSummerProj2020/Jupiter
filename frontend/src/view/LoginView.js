@@ -1,5 +1,4 @@
 import React from 'react';
-import {withRouter} from "react-router-dom";
 import '../css/login.css';
 import {LoginForm} from "../components/LoginForm";
 import {LoginHeader} from "../components/LoginHeader";
@@ -8,9 +7,7 @@ import {message} from "antd";
 import {history} from "../utils/history";
 
 export class LoginView extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     componentDidMount() {
         const callback = (data) => {
             if(data.status === 0){

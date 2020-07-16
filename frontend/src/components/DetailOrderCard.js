@@ -1,13 +1,10 @@
 import React from 'react';
-import { Row, Col,Card,List,InputNumber,Radio,Button,message} from 'antd';
+import { Row,Card,Button} from 'antd';
 import {Link} from 'react-router-dom';
 import"../css/detailordercard.css";
- // debugger;
+
 export class DetailOrderCard extends React.Component{
-    constructor(props) {
-        super(props);
-         // debugger;
-    }
+
     render(){
         if(this.props.info.surplus === 0){
             return(

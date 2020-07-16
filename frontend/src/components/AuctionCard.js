@@ -1,8 +1,7 @@
 import React from "react";
-import { Row, Col,Card,List,InputNumber,Radio,Button,message, Divider} from 'antd';
+import {Row, Col, Card, InputNumber, Divider} from 'antd';
 import {ExclamationCircleFilled} from "@ant-design/icons";
-import {Link} from "react-router-dom";
-import"../css/auctioncard.css";
+import "../css/auctioncard.css";
 
 const ticketsData = {
     "address": "场馆：上海市 | 生活实验室小剧场",
@@ -34,27 +33,26 @@ const ticketsData = {
 };
 
 
-
-export class AuctionCard extends React.Component{
+export class AuctionCard extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            goodsData :"", //用后端返回的data进行初始化
-            price:0,
-            user:null,
-            loggedIn:false,
-            orderId:0,
+        this.state = {
+            goodsData: "", //用后端返回的data进行初始化
+            price: 0,
+            user: null,
+            loggedIn: false,
+            orderId: 0,
         }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <Card hoverable={false} className={"auction-card"}>
                 <Row>
                     <Col span={8} className={"auction-card-poster"}>
-                        <img alt = "auction-card-image" src = {ticketsData.image} className={"auction-card-img"}/>
+                        <img alt="auction-card" src={ticketsData.image} className={"auction-card-img"}/>
                     </Col>
-                    <Col span = {16} >
+                    <Col span={16}>
                         <Row className={"auction-card-show-name"}>
                             {ticketsData.name}
                         </Row>
@@ -78,7 +76,7 @@ export class AuctionCard extends React.Component{
                             拍卖截止时间:
                         </Row>
 
-                        <Row >
+                        <Row>
                             <Col className={"auction-card-stems"}>
                                 当前价
                             </Col>
@@ -87,7 +85,7 @@ export class AuctionCard extends React.Component{
                             </Col>
                         </Row>
 
-                        <Row >
+                        <Row>
                             <Col className={"auction-card-stems"}>
                                 出价:
                             </Col>
@@ -97,7 +95,7 @@ export class AuctionCard extends React.Component{
                         </Row>
 
                         <Row>
-                            <button className={"auction-card-buy-button"} >
+                            <button className={"auction-card-buy-button"}>
                                 确认出价
                             </button>
                         </Row>

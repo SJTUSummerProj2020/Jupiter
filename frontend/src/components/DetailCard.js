@@ -1,8 +1,7 @@
 import React from 'react';
-import { Row, Col,Card,List,InputNumber,Radio,Button,message} from 'antd';
+import { Row, Col,Card,InputNumber,Radio,Button,message} from 'antd';
 import"../css/detailcard.css"
 import { ExclamationCircleFilled } from '@ant-design/icons';
-import {getGoodsByGoodsType} from "../services/goodsService";
 import {getGoodsByGoodsId} from "../services/goodsService";
 import {addOrder, checkSession, getOrdersByUserId} from "../services/userService";
 import {Link} from 'react-router-dom';
@@ -95,7 +94,7 @@ export class DetailCard extends React.Component{
         this.setState(()=>({ticketsType:e.target.value}));
         let unitValue=this.getUnitPrice(this.state.goodsData,e.target.value);
         this.getTotalPrice(this.state.goodsData,this.state.ticketsNum,unitValue);
-    }    
+    }
 
     onChange3=(value)=> {
         this.setState({ticketsNum:value});
@@ -234,7 +233,7 @@ export class DetailCard extends React.Component{
                 const callback = (data)=>{
                     if(data.status>=0){
                         this.setState({orderId:data.data.orderId});
-                        message.success(data.msg + "请至订单界面查询订单信息" +"\n"+"您的订单号是"+data.data.orderId);
+                        message.success(data.msg + "请至订单界面查询订单信息 \n 您的订单号是"+data.data.orderId);
                     }
                     else{
                         message.error(data.msg);
@@ -259,7 +258,7 @@ export class DetailCard extends React.Component{
                   className={"detail-card"}>
                 <Row>
                     <Col span={8} className={"poster"}>
-                        <img alt = "image" src = {this.state.goodsData.image} className={"detail-card-img"}/>
+                        <img alt = "goodsImage" src = {this.state.goodsData.image} className={"detail-card-img"}/>
                     </Col>
                     <Col span = {16} >
                         <Row className={"detail-card-show-name"}>

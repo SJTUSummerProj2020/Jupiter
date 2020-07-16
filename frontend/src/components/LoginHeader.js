@@ -1,13 +1,8 @@
 import React from 'react';
-import {UserOutlined} from '@ant-design/icons';
 import {Link} from 'react-router-dom';
 import '../css/loginheader.css';
-import {SearchBar} from "./SearchBar";
 
 export class LoginHeader extends React.Component{
-    constructor(props) {
-        super(props);
-    }
     render() {
         return(
             <div className="loginheader">

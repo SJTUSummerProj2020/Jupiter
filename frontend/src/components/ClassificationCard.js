@@ -6,9 +6,7 @@ import {GoodsList} from "./GoodsList";
 const {Meta} = Card;
 
 export class ClassificationCard extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         if(this.props.goods === null){
             return null;
@@ -35,7 +33,7 @@ export class ClassificationCard extends React.Component{
                            <Card
                                hoverable
                                style={{ width: 290, height: 560 }}
-                               cover={<img alt="image" src={this.props.goods.image} className={"mostPopularImg"}/>}
+                               cover={<img alt="goods" src={this.props.goods.image} className={"mostPopularImg"}/>}
                            >
                                <Meta
                                    title={this.props.goods.name}

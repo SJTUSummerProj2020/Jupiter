@@ -3,9 +3,7 @@ import {Card} from "antd";
 import {RecommendationList} from "./RecommendationList";
 
 export class Recommendation extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         return(
             <Card

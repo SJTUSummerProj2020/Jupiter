@@ -1,6 +1,5 @@
 import React from "react";
 import {Header} from "../components/Header";
-import {Row, Col, BackTop} from 'antd';
 import {DetailOrderCard} from "../components/DetailOrderCard";
 
 export class DetailOrderView extends React.Component{

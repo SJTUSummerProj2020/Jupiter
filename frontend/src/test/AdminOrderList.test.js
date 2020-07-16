@@ -10,6 +10,6 @@ Enzyme.configure({adapter: new Adapter()})
 describe('AdminOrderList', () => {
     it('AdminOrderList shows "AdminOrderList"', () => {
         const app = shallow(<AdminOrderList/>);
-        expect(app.find('div').text()).toEqual('404');
+        expect(app.find('List').text())
     });
 });

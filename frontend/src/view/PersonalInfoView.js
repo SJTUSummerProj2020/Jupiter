@@ -3,7 +3,6 @@ import {Header} from "../components/Header";
 import "../css/header.css";
 import {PersonalInfoSidebar} from "../components/PersonalInfo";
 import {Col, Row} from "antd";
-import {OrderList} from "../components/OrderList";
 
 export class PersonalInfoView extends React.Component{
     constructor(props) {
