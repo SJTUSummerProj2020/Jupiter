@@ -1,10 +1,12 @@
 import React from 'react';
 import {ImageCarousel} from "../components/Carousel";
 import {Header} from "../components/Header";
+import {GoodsList} from "../components/GoodsList";
 import "../css/header.css";
 import {ClassificationCard} from "../components/ClassificationCard";
 import {BackTop} from "antd";
 import {getPopularGoods} from "../services/goodsService";
+import {checkSession} from "../services/userService";
 
 export class CustomerHome extends React.Component{
     constructor(props) {
@@ -19,11 +21,24 @@ export class CustomerHome extends React.Component{
             goodsList2:[],
             goods2:null,
             goodsList3:[],
-            goods3:null
+            goods3:null,
+            loggedIn:false,
+            user:null
         }
     }
 
     componentDidMount() {
+        const checkSession_callback = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                )
+            }
+        }
+        checkSession(checkSession_callback);
         const data = {number:7};
         const callback = (data) => {
             console.log(data.data);
@@ -65,7 +80,10 @@ export class CustomerHome extends React.Component{
     render() {
         return(
             <div>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                />
                 <ImageCarousel/>
                 <div className={"goodsList"}>
                     <ClassificationCard

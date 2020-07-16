@@ -11,12 +11,18 @@ import {history} from "../utils/history";
 export class UserListView extends React.Component{
     constructor(props) {
         super(props);
-        this.state={key: '1',userList:[]};
+        this.state={key: '1',userList:[],loggedIn:false,user:null};
     }
 
     componentDidMount() {
         const callback = (data) => {
             if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                )
                 if(data.data.userType !== 0){
                     message.warning("对不起，您无权限访问此页面");
                     history.push("/");
@@ -57,7 +63,10 @@ export class UserListView extends React.Component{
     render() {
         return(
             <div>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                />
                 <Row>
                     <Col span={7} push={2}>
                         <AdminSideBar myKey={this.state.key}/>
@@ -67,6 +76,8 @@ export class UserListView extends React.Component{
                             userList={this.state.userList}
                             style={{marginBottom:10}}
                             changeUserStatus={this.changeUserStatus}
+                            loggedIn={this.state.loggedIn}
+                            user={this.state.user}
                         />
                     </Col>
                 </Row>

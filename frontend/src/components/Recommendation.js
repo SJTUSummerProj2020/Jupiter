@@ -3,7 +3,9 @@ import {Card} from "antd";
 import {RecommendationList} from "./RecommendationList";
 
 export class Recommendation extends React.Component{
-
+    constructor(props) {
+        super(props);
+    }
     render() {
         return(
             <Card
@@ -11,7 +13,10 @@ export class Recommendation extends React.Component{
                 bordered={true}
                 style={{ width: 350, marginLeft: 30 }}
             >
-                <RecommendationList/>
+                <RecommendationList
+                    loggedIn={this.props.loggedIn}
+                    user={this.props.user}
+                />
             </Card>
 
             );
