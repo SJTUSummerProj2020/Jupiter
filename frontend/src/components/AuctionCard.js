@@ -1,9 +1,12 @@
 import React from "react";
-import { Row, Col,Card,List,InputNumber,Radio,Button,message, Divider} from 'antd';
+import { Row, Col,Card,List,InputNumber,Radio,Button,message, Divider,Statistic} from 'antd';
 import {ExclamationCircleFilled} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import"../css/auctioncard.css";
-
+import {checkSession, getOrdersByUserId} from "../services/userService";
+import {history} from "../utils/history";
+import {getAuctionByAuctionId} from "../services/goodsService";
+const { Countdown } = Statistic;
 
 // const ticketsData = {
 //     "address": "场馆：上海市 | 生活实验室小剧场",
@@ -34,66 +37,186 @@ import"../css/auctioncard.css";
 //     "website": "https://detail.damai.cn/item.htm?id=619943654186&clicktitle=%E7%88%86%E7%AC%91%E8%84%B1%E5%8F%A3%E7%A7%80%E6%BC%94%E5%87%BA-%E5%96%9C%E5%89%A7%E8%81%94%E7%9B%92%E5%9B%BD"
 // };
 
-
-
+let auctionData = null;
+let tmpId;
+let triggerFlag = false;
 export class AuctionCard extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            goodsData :"", //用后端返回的data进行初始化
-            price:0,
+            name:null,
+            time:null,
+            image:null,
+            address:null,
+            startTime:null,
+            duration:null,
+            bestOffer:null,
+            currentOffer:null,  //现在出的价格
+            startingPrice:null,
+            addingPrice:null,
             user:null,
-            loggedIn:false,
-            orderId:0,
+            deadline:null,
+            auctionData:null,
         }
+
+    }
+
+    componentDidMount() {
+        if(this.props.info === null)
+            return;
+        let startTime = this.props.info.startTime;
+        startTime = startTime.replace(/-/g,"/");
+        startTime = startTime.replace(/(\.\d+)?/g,"");
+        console.log('startTime',startTime);
+        let  startDate = new Date(startTime);
+        console.log('startDate',startDate);
+        let startSecond = startDate.getTime();
+        console.log('startSecond',startSecond);
+        let duration = null;
+        duration = this.props.info.duration;
+        let deadline = startSecond + duration*1000;
+        console.log('deadline',deadline);
+        this.setState({deadline:deadline});
+        this.setState({deadline:deadline});
+
+        this.setState({
+            name:this.props.info.goods.name,
+            time:this.props.info.goodsDetail.time,
+            image:this.props.info.goods.image,
+            address:this.props.info.goods.address,
+            startTime:this.props.info.startTime,
+            duration:this.props.info.duration,
+            bestOffer:this.props.info.bestOffer,
+            currentOffer:this.props.info.currentOffer,
+            startingPrice:this.props.info.startingPrice,
+            addingPrice:this.props.info.addingPrice,
+            auctionData:this.props.info,
+        });
+        const callback_checkSession = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        user:data.data
+                    }
+                );
+                const callback = (data) => {
+                    console.log(data);
+                    this.setState({orderList:data})
+                };
+                const requestData = {userId:data.data.userId};
+                getOrdersByUserId(requestData,callback);
+            }
+            else{
+                message.warning(data.msg);
+                history.push('login');
+            }
+        };
+        checkSession(callback_checkSession);
+    }
+
+    // componentWillReceiveProps(next){
+    //         this.timer = setTimeout(
+    //             () => {
+    //                 this.flushState();
+    //                 let bestOffer = this.state.bestOffer;
+    //                 this.setState({bestOffer:bestOffer});
+    //                 // console.log('刷新最高出价',this.state.bestOffer);
+    //             },
+    //             2000
+    //         );
+    //
+    // }
+    // componentWillUnmount() {
+    //     this.timer && clearTimeout(this.timer);
+    // }
+
+    // startTrigger(){
+    //     setInterval(this.flushState(),2000);
+    // }
+
+
+
+    onFinish(){
+
+    }
+
+    flushState(){
+        tmpId = this.state.auctionData.auctionId;
+
+        const callback = (data) =>{
+            auctionData = data.data;
+            this.setState({auctionData:data.data});
+            this.setState({bestOffer:data.data.bestOffer});
+            console.log('当前最高价',data.data.bestOffer)
+        }
+        if(tmpId === null){
+            return;
+        }
+        const requestData = {auctionId:tmpId};
+        getAuctionByAuctionId(requestData,callback);
+        console.log('执行了flush');
     }
 
     render(){
-        const {info} = this.props;
-        console.log('拍卖详情',info);
-        if(info === null)
+        if(this.state.bestOffer === null){
+            this.componentDidMount();
             return null;
+        }
+        // if(triggerFlag === false){
+        //     let startTrigger = setInterval(function () {
+        //         console.log('okk');
+        //     }, 2000);
+        //     triggerFlag = true;
+        // }
 
+        if(triggerFlag === false){
+            let startTrigger = setInterval( ()=>{
+                this.flushState();
+            }, 1000);
+            triggerFlag = true;
+        }
+
+        // console.log('拍卖详情',this.state);
         return(
             <Card hoverable={false} className={"auction-card"}>
                 <Row>
                     <Col span={8} className={"auction-card-poster"}>
-                        <img alt = "auction-card-image" src = {info.goods.image} className={"auction-card-img"}/>
+                        <img alt = "auction-card-image" src = {this.state.image} className={"auction-card-img"}/>
                     </Col>
                     <Col span = {16} >
                         <Row className={"auction-card-show-name"}>
-                            {info.goods.name}
+                            {this.state.name}
                         </Row>
                         <Row className={"auction-card-show-time"}>
                             <Col>时间：</Col>
-                            <Col> {info.goodsDetail.time}</Col>
+                            <Col> {this.state.time}</Col>
                         </Row>
                         <Row className={"auction-card-show-address"}>
                             <Col>
                                 地点：
                             </Col>
                             <Col>
-                                {info.goods.address}
+                                {this.state.address}
                             </Col>
                         </Row>
                         <Row className={"auction-card-tips"}><ExclamationCircleFilled className={"auction-card-icon"}/>
                             演出时间为演出当地时间，拍卖开始时间为北京时间
                         </Row>
 
-                        <Row className={"auction-card-stems"}>
-                            拍卖开始时间:{info.startTime} 
+                        <Row >
+                            <Col className={"auction-card-stems"}>
+                                拍卖开始时间:{this.state.startTime}
+                            </Col>
+                            <Col className={"auction-card-countdown"}>
+                                <Countdown title="距离拍卖截止" value={this.state.deadline} onFinish={this.onFinish} />
+                            </Col>
                         </Row>
-
-                        <Row className={"auction-card-stems"}>
-                            拍卖持续时间:{info.duration}
-                        </Row>
-
                         <Row >
                             <Col className={"auction-card-stems"}>
                                 当前价
                             </Col>
                             <Col className={"auction-card-stems"}>
-                                {info.bestOffer}
+                                {this.state.bestOffer}
                             </Col>
                         </Row>
 
@@ -102,7 +225,7 @@ export class AuctionCard extends React.Component{
                                 出价:
                             </Col>
                             <Col className={"auction-card-choice"}>
-                                <InputNumber min={info.bestOffer} defaultValue={info.bestOffer} step={info.addingPrice}/>
+                                <InputNumber min={this.state.bestOffer} defaultValue={this.state.bestOffer} step={this.state.addingPrice}/>
                             </Col>
                         </Row>
 
@@ -120,19 +243,19 @@ export class AuctionCard extends React.Component{
                                 起拍价
                             </Col>
                             <Col className={"auction-info-content"}>
-                                {info.startingPrice}
+                                {this.state.startingPrice}
                             </Col>
                             <Col className={"auction-info-stem"}>
                                 加价幅度
                             </Col>
                             <Col className={"auction-info-content"}>
-                                {info.addingPrice}
+                                {this.state.addingPrice}
                             </Col>
                             <Col className={"auction-info-stem"}>
                                 竞价周期
                             </Col>
                             <Col className={"auction-info-content"}>
-                                {info.duration}
+                                {this.state.duration}
                             </Col>
                         </Row>
                     </Col>
