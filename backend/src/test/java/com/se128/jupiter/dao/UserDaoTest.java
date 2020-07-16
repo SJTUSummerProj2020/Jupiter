@@ -106,9 +106,12 @@ class UserDaoTest {
         User user1 = new User();
         user1.setUserId(userId);
         user1.setUserType(-userType);
-
+        // user != null
         when(userRepository.getUserByUserId(userId)).thenReturn(user);
         when(userRepository.saveAndFlush(user)).thenReturn(user1);
         assertEquals(user1, userDao.changeUserStatusByUserId(userId));
+        // user = null
+        when(userRepository.getUserByUserId(userId)).thenReturn(null);
+        assertNull(userDao.changeUserStatusByUserId(userId));
     }
 }

@@ -66,9 +66,13 @@ class GoodsDaoTest {
         Integer goodsId = 1;
         Goods goods = new Goods();
         goods.setGoodsId(goodsId);
-
+        // goods1 != null
+        when(goodsRepository.getGoodsByGoodsId(goodsId)).thenReturn(goods);
         when(goodsRepository.saveAndFlush(goods)).thenReturn(goods);
-        assertEquals(null, goodsDao.editGoods(goods));
+        assertEquals(goods, goodsDao.editGoods(goods));
+        // goods1 = null
+        when(goodsRepository.getGoodsByGoodsId(goodsId)).thenReturn(null);
+        assertNull(goodsDao.editGoods(goods));
     }
 
     @Test
