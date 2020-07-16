@@ -1,4 +1,5 @@
 import {postRequest} from "../utils/ajax";
+import {useCallback} from "react";
 
 export const getAllGoods = (data,callback) => {
     const url = `http://localhost:8080/getAllGoods`;
@@ -24,3 +25,13 @@ export const getPopularGoods = (data,callback) => {
     const url = `http://localhost:8080/getPopularGoods`;
     postRequest(url, data, callback);
 };
+
+export const getAllAuctions = (data,callback) =>{
+    const url = `http://localhost:8080/getAllAuctions`;
+    postRequest(url,data,callback);
+}
+
+export const getAuctionByAuctionId = (data,callback) =>{
+    const url = `http://localhost:8080/getAuctionByAuctionId`;
+    postRequest(url,data,callback);
+}
