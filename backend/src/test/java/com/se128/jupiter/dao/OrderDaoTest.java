@@ -46,8 +46,9 @@ class OrderDaoTest {
         Integer userId = 1;
         Integer orderId = 1;
         Integer number = 1;
-        Integer detailId = 1;
-        Integer goodsId = 1;
+        Integer detailId = 1890;
+        Integer goodsId = 513;
+        Integer goodsType = 0;
         Double price = 1.0;
         GoodsDetail goodsDetail = new GoodsDetail();
         goodsDetail.setDetailId(detailId);
@@ -55,6 +56,7 @@ class OrderDaoTest {
         goodsDetail.setPrice(price);
         Goods goods = new Goods();
         goods.setGoodsId(goodsId);
+        goods.setGoodsType(goodsType);
         goods.setBuyCounter(0);
         Order anOrder = new Order();
         anOrder.setUserId(userId);
