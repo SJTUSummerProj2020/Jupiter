@@ -4,12 +4,14 @@ import {CalendarOutlined, HomeOutlined} from "@ant-design/icons";
 import {getRecommendGoods} from "../services/userService";
 import '../css/recommendationlist.css';
 import {Link} from "react-router-dom";
+import {getGoodsByName} from "../services/goodsService";
 
 export class RecommendationList extends React.Component{
     constructor(props) {
         super(props);
         this.state={goodsList:[]}
     }
+
     componentDidMount() {
         const callback = (data) => {
             this.setState(
@@ -20,6 +22,26 @@ export class RecommendationList extends React.Component{
         };
         if(this.props.loggedIn){
             const data = {number:10,userId:this.props.user.userId};
+            getRecommendGoods(data,callback);
+        }
+        else{
+            const data = {number:10};
+            getRecommendGoods(data,callback);
+        }
+    }
+
+    componentWillReceiveProps(nextProps,nextContext){
+        let loggedIn = nextProps.loggedIn;
+        let userId = nextProps.user.userId;
+        const callback = (data) => {
+            this.setState(
+                {
+                    goodsList:data.data.goods
+                }
+            );
+        };
+        if(loggedIn){
+            const data = {number:10,userId:userId};
             getRecommendGoods(data,callback);
         }
         else{
