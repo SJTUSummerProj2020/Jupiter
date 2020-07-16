@@ -8,4 +8,6 @@ public interface AuctionDao {
     List<Auction> getAllAuctions();
 
     Auction getAuctionByAuctionId(Integer auctionId);
+
+    Auction saveAuction(Auction auction);
 }

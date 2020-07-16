@@ -360,4 +360,40 @@ class GoodsControllerTest {
         }
     }
 
+    @Test
+    void getAllAuctions() {
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getAllAuctions")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content("")
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void getAuctionByAuctionId() {
+        try{
+            String auctionId = "1";
+            JSONObject param = new JSONObject();
+            param.put("auctionId", auctionId);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getAllAuctions")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

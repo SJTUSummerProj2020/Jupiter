@@ -15,9 +15,7 @@ const recommend = [
     {image:require('../assets/goods/10.png'),name:"魔女宅急便",price:100}
 ];
 export class RecommendList extends React.Component{
-    constructor(props) {
-        super(props);
-    }
+
     render() {
         return (
             <div>

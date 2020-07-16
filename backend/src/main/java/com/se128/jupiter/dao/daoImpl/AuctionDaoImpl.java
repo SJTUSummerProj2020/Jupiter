@@ -27,4 +27,9 @@ public class AuctionDaoImpl implements AuctionDao {
     public Auction getAuctionByAuctionId(Integer auctionId) {
         return auctionRepository.getAuctionByActionId(auctionId);
     }
+
+    @Override
+    public Auction saveAuction(Auction auction) {
+        return auctionRepository.saveAndFlush(auction);
+    }
 }

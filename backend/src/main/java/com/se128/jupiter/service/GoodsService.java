@@ -31,4 +31,6 @@ public interface GoodsService {
     List<Auction> getAllAuctions();
 
     Auction getAuctionByAuctionId(Integer auctionId);
+
+    Auction updateAuction(Integer auctionId, Integer userId, Double offer);
 }

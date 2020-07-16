@@ -139,6 +139,22 @@ public class GoodsController {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such auctionId");
         }
     }
+
+    @RequestMapping("/updateAuction")
+    public Msg updateAuction(@RequestBody Map<String, String> params) {
+            Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
+            Double offer = Double.valueOf(params.get(Constant.OFFER));
+            Integer userId = Integer.valueOf(params.get((Constant.USER_ID)));
+            LogUtil.info("updateAuction auctionsId = " + AuctionId+ " userId = " + userId);
+            Auction auction = goodsService.updateAuction(AuctionId,userId,offer);
+            if(auction.getBestOffer().equals(offer))
+            {
+                return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
+            }
+            else {
+                return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
+            }
+    }
 }
 
 

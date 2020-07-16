@@ -37,10 +37,8 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@testing-library/react": "^10.4.6",
-    "babel-jest": "^26.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "jest": "^26.1.0",
     "react-test-renderer": "^16.13.1"
   }
 }

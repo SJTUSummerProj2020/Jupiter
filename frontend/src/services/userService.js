@@ -1,4 +1,4 @@
-import {postRequest, postRequestForm} from "../utils/ajax";
+import {postRequest} from "../utils/ajax";
 
 export const login = (data,callback) => {
     const url = `http://localhost:8080/login`;

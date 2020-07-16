@@ -92,4 +92,15 @@ public class GoodsServiceImpl implements GoodsService {
     public Auction getAuctionByAuctionId(Integer auctionId) {
         return auctionDao.getAuctionByAuctionId(auctionId);
     }
+
+    @Override
+    public Auction updateAuction(Integer auctionId, Integer userId, Double offer) {
+        Auction auction = auctionDao.getAuctionByAuctionId(auctionId);
+        if(auction.getBestOffer()<offer)
+        {
+            auction.setBestOffer(offer);
+            auction.setUserId(userId);
+        }
+        return auctionDao.saveAuction(auction);
+    }
 }

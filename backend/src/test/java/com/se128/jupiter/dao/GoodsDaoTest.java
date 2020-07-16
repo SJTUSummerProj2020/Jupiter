@@ -1,5 +1,6 @@
 package com.se128.jupiter.dao;
 
+import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Detail;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.entity.GoodsDetail;
@@ -67,7 +68,7 @@ class GoodsDaoTest {
         goods.setGoodsId(goodsId);
 
         when(goodsRepository.saveAndFlush(goods)).thenReturn(goods);
-        assertEquals(goods, goodsDao.editGoods(goods));
+        assertEquals(null, goodsDao.editGoods(goods));
     }
 
     @Test
@@ -206,5 +207,19 @@ class GoodsDaoTest {
         goodsType = 1;
         when(goodsRepository.getPopularGoods(number, goodsType)).thenReturn(goodsList);
         assertEquals(goodsList, goodsDao.getPopularGoods(number, goodsType));
+    }
+
+    @Test
+    void getAllAuctions() {
+//        List<Auction> auctionList = new ArrayList<>();
+//        Integer auctionId = 1;
+//        Auction auction = new Auction();
+//        auction.setActionId(auctionId);
+//        auctionList.add(auction);
+//        auctionList.add(auction);
+    }
+
+    @Test
+    void getAuctionByAuctionId() {
     }
 }

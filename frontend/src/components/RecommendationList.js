@@ -15,9 +15,6 @@ const listData = [
     {image:require('../assets/goods/10.png'),name:"魔女宅急便",price:100,place:"上海大剧院",time:"2019.02.23-2021.02.22 "}
 ];
 export class RecommendationList extends React.Component{
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return(
