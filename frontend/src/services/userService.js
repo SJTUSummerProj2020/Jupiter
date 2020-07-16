@@ -1,4 +1,4 @@
-import {postRequest} from "../utils/ajax";
+import {postRequest, postRequestForm} from "../utils/ajax";
 
 export const login = (data,callback) => {
     const url = `http://localhost:8080/login`;
@@ -42,6 +42,11 @@ export const getAllOrders = (data,callback) => {
 
 export const changeUserStatusByUserId = (data,callback) => {
     const url = `http://localhost:8080/changeUserStatusByUserId`;
+    postRequest(url, data, callback);
+}
+
+export const getRecommendGoods = (data,callback) => {
+    const url = `http://localhost:8080/getRecommendGoods`;
     postRequest(url, data, callback);
 }
 
