@@ -1,14 +1,18 @@
 package com.se128.jupiter.service.serviceImpl;
 
+import com.jayway.jsonpath.internal.function.numeric.Max;
 import com.se128.jupiter.dao.AuctionDao;
 import com.se128.jupiter.dao.GoodsDao;
+import com.se128.jupiter.dao.UserDao;
 import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 @Service
@@ -18,12 +22,15 @@ public class GoodsServiceImpl implements GoodsService {
 
     private final AuctionDao auctionDao;
 
+    private final UserDao userDao;
+
     private HashMap<Integer,Integer> goodsViewCounter;
 
     @Autowired
-    public GoodsServiceImpl(GoodsDao goodsDao, AuctionDao auctionDao) {
+    public GoodsServiceImpl(GoodsDao goodsDao, AuctionDao auctionDao, UserDao userDao) {
         this.goodsDao = goodsDao;
         this.auctionDao = auctionDao;
+        this.userDao = userDao;
         this.goodsViewCounter = new HashMap<Integer,Integer>();
     }
 
@@ -102,5 +109,29 @@ public class GoodsServiceImpl implements GoodsService {
             auction.setUserId(userId);
         }
         return auctionDao.saveAuction(auction);
+    }
+
+    @Override
+    public List<Goods> getRecommendGoodsByUserId(Integer userId, Integer number) {
+        User user = userDao.getUserByUserId(userId);
+        int[] data = new int[4];
+        data[0] = user.getBuy0();
+        data[1] = user.getBuy1();
+        data[2] = user.getBuy2();
+        data[3] = user.getBuy3();
+        int max = 0; int goodsType=0;
+        for(int i = 0; i < data.length; i++) {
+           if(data[i]>max)
+           {
+               max = data[i];
+               goodsType = i;
+           }
+        }
+        return goodsDao.getRecommendGoodsByGoodsType(goodsType,number);
+    }
+
+    @Override
+    public List<Goods> getRecommendGoodsInAll(Integer number) {
+        return goodsDao.getRecommendGoodsInAll(number);
     }
 }

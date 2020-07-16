@@ -33,4 +33,8 @@ public interface GoodsService {
     Auction getAuctionByAuctionId(Integer auctionId);
 
     Auction updateAuction(Integer auctionId, Integer userId, Double offer);
+
+    List<Goods> getRecommendGoodsByUserId(Integer userId, Integer number);
+
+    List<Goods> getRecommendGoodsInAll(Integer number);
 }

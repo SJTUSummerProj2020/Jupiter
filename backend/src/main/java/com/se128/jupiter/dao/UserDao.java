@@ -18,4 +18,6 @@ public interface UserDao {
     List<User> getAllUsers();
 
     User changeUserStatusByUserId(Integer userId);
+
+    User saveUser(User user);
 }

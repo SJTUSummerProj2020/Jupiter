@@ -39,4 +39,12 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
     @Query(nativeQuery = true,
             value = "select * from Goods order by view_counter desc limit ?1")
     List<Goods> getPopularGoodsInAll(Integer number);
+
+    @Query(nativeQuery = true,
+            value = "select * from Goods where goods_type =?1 order by buy_counter desc limit ?2")
+    List<Goods> getRecommendGoodsByGoodsType(Integer goodsType, Integer number);
+
+    @Query(nativeQuery = true,
+            value = "select * from Goods order by buy_counter desc limit ?1")
+    List<Goods> getRecommendGoodsInAll(Integer number);
 }

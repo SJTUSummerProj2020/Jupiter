@@ -68,4 +68,9 @@ public class UserDaoImpl implements UserDao {
         user.setUserType(-status);
         return userRepository.saveAndFlush(user);
     }
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.saveAndFlush(user);
+    }
 }

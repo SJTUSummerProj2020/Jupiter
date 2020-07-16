@@ -27,4 +27,8 @@ public interface GoodsDao {
     void saveViewCounter(HashMap<Integer, Integer> goodsViewCounter);
 
     List<Goods> getPopularGoods(Integer number, Integer goodsType);
+
+    List<Goods> getRecommendGoodsByGoodsType(Integer favor, Integer number);
+
+    List<Goods> getRecommendGoodsInAll(Integer number);
 }

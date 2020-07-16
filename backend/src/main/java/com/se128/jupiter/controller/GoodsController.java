@@ -155,6 +155,30 @@ public class GoodsController {
                 return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
             }
     }
+
+    @RequestMapping("/getRecommendGoods")
+    public Msg getRecommendGoods(@RequestBody Map<String, String> params) {
+        Integer number = Integer.valueOf(params.get(Constant.NUMBER));
+        String userId1 = params.get(Constant.USER_ID);
+        if(userId1 == null)
+        {
+            LogUtil.info("getRecommendGoodsInAll" + "number: "+number);
+            List<Goods> goods = goodsService.getRecommendGoodsInAll(number);
+            JSONArray jsonArray = JSONArray.fromObject(goods);
+            JSONObject data = new JSONObject();
+            data.put("goods",jsonArray.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        }
+        else {
+            Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
+            LogUtil.info("getRecommendGoodsByUserId" + userId +"number"+number);
+            List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId,number);
+            JSONArray jsonArray = JSONArray.fromObject(goods);
+            JSONObject data = new JSONObject();
+            data.put("goods",jsonArray.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        }
+    }
 }
 
 

@@ -139,4 +139,14 @@ public class GoodsDaoImpl implements GoodsDao {
             return goodsRepository.getPopularGoods(number,goodsType);
         }
     }
+
+    @Override
+    public List<Goods> getRecommendGoodsByGoodsType(Integer goodsType, Integer number) {
+        return goodsRepository.getRecommendGoodsByGoodsType(goodsType,number);
+    }
+
+    @Override
+    public List<Goods> getRecommendGoodsInAll(Integer number) {
+        return goodsRepository.getRecommendGoodsInAll(number);
+    }
 }

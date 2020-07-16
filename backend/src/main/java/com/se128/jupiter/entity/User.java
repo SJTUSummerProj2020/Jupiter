@@ -27,6 +27,12 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Order> orders;
 
+    private Integer buy0;
+    private Integer buy1;
+    private Integer buy2;
+    private Integer buy3;
+
+
     public Integer getUserId() {
         return this.userId;
     }
@@ -73,5 +79,37 @@ public class User {
 
     public void setUserType(Integer userType) {
         this.userType = userType;
+    }
+
+    public Integer getBuy0() {
+        return buy0;
+    }
+
+    public Integer getBuy1() {
+        return buy1;
+    }
+
+    public Integer getBuy2() {
+        return buy2;
+    }
+
+    public Integer getBuy3() {
+        return buy3;
+    }
+
+    public void setBuy0(Integer buy0) {
+        this.buy0 = buy0;
+    }
+
+    public void setBuy1(Integer buy1) {
+        this.buy1 = buy1;
+    }
+
+    public void setBuy2(Integer buy2) {
+        this.buy2 = buy2;
+    }
+
+    public void setBuy3(Integer buy3) {
+        this.buy3 = buy3;
     }
 }
