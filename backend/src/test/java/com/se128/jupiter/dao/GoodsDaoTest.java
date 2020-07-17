@@ -235,4 +235,23 @@ class GoodsDaoTest {
         when(goodsDetailRepository.getGoodsDetailByDetailId(detailId)).thenReturn(goodsDetail);
         assertEquals(goodsDetail, goodsDao.getGoodsDetailByDetailId(detailId));
     }
+    
+    @Test
+    void getRecommendGoodsByGoodsType(){
+        Integer goodsType = 1;
+        Integer number = 10;
+        List<Goods> goodsList = new ArrayList<>();
+
+        when(goodsRepository.getRecommendGoodsByGoodsType(goodsType, number)).thenReturn(goodsList);
+        assertEquals(goodsList, goodsDao.getRecommendGoodsByGoodsType(goodsType, number));
+    }
+
+    @Test
+    void getRecommendGoodsInAll(){
+        Integer number = 1;
+        List<Goods> goodsList = new ArrayList<>();
+
+        when(goodsRepository.getPopularGoodsInAll(number)).thenReturn(goodsList);
+        assertEquals(goodsList, goodsDao.getRecommendGoodsInAll(number));
+    }
 }

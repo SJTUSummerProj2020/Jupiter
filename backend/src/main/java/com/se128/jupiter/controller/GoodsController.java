@@ -183,13 +183,17 @@ public class GoodsController {
             Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
             LogUtil.info("getAuctionByAuctionsId = " + AuctionId);
             Auction auction = goodsService.getAuctionByAuctionId(AuctionId);
+            if(auction == null){
+                return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such auctionId");
+            }
             JSONObject data = JSONObject.fromObject(auction);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } catch (NumberFormatException e) {
             return MsgUtil.makeMsg(MsgCode.DATA_ERROR);
-        } catch (NullPointerException e) {
-            return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such auctionId");
         }
+//        catch (NullPointerException e) {
+//            return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such auctionId");
+//        }
     }
 
     @RequestMapping("/updateAuction")
@@ -197,11 +201,12 @@ public class GoodsController {
         Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
         Double offer = Double.valueOf(params.get(Constant.OFFER));
         Integer userId = Integer.valueOf(params.get((Constant.USER_ID)));
-        LogUtil.info("updateAuction auctionsId = " + AuctionId + " userId = " + userId);
-        Auction auction = goodsService.updateAuction(AuctionId, userId, offer);
-        if (auction.getBestOffer().equals(offer)) {
+        LogUtil.info("updateAuction auctionsId = " + AuctionId+ " userId = " + userId);
+        Auction auction = goodsService.updateAuction(AuctionId,userId,offer);
+        if(auction.getBestOffer().equals(offer)) {
             return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
-        } else {
+        }
+        else {
             return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
         }
     }
