@@ -593,18 +593,21 @@ class GoodsControllerTest {
     @Transactional
     @Rollback(value = true)
     void editAuction(){
-        Auction auction = new Auction();
-        auction.setAuctionId(1);
-        auction.setAddingPrice(10.0);
-        auction.setBestOffer(170.0);
-        auction.setDuration(1);
-        auction.setStartTime("2020-07-16 10:00:00");
-        auction.setStartingPrice(160.0);
-        auction.setUserId(1);
-        auction.setGoods(new Goods());
-        auction.setUserId(1);
-        auction.setGoodsDetail(new GoodsDetail());
-        JSONObject param = JSONObject.fromObject(auction);
+        Integer auctionId = 1;
+        Integer detailId = 11817;
+        Integer goodsId = 2679;
+        Double startingPrice = 100.0;
+        Double addingPrice = 10.0;
+        String startTime = "2020-07-16 10:00:00";
+        Integer duration = 1;
+        JSONObject param = new JSONObject();
+        param.put("auctionId",auctionId);
+        param.put("detailId", detailId);
+        param.put("goodsId", goodsId);
+        param.put("startingPrice", startingPrice);
+        param.put("addingPrice", addingPrice);
+        param.put("startTime", startTime);
+        param.put("duration", duration);
 
         try{
             String responseString = mockMvc.perform(MockMvcRequestBuilders

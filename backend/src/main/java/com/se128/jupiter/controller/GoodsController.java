@@ -229,7 +229,7 @@ public class GoodsController {
         auction.setDuration(duration);
         auction.setUserId(1);
         auction.setBestOffer(0.0);
-        Auction auction1 = goodsService.editAuction(auction);
+        Auction auction1 = goodsService.editAuction(auction,detailId,goodsId);
         JSONObject data = JSONObject.fromObject(auction1);
         return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
     }

@@ -41,7 +41,7 @@ public interface GoodsService {
 
     void deleteAuctionByAuctionId(Integer auctionId);
 
-    Auction editAuction(Auction auction);
+    Auction editAuction(Auction auction, Integer detailId, Integer goodsId);
 
     Auction addAuction(Auction auction, Integer goodsId, Integer detailId);
 }
