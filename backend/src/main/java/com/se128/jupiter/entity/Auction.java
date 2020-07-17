@@ -33,7 +33,7 @@ public class Auction {
 
     private String startTime;
 
-    private String duration;
+    private Integer duration;
 
     public Goods getGoods() {
         return goods;
@@ -79,7 +79,7 @@ public class Auction {
         return auctionId;
     }
 
-    public String getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
@@ -99,7 +99,7 @@ public class Auction {
         this.bestOffer = bestOffer;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 

@@ -18,4 +18,6 @@ public interface UserService {
     List<User> getAllUsers();
 
     User changeUserStatusByUserId(Integer userId);
+
+    User editUser(User user);
 }

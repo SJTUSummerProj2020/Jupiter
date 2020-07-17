@@ -39,11 +39,17 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
+    public GoodsDetail getGoodsDetailByDetailId(Integer detailId) {
+        GoodsDetail detail = goodsDetailRepository.getGoodsDetailByDetailId(detailId);
+        return detail;
+    }
+
+    @Override
     public Goods editGoods(Goods goods) {
         Goods goods1 = goodsRepository.getGoodsByGoodsId(goods.getGoodsId());
         if(goods1 == null)
         {
-            return  null;
+            return null;
         }
         goods1.setName(goods.getName());
         goods1.setStartTime(goods.getStartTime());
@@ -74,8 +80,16 @@ public class GoodsDaoImpl implements GoodsDao {
     @Override
     public void deleteGoodsByGoodsId(Integer goodsId) {
         try{
-            goodsDetailRepository.deleteByGoodsId(goodsId);
-            goodsRepository.deleteById(goodsId);
+            Goods goods = goodsRepository.getGoodsByGoodsId(goodsId);
+            goods.setGoodsType(-1);
+            List<GoodsDetail> goodsDetails = goods.getGoodsDetails();
+            goodsRepository.saveAndFlush(goods);
+            for(GoodsDetail item : goodsDetails)
+            {
+                item.setSurplus(-1);
+            }
+            goodsDetailRepository.saveAll(goodsDetails);
+
         }
         catch (Exception e){
             System.out.println("Can't delete");

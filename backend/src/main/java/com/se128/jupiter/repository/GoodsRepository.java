@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface GoodsRepository extends JpaRepository<Goods, Integer> {
 
-    @Query(value = "select g from Goods g")
+    @Query(value = "select g from Goods g where g.goodsType >= 0 ")
     List<Goods> getAllGoods();
 
     Goods getGoodsByGoodsId(Integer goodsId);
@@ -37,7 +37,7 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
     List<Goods> getPopularGoods(Integer number, Integer goodsType);
 
     @Query(nativeQuery = true,
-            value = "select * from Goods order by view_counter desc limit ?1")
+            value = "select * from Goods where goods_type >= 0 order by view_counter desc limit ?1")
     List<Goods> getPopularGoodsInAll(Integer number);
 
     @Query(nativeQuery = true,
@@ -45,6 +45,6 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
     List<Goods> getRecommendGoodsByGoodsType(Integer goodsType, Integer number);
 
     @Query(nativeQuery = true,
-            value = "select * from Goods order by buy_counter desc limit ?1")
+            value = "select * from Goods where goods_type >= 0 order by buy_counter desc limit ?1")
     List<Goods> getRecommendGoodsInAll(Integer number);
 }

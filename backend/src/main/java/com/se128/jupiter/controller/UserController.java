@@ -29,6 +29,38 @@ public class UserController {
         this.userService = userService;
     }
 
+    @RequestMapping("/register")
+    public Msg register(@RequestBody User user) {
+        LogUtil.info("register");
+        user.setUserType(Constant.Customer);
+        User user1 = userService.addUser(user);
+
+        if (user1 != null) {
+            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.REGISTER_SUCCESS_MSG);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.REGISTER_USER_ERROR);
+        }
+    }
+
+    @RequestMapping("/changeUserStatusByUserId")
+    public Msg changeUserStatusByUserId(@RequestBody Map<String, String> params) {
+        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
+        LogUtil.info("changeUserStatusByUserId = " + userId);
+        User user = userService.changeUserStatusByUserId(userId);
+        if (user != null) {
+            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
+        }
+    }
+
+    @RequestMapping("/editUser")
+    public Msg editUser(@RequestBody User user) {
+        LogUtil.info("editUser");
+        User user1 = userService.editUser(user);
+        JSONObject data = JSONObject.fromObject(user);
+        return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
+    }
 
     @RequestMapping("/getUserById")
     public Msg getUserById(@RequestBody Map<String, String> params) {
@@ -60,19 +92,6 @@ public class UserController {
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
 
-    }
-
-    @RequestMapping("/register")
-    public Msg register(@RequestBody User user) {
-        LogUtil.info("register");
-        user.setUserType(Constant.Customer);
-        User user1 = userService.addUser(user);
-
-        if (user1 != null) {
-            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.REGISTER_SUCCESS_MSG);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.REGISTER_USER_ERROR);
-        }
     }
 
     @RequestMapping("/logout")
@@ -119,16 +138,4 @@ public class UserController {
         return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
 
-
-    @RequestMapping("/changeUserStatusByUserId")
-    public Msg changeUserStatusByUserId(@RequestBody Map<String, String> params) {
-        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        LogUtil.info("changeUserStatusByUserId = " + userId);
-        User user = userService.changeUserStatusByUserId(userId);
-        if (user != null) {
-            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
-        } else {
-            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
-        }
-    }
 }

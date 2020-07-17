@@ -7,4 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface DetailRepository extends MongoRepository<Detail, ObjectId> {
 
     Detail getDetailByGoodsId(Integer goodsId);
+
 }

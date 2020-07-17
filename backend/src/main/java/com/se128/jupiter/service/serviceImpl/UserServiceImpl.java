@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
     public User changeUserStatusByUserId(Integer userId) {
         return userDao.changeUserStatusByUserId(userId);
     }
+
+    @Override
+    public User editUser(User user) {
+        return userDao.editUser(user);
+    }
 }

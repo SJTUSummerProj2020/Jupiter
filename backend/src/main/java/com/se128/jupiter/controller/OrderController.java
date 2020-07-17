@@ -58,7 +58,6 @@ public class OrderController {
 
         JSONObject data = JSONObject.fromObject(order1);
         return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, MsgUtil.BUY_SUCCESS_MSG, data);
-
     }
 
     @RequestMapping("/getAllOrders")

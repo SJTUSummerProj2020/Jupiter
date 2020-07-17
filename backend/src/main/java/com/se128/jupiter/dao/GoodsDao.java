@@ -1,6 +1,8 @@
 package com.se128.jupiter.dao;
 
+import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.GoodsDetail;
 import org.springframework.data.domain.Page;
 
 import java.util.HashMap;
@@ -31,4 +33,7 @@ public interface GoodsDao {
     List<Goods> getRecommendGoodsByGoodsType(Integer favor, Integer number);
 
     List<Goods> getRecommendGoodsInAll(Integer number);
+
+    GoodsDetail getGoodsDetailByDetailId(Integer detailId);
+
 }

@@ -2,7 +2,6 @@ package com.se128.jupiter.controller;
 
 import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
-import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.GoodsService;
 import com.se128.jupiter.util.constant.Constant;
 import com.se128.jupiter.util.logutils.LogUtil;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Map;
 
@@ -30,12 +30,34 @@ public class GoodsController {
         this.goodsService = goodsService;
     }
 
+    @RequestMapping("/addGoods")
+    public Msg addGoods(@RequestBody Goods goods) {
+        LogUtil.info("addGoods");
+        goods.setBuyCounter(0);
+        goods.setViewCounter(0);
+        Goods goods1 = goodsService.addGoods(goods);
+        JSONObject data = JSONObject.fromObject(goods1);
+        return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
+    }
+
+    @RequestMapping("/deleteGoodsByGoodsId")
+    public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
+        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
+        LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
+        goodsService.deleteGoodsByGoodsId(goodsId);
+        return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
+    }
+
     @RequestMapping("/getGoodsByGoodsId")
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
         try {
             Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
             LogUtil.info("getGoodsByGoodsId = " + goodsId);
             Goods goods = goodsService.getGoodsByGoodsId(goodsId);
+            if(goods.getGoodsType()<0)
+            {
+                return MsgUtil.makeMsg(MsgCode.DATA_ERROR,"商品已下架");
+            }
             JSONObject data = JSONObject.fromObject(goods);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } catch (NumberFormatException e) {
@@ -71,33 +93,6 @@ public class GoodsController {
         return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
 
-    @RequestMapping("/editGoods")
-    public Msg editGoods(@RequestBody Goods goods) {
-        LogUtil.info("editGoods");
-        Goods goods1 = goodsService.editGoods(goods);
-        JSONObject data = JSONObject.fromObject(goods1);
-        return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
-    }
-
-    @RequestMapping("/addGoods")
-    public Msg addGoods(@RequestBody Goods goods) {
-        LogUtil.info("addGoods");
-        goods.setBuyCounter(0);
-        goods.setViewCounter(0);
-        Goods goods1 = goodsService.addGoods(goods);
-        JSONObject data = JSONObject.fromObject(goods1);
-        return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
-
-    }
-
-    @RequestMapping("/deleteGoodsByGoodsId")
-    public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
-        Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
-        LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
-        goodsService.deleteGoodsByGoodsId(goodsId);
-        return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
-    }
-
     @RequestMapping("/getPopularGoods")
     public Msg getPopularGoods(@RequestBody Map<String, String> params) {
         LogUtil.info("getPopularGoods");
@@ -113,6 +108,67 @@ public class GoodsController {
             }
         }
         return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+    }
+
+    @RequestMapping("/getRecommendGoods")
+    public Msg getRecommendGoods(@RequestBody Map<String, String> params) {
+        Integer number = Integer.valueOf(params.get(Constant.NUMBER));
+        String userId1 = params.get(Constant.USER_ID);
+        if(userId1 == null)
+        {
+            LogUtil.info("getRecommendGoodsInAll" + "number: "+number);
+            List<Goods> goods = goodsService.getRecommendGoodsInAll(number);
+            JSONArray jsonArray = JSONArray.fromObject(goods);
+            JSONObject data = new JSONObject();
+            data.put("goods",jsonArray.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        }
+        else {
+            Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
+            LogUtil.info("getRecommendGoodsByUserId" + userId +"number"+number);
+            List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId,number);
+            JSONArray jsonArray = JSONArray.fromObject(goods);
+            JSONObject data = new JSONObject();
+            data.put("goods",jsonArray.toString());
+            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
+        }
+    }
+
+    @RequestMapping("/editGoods")
+    public Msg editGoods(@RequestBody Goods goods) {
+        LogUtil.info("editGoods");
+        Goods goods1 = goodsService.editGoods(goods);
+        JSONObject data = JSONObject.fromObject(goods1);
+        return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
+    }
+
+    @RequestMapping("/addAuction")
+    public Msg addAuction(@RequestBody Map<String, String> params) {
+        LogUtil.info("addAuction");
+        Auction auction = new Auction();
+        Integer detailId = Integer.valueOf(params.get("detailId"));
+        Integer goodsId = Integer.valueOf(params.get("goodsId"));
+        Double startingPrice = Double.valueOf(params.get("startingPrice"));
+        Double addingPrice = Double.valueOf(params.get("addingPrice"));
+        String startTime = params.get("startTime");
+        Integer duration = Integer.valueOf(params.get("duration"));
+        auction.setStartingPrice(startingPrice);
+        auction.setAddingPrice(addingPrice);
+        auction.setStartTime(startTime);
+        auction.setDuration(duration);
+        auction.setUserId(-1);
+        auction.setBestOffer(0.0);
+        Auction auction1 = goodsService.addAuction(auction,goodsId,detailId);
+        JSONObject data = JSONObject.fromObject(auction1);
+        return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
+    }
+
+    @RequestMapping("/deleteAuctionByAuctionId")
+    public Msg deleteAuctionByAuctionId(@RequestBody Map<String, String> params) {
+        Integer auctionId = Integer.valueOf(params.get("auctionId"));
+        LogUtil.info("deleteAuctionByAuctionId");
+        goodsService.deleteAuctionByAuctionId(auctionId);
+        return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
     }
 
     @RequestMapping("/getAllAuctions")
@@ -156,29 +212,14 @@ public class GoodsController {
             }
     }
 
-    @RequestMapping("/getRecommendGoods")
-    public Msg getRecommendGoods(@RequestBody Map<String, String> params) {
-        Integer number = Integer.valueOf(params.get(Constant.NUMBER));
-        String userId1 = params.get(Constant.USER_ID);
-        if(userId1 == null)
-        {
-            LogUtil.info("getRecommendGoodsInAll" + "number: "+number);
-            List<Goods> goods = goodsService.getRecommendGoodsInAll(number);
-            JSONArray jsonArray = JSONArray.fromObject(goods);
-            JSONObject data = new JSONObject();
-            data.put("goods",jsonArray.toString());
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        }
-        else {
-            Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-            LogUtil.info("getRecommendGoodsByUserId" + userId +"number"+number);
-            List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId,number);
-            JSONArray jsonArray = JSONArray.fromObject(goods);
-            JSONObject data = new JSONObject();
-            data.put("goods",jsonArray.toString());
-            return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        }
+    @RequestMapping("/editAuction")
+    public Msg editAuction(@RequestBody Auction auction) {
+        LogUtil.info("editAuction");
+        Auction auction1 = goodsService.editAuction(auction);
+        JSONObject data = JSONObject.fromObject(auction1);
+        return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
     }
+
 }
 
 

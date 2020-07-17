@@ -1,18 +1,17 @@
 package com.se128.jupiter.service.serviceImpl;
 
-import com.jayway.jsonpath.internal.function.numeric.Max;
 import com.se128.jupiter.dao.AuctionDao;
 import com.se128.jupiter.dao.GoodsDao;
 import com.se128.jupiter.dao.UserDao;
 import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.GoodsDetail;
 import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 @Service
@@ -133,5 +132,24 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> getRecommendGoodsInAll(Integer number) {
         return goodsDao.getRecommendGoodsInAll(number);
+    }
+
+    @Override
+    public Auction addAuction(Auction auction,Integer goodsId, Integer detailId) {
+        Goods goods = goodsDao.getGoodsByGoodsId(goodsId);
+        GoodsDetail detail = goodsDao.getGoodsDetailByDetailId(detailId);
+        auction.setGoods(goods);
+        auction.setGoodsDetail(detail);
+        return auctionDao.addAuction(auction);
+    }
+
+    @Override
+    public void deleteAuctionByAuctionId(Integer auctionId) {
+        auctionDao.deleteAuctionByAuctionId(auctionId);
+    }
+
+    @Override
+    public Auction editAuction(Auction auction) {
+        return auctionDao.editAuction(auction);
     }
 }

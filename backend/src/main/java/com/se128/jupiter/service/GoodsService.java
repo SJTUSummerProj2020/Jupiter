@@ -37,4 +37,11 @@ public interface GoodsService {
     List<Goods> getRecommendGoodsByUserId(Integer userId, Integer number);
 
     List<Goods> getRecommendGoodsInAll(Integer number);
+
+
+    void deleteAuctionByAuctionId(Integer auctionId);
+
+    Auction editAuction(Auction auction);
+
+    Auction addAuction(Auction auction, Integer goodsId, Integer detailId);
 }

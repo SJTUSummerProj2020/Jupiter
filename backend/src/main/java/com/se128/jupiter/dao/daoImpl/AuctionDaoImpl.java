@@ -20,7 +20,9 @@ public class AuctionDaoImpl implements AuctionDao {
 
     @Override
     public List<Auction> getAllAuctions() {
-        return auctionRepository.findAll();
+        List<Auction> auctions = auctionRepository.findAll();
+        auctions.removeIf(item -> item.getDuration() < 0);
+        return auctions;
     }
 
     @Override
@@ -30,6 +32,23 @@ public class AuctionDaoImpl implements AuctionDao {
 
     @Override
     public Auction saveAuction(Auction auction) {
+        return auctionRepository.saveAndFlush(auction);
+    }
+
+    @Override
+    public Auction addAuction(Auction auction){
+        return auctionRepository.saveAndFlush(auction);
+    }
+
+    @Override
+    public void deleteAuctionByAuctionId(Integer auctionId) {
+        Auction auction = auctionRepository.getAuctionByAuctionId(auctionId);
+        auction.setDuration(-1);
+        auctionRepository.saveAndFlush(auction);
+    }
+
+    @Override
+    public Auction editAuction(Auction auction) {
         return auctionRepository.saveAndFlush(auction);
     }
 }

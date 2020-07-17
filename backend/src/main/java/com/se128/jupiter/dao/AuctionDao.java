@@ -10,4 +10,10 @@ public interface AuctionDao {
     Auction getAuctionByAuctionId(Integer auctionId);
 
     Auction saveAuction(Auction auction);
+
+    Auction addAuction(Auction auction);
+
+    void deleteAuctionByAuctionId(Integer auctionId);
+
+    Auction editAuction(Auction auction);
 }
