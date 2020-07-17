@@ -33,7 +33,6 @@ public class OrderDaoImpl implements OrderDao {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public Order addOrder(Order order,Integer detailId) {
         GoodsDetail goodsDetail = goodsDetailRepository.getGoodsDetailByDetailId(detailId);

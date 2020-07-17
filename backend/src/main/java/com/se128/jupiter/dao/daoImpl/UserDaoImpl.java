@@ -76,6 +76,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User editUser(User user) {
+        User user1 = userRepository.getUserByUserId(user.getUserId());
+        user1.setBuy0(user.getBuy0());
+        user1.setBuy1(user.getBuy1());
+        user1.setBuy2(user.getBuy2());
+        user1.setBuy3(user.getBuy3());
+        user1.setUserType(user.getUserType());
+        user1.setUsername(user1.getUsername());
+        user1.setPhone(user.getPhone());
+        user1.setPassword(user.getPassword());
         return userRepository.saveAndFlush(user);
     }
 }

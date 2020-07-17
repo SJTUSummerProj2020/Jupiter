@@ -51,3 +51,16 @@
     margin-bottom: 10px;
 
 }
+
+.canceled{
+    color: #91348b;
+}
+
+.classificationGroup{
+    float: left;
+    margin-right: 280px;
+}
+
+.actionButtons{
+    float:right;
+}

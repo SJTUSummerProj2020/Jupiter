@@ -61,6 +61,25 @@ class OrderControllerTest {
         } catch (Exception e){
             e.printStackTrace();
         }
+        try{
+            String userId = "1";
+            String detailId = "1919";
+            String number = "2";
+            JSONObject param = new JSONObject();
+            param.put("userId", userId);
+            param.put("detailId", detailId);
+            param.put("number", number);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/addOrder")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test

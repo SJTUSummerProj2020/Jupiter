@@ -62,7 +62,7 @@ public class UserController {
     public Msg editUser(@RequestBody User user) {
         LogUtil.info("editUser");
         User user1 = userService.editUser(user);
-        JSONObject data = JSONObject.fromObject(user);
+        JSONObject data = JSONObject.fromObject(user1);
         return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
     }
 
@@ -82,13 +82,11 @@ public class UserController {
         String username = params.get(Constant.USERNAME);
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
-        if(user==null)
-        {
-            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.LOGIN_USER_ERROR_MSG);
+        if (user == null) {
+            return MsgUtil.makeMsg(MsgCode.ERROR, MsgUtil.LOGIN_USER_ERROR_MSG);
         }
-        if(user.getUserType()==-1)
-        {
-            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.BAN_USER_ERROR_MSG);
+        if (user.getUserType() == -1) {
+            return MsgUtil.makeMsg(MsgCode.ERROR, MsgUtil.BAN_USER_ERROR_MSG);
         }
         JSONObject obj = new JSONObject();
         obj.put(Constant.USER_ID, user.getUserId());
@@ -136,7 +134,7 @@ public class UserController {
         JSONArray orderList = JSONArray.fromObject(orders);
         JSONObject data = new JSONObject();
         data.put("order", orderList);
-        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
+        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
 
     @RequestMapping("/getAllUsers")

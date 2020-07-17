@@ -597,7 +597,7 @@ class GoodsControllerTest {
         auction.setStartTime("2020-07-16 10:00:00");
         auction.setStartingPrice(160.0);
         auction.setUserId(1);
-        
+
     }
 
 }
