@@ -156,7 +156,7 @@ public class GoodsController {
         auction.setAddingPrice(addingPrice);
         auction.setStartTime(startTime);
         auction.setDuration(duration);
-        auction.setUserId(-1);
+        auction.setUserId(1);
         auction.setBestOffer(0.0);
         Auction auction1 = goodsService.addAuction(auction,goodsId,detailId);
         JSONObject data = JSONObject.fromObject(auction1);
