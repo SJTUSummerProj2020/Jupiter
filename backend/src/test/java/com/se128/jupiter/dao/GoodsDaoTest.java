@@ -235,6 +235,9 @@ class GoodsDaoTest {
         goodsDetail.setDetailId(detailId);
         when(goodsDetailRepository.getGoodsDetailByDetailId(detailId)).thenReturn(goodsDetail);
         assertEquals(goodsDetail, goodsDao.getGoodsDetailByDetailId(detailId));
+
+        doThrow(new RuntimeException("异常")).when(goodsDetailRepository).getGoodsDetailByDetailId(detailId);
+        goodsDao.getGoodsDetailByDetailId(detailId);
     }
 
     @Test
