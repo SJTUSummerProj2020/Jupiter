@@ -149,7 +149,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Auction editAuction(Auction auction) {
+    public Auction editAuction(Auction auction, Integer detailId, Integer goodsId) {
+        Goods goods = goodsDao.getGoodsByGoodsId(goodsId);
+        GoodsDetail detail = goodsDao.getGoodsDetailByDetailId(detailId);
+        auction.setGoods(goods);
+        auction.setGoodsDetail(detail);
         return auctionDao.editAuction(auction);
     }
 }

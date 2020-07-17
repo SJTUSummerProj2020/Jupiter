@@ -593,7 +593,34 @@ class GoodsControllerTest {
     @Transactional
     @Rollback(value = true)
     void editAuction(){
+        Integer auctionId = 1;
+        Integer detailId = 11817;
+        Integer goodsId = 2679;
+        Double startingPrice = 100.0;
+        Double addingPrice = 10.0;
+        String startTime = "2020-07-16 10:00:00";
+        Integer duration = 1;
+        JSONObject param = new JSONObject();
+        param.put("auctionId",auctionId);
+        param.put("detailId", detailId);
+        param.put("goodsId", goodsId);
+        param.put("startingPrice", startingPrice);
+        param.put("addingPrice", addingPrice);
+        param.put("startTime", startTime);
+        param.put("duration", duration);
 
+        try{
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/editAuction")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
