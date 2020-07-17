@@ -226,4 +226,13 @@ class GoodsDaoTest {
     @Test
     void getAuctionByAuctionId() {
     }
+
+    @Test
+    void getGoodsDetailByDetailId() {
+        Integer detailId = 1945;
+        GoodsDetail goodsDetail = new GoodsDetail();
+        goodsDetail.setDetailId(detailId);
+        when(goodsDetailRepository.getGoodsDetailByDetailId(detailId)).thenReturn(goodsDetail);
+        assertEquals(goodsDetail, goodsDao.getGoodsDetailByDetailId(detailId));
+    }
 }
