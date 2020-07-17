@@ -212,8 +212,23 @@ public class GoodsController {
     }
 
     @RequestMapping("/editAuction")
-    public Msg editAuction(@RequestBody Auction auction) {
+    public Msg editAuction(@RequestBody Map<String, String> params) {
         LogUtil.info("editAuction");
+        Auction auction = new Auction();
+        Integer auctionId = Integer.valueOf(params.get("auctionId"));
+        Integer detailId = Integer.valueOf(params.get("detailId"));
+        Integer goodsId = Integer.valueOf(params.get("goodsId"));
+        Double startingPrice = Double.valueOf(params.get("startingPrice"));
+        Double addingPrice = Double.valueOf(params.get("addingPrice"));
+        String startTime = params.get("startTime");
+        Integer duration = Integer.valueOf(params.get("duration"));
+        auction.setAuctionId(auctionId);
+        auction.setStartingPrice(startingPrice);
+        auction.setAddingPrice(addingPrice);
+        auction.setStartTime(startTime);
+        auction.setDuration(duration);
+        auction.setUserId(1);
+        auction.setBestOffer(0.0);
         Auction auction1 = goodsService.editAuction(auction);
         JSONObject data = JSONObject.fromObject(auction1);
         return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
