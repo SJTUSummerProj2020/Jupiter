@@ -2,6 +2,8 @@ package com.se128.jupiter.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.se128.jupiter.entity.Auction;
+import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.GoodsDetail;
 import com.se128.jupiter.service.GoodsService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -588,15 +590,9 @@ class GoodsControllerTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(value = true)
     void editAuction(){
-        Auction auction = new Auction();
-        auction.setAuctionId(1);
-        auction.setAddingPrice(10.0);
-        auction.setBestOffer(170.0);
-        auction.setDuration(1);
-        auction.setStartTime("2020-07-16 10:00:00");
-        auction.setStartingPrice(160.0);
-        auction.setUserId(1);
 
     }
 
