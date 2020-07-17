@@ -32,7 +32,6 @@ export class RecommendationList extends React.Component{
 
     componentWillReceiveProps(nextProps,nextContext){
         let loggedIn = nextProps.loggedIn;
-        let userId = nextProps.user.userId;
         const callback = (data) => {
             this.setState(
                 {
@@ -41,6 +40,7 @@ export class RecommendationList extends React.Component{
             );
         };
         if(loggedIn){
+            let userId = nextProps.user.userId;
             const data = {number:10,userId:userId};
             getRecommendGoods(data,callback);
         }
