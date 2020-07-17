@@ -1,0 +1,81 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserDao</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.dao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserDao (com.se128.jupiter.dao)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">UserDao$MockitoMock$182027954</td>
+  </tr>
+  <tr>
+    <td class="name">UserDao$MockitoMock$182027954$auxiliary$NeteguXF</td>
+  </tr>
+  <tr>
+    <td class="name">UserDao$MockitoMock$182027954$auxiliary$Q934ktVQ</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.dao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.se128.jupiter.entity.Order;
+<i>4</i>&nbsp;import com.se128.jupiter.entity.User;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public interface UserDao {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    User getUserByUserId(Integer userId);
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    User getUserByUsernameAndPassword(String username, String password);
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    User addUser(User user);
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    List&lt;Order&gt; getOrdersByUserId(Integer userId);
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    List&lt;User&gt; getAllUsers();
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    User changeUserStatusByUserId(Integer userId);
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    User saveUser(User user);
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    User editUser(User user);
+<i>25</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>

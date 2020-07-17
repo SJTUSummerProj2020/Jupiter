@@ -1,0 +1,75 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GoodsDetailRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GoodsDetailRepository (com.se128.jupiter.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">GoodsDetailRepository$MockitoMock$592821695</td>
+  </tr>
+  <tr>
+    <td class="name">GoodsDetailRepository$MockitoMock$592821695$auxiliary$Tuk1li3u</td>
+  </tr>
+  <tr>
+    <td class="name">GoodsDetailRepository$MockitoMock$592821695$auxiliary$xm6nisjU</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.se128.jupiter.entity.GoodsDetail;
+<i>4</i>&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+<i>5</i>&nbsp;import org.springframework.data.jpa.repository.Modifying;
+<i>6</i>&nbsp;import org.springframework.data.jpa.repository.Query;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import javax.transaction.Transactional;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;public interface GoodsDetailRepository extends JpaRepository&lt;GoodsDetail,Integer&gt; {
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    @Transactional
+<i>13</i>&nbsp;    @Modifying
+<i>14</i>&nbsp;    @Query(value =&quot;delete from GoodsDetail where goods_id = ?1&quot;, nativeQuery = true)
+<i>15</i>&nbsp;    void deleteByGoodsId(Integer goodsId);
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    
+<i>18</i>&nbsp;    GoodsDetail getGoodsDetailByDetailId(Integer detailId);
+<i>19</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>
