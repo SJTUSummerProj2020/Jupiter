@@ -103,6 +103,11 @@ export class Header extends React.Component{
                 </Link>
             </Menu.Item>
             <Menu.Item>
+                <Link to={{pathname:'/adminGoods'}}>
+                    票务管理
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
                 <div onClick={this.logout}>
                     退出登录
                 </div>
@@ -118,7 +123,6 @@ export class Header extends React.Component{
                 <Link to={{pathname:'/'}}>
                     <div className="logo">
                         <img src={[require("../assets/planet.png")]} width={80} height={80} alt="Website logo"/>
-                        {/*<img src={[require("../assets/logo2.png")]} width={200} height={80} alt="Website logo"/>*/}
                     </div>
                 </Link>
                 <div className="navigationList">
@@ -132,7 +136,11 @@ export class Header extends React.Component{
                             分类
                         </li>
                     </Link>
-
+                    <Link to={{pathname:'/auctionList'}}>
+                        <li className="navigation">
+                            竞拍
+                        </li>
+                    </Link>
                 </div>
                 <div className="searchBarContainer">
                     <SearchBar/>

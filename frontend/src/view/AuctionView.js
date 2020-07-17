@@ -2,8 +2,6 @@ import React from "react";
 import {Header} from "../components/Header";
 import{AuctionCard} from "../components/AuctionCard";
 import {Col, Row} from "antd";
-import {DetailShowTab} from "../components/DetailShowTab";
-import {DetailRecommend} from "../components/DetailRecommend";
 import {getAuctionByAuctionId} from "../services/goodsService";
 
 let tmpId = null;
@@ -40,14 +38,6 @@ export class AuctionView extends React.Component{
             <Row align="top" gutter={16}>
                 <Header/>
                 <AuctionCard info={auctionData}/>
-                <Row align = "top" gutter={16}>
-                    <Col span={16}>
-                        {/*<DetailShowTab/>*/}
-                    </Col>
-                    <Col span={4}>
-                        <DetailRecommend/>
-                    </Col>
-                </Row>
             </Row>
         );
     }

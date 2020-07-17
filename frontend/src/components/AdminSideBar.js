@@ -3,6 +3,9 @@ import { Menu } from 'antd';
 import {Link} from 'react-router-dom';
 
 export class AdminSideBar extends React.Component{
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return(
@@ -20,6 +23,11 @@ export class AdminSideBar extends React.Component{
                 <Menu.Item key="2">
                     <Link to={{pathname:"/adminOrderList"}}>
                         系统订单
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                    <Link to={{pathname:"/adminGoods"}}>
+                        票务管理
                     </Link>
                 </Menu.Item>
             </Menu>

@@ -10,7 +10,7 @@ import {DetailGoodsList} from "../components/DetailGoodsList";
 export class AuctionListView extends React.Component{
     constructor(props) {
         super(props);
-        this.state={auctionList:[],currentPage:1,pageSize:10,totalSize:0,haveLoaded:[]}
+        this.state={auctionList:[],currentPage:1,pageSize:10,totalSize:0,haveLoaded:[]};
     }
 
     componentDidMount() {

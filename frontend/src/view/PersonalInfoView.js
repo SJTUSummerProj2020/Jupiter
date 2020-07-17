@@ -2,8 +2,9 @@ import React from 'react';
 import {Header} from "../components/Header";
 import "../css/header.css";
 import {PersonalInfoSidebar} from "../components/PersonalInfo";
-import {Col, Row} from "antd";
+import {Col, message, Row} from "antd";
 import {checkSession} from "../services/userService";
+import {history} from "../utils/history";
 
 export class PersonalInfoView extends React.Component{
     constructor(props) {
@@ -19,6 +20,10 @@ export class PersonalInfoView extends React.Component{
                         user:data.data
                     }
                 )
+            }
+            else{
+                message.warning(data.msg);
+                history.push('/login');
             }
         };
         checkSession(callback);
