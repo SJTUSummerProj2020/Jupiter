@@ -1,3 +1,4 @@
+const fetch = require("node-fetch");
 let postRequest = (url, json, callback) => {
 
     let opts = {
