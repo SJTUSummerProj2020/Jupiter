@@ -5,7 +5,18 @@ import{DetailShowTab} from "../components/DetailShowTab";
 import{Recommendation} from "../components/Recommendation";
 import { Row, Col,Card,Tabs} from 'antd';
 import {getGoodsByGoodsId} from "../services/goodsService";
-import {checkSession} from "../services/userService";
+import "../css/detailview.css";
+
+// const data = {
+//     image:require('../assets/goods/10.png'),
+//     name:"管他是谁的演唱会",
+//     start_time:"2020.07.10",
+//     end_time:"2020.07.18",
+//     address:"上海市 | 生活实验室小剧场 ",
+//     time_list:[{time:"2020.07.10 星期三 08:30"},{time:"2020.07.12 星期五 18:30"},
+//         {time:"2020.07.14 星期日 20:00"},{time:"2020.07.18 星期三 18：00"}],
+//     ticket_type:[{content:"内场前排",price:1980.00},{content: "外场前排",price:880.00},{content:"外场后排",price:380.00}]
+//     };
 
 const ticketsData = {
     "address": "场馆：上海市 | 生活实验室小剧场",
@@ -43,8 +54,6 @@ export class DetailView extends React.Component {
         this.state={
             goodsId:null,
             goodsData:null,
-            loggedIn:false,
-            user:null
         };
     }
     componentDidMount() {
@@ -62,15 +71,6 @@ export class DetailView extends React.Component {
         }
         const requestData = {goodsId:tmpId};
         getGoodsByGoodsId(requestData,callback);
-        const checkSession_callback = (data) => {
-            if(data.status === 0){
-                this.setState({
-                    loggedIn:true,
-                    user:data.data
-                })
-            }
-        };
-        checkSession(checkSession_callback);
     }
 
     render(){
@@ -81,20 +81,14 @@ export class DetailView extends React.Component {
             return null;
         return(
             <Row align="top" gutter={16}>
-                <Header
-                    loggedIn={this.state.loggedIn}
-                    user={this.state.user}
-                />
+                <Header/>
                 <DetailCard info={tmpId} />
                 <Row align = "top" gutter={16}>
                     <Col span={16}>
                         <DetailShowTab info={goodsData}/>
                     </Col>
-                    <Col span={4} offset={3}>
-                        <Recommendation
-                            loggedIn={this.state.loggedIn}
-                            user={this.state.user}
-                        />
+                    <Col className={"recommend"}>
+                        <Recommendation/>
                     </Col>
                 </Row>
             </Row>
