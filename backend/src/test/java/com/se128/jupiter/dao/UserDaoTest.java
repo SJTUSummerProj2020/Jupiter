@@ -114,4 +114,12 @@ class UserDaoTest {
         when(userRepository.getUserByUserId(userId)).thenReturn(null);
         assertNull(userDao.changeUserStatusByUserId(userId));
     }
+
+    @Test
+    void saveUser(){
+        User user = new User();
+
+        when(userRepository.saveAndFlush(user)).thenReturn(user);
+        assertEquals(user, userDao.saveUser(user));
+    }
 }

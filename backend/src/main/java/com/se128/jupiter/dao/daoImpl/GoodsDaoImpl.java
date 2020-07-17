@@ -32,15 +32,24 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public Goods getGoodsByGoodsId(Integer goodsId) {
+        Detail detail;
         Goods goods = goodsRepository.getGoodsByGoodsId(goodsId);
-        Detail detail = detailRepository.getDetailByGoodsId(goodsId);
-        goods.setDetail(detail.getDetail());
+        try{
+            detail = detailRepository.getDetailByGoodsId(goodsId);
+            goods.setDetail(detail.getDetail());
+        }catch(Exception e){
+        }
         return goods;
     }
 
     @Override
     public GoodsDetail getGoodsDetailByDetailId(Integer detailId) {
-        GoodsDetail detail = goodsDetailRepository.getGoodsDetailByDetailId(detailId);
+        GoodsDetail detail;
+        try{
+            detail = goodsDetailRepository.getGoodsDetailByDetailId(detailId);
+        }catch(Exception e){
+            detail = null;
+        }
         return detail;
     }
 

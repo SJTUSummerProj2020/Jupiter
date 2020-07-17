@@ -3,8 +3,10 @@ package com.se128.jupiter.service;
 import com.se128.jupiter.dao.AuctionDao;
 import com.se128.jupiter.dao.GoodsDao;
 import com.se128.jupiter.dao.OrderDao;
+import com.se128.jupiter.dao.UserDao;
 import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
+import com.se128.jupiter.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,8 @@ class GoodsServiceTest {
     private GoodsDao goodsDao;
     @MockBean
     private AuctionDao auctionDao;
+    @MockBean
+    private UserDao userDao;
 
     @Test
     void getGoodsByGoodsId() {
@@ -208,5 +212,33 @@ class GoodsServiceTest {
         when(auctionDao.getAuctionByAuctionId(auctionId)).thenReturn(auction);
         when(auctionDao.saveAuction(auction)).thenReturn(auction);
         assertEquals(auction, goodsService.updateAuction(auctionId, userId, newOffer));
+    }
+
+    @Test
+    void getRecommendGoodsByUserId(){
+        Integer userId = 1;
+        int boughtNum = 1;
+        Integer goodsType = 3;
+        Integer number = 10;
+        User user = new User();
+        user.setUserId(userId);
+        user.setBuy0(boughtNum);
+        user.setBuy1(boughtNum + 1);
+        user.setBuy2(boughtNum + 2);
+        user.setBuy3(boughtNum + 3);
+        List<Goods> goodsList = new ArrayList<>();
+
+        when(userDao.getUserByUserId(userId)).thenReturn(user);
+        when(goodsDao.getRecommendGoodsByGoodsType(goodsType, number)).thenReturn(goodsList);
+        assertEquals(goodsList, goodsService.getRecommendGoodsByUserId(userId, number));
+    }
+
+    @Test
+    void getRecommendGoodsInAll(){
+        Integer number = 10;
+        List<Goods> goodsList = new ArrayList<>();
+
+        when(goodsDao.getRecommendGoodsInAll(number)).thenReturn(goodsList);
+        assertEquals(goodsList, goodsService.getRecommendGoodsInAll(number));
     }
 }
