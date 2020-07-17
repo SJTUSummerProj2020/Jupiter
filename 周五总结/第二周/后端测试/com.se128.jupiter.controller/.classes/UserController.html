@@ -1,0 +1,233 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.controller</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserController (com.se128.jupiter.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.6%
+  </span>
+  <span class="absValue">
+    (68/ 69)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.controller;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.se128.jupiter.entity.Order;
+<i>4</i>&nbsp;import com.se128.jupiter.entity.User;
+<i>5</i>&nbsp;import com.se128.jupiter.service.UserService;
+<i>6</i>&nbsp;import com.se128.jupiter.util.constant.Constant;
+<i>7</i>&nbsp;import com.se128.jupiter.util.logutils.LogUtil;
+<i>8</i>&nbsp;import com.se128.jupiter.util.msgutils.Msg;
+<i>9</i>&nbsp;import com.se128.jupiter.util.msgutils.MsgCode;
+<i>10</i>&nbsp;import com.se128.jupiter.util.msgutils.MsgUtil;
+<i>11</i>&nbsp;import com.se128.jupiter.util.sessionutils.SessionUtil;
+<i>12</i>&nbsp;import net.sf.json.JSONArray;
+<i>13</i>&nbsp;import net.sf.json.JSONObject;
+<i>14</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>15</i>&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+<i>16</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>17</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import java.util.List;
+<i>20</i>&nbsp;import java.util.Map;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;@RestController
+<i>23</i>&nbsp;public class UserController {
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    private final UserService userService;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @Autowired
+<b class="fc"><i>28</i>&nbsp;    public UserController(UserService userService) {</b>
+<b class="fc"><i>29</i>&nbsp;        this.userService = userService;</b>
+<b class="fc"><i>30</i>&nbsp;    }</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;    @RequestMapping(&quot;/register&quot;)
+<i>33</i>&nbsp;    public Msg register(@RequestBody User user) {
+<b class="fc"><i>34</i>&nbsp;        LogUtil.info(&quot;register&quot;);</b>
+<b class="fc"><i>35</i>&nbsp;        user.setUserType(Constant.Customer);</b>
+<b class="fc"><i>36</i>&nbsp;        user.setBuy0(0);</b>
+<b class="fc"><i>37</i>&nbsp;        user.setBuy1(0);</b>
+<b class="fc"><i>38</i>&nbsp;        user.setBuy2(0);</b>
+<b class="fc"><i>39</i>&nbsp;        user.setBuy3(0);</b>
+<b class="fc"><i>40</i>&nbsp;        User user1 = userService.addUser(user);</b>
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;        if (user1 != null) {</b>
+<b class="nc"><i>43</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.REGISTER_SUCCESS_MSG);</b>
+<i>44</i>&nbsp;        } else {
+<b class="fc"><i>45</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.REGISTER_USER_ERROR);</b>
+<i>46</i>&nbsp;        }
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    @RequestMapping(&quot;/changeUserStatusByUserId&quot;)
+<i>50</i>&nbsp;    public Msg changeUserStatusByUserId(@RequestBody Map&lt;String, String&gt; params) {
+<b class="fc"><i>51</i>&nbsp;        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));</b>
+<b class="fc"><i>52</i>&nbsp;        LogUtil.info(&quot;changeUserStatusByUserId = &quot; + userId);</b>
+<b class="fc"><i>53</i>&nbsp;        User user = userService.changeUserStatusByUserId(userId);</b>
+<b class="fc"><i>54</i>&nbsp;        if (user != null) {</b>
+<b class="fc"><i>55</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);</b>
+<i>56</i>&nbsp;        } else {
+<b class="fc"><i>57</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);</b>
+<i>58</i>&nbsp;        }
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    @RequestMapping(&quot;/editUser&quot;)
+<i>62</i>&nbsp;    public Msg editUser(@RequestBody User user) {
+<b class="fc"><i>63</i>&nbsp;        LogUtil.info(&quot;editUser&quot;);</b>
+<b class="fc"><i>64</i>&nbsp;        User user1 = userService.editUser(user);</b>
+<b class="fc"><i>65</i>&nbsp;        JSONObject data = JSONObject.fromObject(user1);</b>
+<b class="fc"><i>66</i>&nbsp;        return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    @RequestMapping(&quot;/getUserById&quot;)
+<i>70</i>&nbsp;    public Msg getUserById(@RequestBody Map&lt;String, String&gt; params) {
+<i>71</i>&nbsp;
+<b class="fc"><i>72</i>&nbsp;        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));</b>
+<b class="fc"><i>73</i>&nbsp;        LogUtil.info(&quot;getUserById = &quot; + userId);</b>
+<b class="fc"><i>74</i>&nbsp;        User user = userService.getUserByUserId(userId);</b>
+<b class="fc"><i>75</i>&nbsp;        JSONObject data = JSONObject.fromObject(user);</b>
+<b class="fc"><i>76</i>&nbsp;        return MsgUtil.makeMsg(MsgCode.SUCCESS, data);</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    @RequestMapping(&quot;/login&quot;)
+<i>80</i>&nbsp;    public Msg login(@RequestBody Map&lt;String, String&gt; params) {
+<b class="fc"><i>81</i>&nbsp;        LogUtil.info(&quot;login&quot;);</b>
+<b class="fc"><i>82</i>&nbsp;        String username = params.get(Constant.USERNAME);</b>
+<b class="fc"><i>83</i>&nbsp;        String password = params.get(Constant.PASSWORD);</b>
+<b class="fc"><i>84</i>&nbsp;        User user = userService.getUserByUsernameAndPassword(username, password);</b>
+<b class="fc"><i>85</i>&nbsp;        if (user == null) {</b>
+<b class="fc"><i>86</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.ERROR, MsgUtil.LOGIN_USER_ERROR_MSG);</b>
+<i>87</i>&nbsp;        }
+<b class="fc"><i>88</i>&nbsp;        if (user.getUserType() == -1) {</b>
+<b class="fc"><i>89</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.ERROR, MsgUtil.BAN_USER_ERROR_MSG);</b>
+<i>90</i>&nbsp;        }
+<b class="fc"><i>91</i>&nbsp;        JSONObject obj = new JSONObject();</b>
+<b class="fc"><i>92</i>&nbsp;        obj.put(Constant.USER_ID, user.getUserId());</b>
+<b class="fc"><i>93</i>&nbsp;        obj.put(Constant.USERNAME, user.getUsername());</b>
+<b class="fc"><i>94</i>&nbsp;        obj.put(Constant.USER_TYPE, user.getUserType());</b>
+<b class="fc"><i>95</i>&nbsp;        SessionUtil.setSession(obj);</b>
+<i>96</i>&nbsp;
+<b class="fc"><i>97</i>&nbsp;        JSONObject data = JSONObject.fromObject(user);</b>
+<b class="fc"><i>98</i>&nbsp;        data.remove(Constant.PASSWORD);</b>
+<b class="fc"><i>99</i>&nbsp;        data.remove(Constant.ORDERS);</b>
+<b class="fc"><i>100</i>&nbsp;        data.remove(Constant.PHONE);</b>
+<i>101</i>&nbsp;
+<b class="fc"><i>102</i>&nbsp;        return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);</b>
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    @RequestMapping(&quot;/logout&quot;)
+<i>107</i>&nbsp;    public Msg logout() {
+<b class="fc"><i>108</i>&nbsp;        LogUtil.info(&quot;logout&quot;);</b>
+<b class="fc"><i>109</i>&nbsp;        Boolean status = SessionUtil.removeSession();</b>
+<b class="fc"><i>110</i>&nbsp;        if (status) {</b>
+<b class="fc"><i>111</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGOUT_SUCCESS_MSG);</b>
+<i>112</i>&nbsp;        }
+<b class="fc"><i>113</i>&nbsp;        return MsgUtil.makeMsg(MsgCode.ERROR, MsgUtil.LOGOUT_ERR_MSG);</b>
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;    @RequestMapping(&quot;/checkSession&quot;)
+<i>117</i>&nbsp;    public Msg checkSession() {
+<b class="fc"><i>118</i>&nbsp;        LogUtil.info(&quot;checkSession&quot;);</b>
+<b class="fc"><i>119</i>&nbsp;        JSONObject auth = SessionUtil.getAuth();</b>
+<i>120</i>&nbsp;
+<b class="fc"><i>121</i>&nbsp;        if (auth == null) {</b>
+<b class="fc"><i>122</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.NOT_LOGGED_IN_ERROR);</b>
+<i>123</i>&nbsp;        } else {
+<b class="fc"><i>124</i>&nbsp;            return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, auth);</b>
+<i>125</i>&nbsp;        }
+<i>126</i>&nbsp;    }
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;    @RequestMapping(&quot;/getOrdersByUserId&quot;)
+<i>129</i>&nbsp;    public Msg getOrdersByUserId(@RequestBody Map&lt;String, String&gt; params) {
+<b class="fc"><i>130</i>&nbsp;        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));</b>
+<b class="fc"><i>131</i>&nbsp;        LogUtil.info(&quot;getOrdersByUserId = &quot; + userId);</b>
+<b class="fc"><i>132</i>&nbsp;        List&lt;Order&gt; orders = userService.getOrdersByUserId(userId);</b>
+<i>133</i>&nbsp;
+<b class="fc"><i>134</i>&nbsp;        JSONArray orderList = JSONArray.fromObject(orders);</b>
+<b class="fc"><i>135</i>&nbsp;        JSONObject data = new JSONObject();</b>
+<b class="fc"><i>136</i>&nbsp;        data.put(&quot;order&quot;, orderList);</b>
+<b class="fc"><i>137</i>&nbsp;        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);</b>
+<i>138</i>&nbsp;    }
+<i>139</i>&nbsp;
+<i>140</i>&nbsp;    @RequestMapping(&quot;/getAllUsers&quot;)
+<i>141</i>&nbsp;    public Msg getAllUsers() {
+<b class="fc"><i>142</i>&nbsp;        LogUtil.info(&quot;getAllUsers&quot;);</b>
+<b class="fc"><i>143</i>&nbsp;        List&lt;User&gt; users = userService.getAllUsers();</b>
+<b class="fc"><i>144</i>&nbsp;        JSONObject data = new JSONObject();</b>
+<b class="fc"><i>145</i>&nbsp;        JSONArray orderList = JSONArray.fromObject(users);</b>
+<b class="fc"><i>146</i>&nbsp;        data.put(&quot;users&quot;, orderList.toString());</b>
+<b class="fc"><i>147</i>&nbsp;        return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);</b>
+<i>148</i>&nbsp;    }
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>
