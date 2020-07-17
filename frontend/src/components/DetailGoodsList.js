@@ -1,13 +1,12 @@
 import React from 'react';
-import {List, PageHeader, Button} from 'antd';
+import { List, PageHeader, Button} from 'antd';
 import {HomeOutlined, CalendarOutlined} from '@ant-design/icons';
 import '../css/detailgoodslist.css';
 import {Link} from 'react-router-dom';
 
-export class DetailGoodsList extends React.Component {
+export class DetailGoodsList extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {goodsList: [], currentType: -1, currentPage: 1, pageSize: 10}
     }
 
     getType = (type) => {
@@ -21,108 +20,84 @@ export class DetailGoodsList extends React.Component {
 
     render() {
         console.log(this.props.goodsList);
-        if (this.props.goodsList[(this.props.currentPage - 1) * 10] === null) {
+        if(this.props.goodsList[(this.props.currentPage - 1) * 10] === null){
             return null;
         }
-        return (
+        return(
             <div>
                 <PageHeader
                     title="分类"
                     className="site-page-header"
                     extra={[
                         <div className={"classificationGroup"} style={{float: "left"}}>
-                            {(() => {
-                                    switch (this.props.currentType) {
+                            {( ()=>{
+                                    switch(this.props.currentType){
                                         case 0:
-                                            return (
+                                            return(
                                                 <div>
-                                                    <Button key="4" type="text"
-                                                            onClick={this.getType.bind(this, -1)}>全部</Button>
-                                                    <Button key="0" type="primary"
-                                                            onClick={this.getType.bind(this, 0)}>演唱会</Button>
-                                                    <Button key="1" type="text"
-                                                            onClick={this.getType.bind(this, 1)}>话剧歌剧</Button>
-                                                    <Button key="2" type="text"
-                                                            onClick={this.getType.bind(this, 2)}>儿童亲子</Button>
-                                                    <Button key="3" type="text"
-                                                            onClick={this.getType.bind(this, 3)}>展览休闲</Button>
+                                                    <Button key="4" type="text"  onClick={this.getType.bind(this,-1)}>全部</Button>
+                                                    <Button key="0" type="text" type="primary" onClick={this.getType.bind(this,0)}>演唱会</Button>
+                                                    <Button key="1" type="text" onClick={this.getType.bind(this,1)}>话剧歌剧</Button>
+                                                    <Button key="2" type="text" onClick={this.getType.bind(this,2)}>儿童亲子</Button>
+                                                    <Button key="3" type="text" onClick={this.getType.bind(this,3)}>展览休闲</Button>
                                                 </div>
-                                            );
+                                            ) ;
+                                            break;
                                         case 1:
-                                            return (
+                                            return(
                                                 <div>
-                                                    <Button key="4" type="text"
-                                                            onClick={this.getType.bind(this, -1)}>全部</Button>
-                                                    <Button key="0" type="text"
-                                                            onClick={this.getType.bind(this, 0)}>演唱会</Button>
-                                                    <Button key="1" type="primary"
-                                                            onClick={this.getType.bind(this, 1)}>话剧歌剧</Button>
-                                                    <Button key="2" type="text"
-                                                            onClick={this.getType.bind(this, 2)}>儿童亲子</Button>
-                                                    <Button key="3" type="text"
-                                                            onClick={this.getType.bind(this, 3)}>展览休闲</Button>
+                                                    <Button key="4" type="text"  onClick={this.getType.bind(this,-1)}>全部</Button>
+                                                    <Button key="0" type="text"  onClick={this.getType.bind(this,0)}>演唱会</Button>
+                                                    <Button key="1" type="text" type="primary" onClick={this.getType.bind(this,1)}>话剧歌剧</Button>
+                                                    <Button key="2" type="text" onClick={this.getType.bind(this,2)}>儿童亲子</Button>
+                                                    <Button key="3" type="text" onClick={this.getType.bind(this,3)}>展览休闲</Button>
                                                 </div>
-                                            );
+                                            ) ;
+                                            break;
                                         case 2:
-                                            return (
+                                            return(
                                                 <div>
-                                                    <Button key="4" type="text"
-                                                            onClick={this.getType.bind(this, -1)}>全部</Button>
-                                                    <Button key="0" type="text"
-                                                            onClick={this.getType.bind(this, 0)}>演唱会</Button>
-                                                    <Button key="1" type="text"
-                                                            onClick={this.getType.bind(this, 1)}>话剧歌剧</Button>
-                                                    <Button key="2" type="primary"
-                                                            onClick={this.getType.bind(this, 2)}>儿童亲子</Button>
-                                                    <Button key="3" type="text"
-                                                            onClick={this.getType.bind(this, 3)}>展览休闲</Button>
+                                                    <Button key="4" type="text"  onClick={this.getType.bind(this,-1)}>全部</Button>
+                                                    <Button key="0" type="text"  onClick={this.getType.bind(this,0)}>演唱会</Button>
+                                                    <Button key="1" type="text"  onClick={this.getType.bind(this,1)}>话剧歌剧</Button>
+                                                    <Button key="2" type="text" type="primary" onClick={this.getType.bind(this,2)}>儿童亲子</Button>
+                                                    <Button key="3" type="text" onClick={this.getType.bind(this,3)}>展览休闲</Button>
                                                 </div>
-                                            );
+                                            ) ;
+                                            break;
                                         case 3:
-                                            return (
+                                            return(
                                                 <div>
-                                                    <Button key="4" type="text"
-                                                            onClick={this.getType.bind(this, -1)}>全部</Button>
-                                                    <Button key="0" type="text"
-                                                            onClick={this.getType.bind(this, 0)}>演唱会</Button>
-                                                    <Button key="1" type="text"
-                                                            onClick={this.getType.bind(this, 1)}>话剧歌剧</Button>
-                                                    <Button key="2" type="text"
-                                                            onClick={this.getType.bind(this, 2)}>儿童亲子</Button>
-                                                    <Button key="3" type="primary"
-                                                            onClick={this.getType.bind(this, 3)}>展览休闲</Button>
+                                                    <Button key="4" type="text"  onClick={this.getType.bind(this,-1)}>全部</Button>
+                                                    <Button key="0" type="text"  onClick={this.getType.bind(this,0)}>演唱会</Button>
+                                                    <Button key="1" type="text"  onClick={this.getType.bind(this,1)}>话剧歌剧</Button>
+                                                    <Button key="2" type="text"  onClick={this.getType.bind(this,2)}>儿童亲子</Button>
+                                                    <Button key="3" type="text" type="primary" onClick={this.getType.bind(this,3)}>展览休闲</Button>
                                                 </div>
                                             );
+                                            break;
                                         case -1:
-                                            return (
+                                            return(
                                                 <div>
-                                                    <Button key="4" type="primary"
-                                                            onClick={this.getType.bind(this, -1)}>全部</Button>
-                                                    <Button key="0" type="text"
-                                                            onClick={this.getType.bind(this, 0)}>演唱会</Button>
-                                                    <Button key="1" type="text"
-                                                            onClick={this.getType.bind(this, 1)}>话剧歌剧</Button>
-                                                    <Button key="2" type="text"
-                                                            onClick={this.getType.bind(this, 2)}>儿童亲子</Button>
-                                                    <Button key="3" type="text"
-                                                            onClick={this.getType.bind(this, 3)}>展览休闲</Button>
+                                                    <Button key="4" type="text"  type="primary" onClick={this.getType.bind(this,-1)}>全部</Button>
+                                                    <Button key="0" type="text"  onClick={this.getType.bind(this,0)}>演唱会</Button>
+                                                    <Button key="1" type="text"  onClick={this.getType.bind(this,1)}>话剧歌剧</Button>
+                                                    <Button key="2" type="text"  onClick={this.getType.bind(this,2)}>儿童亲子</Button>
+                                                    <Button key="3" type="text"  onClick={this.getType.bind(this,3)}>展览休闲</Button>
                                                 </div>
                                             );
+                                            break;
                                         default:
-                                            return (
+                                            return(
                                                 <div>
-                                                    <Button key="4" type="primary"
-                                                            onClick={this.getType.bind(this, -1)}>全部</Button>
-                                                    <Button key="0" type="text"
-                                                            onClick={this.getType.bind(this, 0)}>演唱会</Button>
-                                                    <Button key="1" type="text"
-                                                            onClick={this.getType.bind(this, 1)}>话剧歌剧</Button>
-                                                    <Button key="2" type="text"
-                                                            onClick={this.getType.bind(this, 2)}>儿童亲子</Button>
-                                                    <Button key="3" type="text"
-                                                            onClick={this.getType.bind(this, 3)}>展览休闲</Button>
+                                                    <Button key="4" type="text"  type="primary" onClick={this.getType.bind(this,-1)}>全部</Button>
+                                                    <Button key="0" type="text"  onClick={this.getType.bind(this,0)}>演唱会</Button>
+                                                    <Button key="1" type="text"  onClick={this.getType.bind(this,1)}>话剧歌剧</Button>
+                                                    <Button key="2" type="text"  onClick={this.getType.bind(this,2)}>儿童亲子</Button>
+                                                    <Button key="3" type="text"  onClick={this.getType.bind(this,3)}>展览休闲</Button>
                                                 </div>
                                             );
+                                            break;
                                     }
                                 }
                             )()}
@@ -155,8 +130,7 @@ export class DetailGoodsList extends React.Component {
                                     (
                                         <Link to={{
                                             pathname: '/detail',
-                                            search: '?id=' + item.goodsId
-                                        }}
+                                            search: '?id=' + item.goodsId}}
                                               target="_blank"
                                         >
                                             <div className={"detailGoods"}>
@@ -170,7 +144,7 @@ export class DetailGoodsList extends React.Component {
                                                     <div className={"detailGoodsName"}>
                                     <span>
                                         {
-                                            item.name.length > 23 ? item.name.substring(0, 23) + "..." : item.name
+                                            item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
                                         }
                                     </span>
                                                     </div>
@@ -193,9 +167,8 @@ export class DetailGoodsList extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Link>)
+                                        </Link>                                    )
                             }
-
                         </List.Item>
                     )}
                 />
