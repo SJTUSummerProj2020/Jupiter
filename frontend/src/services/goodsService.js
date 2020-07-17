@@ -35,3 +35,8 @@ export const getAuctionByAuctionId = (data,callback) =>{
     const url = `http://localhost:8080/getAuctionByAuctionId`;
     postRequest(url,data,callback);
 }
+
+export const updateAuction = (data,callback) =>{
+    const url = `http://localhost:8080/updateAuction`;
+    postRequest(url,data,callback);
+}
