@@ -33,6 +33,10 @@ public class UserController {
     public Msg register(@RequestBody User user) {
         LogUtil.info("register");
         user.setUserType(Constant.Customer);
+        user.setBuy0(0);
+        user.setBuy1(0);
+        user.setBuy2(0);
+        user.setBuy3(0);
         User user1 = userService.addUser(user);
 
         if (user1 != null) {
@@ -78,7 +82,14 @@ public class UserController {
         String username = params.get(Constant.USERNAME);
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
-
+        if(user==null)
+        {
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.LOGIN_USER_ERROR_MSG);
+        }
+        if(user.getUserType()==-1)
+        {
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.BAN_USER_ERROR_MSG);
+        }
         JSONObject obj = new JSONObject();
         obj.put(Constant.USER_ID, user.getUserId());
         obj.put(Constant.USERNAME, user.getUsername());
