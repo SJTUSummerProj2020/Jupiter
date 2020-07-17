@@ -23,9 +23,9 @@ public class Detail {
         this.goodsId = goodsId;
     }
 
-    public Integer getGoodsId() {
-        return goodsId;
-    }
+//    public Integer getGoodsId() {
+//        return goodsId;
+//    }
 
     public String getDetail() {
         return detail;
@@ -35,11 +35,11 @@ public class Detail {
         this.detail = detail;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
+//    public void setId(ObjectId id) {
+//        this.id = id;
+//    }
+//
+//    public ObjectId getId() {
+//        return id;
+//    }
 }

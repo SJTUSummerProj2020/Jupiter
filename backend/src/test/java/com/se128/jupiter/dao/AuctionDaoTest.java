@@ -64,4 +64,12 @@ class AuctionDaoTest {
         when(auctionRepository.saveAndFlush(auction)).thenReturn(auction);
         assertEquals(auction, auctionDao.saveAuction(auction));
     }
+
+    @Test
+    void editAuction() {
+        Auction auction = new Auction();
+
+        when(auctionRepository.saveAndFlush(auction)).thenReturn(auction);
+        assertEquals(auction, auctionDao.editAuction(auction));
+    }
 }
