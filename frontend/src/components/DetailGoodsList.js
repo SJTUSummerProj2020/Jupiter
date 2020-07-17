@@ -1,8 +1,10 @@
 import React from 'react';
-import { List, PageHeader, Button} from 'antd';
-import {HomeOutlined, CalendarOutlined} from '@ant-design/icons';
+import { List, PageHeader, Button, Menu, Dropdown} from 'antd';
+import {HomeOutlined, CalendarOutlined, DownOutlined, SettingOutlined} from '@ant-design/icons';
 import '../css/detailgoodslist.css';
 import {Link} from 'react-router-dom';
+import {message} from "antd";
+import {deleteGoodsByGoodsId} from "../services/goodsService";
 
 export class DetailGoodsList extends React.Component{
     constructor(props) {
@@ -16,6 +18,31 @@ export class DetailGoodsList extends React.Component{
     changePage = (page) => {
         this.props.changePage(page);
     }
+
+    deleteGoods = (goodsId) => {
+        console.log("Delete");
+        const data = {goodsId:goodsId};
+        const callback = (data) => {
+            message.warning(data.msg);
+        };
+        deleteGoodsByGoodsId(data,callback);
+    }
+
+    handleClick = (goodsId,e) => {
+        console.log(goodsId);
+        console.log(e);
+        switch(e.key){
+            case "1":
+                this.deleteGoods(goodsId);
+            case "2":
+                break;
+            case "3":
+                break;
+            default:
+                break;
+        }
+    }
+
 
 
     render() {
@@ -128,46 +155,81 @@ export class DetailGoodsList extends React.Component{
                                 item === null ?
                                     null :
                                     (
-                                        <Link to={{
-                                            pathname: '/detail',
-                                            search: '?id=' + item.goodsId}}
-                                              target="_blank"
-                                        >
                                             <div className={"detailGoods"}>
-                                                <img
-                                                    width={200}
-                                                    className={"detailGoodsImg"}
-                                                    alt="cover"
-                                                    src={item.image}
-                                                />
-                                                <div className={"detailGoodsDescription"}>
-                                                    <div className={"detailGoodsName"}>
+                                                <Link to={{
+                                                    pathname: '/detail',
+                                                    search: '?id=' + item.goodsId}}
+                                                      target="_blank"
+                                                >
+                                                    <img
+                                                        width={200}
+                                                        className={"detailGoodsImg"}
+                                                        alt="cover"
+                                                        src={item.image}
+                                                    />
+                                                    <div className={"detailGoodsDescription"}>
+                                                        <div className={"detailGoodsName"}>
                                     <span>
                                         {
                                             item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
                                         }
                                     </span>
-                                                    </div>
-                                                    <div className={"detailGoodsPlace"}>
-                                                        <HomeOutlined/> {item.address}
-                                                    </div>
-                                                    <div className={"detailGoodsTime"}>
-                                                        <CalendarOutlined/> {item.startTime}-{item.endTime}
-                                                    </div>
-                                                    <div className={"detailGoodsPrice"}>
-                                                        {
-                                                            item.goodsDetails.length === 0 ?
-                                                                (<span className={"canceled"}>演出取消</span>) :
-                                                                (
-                                                                    <span>
+                                                        </div>
+                                                        <div className={"detailGoodsPlace"}>
+                                                            <HomeOutlined/> {item.address}
+                                                        </div>
+                                                        <div className={"detailGoodsTime"}>
+                                                            <CalendarOutlined/> {item.startTime}-{item.endTime}
+                                                        </div>
+                                                        <div className={"detailGoodsPrice"}>
+                                                            {
+                                                                item.goodsDetails.length === 0 ?
+                                                                    (<span className={"canceled"}>演出取消</span>) :
+                                                                    (
+                                                                        <span>
                                                         ￥{item.goodsDetails[0].price}起
                                                     </span>
-                                                                )
-                                                        }
+                                                                    )
+                                                            }
+                                                        </div>
                                                     </div>
+                                                </Link>
+                                                <div className={"actionButtons"}>
+                                                    {
+                                                        this.props.loggedIn ?
+                                                            (
+                                                                this.props.user.userType === 0 ?
+                                                                    (
+                                                                        <Dropdown
+                                                                            overlay={
+                                                                                <Menu onClick={this.handleClick.bind(this,item.goodsId)}>
+                                                                                    <Menu.Item key="1" >
+                                                                                        下架
+                                                                                    </Menu.Item>
+                                                                                    <Menu.Item key="2">
+                                                                                        编辑
+                                                                                    </Menu.Item>
+                                                                                    <Menu.Item key="3">
+                                                                                        竞拍
+                                                                                    </Menu.Item>
+                                                                                </Menu>
+                                                                            }
+                                                                        >
+                                                                            <Button>
+                                                                                <SettingOutlined />管理 <DownOutlined />
+                                                                            </Button>
+                                                                        </Dropdown>
+                                                                    ):
+                                                                    (
+                                                                        <div></div>
+                                                                    )
+                                                            ):
+                                                            (
+                                                                <div></div>
+                                                            )
+                                                    }
                                                 </div>
-                                            </div>
-                                        </Link>                                    )
+                                            </div>)
                             }
                         </List.Item>
                     )}

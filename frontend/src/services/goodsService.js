@@ -40,3 +40,8 @@ export const updateAuction = (data,callback) =>{
     const url = `http://localhost:8080/updateAuction`;
     postRequest(url,data,callback);
 }
+
+export const deleteGoodsByGoodsId = (data,callback) =>{
+    const url = `http://localhost:8080/deleteGoodsByGoodsId`;
+    postRequest(url,data,callback);
+}
