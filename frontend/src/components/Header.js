@@ -136,7 +136,11 @@ export class Header extends React.Component{
                             分类
                         </li>
                     </Link>
-
+                    <Link to={{pathname:'/auctionList'}}>
+                        <li className="navigation">
+                            竞拍
+                        </li>
+                    </Link>
                 </div>
                 <div className="searchBarContainer">
                     <SearchBar/>
