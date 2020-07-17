@@ -38,6 +38,7 @@ class AuctionDaoTest {
     @Test
     void getAllAuctions() {
         Auction auction = new Auction();
+        auction.setDuration(2);
         List<Auction> auctionList = new ArrayList<>();
         auctionList.add(auction);
         auctionList.add(auction);

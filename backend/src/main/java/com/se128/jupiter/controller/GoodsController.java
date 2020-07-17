@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Map;
 
@@ -54,9 +53,8 @@ public class GoodsController {
             Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
             LogUtil.info("getGoodsByGoodsId = " + goodsId);
             Goods goods = goodsService.getGoodsByGoodsId(goodsId);
-            if(goods.getGoodsType()<0)
-            {
-                return MsgUtil.makeMsg(MsgCode.DATA_ERROR,"商品已下架");
+            if (goods.getGoodsType() < 0) {
+                return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "商品已下架");
             }
             JSONObject data = JSONObject.fromObject(goods);
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
@@ -114,22 +112,20 @@ public class GoodsController {
     public Msg getRecommendGoods(@RequestBody Map<String, String> params) {
         Integer number = Integer.valueOf(params.get(Constant.NUMBER));
         String userId1 = params.get(Constant.USER_ID);
-        if(userId1 == null)
-        {
-            LogUtil.info("getRecommendGoodsInAll" + "number: "+number);
+        if (userId1 == null) {
+            LogUtil.info("getRecommendGoodsInAll" + "number: " + number);
             List<Goods> goods = goodsService.getRecommendGoodsInAll(number);
             JSONArray jsonArray = JSONArray.fromObject(goods);
             JSONObject data = new JSONObject();
-            data.put("goods",jsonArray.toString());
+            data.put("goods", jsonArray.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
-        }
-        else {
+        } else {
             Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-            LogUtil.info("getRecommendGoodsByUserId" + userId +"number"+number);
-            List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId,number);
+            LogUtil.info("getRecommendGoodsByUserId" + userId + "number" + number);
+            List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId, number);
             JSONArray jsonArray = JSONArray.fromObject(goods);
             JSONObject data = new JSONObject();
-            data.put("goods",jsonArray.toString());
+            data.put("goods", jsonArray.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         }
     }
@@ -158,7 +154,7 @@ public class GoodsController {
         auction.setDuration(duration);
         auction.setUserId(1);
         auction.setBestOffer(0.0);
-        Auction auction1 = goodsService.addAuction(auction,goodsId,detailId);
+        Auction auction1 = goodsService.addAuction(auction, goodsId, detailId);
         JSONObject data = JSONObject.fromObject(auction1);
         return MsgUtil.makeMsg(MsgCode.ADD_SUCCESS, data);
     }
@@ -198,18 +194,16 @@ public class GoodsController {
 
     @RequestMapping("/updateAuction")
     public Msg updateAuction(@RequestBody Map<String, String> params) {
-            Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
-            Double offer = Double.valueOf(params.get(Constant.OFFER));
-            Integer userId = Integer.valueOf(params.get((Constant.USER_ID)));
-            LogUtil.info("updateAuction auctionsId = " + AuctionId+ " userId = " + userId);
-            Auction auction = goodsService.updateAuction(AuctionId,userId,offer);
-            if(auction.getBestOffer().equals(offer))
-            {
-                return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
-            }
-            else {
-                return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
-            }
+        Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
+        Double offer = Double.valueOf(params.get(Constant.OFFER));
+        Integer userId = Integer.valueOf(params.get((Constant.USER_ID)));
+        LogUtil.info("updateAuction auctionsId = " + AuctionId + " userId = " + userId);
+        Auction auction = goodsService.updateAuction(AuctionId, userId, offer);
+        if (auction.getBestOffer().equals(offer)) {
+            return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
+        } else {
+            return MsgUtil.makeMsg(MsgCode.EDIT_ERROR);
+        }
     }
 
     @RequestMapping("/editAuction")

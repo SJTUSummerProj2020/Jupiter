@@ -119,6 +119,42 @@ public class UserControllerTest {
         } catch (Exception e){
             e.printStackTrace();
         }
+        try{
+            JSONObject param = new JSONObject();
+            param.put("username", "root");
+            param.put("password", "root1");
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/login")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+            JSONObject respond = (JSONObject) JSON.parseObject(responseString);
+            assertEquals("错误密码",-1, respond.get("status"));
+            System.out.println(responseString);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            JSONObject param = new JSONObject();
+            param.put("username", "ban");
+            param.put("password", "ban");
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/login")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(param))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+            JSONObject respond = (JSONObject) JSON.parseObject(responseString);
+            assertEquals("禁用用户",-1, respond.get("status"));
+            System.out.println(responseString);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -127,8 +163,8 @@ public class UserControllerTest {
     public void register() {
         try{
             // 测试重复用户名测试
-            String username = "user1";
-            String password = "user1";
+            String username = "root";
+            String password = "root";
             JSONObject param = new JSONObject();
             param.put("username", username);
             param.put("password", password);
@@ -159,7 +195,7 @@ public class UserControllerTest {
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             respond = (JSONObject) JSON.parseObject(responseString);
-            assertEquals("新注册用户失败", 0, respond.get("status"));
+            assertEquals("新注册用户失败", -102, respond.get("status"));
             System.out.println(responseString);
 
         } catch (Exception e){
@@ -326,6 +362,33 @@ public class UserControllerTest {
                     .post("/changeUserStatusByUserId")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(param.toJSONString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void editUser() {
+        try{
+            User user = new User();
+            user.setUserId(2);
+            user.setUsername("user2");
+            user.setPassword("user2");
+            user.setPhone("1111");
+            user.setUserType(1);
+            user.setBuy0(0);
+            user.setBuy1(0);
+            user.setBuy2(0);
+            user.setBuy3(0);
+            net.sf.json.JSONObject data = net.sf.json.JSONObject.fromObject(user);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/editUser")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(data.toString())
                     .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
