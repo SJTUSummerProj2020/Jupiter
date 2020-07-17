@@ -12,35 +12,33 @@ export class AdminGoodsView extends React.Component{
     }
     componentDidMount() {
         const callback = (data) => {
-            const callback = (data) => {
-                if(data.status === 0){
-                    this.setState(
-                        {
-                            loggedIn:true,
-                            user:data.data
-                        }
-                    );
-                    if(data.data.userType !== 0){
-                        message.warning("对不起，你无权限访问此页面");
-                        history.push("/");
+            if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
                     }
-                    else{
-                        const getAllOrdersData = {};
-                        const getAllOrdersCallback = (data) => {
-                            this.setState(
-                                {orderList: data.data.orders}
-                            );
-                        };
-                        getAllOrders(getAllOrdersData,getAllOrdersCallback);
-                    }
+                );
+                if(data.data.userType !== 0){
+                    message.warning("对不起，你无权限访问此页面");
+                    history.push("/");
                 }
                 else{
-                    message.warning(data.msg);
-                    history.push("login");
+                    const getAllOrdersData = {};
+                    const getAllOrdersCallback = (data) => {
+                        this.setState(
+                            {orderList: data.data.orders}
+                        );
+                    };
+                    getAllOrders(getAllOrdersData,getAllOrdersCallback);
                 }
             }
-            checkSession(callback);
+            else{
+                message.warning(data.msg);
+                history.push("login");
+            }
         }
+        checkSession(callback);
     }
 
     render() {
