@@ -1,20 +1,48 @@
 import React from "react";
 import {Header} from "../components/Header";
-import {Row, Col, BackTop} from 'antd';
+import {Row, Col, BackTop, message} from 'antd';
 import "../css/header.css";
 import{AuctionList} from "../components/AuctionList";
 import {Recommendation} from "../components/Recommendation";
 import {getAllAuctions} from "../services/goodsService";
 import {DetailGoodsList} from "../components/DetailGoodsList";
+import {checkSession} from "../services/userService";
+import {logout} from "../services/userService";
 
 export class AuctionListView extends React.Component{
     constructor(props) {
         super(props);
-        this.state={auctionList:[],currentPage:1,pageSize:10,totalSize:0,haveLoaded:[]};
+        this.state={auctionList:[],currentPage:1,pageSize:10,totalSize:0,haveLoaded:[],loggedIn:false,user:null};
     }
 
     componentDidMount() {
         this.getType(-1);
+        const callback = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                )
+            }
+        };
+        checkSession(callback);
+    }
+
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
     }
 
     getType = (type) =>{
@@ -91,10 +119,13 @@ export class AuctionListView extends React.Component{
     }
 
     render() {
-        // console.log('View里的拍卖清单',this.state.auctionList);
         return(
             <div>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                    logout={this.logout}
+                />
                 <Row>
                     <Col span={15} push={1}>
                         <AuctionList
@@ -107,7 +138,10 @@ export class AuctionListView extends React.Component{
                         />
                     </Col>
                     <Col span={8} push={1}>
-                        <Recommendation/>
+                        <Recommendation
+                            loggedIn={this.state.loggedIn}
+                            user={this.state.user}
+                        />
                     </Col>
                 </Row>
                 <BackTop/>

@@ -4,6 +4,7 @@ import {Col, message, Row} from "antd";
 import {history} from "../utils/history";
 import {Header} from "../components/Header";
 import {AdminSideBar} from "../components/AdminSideBar";
+import {logout} from "../services/userService";
 
 export class AdminGoodsView extends React.Component{
     constructor(props) {
@@ -41,12 +42,28 @@ export class AdminGoodsView extends React.Component{
         checkSession(callback);
     }
 
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
     render() {
         return(
             <div>
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.state.logout}
                 />
                 <Row>
                     <Col span={7} push={2}>

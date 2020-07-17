@@ -1,8 +1,10 @@
 import React from "react";
 import {Header} from "../components/Header";
 import{AuctionCard} from "../components/AuctionCard";
-import {Col, Row} from "antd";
+import {Col, message, Row} from "antd";
 import {getAuctionByAuctionId} from "../services/goodsService";
+import {checkSession} from "../services/userService";
+import {logout} from "../services/userService";
 
 let tmpId = null;
 let auctionData = null;
@@ -12,6 +14,8 @@ export class AuctionView extends React.Component{
         this.state={
             auctionId:null,
             auctionData:null,
+            loggedIn:false,
+            user:null
         };
     }
 
@@ -30,13 +34,44 @@ export class AuctionView extends React.Component{
         }
         const requestData = {auctionId:tmpId};
         getAuctionByAuctionId(requestData,callback);
+
+        const checkSession_callback = (data) => {
+            if(data.status === 0){
+                this.setState(
+                    {
+                        loggedIn:true,
+                        user:data.data
+                    }
+                )
+            }
+        };
+        checkSession(checkSession_callback);
+    }
+
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
     }
 
     render(){
         console.log('auctionData',auctionData);
         return(
             <Row align="top" gutter={16}>
-                <Header/>
+                <Header
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                    logout={this.logout}
+                />
                 <AuctionCard info={auctionData}/>
             </Row>
         );

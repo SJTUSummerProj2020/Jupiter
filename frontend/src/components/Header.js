@@ -5,12 +5,10 @@ import {checkSession} from "../services/userService";
 import {Menu, Dropdown, message} from 'antd';
 import '../css/header.css';
 import {SearchBar} from "./SearchBar";
-import {logout} from "../services/userService";
 
 export class Header extends React.Component{
     constructor(props) {
         super(props);
-        this.state={loggedIn:false,user:null};
     }
 
     componentDidMount() {
@@ -36,18 +34,7 @@ export class Header extends React.Component{
     }
 
     logout = () => {
-        console.log("Logout");
-        const callback = (data) => {
-            sessionStorage.removeItem("user");
-            this.setState(
-                {
-                    loggedIn:false,
-                    user:null
-                }
-            );
-            message.success(data.msg);
-        };
-        logout(callback);
+        this.props.logout();
     }
 
     menu = (
@@ -147,14 +134,14 @@ export class Header extends React.Component{
                 </div>
                 <div className="auth">
                     {
-                        this.state.loggedIn ?
+                        this.props.loggedIn ?
                             (
-                                this.state.user.userType === 0 ?
+                                this.props.user.userType === 0 ?
                                     (
                                         <li className="headerList">
                                             <Dropdown overlay={this.adminMenu}>
                                                 <div>
-                                                    <UserOutlined/>{this.state.user.username}
+                                                    <UserOutlined/>{this.props.user.username}
                                                 </div>
                                             </Dropdown>
                                         </li>
@@ -163,7 +150,7 @@ export class Header extends React.Component{
                                         <li className="headerList">
                                             <Dropdown overlay={this.menu}>
                                                 <div>
-                                                    <UserOutlined/>{this.state.user.username}
+                                                    <UserOutlined/>{this.props.user.username}
                                                 </div>
                                             </Dropdown>
                                         </li>

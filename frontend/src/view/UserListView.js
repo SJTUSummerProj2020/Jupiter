@@ -5,6 +5,7 @@ import {AdminSideBar} from "../components/AdminSideBar";
 import {UserList} from "../components/UserList";
 import {checkSession} from "../services/userService";
 import {getAllUsers} from "../services/userService";
+import {logout} from "../services/userService";
 import {message} from "antd";
 import {history} from "../utils/history";
 
@@ -46,6 +47,21 @@ export class UserListView extends React.Component{
         checkSession(callback);
     }
 
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
     changeUserStatus = (userId) => {
         let users = this.state.userList;
         let length = users.length;
@@ -66,6 +82,7 @@ export class UserListView extends React.Component{
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.logout}
                 />
                 <Row>
                     <Col span={7} push={2}>

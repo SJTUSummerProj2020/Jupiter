@@ -6,6 +6,7 @@ import {checkSession, getAllOrders} from "../services/userService";
 import {message} from "antd";
 import {history} from "../utils/history";
 import {AdminOrderList} from "../components/AdminOrderList";
+import {logout} from "../services/userService";
 
 export class AdminOrderListView extends React.Component{
     constructor(props) {
@@ -44,12 +45,28 @@ export class AdminOrderListView extends React.Component{
         checkSession(callback);
     }
 
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
     render() {
         return(
             <div>
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.logout}
                 />
                 <Row>
                     <Col span={7} push={2}>

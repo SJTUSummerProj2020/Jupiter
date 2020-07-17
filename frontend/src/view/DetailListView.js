@@ -1,12 +1,13 @@
 import React from "react";
 import {Header} from "../components/Header";
-import {Row, Col, BackTop} from 'antd';
+import {Row, Col, BackTop, message} from 'antd';
 import "../css/header.css";
 import "../css/detailgoodslist.css";
 import {DetailGoodsList} from "../components/DetailGoodsList";
 import {Recommendation} from "../components/Recommendation";
 import {getAllGoods} from "../services/goodsService";
 import {checkSession} from "../services/userService";
+import {logout} from "../services/userService";
 
 export class DetailListView extends React.Component{
 
@@ -36,6 +37,21 @@ export class DetailListView extends React.Component{
             }
         };
         checkSession(callback);
+    }
+
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
     }
 
     getType = (type) =>{
@@ -120,6 +136,7 @@ export class DetailListView extends React.Component{
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.logout}
                 />
                 <Row>
                     <Col span={15} push={1}>
@@ -131,6 +148,8 @@ export class DetailListView extends React.Component{
                             totalSize={this.state.totalSize}
                             getType={this.getType}
                             changePage={this.changePage}
+                            loggedIn={this.state.loggedIn}
+                            user={this.state.user}
                         />
                     </Col>
                     <Col span={8} push={1}>

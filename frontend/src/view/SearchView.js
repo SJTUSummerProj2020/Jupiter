@@ -1,10 +1,11 @@
 import React from "react";
 import {Header} from "../components/Header";
 import {getGoodsByName} from "../services/goodsService";
-import {Col, Row, BackTop} from 'antd';
+import {Col, Row, BackTop, message} from 'antd';
 import {SearchList} from "../components/SearchList";
 import '../css/searchlist.css';
 import {checkSession} from "../services/userService";
+import {logout} from "../services/userService";
 
 export class SearchView extends React.Component{
     constructor(props) {
@@ -38,6 +39,21 @@ export class SearchView extends React.Component{
         getGoodsByName(requestData,callback);
     }
 
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
     componentWillReceiveProps(nextProps,nextContext){
         const requestData = {name:decodeURI(nextProps.location.search.substring(6))};
         const callback = (data) => {
@@ -54,6 +70,7 @@ export class SearchView extends React.Component{
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.logout}
                 />
                 <Row>
                     <Col span={20} push={1} className={"searchList"}>
