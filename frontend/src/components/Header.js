@@ -1,36 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {UserOutlined} from '@ant-design/icons';
-import {checkSession} from "../services/userService";
-import {Menu, Dropdown, message} from 'antd';
+import {Menu, Dropdown} from 'antd';
 import '../css/header.css';
 import {SearchBar} from "./SearchBar";
 
 export class Header extends React.Component{
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
-        const callback = (data) => {
-            if(data.status === 0){
-                this.setState(
-                    {
-                        loggedIn:true,
-                        user:data.data
-                    }
-                )
-            }
-            else{
-                this.setState(
-                    {
-                        loggedIn:false,
-                        user:null
-                    }
-                )
-            }
-        };
-        checkSession(callback);
     }
 
     logout = () => {
