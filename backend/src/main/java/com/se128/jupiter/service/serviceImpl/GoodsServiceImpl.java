@@ -66,7 +66,25 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public List<Goods> getGoodsByName(String name) {
-        return goodsDao.getGoodsByName(name);
+        String [] names = name.split("\\s+");
+        List<Goods> goods = new LinkedList<>();
+
+        for(int i = 0;i<names.length; i++)
+        {
+            List<Goods> someGoods = goodsDao.getGoodsByName(names[i]);
+            if(i == 0)
+            {
+                goods.addAll(someGoods);
+            }
+            else
+            {
+                goods.retainAll(someGoods);
+            }
+        }
+//        HashSet<Goods> tmp = new HashSet<Goods>(goods);
+//        goods.clear();
+//        goods.addAll(tmp);
+        return goods;
     }
 
     @Override
