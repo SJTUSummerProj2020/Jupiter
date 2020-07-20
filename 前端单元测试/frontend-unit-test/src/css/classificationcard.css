@@ -1,0 +1,42 @@
+.classification-card{
+    width:100%;
+    margin: 0 8% !important;
+    text-align: center;
+}
+
+.classification-card-title{
+    float:left;
+    /*display: inline-block;*/
+    /*width: 100%;*/
+}
+
+.classification-content{
+    width: 100%;
+    display: block;
+}
+
+.most-popular{
+    width:20%;
+    /*display: inline-block;*/
+    float: left;
+    margin-right: 10px;
+}
+
+.mostPopularImg{
+    height: 460px;
+}
+
+.popular-cards{
+    width:70%;
+    margin-left: 10px;
+    display: inline-block;
+    float: right;
+}
+
+.ant-card .title{
+    float: left;
+}
+
+.ant-card-meta-title{
+    font-size:12px !important;
+}

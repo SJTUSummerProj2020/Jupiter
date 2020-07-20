@@ -1,0 +1,30 @@
+.loginlogo{
+    float: left;
+    position: relative;
+    margin-left:40px;
+}
+
+.loginlogo img{
+    /*width: 200px;*/
+    /*height: 80px;*/
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.loginheader{
+    width: 100%;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+.img-responsive{
+    width: 150px;
+    height: 200px;
+    margin-left: 40px;
+}
+
+.img{
+    width: 60px;
+    height: 80px;
+    margin-left: 10px;
+}
