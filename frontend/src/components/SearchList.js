@@ -36,7 +36,7 @@ export class SearchList extends React.Component{
                         <Link to={{
                             pathname: '/detail',
                             search: '?id=' + item.goodsId}}
-                              target="_blank"
+                            // target="_blank"
                         >
                         <SearchGoods info={item} />
                         </Link>
