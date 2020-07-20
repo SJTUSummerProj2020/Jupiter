@@ -16,13 +16,36 @@ public class InterceptorConfig implements WebMvcConfigurer {
         return new SessionValidateInterceptor();
     }
 
+    @Bean
+    public AdminValidateInterceptor adminValidateInterceptor() {
+        return new AdminValidateInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/login").excludePathPatterns("/register")
-                .excludePathPatterns("/getAllGoods").excludePathPatterns("/getGoodsByType")
+                .excludePathPatterns("/login")
+                .excludePathPatterns("/register")
+                .excludePathPatterns("/getAllGoods")
+                .excludePathPatterns("/getAllAuctions")
+                .excludePathPatterns("/getAuctionByAuctionId")
+                .excludePathPatterns("/getGoodsByType")
+                .excludePathPatterns("/getGoodsByName")
                 .excludePathPatterns("/getGoodsByGoodsId")
+                .excludePathPatterns("/getPopularGoods")
+                .excludePathPatterns("/getRecommendGoods")
                 .excludePathPatterns("/checkSession");
+
+        registry.addInterceptor(adminValidateInterceptor())
+                .addPathPatterns("/deleteGoodsByGoodsId")
+                .addPathPatterns("/editGoods")
+                .addPathPatterns("/addAuction")
+                .addPathPatterns("/deleteAuctionByAuctionId")
+                .addPathPatterns("/updateAuction")
+                .addPathPatterns("/editAuction")
+                .addPathPatterns("/changeUserStatusByUserId")
+                .addPathPatterns("/getAllOrders")
+                .addPathPatterns("/getUserById");
     }
 
     private CorsConfiguration buildConfig() {

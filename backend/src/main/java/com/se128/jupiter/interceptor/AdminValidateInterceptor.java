@@ -1,5 +1,6 @@
 package com.se128.jupiter.interceptor;
 
+import com.se128.jupiter.util.constant.Constant;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
@@ -12,20 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
+public class AdminValidateInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) {
-        boolean status = SessionUtil.checkAuth();
-        if(!status){
-            System.out.println("Session Failed");
-            Msg msg = MsgUtil.makeMsg(MsgCode.NOT_LOGGED_IN_ERROR);
+        JSONObject user = SessionUtil.getAuth();
+        if(user != null &&user.getInt(Constant.USER_TYPE)==Constant.ADMIN){
+            System.out.println("Admin Success");
+            return true;
+        }
+        else
+        {
+            System.out.println("Admin Failed");
+            Msg msg = MsgUtil.makeMsg(MsgCode.NOT_AVAILABLE);
             sendJsonBack(response, msg);
             return false;
-        }
-        else {
-            System.out.println("Session Success");
-            return true;
         }
     }
 

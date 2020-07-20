@@ -36,8 +36,6 @@ class GoodsControllerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
     private MockMvc mockMvc;
-//    @MockBean
-//    private GoodsService goodsService;
 
     @BeforeEach
     void setUp() {
