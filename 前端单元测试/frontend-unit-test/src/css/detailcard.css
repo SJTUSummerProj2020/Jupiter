@@ -1,0 +1,85 @@
+.detail-card {
+    width:70%;
+    display: table;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #eee;
+    border: 1px solid #eee;
+    margin-left:auto;
+    margin-right:auto;
+}
+.detail-card-img{
+    width:70%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top:4%;
+    margin-bottom: 30%;
+    background-color: #fff;
+}
+.detail-card-show-name{
+    font-size: 26px;
+    font-weight: 500;
+    color: #331612;
+    line-height: 40px;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+.detail-card-show-time{
+    color: #68676c;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
+.detail-card-show-address{
+    color: #68676c;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
+.detail-card-tips{
+    color: #999;
+    font-size: 12px;
+    margin-top: 1%;
+    margin-bottom:1%;
+    padding-top: 1%;
+}
+.detail-card-stems{
+    display: inline-block;
+    font-size: 16px;
+    color: #000;
+    height: 48px;
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-right: 15px;
+}
+.detail-card-num-choice{
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-right: 15px;
+}
+.detail-card-money{
+    font-size: 26px;
+    color: #ff4655;
+    line-height: 34px;
+}
+.detail-card-yuan{
+    color: #ff4655;
+    line-height: 34px;
+    padding-top: 1%;
+}
+.detail-card-buy-button{
+    margin-top: 10px;
+    margin-left: 25px;
+    width: 210px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ff2d79;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+.detail-card-icon{
+    padding-top:0.5%;
+}

@@ -31,6 +31,7 @@ public class MsgUtil {
     public static final String DELETE_ERR_MSG = "删除失败";
     public static final String BUY_ERROR_MSG ="购买失败，此票暂时无货" ;
     public static final String BAN_USER_ERROR_MSG = "您的账户已被禁用";
+    public static final String NOT_AVAILABLE_MSG = "您的权限不够";
 
 
     public static Msg makeMsg(MsgCode code, JSONObject data) {

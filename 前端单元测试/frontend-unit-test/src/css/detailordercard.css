@@ -1,0 +1,38 @@
+.detail-order-card{
+    width:40%;
+    display: table;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #eee;
+    border: 1px solid #eee;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.detail-order-stem{
+    font-size: 16px;
+    color: #331612;
+    line-height: 24px;
+    height: 46px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.detail-order-button{
+    font-size: 16px;
+    color: #331612;
+    line-height: 24px;
+    height: 46px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    margin-left: 60%;
+    margin-top:20px;
+}

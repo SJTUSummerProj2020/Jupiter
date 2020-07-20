@@ -4,6 +4,7 @@ import "../css/header.css";
 import {PersonalInfoSidebar} from "../components/PersonalInfo";
 import {Col, message, Row} from "antd";
 import {checkSession} from "../services/userService";
+import {logout} from "../services/userService";
 import {history} from "../utils/history";
 
 export class PersonalInfoView extends React.Component{
@@ -29,12 +30,28 @@ export class PersonalInfoView extends React.Component{
         checkSession(callback);
     }
 
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
     render() {
         return(
             <div>
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.logout}
                 />
                 <Row>
                     <Col span={7} push={2}>

@@ -1,12 +1,12 @@
 import React from 'react';
 import {ImageCarousel} from "../components/Carousel";
 import {Header} from "../components/Header";
-import {GoodsList} from "../components/GoodsList";
 import "../css/header.css";
 import {ClassificationCard} from "../components/ClassificationCard";
-import {BackTop} from "antd";
+import {BackTop, message} from "antd";
 import {getPopularGoods} from "../services/goodsService";
 import {checkSession} from "../services/userService";
+import {logout} from "../services/userService";
 
 export class CustomerHome extends React.Component{
     constructor(props) {
@@ -77,12 +77,28 @@ export class CustomerHome extends React.Component{
         getPopularGoods(data,callback);
     }
 
+    logout = () => {
+        console.log("Logout");
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+        };
+        logout(callback);
+    }
+
     render() {
         return(
             <div>
                 <Header
                     loggedIn={this.state.loggedIn}
                     user={this.state.user}
+                    logout={this.logout}
                 />
                 <ImageCarousel/>
                 <div className={"goodsList"}>

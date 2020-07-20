@@ -13,10 +13,10 @@ public enum MsgCode {
     DELETE_ERROR(MsgUtil.ERROR, MsgUtil.DELETE_ERR_MSG),
     LOGIN_USER_ERROR(MsgUtil.LOGIN_USER_ERROR, MsgUtil.LOGIN_USER_ERROR_MSG),
     NOT_LOGGED_IN_ERROR(MsgUtil.NOT_LOGGED_IN_ERROR, MsgUtil.NOT_LOGGED_IN_ERROR_MSG),
-    REGISTER_USER_ERROR(MsgUtil.REGISTER_USER_ERROR, MsgUtil.REGISTER_USER_ERROR_MSG);
-
-    private int status;
-    private String msg;
+    REGISTER_USER_ERROR(MsgUtil.REGISTER_USER_ERROR, MsgUtil.REGISTER_USER_ERROR_MSG),
+    NOT_AVAILABLE(MsgUtil.NOT_LOGGED_IN_ERROR, MsgUtil.NOT_AVAILABLE_MSG);
+    private final int status;
+    private final String msg;
 
     public int getStatus() {
         return status;
@@ -26,7 +26,7 @@ public enum MsgCode {
         return msg;
     }
 
-    private MsgCode(int status, String msg) {
+    MsgCode(int status, String msg) {
         this.status = status;
         this.msg = msg;
     }

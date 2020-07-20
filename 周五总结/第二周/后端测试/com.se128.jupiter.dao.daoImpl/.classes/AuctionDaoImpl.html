@@ -1,0 +1,156 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AuctionDaoImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.dao.daoImpl</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AuctionDaoImpl (com.se128.jupiter.dao.daoImpl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AuctionDaoImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AuctionDaoImpl$$EnhancerBySpringCGLIB$$2c0419da</td>
+  </tr>
+  <tr>
+    <td class="name">AuctionDaoImpl$$EnhancerBySpringCGLIB$$2c0419da$$FastClassBySpringCGLIB$$b26bff85</td>
+  </tr>
+  <tr>
+    <td class="name">AuctionDaoImpl$$EnhancerBySpringCGLIB$$7948daea</td>
+  </tr>
+  <tr>
+    <td class="name">AuctionDaoImpl$$FastClassBySpringCGLIB$$e2be1cce</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.dao.daoImpl;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.se128.jupiter.dao.AuctionDao;
+<i>4</i>&nbsp;import com.se128.jupiter.entity.Auction;
+<i>5</i>&nbsp;import com.se128.jupiter.repository.AuctionRepository;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.stereotype.Repository;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;@Repository
+<i>12</i>&nbsp;public class AuctionDaoImpl implements AuctionDao {
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    private final AuctionRepository auctionRepository;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    @Autowired
+<b class="fc"><i>17</i>&nbsp;    public AuctionDaoImpl(AuctionRepository auctionRepository) {</b>
+<b class="fc"><i>18</i>&nbsp;        this.auctionRepository = auctionRepository;</b>
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    @Override
+<i>22</i>&nbsp;    public List&lt;Auction&gt; getAllAuctions() {
+<b class="fc"><i>23</i>&nbsp;        List&lt;Auction&gt; auctions = auctionRepository.findAll();</b>
+<b class="fc"><i>24</i>&nbsp;        auctions.removeIf(item -&gt; item.getDuration() &lt; 0);</b>
+<b class="fc"><i>25</i>&nbsp;        return auctions;</b>
+<i>26</i>&nbsp;    }
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    @Override
+<i>29</i>&nbsp;    public Auction getAuctionByAuctionId(Integer auctionId) {
+<b class="fc"><i>30</i>&nbsp;        return auctionRepository.getAuctionByAuctionId(auctionId);</b>
+<i>31</i>&nbsp;    }
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    @Override
+<i>34</i>&nbsp;    public Auction saveAuction(Auction auction) {
+<b class="fc"><i>35</i>&nbsp;        return auctionRepository.saveAndFlush(auction);</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    @Override
+<i>39</i>&nbsp;    public Auction addAuction(Auction auction){
+<b class="fc"><i>40</i>&nbsp;        return auctionRepository.saveAndFlush(auction);</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Override
+<i>44</i>&nbsp;    public void deleteAuctionByAuctionId(Integer auctionId) {
+<b class="fc"><i>45</i>&nbsp;        Auction auction = auctionRepository.getAuctionByAuctionId(auctionId);</b>
+<b class="fc"><i>46</i>&nbsp;        auction.setDuration(-1);</b>
+<b class="fc"><i>47</i>&nbsp;        auctionRepository.saveAndFlush(auction);</b>
+<b class="fc"><i>48</i>&nbsp;    }</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @Override
+<i>51</i>&nbsp;    public Auction editAuction(Auction auction) {
+<b class="fc"><i>52</i>&nbsp;        return auctionRepository.saveAndFlush(auction);</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>
