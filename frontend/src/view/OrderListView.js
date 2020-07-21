@@ -1,6 +1,6 @@
 import React from "react";
 import {Header} from "../components/Header";
-import {Row,Col} from 'antd';
+import {Row,Col, BackTop} from 'antd';
 import "../css/header.css";
 import {PersonalInfoSidebar} from "../components/PersonalInfo";
 import {OrderList} from "../components/OrderList";
@@ -80,6 +80,7 @@ export class OrderListView extends React.Component{
                         />
                     </Col>
                 </Row>
+                <BackTop/>
             </div>
         );
     }

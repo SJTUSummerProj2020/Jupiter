@@ -5,6 +5,9 @@ import {CalendarOutlined, HomeOutlined} from "@ant-design/icons";
 import '../css/adminorderlist.css'
 
 export class AdminOrderList extends React.Component{
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return(
@@ -36,7 +39,9 @@ export class AdminOrderList extends React.Component{
 
                             <div className={"orderGoodsDescription"}>
                                 <div className={"orderGoodsName"}>
-                                    <span>{item.goods.name}</span>
+                                    <span>
+                                        {item.goods.name.length > 24 ? item.goods.name.substr(0,24)+'...' : item.goods.name}
+                                    </span>
                                 </div>
                                 <div className={"orderGoodsPlace"}>
                                     <HomeOutlined/> {item.goods.address}

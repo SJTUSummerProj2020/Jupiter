@@ -12,7 +12,7 @@ export class Goods extends React.Component{
             <Link to={{
                 pathname: '/detail',
                 search: '?id=' + info.goodsId}}
-                  target="_blank"
+                // target="_blank"
             >
                 <Card
                     hoverable={true}

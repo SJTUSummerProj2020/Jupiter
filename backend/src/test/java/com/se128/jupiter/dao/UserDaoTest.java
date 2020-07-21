@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -113,6 +113,7 @@ class UserDaoTest {
         // user = null
         when(userRepository.getUserByUserId(userId)).thenReturn(null);
         assertNull(userDao.changeUserStatusByUserId(userId));
+
     }
 
     @Test

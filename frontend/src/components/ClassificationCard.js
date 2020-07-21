@@ -28,7 +28,7 @@ export class ClassificationCard extends React.Component{
                        <Link to={{
                            pathname: '/detail',
                            search: '?id=' + this.props.goods.goodsId}}
-                             target="_blank"
+                             // target="_blank"
                        >
                            <Card
                                hoverable
