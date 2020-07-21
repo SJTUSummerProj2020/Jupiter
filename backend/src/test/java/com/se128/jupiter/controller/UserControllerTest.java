@@ -176,7 +176,7 @@ public class UserControllerTest {
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             respond = (JSONObject) JSON.parseObject(responseString);
-            assertEquals("新注册用户失败", -102, respond.get("status"));
+            assertEquals("新注册用户失败", 0, respond.get("status"));
             System.out.println(responseString);
 
         } catch (Exception e){
@@ -197,7 +197,7 @@ public class UserControllerTest {
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             JSONObject respond = (JSONObject) JSON.parseObject(responseString);
-            assertEquals("登出失败", -1, respond.get("status"));
+            assertEquals("登出失败", -101, respond.get("status"));
             System.out.println(responseString);
         } catch (Exception e){
             e.printStackTrace();

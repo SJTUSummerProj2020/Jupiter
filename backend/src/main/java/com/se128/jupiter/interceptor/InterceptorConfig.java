@@ -6,7 +6,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -24,29 +23,29 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/login")
-                .excludePathPatterns("/register")
-                .excludePathPatterns("/getAllGoods")
-                .excludePathPatterns("/getAllAuctions")
-                .excludePathPatterns("/getAuctionByAuctionId")
-                .excludePathPatterns("/getGoodsByType")
-                .excludePathPatterns("/getGoodsByName")
-                .excludePathPatterns("/getGoodsByGoodsId")
-                .excludePathPatterns("/getPopularGoods")
-                .excludePathPatterns("/getRecommendGoods")
-                .excludePathPatterns("/checkSession");
-
-        registry.addInterceptor(adminValidateInterceptor())
-                .addPathPatterns("/deleteGoodsByGoodsId")
-                .addPathPatterns("/editGoods")
-                .addPathPatterns("/addAuction")
-                .addPathPatterns("/deleteAuctionByAuctionId")
-                .addPathPatterns("/updateAuction")
-                .addPathPatterns("/editAuction")
-                .addPathPatterns("/changeUserStatusByUserId")
-                .addPathPatterns("/getAllOrders")
-                .addPathPatterns("/getUserById");
+//        registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/login")
+//                .excludePathPatterns("/register")
+//                .excludePathPatterns("/getAllGoods")
+//                .excludePathPatterns("/getAllAuctions")
+//                .excludePathPatterns("/getAuctionByAuctionId")
+//                .excludePathPatterns("/getGoodsByType")
+//                .excludePathPatterns("/getGoodsByName")
+//                .excludePathPatterns("/getGoodsByGoodsId")
+//                .excludePathPatterns("/getPopularGoods")
+//                .excludePathPatterns("/getRecommendGoods")
+//                .excludePathPatterns("/checkSession");
+//
+//        registry.addInterceptor(adminValidateInterceptor())
+//                .addPathPatterns("/deleteGoodsByGoodsId")
+//                .addPathPatterns("/editGoods")
+//                .addPathPatterns("/addAuction")
+//                .addPathPatterns("/deleteAuctionByAuctionId")
+//                .addPathPatterns("/updateAuction")
+//                .addPathPatterns("/editAuction")
+//                .addPathPatterns("/changeUserStatusByUserId")
+//                .addPathPatterns("/getAllOrders")
+//                .addPathPatterns("/getUserById");
     }
 
     private CorsConfiguration buildConfig() {
@@ -60,7 +59,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Bean
     public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", buildConfig());
         return new CorsFilter(source);
     }
