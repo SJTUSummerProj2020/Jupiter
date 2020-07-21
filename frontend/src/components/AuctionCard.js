@@ -180,28 +180,35 @@ export class AuctionCard extends React.Component{
     }
 
     commitAuction=()=>{
-        let auctionId = this.state.auctionData.auctionId;
-        if(this.state.user === null){
-            message.warning('请先登录');
-            history.push('login');
+        if(this.props.loggedIn === true){
+            let auctionId = this.state.auctionData.auctionId;
+            if(this.state.user === null){
+                message.warning('请先登录');
+                history.push('login');
+                return;
+            }
+            let userId = this.state.user.userId;
+            let currentOffer = this.state.currentOffer;
+            let json={
+                auctionId:auctionId,
+                userId:userId,
+                offer:currentOffer
+            }
+            const callback = (data)=>{
+                if(data.status>=0){
+                    message.success('恭喜您竞价成功');
+                }
+                else{
+                    message.error('抱歉，有人更早比您出了更高的价格，请刷新页面重新出价');
+                }
+            }
+            updateAuction(json,callback);
+        }
+        else{
+            message.error("请登录");
+            history.push('/login');
             return;
         }
-        let userId = this.state.user.userId;
-        let currentOffer = this.state.currentOffer;
-        let json={
-            auctionId:auctionId,
-            userId:userId,
-            offer:currentOffer
-        }
-        const callback = (data)=>{
-            if(data.status>=0){
-                message.success('恭喜您竞价成功');
-            }
-            else{
-                message.error('抱歉，有人更早比您出了更高的价格，请刷新页面重新出价');
-            }
-        }
-        updateAuction(json,callback);
     }
 
     isTheCandidate=()=>{

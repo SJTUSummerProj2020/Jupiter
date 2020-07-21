@@ -73,7 +73,9 @@ export class AuctionView extends React.Component{
                     user={this.state.user}
                     logout={this.logout}
                 />
-                <AuctionCard info={auctionData}/>
+                <AuctionCard info={auctionData}
+                                loggedIn={this.state.loggedIn}
+                                user={this.state.user}/>
             </Row>
         );
     }
