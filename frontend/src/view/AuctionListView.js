@@ -8,6 +8,7 @@ import {getAllAuctions} from "../services/goodsService";
 import {DetailGoodsList} from "../components/DetailGoodsList";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
+import {deleteAuctionByAuctionId} from "../services/goodsService";
 
 export class AuctionListView extends React.Component{
     constructor(props) {
@@ -136,6 +137,8 @@ export class AuctionListView extends React.Component{
                             totalSize={this.state.totalSize}
                             changePage={this.changePage}
                             getType={this.getType}
+                            loggedIn={this.state.loggedIn}
+                            user={this.state.user}
                         />
                     </Col>
                     <Col span={8} push={1}>
