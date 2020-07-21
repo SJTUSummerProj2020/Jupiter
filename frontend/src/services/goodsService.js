@@ -50,3 +50,8 @@ export const addAuction = (data,callback) => {
     const url = `http://localhost:8080/addAuction`;
     postRequest(url,data,callback);
 }
+
+export const editGoods = (data,callback) => {
+    const url = `http://localhost:8080/editGoods`;
+    postRequest(url,data,callback);
+}
