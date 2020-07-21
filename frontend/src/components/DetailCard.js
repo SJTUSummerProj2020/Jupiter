@@ -235,16 +235,21 @@ export class DetailCard extends React.Component{
                     userId: userId,
                     detailId:detailId,
                     number:number,
-                }
+                };
                 const callback = (data)=>{
                     if(data.status>=0){
                         this.setState({orderId:data.data.orderId});
                         message.success(data.msg + "请至订单界面查询订单信息 \n 您的订单号是"+data.data.orderId);
                     }
+                    else if(data.status === -101){
+                        message.error(data.msg);
+                        sessionStorage.removeItem('user');
+                        history.push('/login')
+                    }
                     else{
                         message.error(data.msg);
                     }
-                }
+                };
                 addOrder(json,callback);
             }
             else{
@@ -252,6 +257,7 @@ export class DetailCard extends React.Component{
             }
         }
         else{
+            sessionStorage.removeItem('user');
             message.error("请登录");
             history.push('/login');
             return;
