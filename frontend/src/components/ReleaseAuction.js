@@ -16,7 +16,6 @@ export class ReleaseAuction extends React.Component{
 
     onFinish = (values) =>{
         let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:MM");
-        console.log(startTime);
         const data = {
             detailId: values.goodsDetails,
             goodsId: this.props.goodsId,
@@ -49,14 +48,22 @@ export class ReleaseAuction extends React.Component{
             );
         }
         return(
-            <Form layout="vertical" hideRequiredMark={true} onFinish={this.onFinish}>
+            <Form
+                layout="vertical"
+                hideRequiredMark={true}
+                onFinish={this.onFinish}
+                initialValues={{
+                    ['name']: this.props.name,
+                    ['goodsId']: this.props.goodsId
+                }}
+            >
                 <Row gutter={16}>
                     <Col span={12}>
                         <Form.Item
                             name="name"
                             label="商品名"
                         >
-                            <Input placeholder="商品名" defaultValue={this.props.name} />
+                            <Input placeholder="商品名"/>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -64,7 +71,7 @@ export class ReleaseAuction extends React.Component{
                             name="goodsId"
                             label="商品ID"
                         >
-                            <Input placeholder="商品ID" defaultValue={this.props.goodsId} />
+                            <Input placeholder="商品ID"/>
                         </Form.Item>
                     </Col>
                 </Row>
