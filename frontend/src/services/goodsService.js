@@ -55,3 +55,13 @@ export const editGoods = (data,callback) => {
     const url = `http://localhost:8080/editGoods`;
     postRequest(url,data,callback);
 }
+
+export const deleteAuctionByAuctionId = (data,callback) => {
+    const url = `http://localhost:8080/deleteAuctionByAuctionId`;
+    postRequest(url,data,callback);
+}
+
+export const editAuction = (data,callback) => {
+    const url = `http://localhost:8080/editAuction`;
+    postRequest(url,data,callback);
+}

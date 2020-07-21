@@ -38,7 +38,7 @@ describe('Test homepage, login and register', function(){
                 }
             }
         })
-        cy.url().should('include', '/login')
+        cy.url().should('include', '/detail')
     })
 
     // 测试登录(错误信息)
