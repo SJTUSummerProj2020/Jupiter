@@ -3,7 +3,7 @@ import {Header} from "../components/Header";
 import {DetailCard} from "../components/DetailCard";
 import{DetailShowTab} from "../components/DetailShowTab";
 import{Recommendation} from "../components/Recommendation";
-import {Row, Col, Card, Tabs, message} from 'antd';
+import {Row, Col, Card, Tabs, message, BackTop} from 'antd';
 import {getGoodsByGoodsId} from "../services/goodsService";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
@@ -90,6 +90,7 @@ export class DetailView extends React.Component {
                         />
                     </Col>
                 </Row>
+                <BackTop/>
             </Row>
         );
     }
