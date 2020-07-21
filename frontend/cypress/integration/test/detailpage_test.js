@@ -83,7 +83,19 @@ describe('Test detailpage', function(){
         // logout
         cy.request('POST', 'http://localhost:8080/logout', {})
         cy.visit('/detail?id=514')
+        // 未登录状态购买
         cy.get('.detail-card-buy-button').click()
-
+        cy.url().should('include', '/login')
+        cy.contains('请登录')
+        // 模拟登录
+        cy.get('input[placeholder="用户名"').type('user')
+        cy.get('input[placeholder="密码"]').type('user')
+        cy.get('button[type="submit"]').click()
+        // 登陆状态购买
+        cy.wait(200)
+        cy.visit('/detail?id=514')
+        cy.wait(200)
+        cy.get('.detail-card-buy-button').click()
+        cy.url().should('include', '/detailOrder')
     })
 })
