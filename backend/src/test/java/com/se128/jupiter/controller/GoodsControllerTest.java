@@ -256,7 +256,7 @@ class GoodsControllerTest {
 
     @Test
     @Transactional
-    @Rollback(value = false)
+    @Rollback(value = true)
     void addGoods() {
         //OK
         try{
@@ -305,7 +305,7 @@ class GoodsControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content("")
                     .accept(MediaType.APPLICATION_JSON_UTF8)
-            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
+            ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
@@ -340,7 +340,7 @@ class GoodsControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content("")
                     .accept(MediaType.APPLICATION_JSON_UTF8)
-            ).andExpect(MockMvcResultMatchers.status().is4xxClientError())
+            ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e){
