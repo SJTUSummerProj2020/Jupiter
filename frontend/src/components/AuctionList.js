@@ -1,23 +1,15 @@
 import React from 'react';
-import { List, Avatar, Space,PageHeader, Menu, Dropdown, Button, Tag, Typography, Row, BackTop, Pagination} from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined, HomeOutlined, CalendarOutlined} from '@ant-design/icons';
+import { List, Button, Menu, Dropdown, Drawer, message} from 'antd';
+import {HomeOutlined, CalendarOutlined, SettingOutlined, UpOutlined} from '@ant-design/icons';
 import"../css/auctionlist.css";
 import {Link} from 'react-router-dom';
-
- // debugger;
-
-const IconText = ({ icon, text }) => (
-    <Space>
-        {React.createElement(icon)}
-        {text}
-    </Space>
-);
+import {editAuction} from "../services/goodsService";
+import {deleteAuctionByAuctionId} from "../services/goodsService";
 
 export class AuctionList extends React.Component{
     constructor(props) {
         super(props);
         this.state = {auctionList:[],currentPage:1,pageSize:10,totalSize:0,haveLoaded:[]}
-        // debugger;
         console.log('List里的拍卖清单',this.props.auctionList);
     }
 
@@ -27,7 +19,6 @@ export class AuctionList extends React.Component{
 
     render(){
         console.log('当前拍卖物品清单',this.props.auctionList);
-        // console.log('图片地址',this.props.auctionList[0].image);
         if(this.props.auctionList[(this.props.currentPage - 1) * 10] === null){
             return null;
         }
@@ -98,6 +89,51 @@ export class AuctionList extends React.Component{
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className={"actionButtons"}>
+                                                {
+                                                    this.props.loggedIn ?
+                                                        (
+                                                            this.props.user.userType === 0 ?
+                                                                (
+                                                                    <Dropdown
+                                                                        placement="topRight"
+                                                                        overlay={
+                                                                            <Menu
+                                                                                // onClick={
+                                                                                //     this.handleClick.bind(
+                                                                                //         this,
+                                                                                //         item.goodsId,
+                                                                                //         item.name,
+                                                                                //         item.goodsDetails,
+                                                                                //         item.startTime,
+                                                                                //         item.endTime
+                                                                                //     )
+                                                                                // }
+                                                                            >
+                                                                                <Menu.Item key="1" >
+                                                                                    终止
+                                                                                </Menu.Item>
+                                                                                <Menu.Item key="2">
+                                                                                    编辑
+                                                                                </Menu.Item>
+                                                                            </Menu>
+                                                                        }
+                                                                    >
+                                                                        <Button style={{marginTop: 235}}>
+                                                                            <SettingOutlined />管理 <UpOutlined />
+                                                                        </Button>
+                                                                    </Dropdown>
+                                                                ):
+                                                                (
+                                                                    <div></div>
+                                                                )
+                                                        ):
+                                                        (
+                                                            <div></div>
+                                                        )
+                                                }
+                                            </div>
+
                                         </Link>
                                     )
                             }

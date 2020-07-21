@@ -5,10 +5,8 @@ import "../css/header.css";
 import{AuctionList} from "../components/AuctionList";
 import {Recommendation} from "../components/Recommendation";
 import {getAllAuctions} from "../services/goodsService";
-import {DetailGoodsList} from "../components/DetailGoodsList";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
-import {deleteAuctionByAuctionId} from "../services/goodsService";
 
 export class AuctionListView extends React.Component{
     constructor(props) {

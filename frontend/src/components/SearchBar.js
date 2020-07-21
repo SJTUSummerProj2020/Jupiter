@@ -1,8 +1,9 @@
 import React from 'react';
-import {Input} from 'antd';
+import { Icon, Button, Input, AutoComplete } from 'antd';
 import 'antd/dist/antd.min.css';
 import {history} from "../utils/history";
 const {Search} = Input;
+
 
 export class SearchBar extends React.Component{
 

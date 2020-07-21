@@ -50,39 +50,7 @@ export class DetailCard extends React.Component{
         const requestData = {goodsId:this.props.info.tmpId};
         getGoodsByGoodsId(requestData,callback);
 
-        // let userItem = localStorage.getItem("user");
-        // console.log('DetailCard里的用户',userItem);
-        // if(userItem != null){
-        //     let user = JSON.parse(userItem);
-        //     this.setState(
-        //         {
-        //             loggedIn:true,
-        //             user:user
-        //         }
-        //     )
-        // }
 
-
-        // const callback_checkSession = (data) => {
-        //     if(data.status === 0){
-        //         this.setState(
-        //             {
-        //                 user:data.data
-        //             }
-        //         );
-        //         const callback = (data) => {
-        //             console.log(data);
-        //             this.setState({orderList:data})
-        //         };
-        //         const requestData = {userId:data.data.userId};
-        //         getOrdersByUserId(requestData,callback);
-        //     }
-        //     else{
-        //         message.warning(data.msg);
-        //         history.push('login');
-        //     }
-        // };
-        // checkSession(callback_checkSession);
     }
 
     onChange1=(e) =>{
@@ -235,21 +203,16 @@ export class DetailCard extends React.Component{
                     userId: userId,
                     detailId:detailId,
                     number:number,
-                };
+                }
                 const callback = (data)=>{
                     if(data.status>=0){
                         this.setState({orderId:data.data.orderId});
                         message.success(data.msg + "请至订单界面查询订单信息 \n 您的订单号是"+data.data.orderId);
                     }
-                    else if(data.status === -101){
-                        message.error(data.msg);
-                        sessionStorage.removeItem('user');
-                        history.push('/login')
-                    }
                     else{
                         message.error(data.msg);
                     }
-                };
+                }
                 addOrder(json,callback);
             }
             else{
@@ -257,7 +220,6 @@ export class DetailCard extends React.Component{
             }
         }
         else{
-            sessionStorage.removeItem('user');
             message.error("请登录");
             history.push('/login');
             return;

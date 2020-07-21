@@ -75,7 +75,11 @@ export class DetailView extends React.Component {
                     user={this.state.user}
                     logout={this.logout}
                 />
-                <DetailCard info={OrderData} />
+                <DetailCard
+                    info={OrderData}
+                    loggedIn={this.state.loggedIn}
+                    user={this.state.user}
+                />
                 <Row align = "top" gutter={16}>
                     <Col span={16}>
                         <DetailShowTab info={goodsData}/>

@@ -4,13 +4,16 @@ import "../css/goods.css"
 const { Meta } = Card;
 
 export class SearchGoods extends React.Component{
+    constructor(props) {
+        super(props);
+    }
     render() {
         const {info} = this.props;
         return(
             <Card
                 hoverable={true}
                 style={{width: 180, marginLeft:0}}
-                cover={<img alt="Goods" src={info.image} className={"goodsImg"}/>}
+                cover={<img alt="image" src={info.image} className={"goodsImg"}/>}
             >
                 <Meta
                     title={info.name}

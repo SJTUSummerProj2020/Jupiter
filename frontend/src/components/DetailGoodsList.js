@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {message} from "antd";
 import {deleteGoodsByGoodsId} from "../services/goodsService";
 import {ReleaseAuction} from "./ReleaseAuction";
+import {EditGoods} from "./EditGoods";
 
 export class DetailGoodsList extends React.Component{
     constructor(props) {
@@ -32,6 +33,21 @@ export class DetailGoodsList extends React.Component{
         });
     };
 
+    editGoods = (goodsId,name,goodsDetails,startTime,endTime) => {
+        this.setState({
+            visible1: true,
+            goodsId:goodsId,
+            name:name,
+            goodsDetails:goodsDetails,
+            startTime:startTime,
+            endTime:endTime
+        });    }
+
+    close1 = () => {
+        this.setState({
+            visible1: false,
+        });
+    };
     close2 = () => {
         this.setState({
             visible2: false,
@@ -62,7 +78,7 @@ export class DetailGoodsList extends React.Component{
             case "1":
                 this.deleteGoods(goodsId);break;
             case "2":
-                break;
+                this.editGoods(goodsId,name,goodsDetails,startTime,endTime);break;
             case "3":
                 this.releaseAuction(goodsId,name,goodsDetails,startTime,endTime);break;
             default:
@@ -287,6 +303,18 @@ export class DetailGoodsList extends React.Component{
                         startTime={this.state.startTime}
                         endTime={this.state.endTime}
                         close2={this.close2}
+                    />
+                </Drawer>
+                <Drawer
+                    title="更改商品"
+                    width={720}
+                    onClose={this.close1}
+                    visible={this.state.visible1}
+                    bodyStyle={{ paddingBottom: 80 }}
+                >
+                    <EditGoods
+                        name={this.state.name}
+                        goodsId={this.state.goodsId}
                     />
                 </Drawer>
             </div>

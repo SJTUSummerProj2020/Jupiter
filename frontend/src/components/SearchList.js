@@ -1,7 +1,8 @@
 import React from 'react';
-import {List} from 'antd';
+import {List, Pagination} from 'antd';
 import {SearchGoods} from "./SearchGoods";
 import {Link} from "react-router-dom";
+
 
 export class SearchList extends React.Component{
     constructor(props) {
@@ -36,14 +37,13 @@ export class SearchList extends React.Component{
                         <Link to={{
                             pathname: '/detail',
                             search: '?id=' + item.goodsId}}
-                            // target="_blank"
+                              target="_blank"
                         >
                         <SearchGoods info={item} />
                         </Link>
                     </List.Item>
                 )}
             />
-            // <div>aaaaaa</div>
         );
     }
 }

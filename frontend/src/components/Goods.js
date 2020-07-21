@@ -5,14 +5,16 @@ import {Link} from "react-router-dom";
 const { Meta } = Card;
 
 export class Goods extends React.Component{
-
+    constructor(props) {
+        super(props);
+    }
     render() {
         const {info} = this.props;
         return(
             <Link to={{
                 pathname: '/detail',
                 search: '?id=' + info.goodsId}}
-                // target="_blank"
+                  target="_blank"
             >
                 <Card
                     hoverable={true}

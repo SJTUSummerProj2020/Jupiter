@@ -4,6 +4,7 @@ import {UserOutlined} from '@ant-design/icons';
 import {Menu, Dropdown} from 'antd';
 import '../css/header.css';
 import {SearchBar} from "./SearchBar";
+import {getGoodsByName} from "../services/goodsService";
 
 export class Header extends React.Component{
     constructor(props) {
@@ -13,6 +14,7 @@ export class Header extends React.Component{
     logout = () => {
         this.props.logout();
     }
+
 
     menu = (
         <Menu>

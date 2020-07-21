@@ -7,7 +7,9 @@ import {message} from "antd";
 import {history} from "../utils/history";
 
 export class LoginView extends React.Component{
-
+    constructor(props) {
+        super(props);
+    }
     componentDidMount() {
         const callback = (data) => {
             if(data.status === 0){
@@ -37,7 +39,5 @@ export class LoginView extends React.Component{
         );
     }
 }
-
-// export default withRouter(LoginView);
 
 

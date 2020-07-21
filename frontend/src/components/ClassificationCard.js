@@ -6,7 +6,9 @@ import {GoodsList} from "./GoodsList";
 const {Meta} = Card;
 
 export class ClassificationCard extends React.Component{
-
+    constructor(props) {
+        super(props);
+    }
     render() {
         if(this.props.goods === null){
             return null;
@@ -28,7 +30,7 @@ export class ClassificationCard extends React.Component{
                        <Link to={{
                            pathname: '/detail',
                            search: '?id=' + this.props.goods.goodsId}}
-                             // target="_blank"
+                             target="_blank"
                        >
                            <Card
                                hoverable

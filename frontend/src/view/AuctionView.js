@@ -36,6 +36,7 @@ export class AuctionView extends React.Component{
         getAuctionByAuctionId(requestData,callback);
 
         const checkSession_callback = (data) => {
+            console.log(data);
             if(data.status === 0){
                 this.setState(
                     {

@@ -7,6 +7,9 @@ import {register} from "../services/userService";
 const{Option} = Select;
 
 export class RegisterForm extends React.Component{
+    constructor(props) {
+        super(props);
+    }
 
     onFinish = values => {
         console.log('Received values of form: ', values);
@@ -64,7 +67,6 @@ export class RegisterForm extends React.Component{
                 </Form.Item>
                 <Form.Item
                     name="password_confirm"
-                    // rules={[{ required: true, message: '请确认您的密码' }]}
                     dependencies={['password']}
                     hasFeedback
                     rules={[

@@ -4,6 +4,9 @@ import '../css/register.css'
 import {RegisterForm} from "../components/RegisterForm";
 
 export class RegisterView extends React.Component{
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return(
