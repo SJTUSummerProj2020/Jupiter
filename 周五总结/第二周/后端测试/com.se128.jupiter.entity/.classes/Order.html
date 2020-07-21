@@ -1,0 +1,222 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Order</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.entity</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Order (com.se128.jupiter.entity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Order</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (25/ 25)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$9bcdJEN8</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$ASWKyoaj</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$dTNTk0Y6</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$M7k65lK4</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$t0NXrzDr</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$UJ7MnrcO</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$uZZZEZJW</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$WlNQHLH2</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$wphSckuW</td>
+  </tr>
+  <tr>
+    <td class="name">Order$HibernateProxy$XVXqINq4</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (25/ 25)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.entity;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.fasterxml.jackson.annotation.JsonFormat;
+<i>4</i>&nbsp;import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import javax.persistence.*;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.sql.Timestamp;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;@Entity
+<i>11</i>&nbsp;@Table(name = &quot;orderlist&quot;)
+<i>12</i>&nbsp;@JsonIgnoreProperties(value = {&quot;handler&quot;, &quot;hibernateLazyInitializer&quot;, &quot;fieldHandler&quot;})
+<b class="fc"><i>13</i>&nbsp;public class Order {</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Id
+<i>16</i>&nbsp;    @Column(name = &quot;order_id&quot;)
+<i>17</i>&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<i>18</i>&nbsp;    private Integer orderId;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Column(name = &quot;user_id&quot;)
+<i>21</i>&nbsp;    private Integer userId;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @OneToOne
+<i>24</i>&nbsp;    @JoinColumn(name = &quot;detail_id&quot;)
+<i>25</i>&nbsp;    private GoodsDetail goodsDetail;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @OneToOne
+<i>28</i>&nbsp;    @JoinColumn(name = &quot;goods_id&quot;)
+<i>29</i>&nbsp;    private Goods goods;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    private Integer sourceId;
+<i>32</i>&nbsp;    private Integer number;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    private Double price;
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    @JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;, timezone = &quot;GMT+8&quot;)
+<i>37</i>&nbsp;    private String time;
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public Double getPrice() {
+<b class="fc"><i>40</i>&nbsp;        return price;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public GoodsDetail getGoodsDetail() {
+<b class="fc"><i>44</i>&nbsp;        return goodsDetail;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public Integer getOrderId() {
+<b class="fc"><i>48</i>&nbsp;        return orderId;</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public Integer getNumber() {
+<b class="fc"><i>52</i>&nbsp;        return number;</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public Integer getSourceId() {
+<b class="fc"><i>56</i>&nbsp;        return sourceId;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public String getTime() {
+<b class="fc"><i>60</i>&nbsp;        return time;</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public Integer getUserId() {
+<b class="fc"><i>64</i>&nbsp;        return userId;</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public void setGoodsDetail(GoodsDetail goodsDetail) {
+<b class="fc"><i>68</i>&nbsp;        this.goodsDetail = goodsDetail;</b>
+<b class="fc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public void setNumber(Integer number) {
+<b class="fc"><i>72</i>&nbsp;        this.number = number;</b>
+<b class="fc"><i>73</i>&nbsp;    }</b>
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public void setOrderId(Integer orderId) {
+<b class="fc"><i>76</i>&nbsp;        this.orderId = orderId;</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void setPrice(Double price) {
+<b class="fc"><i>80</i>&nbsp;        this.price = price;</b>
+<b class="fc"><i>81</i>&nbsp;    }</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void setSourceId(Integer sourceId) {
+<b class="fc"><i>84</i>&nbsp;        this.sourceId = sourceId;</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public void setTime(String time) {
+<b class="fc"><i>88</i>&nbsp;        this.time = time;</b>
+<b class="fc"><i>89</i>&nbsp;    }</b>
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public void setUserId(Integer userId) {
+<b class="fc"><i>92</i>&nbsp;        this.userId = userId;</b>
+<b class="fc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public void setGoods(Goods goods) {
+<b class="fc"><i>96</i>&nbsp;        this.goods = goods;</b>
+<b class="fc"><i>97</i>&nbsp;    }</b>
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    public Goods getGoods() {
+<b class="fc"><i>100</i>&nbsp;        return goods;</b>
+<i>101</i>&nbsp;    }
+<i>102</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>

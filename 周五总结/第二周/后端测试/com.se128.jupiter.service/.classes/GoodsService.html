@@ -1,0 +1,94 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GoodsService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GoodsService (com.se128.jupiter.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">GoodsService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.se128.jupiter.entity.Auction;
+<i>4</i>&nbsp;import com.se128.jupiter.entity.Goods;
+<i>5</i>&nbsp;import org.springframework.data.domain.Page;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface GoodsService {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    Goods getGoodsByGoodsId(Integer goodsId);
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    Goods editGoods(Goods goods);
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    Goods addGoods(Goods goods);
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    void deleteGoodsByGoodsId(Integer goodsId);
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    List&lt;Goods&gt; getGoodsByGoodsType(Integer goodsType);
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    List&lt;Goods&gt; getGoodsByName(String name);
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    List&lt;Goods&gt; getGoodsByPageId(Integer pageId);
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    Page&lt;Goods&gt; getAllGoods(Integer pageId, Integer pageSize, Integer goodsType);
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    void saveViewCounter();
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    List&lt;Goods&gt; getPopularGoods(Integer number, Integer goodsType);
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    List&lt;Auction&gt; getAllAuctions();
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    Auction getAuctionByAuctionId(Integer auctionId);
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    Auction updateAuction(Integer auctionId, Integer userId, Double offer);
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    List&lt;Goods&gt; getRecommendGoodsByUserId(Integer userId, Integer number);
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    List&lt;Goods&gt; getRecommendGoodsInAll(Integer number);
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    void deleteAuctionByAuctionId(Integer auctionId);
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    Auction editAuction(Auction auction, Integer detailId, Integer goodsId);
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    Auction addAuction(Auction auction, Integer goodsId, Integer detailId);
+<i>47</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>

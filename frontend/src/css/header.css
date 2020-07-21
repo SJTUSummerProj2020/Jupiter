@@ -1,0 +1,76 @@
+.header{
+    width: 100%;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+.header .auth{
+    float: right;
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
+.logo{
+    float: left;
+    position: relative;
+    margin-left:40px;
+}
+
+.logo img{
+    /*width: 200px;*/
+    /*height: 80px;*/
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.searchBarContainer{
+    float: left;
+    position:relative;
+    width: 600px;
+    margin-top:35px;
+    margin-left:20px;
+}
+
+.header .auth ul li{
+    float: left;
+    margin-right: 70px;
+    margin-top: 10px;
+    list-style: none;
+}
+
+.headerList{
+    float: left;
+    margin-right: 70px;
+    margin-top: 40px;
+    list-style: none;
+    color: #c9cdcd;
+}
+
+a{
+    text-decoration: none;
+}
+
+.img-responsive{
+    width: 150px;
+    height: 200px;
+    margin-left: 40px;
+}
+
+.img{
+    width: 60px;
+    height: 80px;
+    margin-left: 10px;
+}
+
+.navigationList{
+    float: left;
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.navigation{
+    list-style:none;
+    color: #6a7891;
+    float: left;
+    margin-right: 30px;
+}

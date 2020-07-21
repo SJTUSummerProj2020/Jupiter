@@ -1,0 +1,106 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GoodsRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.se128.jupiter.repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GoodsRepository (com.se128.jupiter.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">GoodsRepository$MockitoMock$1954351636</td>
+  </tr>
+  <tr>
+    <td class="name">GoodsRepository$MockitoMock$1954351636$auxiliary$Avlz5G4X</td>
+  </tr>
+  <tr>
+    <td class="name">GoodsRepository$MockitoMock$1954351636$auxiliary$qicXNjo9</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.se128.jupiter.repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.se128.jupiter.entity.Goods;
+<i>4</i>&nbsp;import org.springframework.data.domain.Page;
+<i>5</i>&nbsp;import org.springframework.data.domain.PageRequest;
+<i>6</i>&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+<i>7</i>&nbsp;import org.springframework.data.jpa.repository.Query;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public interface GoodsRepository extends JpaRepository&lt;Goods, Integer&gt; {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    @Query(value = &quot;select g from Goods g where g.goodsType &gt;= 0 &quot;)
+<i>14</i>&nbsp;    List&lt;Goods&gt; getAllGoods();
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    Goods getGoodsByGoodsId(Integer goodsId);
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    List&lt;Goods&gt; getGoodsByGoodsType(Integer goodsType);
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @Query(value = &quot;from Goods where name like %?1%&quot;)
+<i>21</i>&nbsp;    List&lt;Goods&gt; getGoodsByName(String name);
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    List&lt;Goods&gt; findAllByNameLike(String name);
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    List&lt;Goods&gt; findAllByNameContains(String name);
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @Query(nativeQuery = true, value = &quot;select * from Goods order by goods_id limit 3&quot;)
+<i>28</i>&nbsp;    List&lt;Goods&gt; getGoodsByPageId(Integer pageId);
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    @Query(value = &quot;SELECT * FROM Goods WHERE goods_type = ?1&quot;,
+<i>31</i>&nbsp;            countQuery = &quot;SELECT count(*) FROM goods WHERE goods_type = ?1&quot;,
+<i>32</i>&nbsp;            nativeQuery = true)
+<i>33</i>&nbsp;    Page&lt;Goods&gt; findByGoodsType(Integer goodsType, PageRequest pageable);
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @Query(nativeQuery = true,
+<i>36</i>&nbsp;            value = &quot;select * from Goods where goods_type =?2 order by view_counter desc limit ?1&quot;)
+<i>37</i>&nbsp;    List&lt;Goods&gt; getPopularGoods(Integer number, Integer goodsType);
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Query(nativeQuery = true,
+<i>40</i>&nbsp;            value = &quot;select * from Goods where goods_type &gt;= 0 order by view_counter desc limit ?1&quot;)
+<i>41</i>&nbsp;    List&lt;Goods&gt; getPopularGoodsInAll(Integer number);
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Query(nativeQuery = true,
+<i>44</i>&nbsp;            value = &quot;select * from Goods where goods_type =?1 order by buy_counter desc limit ?2&quot;)
+<i>45</i>&nbsp;    List&lt;Goods&gt; getRecommendGoodsByGoodsType(Integer goodsType, Integer number);
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @Query(nativeQuery = true,
+<i>48</i>&nbsp;            value = &quot;select * from Goods where goods_type &gt;= 0 order by buy_counter desc limit ?1&quot;)
+<i>49</i>&nbsp;    List&lt;Goods&gt; getRecommendGoodsInAll(Integer number);
+<i>50</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-17 16:18</div>
+</div>
+</body>
+</html>

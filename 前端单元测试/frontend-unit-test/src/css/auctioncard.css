@@ -1,0 +1,103 @@
+.auction-card {
+    width:70%;
+    display: table;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 #eee;
+    border: 1px solid #eee;
+    margin-left:auto;
+    margin-right:auto;
+}
+.auction-card-img{
+    width:70%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top:4%;
+    margin-bottom: 30%;
+    background-color: #fff;
+}
+.auction-card-show-name{
+    font-size: 26px;
+    font-weight: 500;
+    color: #331612;
+    line-height: 40px;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+.auction-card-show-time{
+    color: #68676c;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
+.auction-card-show-address{
+    color: #68676c;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
+.auction-card-tips{
+    color: #999;
+    font-size: 12px;
+    margin-top: 1%;
+    margin-bottom:1%;
+    padding-top: 1%;
+}
+.auction-card-stems{
+    display: inline-block;
+    font-size: 16px;
+    color: #000;
+    height: 48px;
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-right: 15px;
+}
+.auction-card-num-choice{
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-right: 15px;
+}
+.auction-card-money{
+    font-size: 26px;
+    color: #ff4655;
+    line-height: 34px;
+}
+.auction-card-yuan{
+    color: #ff4655;
+    line-height: 34px;
+    padding-top: 1%;
+}
+.auction-card-buy-button{
+    margin-top: 10px;
+    margin-left: 25px;
+    width: 210px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ff2d79;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+}
+.auction-card-icon{
+    padding-top:0.5%;
+}
+.auction-info-stem{
+    margin-left: 80px;
+    margin-right: 10px;
+    color: #999;
+    font-size: 12px;
+}
+
+.auction-info-content{
+    color: #999;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.auction-card-countdown{
+    margin-top:10px;
+    margin-left:40px;
+}
