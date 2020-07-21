@@ -3,14 +3,14 @@ import {Header} from "../components/Header";
 import {DetailCard} from "../components/DetailCard";
 import{DetailShowTab} from "../components/DetailShowTab";
 import{Recommendation} from "../components/Recommendation";
-import {Row, Col, Card, Tabs, message, BackTop} from 'antd';
+import {Row, Col, Card, Tabs, message} from 'antd';
 import {getGoodsByGoodsId} from "../services/goodsService";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
 import "../css/detailview.css";
 
-let tmpId = null;
 let goodsData = null;
+let OrderData={tmpId:null,userId:null}
 export class DetailView extends React.Component {
     constructor(props) {
         super(props);
@@ -24,20 +24,21 @@ export class DetailView extends React.Component {
     componentDidMount() {
         const query = this.props.location.search;
         const arr = query.split('?');
-        tmpId = arr[1].substr(3);
-        this.setState({goodsId:tmpId});
+        OrderData.tmpId = arr[1].substr(3);
+        this.setState({goodsId:OrderData.tmpId});
 
         const callback = (data) =>{
             goodsData = data.data;
             this.setState({goodsData:data.data});
         }
-        if(tmpId === null){
+        if(OrderData.tmpId === null){
             return;
         }
-        const requestData = {goodsId:tmpId};
+        const requestData = {goodsId:OrderData.tmpId};
         getGoodsByGoodsId(requestData,callback);
         const checkSession_callback = (data) => {
             if(data.status === 0){
+                OrderData.userId = data.data.user.userId;
                 this.setState(
                     {
                         loggedIn:true,
@@ -66,7 +67,7 @@ export class DetailView extends React.Component {
 
     render(){
         console.log('goodsID',this.state.goodsId)
-        if(tmpId === null)
+        if(OrderData.tmpId === null)
             return null;
         if(goodsData === null)
             return null;
@@ -77,7 +78,7 @@ export class DetailView extends React.Component {
                     user={this.state.user}
                     logout={this.logout}
                 />
-                <DetailCard info={tmpId} />
+                <DetailCard info={OrderData} />
                 <Row align = "top" gutter={16}>
                     <Col span={16}>
                         <DetailShowTab info={goodsData}/>
@@ -89,7 +90,6 @@ export class DetailView extends React.Component {
                         />
                     </Col>
                 </Row>
-                <BackTop/>
             </Row>
         );
     }

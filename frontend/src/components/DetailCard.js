@@ -30,6 +30,7 @@ export class DetailCard extends React.Component{
 
     componentDidMount() {
         const callback = (data) => {
+            this.setState({user:data.data.userId});
             this.setState({goodsData:data.data});
             this.setState({goodsDetailTime:data.data.goodsDetails[0].time});
             this.setState({ticketsType:data.data.goodsDetails[0].ticketType});
@@ -41,7 +42,7 @@ export class DetailCard extends React.Component{
         };
         if(this.props.info === null)
             return;
-        const requestData = {goodsId:this.props.info};
+        const requestData = {goodsId:this.props.info.tmpId};
         getGoodsByGoodsId(requestData,callback);
 
         // let userItem = localStorage.getItem("user");
@@ -222,7 +223,7 @@ export class DetailCard extends React.Component{
         if(this.state.user !== null){
             this.clickSurplus();
             if(this.allMatch()){
-                let userId = this.state.user.userId;
+                let userId = this.state.user;
                 let detailId = this.getDetailId();
                 let number = this.state.ticketsNum;
                 let json = {
@@ -247,7 +248,17 @@ export class DetailCard extends React.Component{
         }
         else{
             message.error("请登录");
+            history.push('login');
+            return;
         }
+    }
+
+    getPath=()=>{
+        console.log('真正的user',this.state.user);
+        if(this.state.user === null){
+            return 'login';
+        }
+        return 'detailOrder';
     }
 
     render(){
@@ -322,7 +333,7 @@ export class DetailCard extends React.Component{
                             <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
                         <Row>
-                            <Link to={{ pathname: this.user!==null? '/detailOrder':'/login' , state : this.state}}>
+                            <Link to={{ pathname: this.getPath() , state : this.state}}>
                             <button className={"detail-card-buy-button"} onClick={this.buyNow}>
                                     立即购买
                                 </button>

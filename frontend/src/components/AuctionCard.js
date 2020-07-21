@@ -181,6 +181,11 @@ export class AuctionCard extends React.Component{
 
     commitAuction=()=>{
         let auctionId = this.state.auctionData.auctionId;
+        if(this.state.user === null){
+            message.warning('请先登录');
+            history.push('login');
+            return;
+        }
         let userId = this.state.user.userId;
         let currentOffer = this.state.currentOffer;
         let json={
@@ -223,6 +228,7 @@ export class AuctionCard extends React.Component{
             return(<Card hoverable={false} className={"auction-card"}> 拍卖还没开始</Card>);
         }
         if(this.getTimeType()===2){
+            console.log('持续时间',this.state.duration);
             return(<Card hoverable={false} className={"auction-card"}>拍卖已结束</Card>)
         }
 
