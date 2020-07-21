@@ -10,6 +10,7 @@ import{updateAuction} from "../services/goodsService";
 
 const { Countdown } = Statistic;
 
+
 // const ticketsData = {
 //     "address": "场馆：上海市 | 生活实验室小剧场",
 //     "endTime": "2020-07-18",
@@ -67,6 +68,7 @@ export class AuctionCard extends React.Component{
     }
 
     componentDidMount() {
+        // debugger;
         if(this.props.info === null)
             return;
         let startTime = this.props.info.startTime;
@@ -130,7 +132,7 @@ export class AuctionCard extends React.Component{
             this.setState({auctionData:data.data});
             this.setState({bestOffer:data.data.bestOffer});
             console.log('当前最高价',data.data.bestOffer);
-            if(data.data.userId === this.state.user.userId){
+            if(data.data.userId === this.props.user){
                 this.setState({isTheCandidate:true});
             }
             else{
@@ -180,14 +182,10 @@ export class AuctionCard extends React.Component{
     }
 
     commitAuction=()=>{
+        // debugger;
         if(this.props.loggedIn === true){
             let auctionId = this.state.auctionData.auctionId;
-            if(this.state.user === null){
-                message.warning('请先登录');
-                history.push('login');
-                return;
-            }
-            let userId = this.state.user.userId;
+            let userId = this.props.user;
             let currentOffer = this.state.currentOffer;
             let json={
                 auctionId:auctionId,

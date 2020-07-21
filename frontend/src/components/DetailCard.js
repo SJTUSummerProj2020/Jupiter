@@ -29,6 +29,7 @@ export class DetailCard extends React.Component{
     }
 
     componentDidMount() {
+        // debugger;
         const callback = (data) => {
             let userInfoStr = sessionStorage.getItem('user');
             if(userInfoStr != null){
@@ -193,10 +194,11 @@ export class DetailCard extends React.Component{
     }
 
     buyNow=()=>{
-        if(this.state.user !== null){
+        // debugger;
+        if(this.props.user !== null){
             this.clickSurplus();
             if(this.allMatch()){
-                let userId = this.state.user;
+                let userId = this.props.user;
                 let detailId = this.getDetailId();
                 let number = this.state.ticketsNum;
                 let json = {
@@ -227,8 +229,7 @@ export class DetailCard extends React.Component{
     }
 
     getPath=()=>{
-        console.log('真正的user',this.state.user);
-        if(this.state.user === null){
+        if(this.props.user === null){
             return 'login';
         }
         return 'detailOrder';
