@@ -1,6 +1,6 @@
 import React from "react";
 import {Header} from "../components/Header";
-import {Col, Row} from "antd";
+import {Col, Row, BackTop} from "antd";
 import {AdminSideBar} from "../components/AdminSideBar";
 import {checkSession, getAllOrders} from "../services/userService";
 import {message} from "antd";
@@ -80,6 +80,7 @@ export class AdminOrderListView extends React.Component{
                         />
                     </Col>
                 </Row>
+                <BackTop/>
             </div>
         );
     }
