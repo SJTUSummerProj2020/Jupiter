@@ -39,7 +39,6 @@ public class GoodsServiceImpl implements GoodsService {
         if(goods != null)
         {
             this.goodsViewCounter.merge(goodsId, 1, Integer::sum);
-            System.out.println(goodsViewCounter.get(goodsId));
         }
         return goods;
     }

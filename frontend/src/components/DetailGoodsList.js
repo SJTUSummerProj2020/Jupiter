@@ -1,15 +1,42 @@
 import React from 'react';
-import { List, PageHeader, Button, Menu, Dropdown} from 'antd';
-import {HomeOutlined, CalendarOutlined, DownOutlined, SettingOutlined} from '@ant-design/icons';
+import { List, PageHeader, Button, Menu, Dropdown, Drawer} from 'antd';
+import {HomeOutlined, CalendarOutlined, UpOutlined, SettingOutlined} from '@ant-design/icons';
 import '../css/detailgoodslist.css';
 import {Link} from 'react-router-dom';
 import {message} from "antd";
 import {deleteGoodsByGoodsId} from "../services/goodsService";
+import {ReleaseAuction} from "./ReleaseAuction";
 
 export class DetailGoodsList extends React.Component{
     constructor(props) {
         super(props);
+        this.state={
+            visible1:false,
+            visible2:false,
+            goodsId:null,
+            goodsDetails:[],
+            name:null,
+            startTime:null,
+            endTime:null
+        }
     }
+
+    releaseAuction = (goodsId,name,goodsDetails,startTime,endTime) => {
+        this.setState({
+            visible2: true,
+            goodsId:goodsId,
+            name:name,
+            goodsDetails:goodsDetails,
+            startTime:startTime,
+            endTime:endTime
+        });
+    };
+
+    close2 = () => {
+        this.setState({
+            visible2: false,
+        });
+    };
 
     getType = (type) => {
         this.props.getType(type);
@@ -28,16 +55,16 @@ export class DetailGoodsList extends React.Component{
         deleteGoodsByGoodsId(data,callback);
     }
 
-    handleClick = (goodsId,e) => {
+    handleClick = (goodsId,name,goodsDetails,startTime,endTime,e) => {
         console.log(goodsId);
         console.log(e);
         switch(e.key){
             case "1":
-                this.deleteGoods(goodsId);
+                this.deleteGoods(goodsId);break;
             case "2":
                 break;
             case "3":
-                break;
+                this.releaseAuction(goodsId,name,goodsDetails,startTime,endTime);break;
             default:
                 break;
         }
@@ -201,8 +228,20 @@ export class DetailGoodsList extends React.Component{
                                                                 this.props.user.userType === 0 ?
                                                                     (
                                                                         <Dropdown
+                                                                            placement="topRight"
                                                                             overlay={
-                                                                                <Menu onClick={this.handleClick.bind(this,item.goodsId)}>
+                                                                                <Menu
+                                                                                    onClick={
+                                                                                        this.handleClick.bind(
+                                                                                            this,
+                                                                                            item.goodsId,
+                                                                                            item.name,
+                                                                                            item.goodsDetails,
+                                                                                            item.startTime,
+                                                                                            item.endTime
+                                                                                        )
+                                                                                    }
+                                                                                >
                                                                                     <Menu.Item key="1" >
                                                                                         下架
                                                                                     </Menu.Item>
@@ -215,8 +254,8 @@ export class DetailGoodsList extends React.Component{
                                                                                 </Menu>
                                                                             }
                                                                         >
-                                                                            <Button>
-                                                                                <SettingOutlined />管理 <DownOutlined />
+                                                                            <Button style={{marginTop: 235}}>
+                                                                                <SettingOutlined />管理 <UpOutlined />
                                                                             </Button>
                                                                         </Dropdown>
                                                                     ):
@@ -234,6 +273,22 @@ export class DetailGoodsList extends React.Component{
                         </List.Item>
                     )}
                 />
+                <Drawer
+                    title="发布竞拍"
+                    width={720}
+                    onClose={this.close2}
+                    visible={this.state.visible2}
+                    bodyStyle={{ paddingBottom: 80 }}
+                >
+                    <ReleaseAuction
+                        goodsId={this.state.goodsId}
+                        name={this.state.name}
+                        goodsDetails={this.state.goodsDetails}
+                        startTime={this.state.startTime}
+                        endTime={this.state.endTime}
+                        close2={this.close2}
+                    />
+                </Drawer>
             </div>
         );
     }

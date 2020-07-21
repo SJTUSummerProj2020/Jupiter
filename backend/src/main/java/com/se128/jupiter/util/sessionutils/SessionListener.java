@@ -5,16 +5,16 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 import com.se128.jupiter.service.GoodsService;
-import com.se128.jupiter.util.logutils.LogUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.logging.Logger;
 
 @Component
 public class SessionListener implements HttpSessionListener{
     @Autowired
     private GoodsService goodsService;
+    private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     @Override
     public void sessionCreated(HttpSessionEvent event){
@@ -27,7 +27,7 @@ public class SessionListener implements HttpSessionListener{
         HttpSession session = event.getSession();
         //String login_id = (String) session.getAttribute("userId");
         goodsService.saveViewCounter();
-        LogUtil.info("Session destroyed!");
+        logger.info("Session destroyed!");
     }
 
 }
