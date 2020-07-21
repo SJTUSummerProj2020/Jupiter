@@ -57,26 +57,26 @@ export class DetailCard extends React.Component{
         // }
 
 
-        const callback_checkSession = (data) => {
-            if(data.status === 0){
-                this.setState(
-                    {
-                        user:data.data
-                    }
-                );
-                const callback = (data) => {
-                    console.log(data);
-                    this.setState({orderList:data})
-                };
-                const requestData = {userId:data.data.userId};
-                getOrdersByUserId(requestData,callback);
-            }
-            else{
-                message.warning(data.msg);
-                history.push('login');
-            }
-        };
-        checkSession(callback_checkSession);
+        // const callback_checkSession = (data) => {
+        //     if(data.status === 0){
+        //         this.setState(
+        //             {
+        //                 user:data.data
+        //             }
+        //         );
+        //         const callback = (data) => {
+        //             console.log(data);
+        //             this.setState({orderList:data})
+        //         };
+        //         const requestData = {userId:data.data.userId};
+        //         getOrdersByUserId(requestData,callback);
+        //     }
+        //     else{
+        //         message.warning(data.msg);
+        //         history.push('login');
+        //     }
+        // };
+        // checkSession(callback_checkSession);
     }
 
     onChange1=(e) =>{
