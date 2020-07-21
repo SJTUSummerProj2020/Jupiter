@@ -3,7 +3,7 @@ import {Header} from "../components/Header";
 import {DetailCard} from "../components/DetailCard";
 import{DetailShowTab} from "../components/DetailShowTab";
 import{Recommendation} from "../components/Recommendation";
-import {Row, Col, Card, Tabs, message, BackTop} from 'antd';
+import {Row, Col, message, BackTop} from 'antd';
 import {getGoodsByGoodsId} from "../services/goodsService";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
@@ -31,14 +31,11 @@ export class DetailView extends React.Component {
             goodsData = data.data;
             this.setState({goodsData:data.data});
         }
-        if(OrderData.tmpId === null){
-            return;
-        }
         const requestData = {goodsId:OrderData.tmpId};
         getGoodsByGoodsId(requestData,callback);
         const checkSession_callback = (data) => {
+            console.log(data);
             if(data.status === 0){
-                OrderData.userId = data.data.user.userId;
                 this.setState(
                     {
                         loggedIn:true,
