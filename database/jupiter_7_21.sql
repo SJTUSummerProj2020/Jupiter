@@ -47,6 +47,8 @@ CREATE TABLE `auction`  (
 -- Records of auction
 -- ----------------------------
 INSERT INTO `auction` VALUES (1, 1890, 513, 1, 160, 10, 190, '2020-07-20 10:00:00', '36000000', NULL, NULL, NULL);
+INSERT INTO `auction` VALUES (2, 1891, 514, 2, 160, 10, 190, '2020-09-20 10:00:00', '3600', NULL, NULL, NULL);
+INSERT INTO `auction` VALUES (3, 1894, 515, 3, 160, 10, 190, '2020-05-20 10:00:00', '3600', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for goods
