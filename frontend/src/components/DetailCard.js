@@ -30,7 +30,12 @@ export class DetailCard extends React.Component{
 
     componentDidMount() {
         const callback = (data) => {
-            this.setState({user:data.data.userId});
+            let userInfoStr = sessionStorage.getItem('user');
+            if(userInfoStr != null){
+                let userInfo = JSON.parse(userInfoStr);
+                this.setState({user:userInfo.userId});
+            }
+            // this.setState({user:data.data.userId});
             this.setState({goodsData:data.data});
             this.setState({goodsDetailTime:data.data.goodsDetails[0].time});
             this.setState({ticketsType:data.data.goodsDetails[0].ticketType});
@@ -248,7 +253,7 @@ export class DetailCard extends React.Component{
         }
         else{
             message.error("请登录");
-            history.push('login');
+            history.push('/login');
             return;
         }
     }

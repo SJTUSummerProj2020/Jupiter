@@ -79,5 +79,11 @@ describe('Test detailpage', function(){
     })
 
     // 购买流程
-    
+    it('Test kaimono', function(){
+        // logout
+        cy.request('POST', 'http://localhost:8080/logout', {})
+        cy.visit('/detail?id=514')
+        cy.get('.detail-card-buy-button').click()
+
+    })
 })
