@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from 'dayjs';
 import {Form, DatePicker, Input, Col, Row, Select, Button, InputNumber, message} from "antd";
 import {addAuction} from "../services/goodsService";
 
@@ -14,8 +15,8 @@ export class ReleaseAuction extends React.Component{
     }
 
     onFinish = (values) =>{
-        console.log(values);
-        let startTime = new Date(values.startTime);
+        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:MM");
+        console.log(startTime);
         const data = {
             detailId: values.goodsDetails,
             goodsId: this.props.goodsId,

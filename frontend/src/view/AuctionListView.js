@@ -51,6 +51,7 @@ export class AuctionListView extends React.Component{
             pageSize:100
         };
         const callback = (data) => {
+            console.log(data);
             let tmp = new Array(data.data.totalNum);
             let dataLength = data.data.auctions.length;
             let totalPage = (dataLength % this.state.pageSize === 0) ? dataLength / this.state.pageSize : dataLength / this.state.pageSize + 1
