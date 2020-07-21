@@ -4,13 +4,14 @@ import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.entity.User;
 import com.se128.jupiter.service.UserService;
 import com.se128.jupiter.util.constant.Constant;
-import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
 import com.se128.jupiter.util.sessionutils.SessionUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     @Autowired
     public UserController(UserService userService) {
@@ -31,7 +33,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public Msg register(@RequestBody User user) {
-        LogUtil.info("register");
+        logger.info("register");
         user.setUserType(Constant.Customer);
         user.setBuy0(0);
         user.setBuy1(0);
@@ -49,7 +51,7 @@ public class UserController {
     @RequestMapping("/changeUserStatusByUserId")
     public Msg changeUserStatusByUserId(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        LogUtil.info("changeUserStatusByUserId = " + userId);
+        logger.info("changeUserStatusByUserId = " + userId);
         User user = userService.changeUserStatusByUserId(userId);
         if (user != null) {
             return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
@@ -60,7 +62,7 @@ public class UserController {
 
     @RequestMapping("/editUser")
     public Msg editUser(@RequestBody User user) {
-        LogUtil.info("editUser");
+        logger.info("editUser");
         User user1 = userService.editUser(user);
         JSONObject data = JSONObject.fromObject(user1);
         return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
@@ -70,7 +72,7 @@ public class UserController {
     public Msg getUserById(@RequestBody Map<String, String> params) {
 
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        LogUtil.info("getUserById = " + userId);
+        logger.info("getUserById = " + userId);
         User user = userService.getUserByUserId(userId);
         JSONObject data = JSONObject.fromObject(user);
         return MsgUtil.makeMsg(MsgCode.SUCCESS, data);
@@ -78,7 +80,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public Msg login(@RequestBody Map<String, String> params) {
-        LogUtil.info("login");
+        logger.info("login");
         String username = params.get(Constant.USERNAME);
         String password = params.get(Constant.PASSWORD);
         User user = userService.getUserByUsernameAndPassword(username, password);
@@ -105,7 +107,7 @@ public class UserController {
 
     @RequestMapping("/logout")
     public Msg logout() {
-        LogUtil.info("logout");
+        logger.info("logout");
         Boolean status = SessionUtil.removeSession();
         if (status) {
             return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGOUT_SUCCESS_MSG);
@@ -115,7 +117,7 @@ public class UserController {
 
     @RequestMapping("/checkSession")
     public Msg checkSession() {
-        LogUtil.info("checkSession");
+        logger.info("checkSession");
         JSONObject auth = SessionUtil.getAuth();
 
         if (auth == null) {
@@ -128,7 +130,7 @@ public class UserController {
     @RequestMapping("/getOrdersByUserId")
     public Msg getOrdersByUserId(@RequestBody Map<String, String> params) {
         Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        LogUtil.info("getOrdersByUserId = " + userId);
+        logger.info("getOrdersByUserId = " + userId);
         List<Order> orders = userService.getOrdersByUserId(userId);
 
         JSONArray orderList = JSONArray.fromObject(orders);
@@ -139,7 +141,7 @@ public class UserController {
 
     @RequestMapping("/getAllUsers")
     public Msg getAllUsers() {
-        LogUtil.info("getAllUsers");
+        logger.info("getAllUsers");
         List<User> users = userService.getAllUsers();
         JSONObject data = new JSONObject();
         JSONArray orderList = JSONArray.fromObject(users);

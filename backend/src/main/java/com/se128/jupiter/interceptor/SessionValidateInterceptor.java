@@ -17,6 +17,7 @@ public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) {
         boolean status = SessionUtil.checkAuth();
+        //return true;
         if(!status){
             System.out.println("Session Failed");
             Msg msg = MsgUtil.makeMsg(MsgCode.NOT_LOGGED_IN_ERROR);
