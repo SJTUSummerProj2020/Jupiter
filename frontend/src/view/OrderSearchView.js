@@ -14,6 +14,7 @@ export class OrderSearchView extends React.Component{
         super(props);
         this.state={key:'4',loggedIn:false,user:null,orderList:[]}
     }
+
     componentDidMount() {
         const callback = (data) => {
             if(data.status === 0){
@@ -47,6 +48,22 @@ export class OrderSearchView extends React.Component{
         }
         checkSession(callback);
     }
+
+    logout = () => {
+        const callback = (data) => {
+            sessionStorage.removeItem("user");
+            this.setState(
+                {
+                    loggedIn:false,
+                    user:null
+                }
+            );
+            message.success(data.msg);
+            history.push('/');
+        };
+        logout(callback);
+    }
+
     render() {
         if(this.state.loggedIn === false){
             return null;
@@ -63,7 +80,7 @@ export class OrderSearchView extends React.Component{
               <Header
                   loggedIn={this.state.loggedIn}
                   user={this.state.user}
-                  logout={this.state.logout}
+                  logout={this.logout}
               />
               <Row>
                   <Col span={7} push={2}>
