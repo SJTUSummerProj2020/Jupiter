@@ -185,13 +185,14 @@ export class AuctionCard extends React.Component{
         // debugger;
         if(this.props.loggedIn === true){
             let auctionId = this.state.auctionData.auctionId;
-            let userId = this.props.user;
+            let userId = this.props.user.userId;
             let currentOffer = this.state.currentOffer;
             let json={
                 auctionId:auctionId,
                 userId:userId,
                 offer:currentOffer
             }
+            // debugger;
             const callback = (data)=>{
                 if(data.status>=0){
                     message.success('恭喜您竞价成功');
