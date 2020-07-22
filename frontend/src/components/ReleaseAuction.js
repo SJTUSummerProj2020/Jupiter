@@ -15,7 +15,9 @@ export class ReleaseAuction extends React.Component{
     }
 
     onFinish = (values) =>{
-        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:MM");
+        console.log(values);
+        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:mm:ss");
+        console.log(startTime);
         const data = {
             detailId: values.goodsDetails,
             goodsId: this.props.goodsId,
