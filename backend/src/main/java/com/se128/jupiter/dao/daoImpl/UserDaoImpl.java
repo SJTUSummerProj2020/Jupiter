@@ -87,4 +87,9 @@ public class UserDaoImpl implements UserDao {
         user1.setPassword(user.getPassword());
         return userRepository.saveAndFlush(user);
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.getUserByUsername(username);
+    }
 }
