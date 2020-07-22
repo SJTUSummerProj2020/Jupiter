@@ -16,6 +16,7 @@ public class SessionValidateInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) {
+        //return true;
         boolean status = SessionUtil.checkAuth();
         if(!status){
             System.out.println("Session Failed");

@@ -32,7 +32,6 @@ public class User {
     private Integer buy2;
     private Integer buy3;
 
-
     public Integer getUserId() {
         return this.userId;
     }

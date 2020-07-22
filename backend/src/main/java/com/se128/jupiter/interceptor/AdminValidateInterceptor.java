@@ -18,7 +18,7 @@ public class AdminValidateInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) {
         JSONObject user = SessionUtil.getAuth();
-        //return true;
+
         if(user != null &&user.getInt(Constant.USER_TYPE)==Constant.ADMIN){
             System.out.println("Admin Success");
             return true;

@@ -100,6 +100,7 @@ public class UserController {
         data.remove(Constant.PASSWORD);
         data.remove(Constant.ORDERS);
         data.remove(Constant.PHONE);
+        data.remove(Constant.ORDERS);
 
         return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.LOGIN_SUCCESS_MSG, data);
 
