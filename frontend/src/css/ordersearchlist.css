@@ -1,0 +1,35 @@
+.order-search-orderId{
+    width:40px;
+    margin-left: 10px;
+    text-align:center;
+}
+
+.order-search-name{
+    width:350px;
+    margin-left: 10px;
+    text-align:center;
+}
+
+.order-search-goodsId{
+    width:60px;
+    margin-left: 20px;
+    text-align:center;
+}
+
+.order-search-userId{
+    width:60px;
+    margin-left: 20px;
+    text-align:center;
+}
+
+.order-search-price{
+    width:80px;
+    margin-left: 20px;
+    text-align:center;
+}
+
+.order-search-time{
+    width:150px;
+    margin-left: 20px;
+    text-align:center;
+}

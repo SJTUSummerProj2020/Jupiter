@@ -30,6 +30,11 @@ export class AdminSideBar extends React.Component{
                         票务管理
                     </Link>
                 </Menu.Item>
+                <Menu.Item key="4">
+                    <Link to={{pathname:"/OrderSearch"}}>
+                        分时查询
+                    </Link>
+                </Menu.Item>
             </Menu>
         );
     }
