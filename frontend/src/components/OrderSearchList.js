@@ -1,6 +1,5 @@
 import React from 'react';
 import {DatePicker,Input, List,Row,Col} from 'antd';
-import{OrderTimeDetail} from "../view/OrderTimeDetail";
 import "../css/ordersearchlist.css"
 
 const {Search} = Input;
