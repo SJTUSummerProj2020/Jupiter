@@ -15,7 +15,9 @@ export class ReleaseAuction extends React.Component{
     }
 
     onFinish = (values) =>{
-        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:MM");
+        console.log(values);
+        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:mm:ss");
+        console.log(startTime);
         const data = {
             detailId: values.goodsDetails,
             goodsId: this.props.goodsId,
@@ -104,7 +106,9 @@ export class ReleaseAuction extends React.Component{
                             label="持续时间(s)"
                             rules={[{ required: true, message: '请输入持续时间' }]}
                         >
-                            <InputNumber/>
+                            <InputNumber
+                                min={0}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -115,7 +119,11 @@ export class ReleaseAuction extends React.Component{
                             label="起拍价(￥)"
                             rules={[{ required: true, message: '请输入起拍价' }]}
                         >
-                            <InputNumber/>
+                            <InputNumber
+                                formatter={value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                parser={value => value.replace(/\￥\s?|(,*)/g, '')}
+                                min={0}
+                            />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -124,7 +132,11 @@ export class ReleaseAuction extends React.Component{
                             label="加价幅度(￥)"
                             rules={[{ required: true, message: '请输入加价幅度' }]}
                         >
-                            <InputNumber/>
+                            <InputNumber
+                                formatter={value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                parser={value => value.replace(/\￥\s?|(,*)/g, '')}
+                                min={0}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>

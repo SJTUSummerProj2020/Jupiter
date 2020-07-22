@@ -214,7 +214,7 @@ export class DetailGoodsList extends React.Component{
                                                         <div className={"detailGoodsName"}>
                                     <span>
                                         {
-                                            item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
+                                            item.name.length > 20 ? item.name.substring(0,20) + "..." : item.name
                                         }
                                     </span>
                                                         </div>
@@ -244,7 +244,6 @@ export class DetailGoodsList extends React.Component{
                                                                 this.props.user.userType === 0 ?
                                                                     (
                                                                         <Dropdown
-                                                                            placement="topRight"
                                                                             overlay={
                                                                                 <Menu
                                                                                     onClick={
@@ -270,8 +269,8 @@ export class DetailGoodsList extends React.Component{
                                                                                 </Menu>
                                                                             }
                                                                         >
-                                                                            <Button style={{marginTop: 235}}>
-                                                                                <SettingOutlined />管理 <UpOutlined />
+                                                                            <Button>
+                                                                                <SettingOutlined />
                                                                             </Button>
                                                                         </Dropdown>
                                                                     ):
