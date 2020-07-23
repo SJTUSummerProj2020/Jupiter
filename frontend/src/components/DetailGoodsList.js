@@ -6,14 +6,12 @@ import {Link} from 'react-router-dom';
 import {message} from "antd";
 import {deleteGoodsByGoodsId} from "../services/goodsService";
 import {ReleaseAuction} from "./ReleaseAuction";
-import {EditGoods} from "./EditGoods";
 
 export class DetailGoodsList extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            visible1:false,
-            visible2:false,
+            visible:false,
             goodsId:null,
             goodsDetails:[],
             name:null,
@@ -23,8 +21,9 @@ export class DetailGoodsList extends React.Component{
     }
 
     releaseAuction = (goodsId,name,goodsDetails,startTime,endTime) => {
+        console.log("Release auction",goodsId);
         this.setState({
-            visible2: true,
+            visible: true,
             goodsId:goodsId,
             name:name,
             goodsDetails:goodsDetails,
@@ -33,24 +32,9 @@ export class DetailGoodsList extends React.Component{
         });
     };
 
-    editGoods = (goodsId,name,goodsDetails,startTime,endTime) => {
+    close = () => {
         this.setState({
-            visible1: true,
-            goodsId:goodsId,
-            name:name,
-            goodsDetails:goodsDetails,
-            startTime:startTime,
-            endTime:endTime
-        });    }
-
-    close1 = () => {
-        this.setState({
-            visible1: false,
-        });
-    };
-    close2 = () => {
-        this.setState({
-            visible2: false,
+            visible: false,
         });
     };
 
@@ -72,14 +56,11 @@ export class DetailGoodsList extends React.Component{
     }
 
     handleClick = (goodsId,name,goodsDetails,startTime,endTime,e) => {
-        console.log(goodsId);
         console.log(e);
         switch(e.key){
             case "1":
                 this.deleteGoods(goodsId);break;
             case "2":
-                this.editGoods(goodsId,name,goodsDetails,startTime,endTime);break;
-            case "3":
                 this.releaseAuction(goodsId,name,goodsDetails,startTime,endTime);break;
             default:
                 break;
@@ -261,9 +242,6 @@ export class DetailGoodsList extends React.Component{
                                                                                         下架
                                                                                     </Menu.Item>
                                                                                     <Menu.Item key="2">
-                                                                                        编辑
-                                                                                    </Menu.Item>
-                                                                                    <Menu.Item key="3">
                                                                                         竞拍
                                                                                     </Menu.Item>
                                                                                 </Menu>
@@ -291,9 +269,10 @@ export class DetailGoodsList extends React.Component{
                 <Drawer
                     title="发布竞拍"
                     width={720}
-                    onClose={this.close2}
-                    visible={this.state.visible2}
+                    onClose={this.close}
+                    visible={this.state.visible}
                     bodyStyle={{ paddingBottom: 80 }}
+                    destroyOnClose={true}
                 >
                     <ReleaseAuction
                         goodsId={this.state.goodsId}
@@ -301,19 +280,7 @@ export class DetailGoodsList extends React.Component{
                         goodsDetails={this.state.goodsDetails}
                         startTime={this.state.startTime}
                         endTime={this.state.endTime}
-                        close2={this.close2}
-                    />
-                </Drawer>
-                <Drawer
-                    title="更改商品"
-                    width={720}
-                    onClose={this.close1}
-                    visible={this.state.visible1}
-                    bodyStyle={{ paddingBottom: 80 }}
-                >
-                    <EditGoods
-                        name={this.state.name}
-                        goodsId={this.state.goodsId}
+                        close={this.close}
                     />
                 </Drawer>
             </div>

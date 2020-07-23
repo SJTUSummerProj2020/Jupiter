@@ -215,6 +215,7 @@ export class AuctionList extends React.Component{
                     onClose={this.close}
                     visible={this.state.visible}
                     bodyStyle={{ paddingBottom: 80 }}
+                    destroyOnClose={true}
                 >
                     <EditAuction
                         name={this.state.name}
