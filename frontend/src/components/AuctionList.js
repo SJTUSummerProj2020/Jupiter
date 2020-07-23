@@ -3,7 +3,6 @@ import { List, Button, Menu, Dropdown, Drawer, message} from 'antd';
 import {HomeOutlined, CalendarOutlined, SettingOutlined, UpOutlined} from '@ant-design/icons';
 import"../css/auctionlist.css";
 import {Link} from 'react-router-dom';
-import {editAuction} from "../services/goodsService";
 import {deleteAuctionByAuctionId} from "../services/goodsService";
 import {EditAuction} from "./EditAuction";
 
