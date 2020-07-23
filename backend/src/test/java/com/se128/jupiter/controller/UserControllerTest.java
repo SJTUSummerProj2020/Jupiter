@@ -163,8 +163,8 @@ public class UserControllerTest {
             System.out.println(responseString);
 
             // 测试注册
-            username = "user2";
-            password = "user2";
+            username = "test";
+            password = "test";
             param.put("username", username);
             param.put("password", password);
             responseString = mockMvc.perform(MockMvcRequestBuilders

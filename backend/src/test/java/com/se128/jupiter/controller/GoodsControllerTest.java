@@ -16,6 +16,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -278,6 +279,23 @@ class GoodsControllerTest {
     @Transactional
     @Rollback(value = true)
     void addGoods() {
+        // login
+        try{
+            com.alibaba.fastjson.JSONObject userInfo = new com.alibaba.fastjson.JSONObject();
+            userInfo.put("username", "root");
+            userInfo.put("password", "root");
+            MvcResult loginResult = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/login")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(JSON.toJSONString(userInfo))
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
+            ).andReturn();
+            System.out.println(loginResult.getResponse().getContentAsString());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         //OK
         try {
             loginWithAdmin();
@@ -315,6 +333,7 @@ class GoodsControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
                     .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
@@ -328,7 +347,8 @@ class GoodsControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content("")
                     .accept(MediaType.APPLICATION_JSON_UTF8)
-            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .session(session)
+            ).andExpect(MockMvcResultMatchers.status().isBadRequest())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
         } catch (Exception e) {
