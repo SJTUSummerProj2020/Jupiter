@@ -8,8 +8,6 @@ import {getAllAuctions} from "../services/goodsService";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
 
-let testList=[];
-
 export class AuctionListView extends React.Component{
     constructor(props) {
         super(props);
@@ -23,8 +21,7 @@ export class AuctionListView extends React.Component{
                 this.setState(
                     {
                         loggedIn:true,
-                        user:data.data,
-                        auctionList:[],
+                        user:data.data
                     }
                 )
             }
@@ -45,7 +42,7 @@ export class AuctionListView extends React.Component{
             message.success(data.msg);
         };
         logout(callback);
-    };
+    }
 
     getType = (type) =>{
         const data = {
@@ -55,7 +52,6 @@ export class AuctionListView extends React.Component{
         const callback = (data) => {
             console.log(data);
             let tmp = new Array(data.data.totalNum);
-            tmp=[];
             let dataLength = data.data.auctions.length;
             let totalPage = (dataLength % this.state.pageSize === 0) ? dataLength / this.state.pageSize : dataLength / this.state.pageSize + 1
             let loaded = [];
@@ -123,7 +119,6 @@ export class AuctionListView extends React.Component{
     }
 
     render() {
-        console.log('auctionList',this.state.auctionList)
         return(
             <div>
                 <Header
