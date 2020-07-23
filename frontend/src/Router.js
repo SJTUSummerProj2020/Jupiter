@@ -15,6 +15,7 @@ import {RegisterView} from "./view/RegisterView";
 import {AuctionView} from "./view/AuctionView";
 import {AuctionListView} from "./view/AuctionListView";
 import {AdminGoodsView} from "./view/AdminGoodsView";
+import {OrderSearchView} from "./view/OrderSearchView";
 
 class BasicRoute extends React.Component{
     constructor(props) {
@@ -43,6 +44,7 @@ class BasicRoute extends React.Component{
                     <Route exact path="/auction" component={AuctionView}/>
                     <Route exact path="/auctionlist" component={AuctionListView}/>
                     <Route exact path="/adminGoods" component={AdminGoodsView}/>
+                    <Route exact path="/orderSearch" component={OrderSearchView}/>
                 </Switch>
             </Router>
         );

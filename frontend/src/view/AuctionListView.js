@@ -50,31 +50,43 @@ export class AuctionListView extends React.Component{
             pageSize:100
         };
         const callback = (data) => {
-            console.log(data);
-            let tmp = new Array(data.data.totalNum);
-            let dataLength = data.data.auctions.length;
-            let totalPage = (dataLength % this.state.pageSize === 0) ? dataLength / this.state.pageSize : dataLength / this.state.pageSize + 1
-            let loaded = [];
-            for(let i = 0;i < totalPage;++i){
-                loaded.push(i + 1);
+            if(data.data.auctions.length === 0){
+                this.setState(
+                    {
+                        totalSize:data.data.totalNum,
+                        auctionList:[],
+                        currentPage:1,
+                        haveLoaded:0
+                    },
+                )
             }
-            for(let i = 0;i < dataLength;++i){
-                tmp[i] = data.data.auctions[i];
-            }
-            for(let i = 100;i < data.data.totalNum;++i){
-                tmp[i] = null;
-            }
-            this.setState(
-                {
-                    totalSize:data.data.totalNum,
-                    auctionList:tmp,
-                    currentPage:1,
-                    haveLoaded:loaded
-                },
-                ()=>{
-                    console.log("Get type",this.state.auctionList);
+            else{
+                console.log('data',data);
+                let tmp = new Array(data.data.totalNum);
+                let dataLength = data.data.auctions.length;
+                let totalPage = (dataLength % this.state.pageSize === 0) ? dataLength / this.state.pageSize : dataLength / this.state.pageSize + 1
+                let loaded = [];
+                for(let i = 0;i < totalPage;++i){
+                    loaded.push(i + 1);
                 }
-            )
+                for(let i = 0;i < dataLength;++i){
+                    tmp[i] = data.data.auctions[i];
+                }
+                for(let i = 100;i < data.data.totalNum;++i){
+                    tmp[i] = null;
+                }
+                this.setState(
+                    {
+                        totalSize:data.data.totalNum,
+                        auctionList:tmp,
+                        currentPage:1,
+                        haveLoaded:loaded
+                    },
+                    ()=>{
+                        console.log("Get type",this.state.auctionList);
+                    }
+                )
+            }
         }
         getAllAuctions(data,callback);
     }

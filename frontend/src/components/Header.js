@@ -74,6 +74,11 @@ export class Header extends React.Component{
                 </Link>
             </Menu.Item>
             <Menu.Item>
+                <Link to={{pathname:'/orderSearch'}}>
+                    订单统计
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
                 <div onClick={this.logout}>
                     退出登录
                 </div>

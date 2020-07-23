@@ -36,7 +36,7 @@ public class GoodsController {
 
     @RequestMapping("/addGoods")
     public Msg addGoods(@RequestBody Goods goods) {
-        logger.info("addGoods");
+        logger.info("addGoods" + goods);
         goods.setBuyCounter(0);
         goods.setViewCounter(0);
         Goods goods1 = goodsService.addGoods(goods);

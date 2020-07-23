@@ -19,6 +19,7 @@ public class Constant {
     public static final Integer NUMBER_OF_TYPE = 4;
     public static final String AUCTION_ID = "auctionId";
     public static final String OFFER = "offer";
+    public static final String GOODS = "goods";
     public static Integer ADMIN = 0;
     public static Integer Customer = 1;
     public static Integer BAN = -1;

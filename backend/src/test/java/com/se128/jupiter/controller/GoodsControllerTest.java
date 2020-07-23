@@ -1,6 +1,7 @@
 package com.se128.jupiter.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.se128.jupiter.JupiterApplication;
 import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.entity.GoodsDetail;
@@ -31,7 +32,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest
 @AutoConfigureMockMvc
 @WebAppConfiguration
-class GoodsControllerTest {
+class GoodsControllerTest{
 
     @Autowired
     private WebApplicationContext webApplicationContext;

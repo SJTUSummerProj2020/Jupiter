@@ -1,54 +1,48 @@
 import React from "react";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
+import moment from "moment";
 import {Form, DatePicker, Input, Col, Row, Select, Button, InputNumber, message} from "antd";
-import {addAuction} from "../services/goodsService";
+import {editAuction} from "../services/goodsService";
 
-const {Option} = Select;
-
-export class ReleaseAuction extends React.Component{
+export class EditAuction extends React.Component{
     constructor(props) {
         super(props);
     }
 
-    close2 = () => {
-        this.props.close2();
+    // disabledDate = (date) => {
+    //     let endTime = new Date(this.props.endTime.substr(0,9));
+    //     console.log(endTime);
+    //     return endTime < date;
+    // }
+
+    close = () => {
+        this.props.close();
     }
 
-    onFinish = (values) =>{
+    onFinish = (values) => {
         console.log(values);
         let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:mm:ss");
         console.log(startTime);
         const data = {
-            detailId: values.goodsDetails,
-            goodsId: this.props.goodsId,
+            auctionId:values.auctionId,
+            detailId:values.detailId,
+            goodsId:values.goodsId,
             startingPrice:values.startingPrice,
             addingPrice:values.addingPrice,
-            startTime: startTime,
+            startTime:startTime,
             duration:values.duration
         };
         const callback = (data) => {
-            if(data.status === 0){
+            if(data !== null && data.status === 0){
                 message.success(data.msg);
-                this.close2();
+                this.close();
             }
         };
-        addAuction(data,callback);
-    }
-
-    disabledDate = (date) => {
-        let endTime = new Date(this.props.endTime);
-        return endTime < date;
+        editAuction(data,callback);
     }
 
     render() {
-        let items = [];
-        for(let i = 0;i < this.props.goodsDetails.length;++i){
-            items.push(
-                <Option value={this.props.goodsDetails[i].detailId}>
-                ID:{this.props.goodsDetails[i].detailId} {this.props.goodsDetails[i].ticketType}
-                </Option>
-            );
-        }
+        console.log(this.props);
         return(
             <Form
                 layout="vertical"
@@ -56,7 +50,15 @@ export class ReleaseAuction extends React.Component{
                 onFinish={this.onFinish}
                 initialValues={{
                     ['name']: this.props.name,
-                    ['goodsId']: this.props.goodsId
+                    ['goodsId']: this.props.goodsId,
+                    ['ticketType']: this.props.ticketType,
+                    ['time']: this.props.time,
+                    ['detailId']: this.props.detailId,
+                    ['auctionId']: this.props.auctionId,
+                    ['startTime']: moment(this.props.startTime),
+                    ['duration']: this.props.duration,
+                    ['startingPrice']: this.props.startingPrice,
+                    ['addingPrice']: this.props.addingPrice
                 }}
             >
                 <Row gutter={16}>
@@ -65,7 +67,7 @@ export class ReleaseAuction extends React.Component{
                             name="name"
                             label="商品名"
                         >
-                            <Input placeholder="商品名"/>
+                            <Input placeholder="商品名" disabled={true}/>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -73,20 +75,43 @@ export class ReleaseAuction extends React.Component{
                             name="goodsId"
                             label="商品ID"
                         >
-                            <Input placeholder="商品ID"/>
+                            <Input placeholder="商品ID" disabled={true}/>
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row gutter={16}>
+                    <Col span={8}>
+                        <Form.Item
+                            name="ticketType"
+                            label="票档"
+                        >
+                            <Input placeholder="票档" disabled={true}/>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            name="time"
+                            label="演出时间"
+                        >
+                            <Input placeholder="演出时间" disabled={true}/>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            name="detailId"
+                            label="票档ID"
+                        >
+                            <Input placeholder="票档ID" disabled={true}/>
                         </Form.Item>
                     </Col>
                 </Row>
                 <Row gutter={16}>
                     <Col span={12}>
                         <Form.Item
-                            name="goodsDetails"
-                            label="票档"
-                            rules={[{ required: true, message: '请选择票档' }]}
+                            name="auctionId"
+                            label="拍卖ID"
                         >
-                            <Select placeholder="请选择票档">
-                                {items}
-                            </Select>
+                            <Input placeholder="拍卖ID" disabled={true}/>
                         </Form.Item>
                     </Col>
                 </Row>

@@ -101,3 +101,20 @@
     margin-top:10px;
     margin-left:40px;
 }
+
+.auction-card-now-price{
+    display: inline-block;
+    font-size: 16px;
+    color: #000;
+    height: 48px;
+    margin-top: 1%;
+    margin-bottom:1%;
+    margin-right: 15px;
+}
+
+.auction-info-adding-price{
+    color: #999;
+    font-size: 12px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
