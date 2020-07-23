@@ -11,11 +11,19 @@ import {logout} from "../services/userService";
 export class AuctionListView extends React.Component{
     constructor(props) {
         super(props);
-        this.state={auctionList:[],currentPage:1,pageSize:10,totalSize:0,haveLoaded:[],loggedIn:false,user:null};
+        this.state={
+            auctionList:[],
+            currentPage:1,
+            pageSize:10,
+            totalSize:0,
+            haveLoaded:[],
+            loggedIn:false,
+            user:null
+        };
     }
 
     componentDidMount() {
-        this.getType(-1);
+        this.init();
         const callback = (data) => {
             if(data.status === 0){
                 this.setState(
@@ -44,7 +52,7 @@ export class AuctionListView extends React.Component{
         logout(callback);
     }
 
-    getType = (type) =>{
+    init = () =>{
         const data = {
             pageId:0,
             pageSize:100
@@ -53,7 +61,7 @@ export class AuctionListView extends React.Component{
             if(data.data.auctions.length === 0){
                 this.setState(
                     {
-                        totalSize:data.data.totalNum,
+                        totalSize:data.data.auctions.length,
                         auctionList:[],
                         currentPage:1,
                         haveLoaded:0
@@ -62,7 +70,7 @@ export class AuctionListView extends React.Component{
             }
             else{
                 console.log('data',data);
-                let tmp = new Array(data.data.totalNum);
+                let tmp = [data.data.auctions.length];
                 let dataLength = data.data.auctions.length;
                 let totalPage = (dataLength % this.state.pageSize === 0) ? dataLength / this.state.pageSize : dataLength / this.state.pageSize + 1
                 let loaded = [];
@@ -72,12 +80,12 @@ export class AuctionListView extends React.Component{
                 for(let i = 0;i < dataLength;++i){
                     tmp[i] = data.data.auctions[i];
                 }
-                for(let i = 100;i < data.data.totalNum;++i){
+                for(let i = 100;i < data.data.auctions.length;++i){
                     tmp[i] = null;
                 }
                 this.setState(
                     {
-                        totalSize:data.data.totalNum,
+                        totalSize:data.data.auctions.length,
                         auctionList:tmp,
                         currentPage:1,
                         haveLoaded:loaded
@@ -146,7 +154,6 @@ export class AuctionListView extends React.Component{
                             pageSize={this.state.pageSize}
                             totalSize={this.state.totalSize}
                             changePage={this.changePage}
-                            getType={this.getType}
                             loggedIn={this.state.loggedIn}
                             user={this.state.user}
                         />
