@@ -163,8 +163,8 @@ public class UserControllerTest {
             System.out.println(responseString);
 
             // 测试注册
-            username = "user2";
-            password = "user2";
+            username = "test";
+            password = "test";
             param.put("username", username);
             param.put("password", password);
             responseString = mockMvc.perform(MockMvcRequestBuilders
@@ -176,7 +176,7 @@ public class UserControllerTest {
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
             respond = (JSONObject) JSON.parseObject(responseString);
-            assertEquals("新注册用户失败", -102, respond.get("status"));
+            assertEquals("新注册用户失败", 0, respond.get("status"));
             System.out.println(responseString);
 
         } catch (Exception e){
