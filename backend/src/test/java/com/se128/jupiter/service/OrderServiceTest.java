@@ -41,7 +41,7 @@ class OrderServiceTest {
         Integer detailId = 1;
         Order anOrder = new Order();
         anOrder.setOrderId(orderId);
-        anOrder.setUserId(userId);
+        //anOrder.setUserId(userId);
 
         when(orderDao.addOrder(anOrder, detailId)).thenReturn(anOrder);
         assertEquals(anOrder, orderService.addOrder(anOrder, detailId));
@@ -54,7 +54,7 @@ class OrderServiceTest {
         Integer detailId = 1;
         Order anOrder = new Order();
         anOrder.setOrderId(orderId);
-        anOrder.setUserId(userId);
+        //anOrder.setUserId(userId);
         List<Order> orderList = new ArrayList<>();
         orderList.add(anOrder);
         orderList.add(anOrder);

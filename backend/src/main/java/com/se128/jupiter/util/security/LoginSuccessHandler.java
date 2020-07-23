@@ -1,4 +1,4 @@
-//package com.se128.jupiter.security;
+//package com.se128.jupiter.util.security;
 //
 //import org.springframework.http.MediaType;
 //import org.springframework.security.core.Authentication;

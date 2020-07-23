@@ -27,7 +27,7 @@ public interface GoodsRepository extends JpaRepository<Goods, Integer> {
     @Query(nativeQuery = true, value = "select * from Goods order by goods_id limit 3")
     List<Goods> getGoodsByPageId(Integer pageId);
 
-    @Query(value = "SELECT * FROM Goods WHERE goods_type = ?1",
+    @Query(value = "SELECT * FROM goods WHERE goods_type = ?1",
             countQuery = "SELECT count(*) FROM goods WHERE goods_type = ?1",
             nativeQuery = true)
     Page<Goods> findByGoodsType(Integer goodsType, PageRequest pageable);

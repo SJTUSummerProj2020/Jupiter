@@ -1,4 +1,4 @@
-//package com.se128.jupiter.security;
+//package com.se128.jupiter.util.security;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-//package com.se128.jupiter.security;
+//package com.se128.jupiter.util.security;
 //
 ////import com.fasterxml.jackson.databind.ObjectMapper;
 //import org.springframework.http.MediaType;

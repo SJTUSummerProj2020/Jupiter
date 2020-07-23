@@ -36,16 +36,16 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/getRecommendGoods")
                 .excludePathPatterns("/checkSession");
 
-//        registry.addInterceptor(adminValidateInterceptor())
-//                .addPathPatterns("/deleteGoodsByGoodsId")
-//                .addPathPatterns("/editGoods")
-//                .addPathPatterns("/addAuction")
-//                .addPathPatterns("/deleteAuctionByAuctionId")
-//                .addPathPatterns("/updateAuction")
-//                .addPathPatterns("/editAuction")
-//                .addPathPatterns("/changeUserStatusByUserId")
-//                .addPathPatterns("/getAllOrders")
-//                .addPathPatterns("/getUserById");
+        registry.addInterceptor(adminValidateInterceptor())
+                .addPathPatterns("/deleteGoodsByGoodsId")
+                .addPathPatterns("/editGoods")
+                .addPathPatterns("/addAuction")
+                .addPathPatterns("/deleteAuctionByAuctionId")
+                .addPathPatterns("/updateAuction")
+                .addPathPatterns("/editAuction")
+                .addPathPatterns("/changeUserStatusByUserId")
+                .addPathPatterns("/getAllOrders")
+                .addPathPatterns("/getUserById");
     }
 
     private CorsConfiguration buildConfig() {

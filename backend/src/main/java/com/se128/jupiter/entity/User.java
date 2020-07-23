@@ -1,6 +1,7 @@
 package com.se128.jupiter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,12 +19,13 @@ public class User {
     @Column(name = "user_name")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
     private String phone;
     private Integer userType;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Order> orders;
 
