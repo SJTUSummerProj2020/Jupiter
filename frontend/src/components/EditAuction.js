@@ -9,11 +9,16 @@ export class EditAuction extends React.Component{
         super(props);
     }
 
-    // disabledDate = (date) => {
-    //     let endTime = new Date(this.props.endTime.substr(0,9));
-    //     console.log(endTime);
-    //     return endTime < date;
-    // }
+    disabledDate = (date) => {
+        let startTime = new Date(this.props.startTime.substr(0,10));
+        let endTime = new Date(this.props.time.substr(0,10));
+        if(isNaN(endTime.getTime())){
+            return startTime < date;
+        }
+        else{
+            return endTime < date;
+        }
+    }
 
     close = () => {
         this.props.close();
