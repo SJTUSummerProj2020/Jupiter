@@ -44,9 +44,23 @@ class OrderControllerTest {
     void tearDown() {
     }
 
+    void loginWithAdmin() throws Exception {
+        com.alibaba.fastjson.JSONObject userInfo = new com.alibaba.fastjson.JSONObject();
+        userInfo.put("username", "root");
+        userInfo.put("password", "root");
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/login")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(JSON.toJSONString(userInfo))
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .session(session)
+        ).andReturn();
+    }
+
     @Test
     void addOrder() {
         try{
+            loginWithAdmin();
             String userId = "1";
             String detailId = "8897";
             String number = "2";
@@ -58,6 +72,7 @@ class OrderControllerTest {
                     .post("/addOrder")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(JSON.toJSONString(param))
+                    .session(session)
                     .accept(MediaType.APPLICATION_JSON)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
@@ -89,11 +104,13 @@ class OrderControllerTest {
     @Test
     void getAllOrders(){
         try{
+            loginWithAdmin();
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/getAllOrders")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content("")
                     .accept(MediaType.APPLICATION_JSON)
+                    .session(session)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();

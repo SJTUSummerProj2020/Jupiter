@@ -372,6 +372,7 @@ class GoodsControllerTest {
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(JSON.toJSONString(param))
                     .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
@@ -499,7 +500,6 @@ class GoodsControllerTest {
     void updateAuction() {
         try {
             loginWithAdmin();
-
             Integer userId = 1;
             Integer auctionId = 1;
             Double offer = 10.0;
@@ -512,6 +512,7 @@ class GoodsControllerTest {
                     .post("/updateAuction")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(param.toString())
+                    .session(session)
                     .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
@@ -562,36 +563,15 @@ class GoodsControllerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    @Transactional
-    @Rollback(value = true)
-    void addAuction() {
         try {
             loginWithAdmin();
-        }catch (Exception e)
-        {
-        }
-        Integer detailId = 11817;
-        Integer goodsId = 2679;
-        Double startingPrice = 100.0;
-        Double addingPrice = 10.0;
-        String startTime = "2020-07-16 10:00:00";
-        Integer duration = 1;
-        JSONObject param = new JSONObject();
-        param.put("detailId", detailId);
-        param.put("goodsId", goodsId);
-        param.put("startingPrice", startingPrice);
-        param.put("addingPrice", addingPrice);
-        param.put("startTime", startTime);
-        param.put("duration", duration);
-
-        try {
-            String responseString = mockMvc.perform(MockMvcRequestBuilders
-                    .post("/addAuction")
+            JSONObject param = new JSONObject();
+            // getAllGoods
+            mockMvc.perform(MockMvcRequestBuilders
+                    .post("/getRecommendGoods")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(param.toString())
+                    .session(session)
                     .accept(MediaType.APPLICATION_JSON_UTF8)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
@@ -604,17 +584,52 @@ class GoodsControllerTest {
     @Test
     @Transactional
     @Rollback(value = true)
-    void deleteAuctionByAuctionId() {
-        Integer auctionId = 1;
-        JSONObject param = new JSONObject();
-        param.put("auctionId", auctionId);
-
+    void addAuction() {
         try {
+            loginWithAdmin();
+            Integer detailId = 11817;
+            Integer goodsId = 2679;
+            Double startingPrice = 100.0;
+            Double addingPrice = 10.0;
+            String startTime = "2020-07-16 10:00:00";
+            Integer duration = 1;
+            JSONObject param = new JSONObject();
+            param.put("detailId", detailId);
+            param.put("goodsId", goodsId);
+            param.put("startingPrice", startingPrice);
+            param.put("addingPrice", addingPrice);
+            param.put("startTime", startTime);
+            param.put("duration", duration);
+            String responseString = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/addAuction")
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .content(param.toString())
+                    .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
+            ).andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print())
+                    .andReturn().getResponse().getContentAsString();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @Transactional
+    @Rollback(value = true)
+    void deleteAuctionByAuctionId() {
+        try {
+            loginWithAdmin();
+            Integer auctionId = 1;
+            JSONObject param = new JSONObject();
+            param.put("auctionId", auctionId);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/deleteAuctionByAuctionId")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(param.toString())
                     .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();
@@ -643,28 +658,30 @@ class GoodsControllerTest {
     @Transactional
     @Rollback(value = true)
     void editAuction() {
-        Integer auctionId = 1;
-        Integer detailId = 11817;
-        Integer goodsId = 2679;
-        Double startingPrice = 100.0;
-        Double addingPrice = 10.0;
-        String startTime = "2020-07-16 10:00:00";
-        Integer duration = 1;
-        JSONObject param = new JSONObject();
-        param.put("auctionId", auctionId);
-        param.put("detailId", detailId);
-        param.put("goodsId", goodsId);
-        param.put("startingPrice", startingPrice);
-        param.put("addingPrice", addingPrice);
-        param.put("startTime", startTime);
-        param.put("duration", duration);
 
         try {
+            loginWithAdmin();
+            Integer auctionId = 1;
+            Integer detailId = 11817;
+            Integer goodsId = 2679;
+            Double startingPrice = 100.0;
+            Double addingPrice = 10.0;
+            String startTime = "2020-07-16 10:00:00";
+            Integer duration = 1;
+            JSONObject param = new JSONObject();
+            param.put("auctionId", auctionId);
+            param.put("detailId", detailId);
+            param.put("goodsId", goodsId);
+            param.put("startingPrice", startingPrice);
+            param.put("addingPrice", addingPrice);
+            param.put("startTime", startTime);
+            param.put("duration", duration);
             String responseString = mockMvc.perform(MockMvcRequestBuilders
                     .post("/editAuction")
                     .contentType(MediaType.APPLICATION_JSON_UTF8)
                     .content(param.toString())
                     .accept(MediaType.APPLICATION_JSON_UTF8)
+                    .session(session)
             ).andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn().getResponse().getContentAsString();

@@ -1,7 +1,7 @@
 package com.se128.jupiter.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +25,7 @@ public class User {
     private String phone;
     private Integer userType;
 
+    @JsonIgnore
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Order> orders;
