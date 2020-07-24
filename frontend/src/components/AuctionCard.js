@@ -198,7 +198,7 @@ export class AuctionCard extends React.Component{
                     message.success('恭喜您竞价成功');
                 }
                 else{
-                    message.error('抱歉，有人更早比您出了更高的价格，请刷新页面重新出价');
+                    message.error('出价请高于当前价格+加价幅度');
                 }
             }
             updateAuction(json,callback);
@@ -294,7 +294,7 @@ export class AuctionCard extends React.Component{
                                 出价:
                             </Col>
                             <Col className={"auction-card-choice"}>
-                                <InputNumber min={this.state.bestOffer+this.state.addingPrice} defaultValue={null} step={this.state.addingPrice} onChange={this.giveOffer}/>
+                                <InputNumber defaultValue={this.state.bestOffer+this.state.addingPrice} step={this.state.addingPrice} onChange={this.giveOffer}/>
                             </Col>
                             <Col>
                                 {this.isTheCandidate()}{this.state.isTheCandidate}
