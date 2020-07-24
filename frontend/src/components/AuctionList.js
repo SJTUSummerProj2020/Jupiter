@@ -156,7 +156,7 @@ export class AuctionList extends React.Component{
                                                                     (<span className={"canceled"}>演出取消</span>) :
                                                                     (
                                                                         <span>
-                                                                        ￥{item.goodsDetail.price}起
+                                                                        起拍价：￥{item.startingPrice}
                                                                     </span>
                                                                     )
                                                             }
