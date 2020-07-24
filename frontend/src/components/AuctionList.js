@@ -139,7 +139,7 @@ export class AuctionList extends React.Component{
                                                         <div className={"detailAuctionName"}>
                                                         <span>
                                                             {
-                                                                item.goods.name.length > 20 ? item.goods.name.substring(0,20) + "..." : item.name
+                                                                item.goods.name.length > 20 ? item.goods.name.substring(0,20) + "..." : item.goods.name
                                                             }
                                                         </span>
                                                         </div>
