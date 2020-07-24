@@ -61,6 +61,7 @@ export class DetailCard extends React.Component{
         // this.setState({goodsDetailTime:e.target.value});
         this.setState(()=>({goodsDetailTime:e.target.value}));
         // console.log('场次',this.state.goodsDetailTime);
+        this.getSurplus();
     }
 
     onChange2=(e)=> {
@@ -69,6 +70,7 @@ export class DetailCard extends React.Component{
         this.setState(()=>({ticketsType:e.target.value}));
         let unitValue=this.getUnitPrice(this.state.goodsData,e.target.value);
         this.getTotalPrice(this.state.goodsData,this.state.ticketsNum,unitValue);
+        this.getSurplus();
     }
 
     onChange3=(value)=> {
@@ -154,8 +156,10 @@ export class DetailCard extends React.Component{
     clickSurplus=()=>{
         this.getSurplus();
         this.setState((state)=>({surplus:state.surplus}))
+
     }
     displaySurplus=()=>{
+        console.log(this.state.surplus)
         if(this.state.surplus === 0){
             return"无货"
         }
