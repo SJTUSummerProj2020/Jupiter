@@ -19,7 +19,7 @@ export class ClassificationCard extends React.Component{
                 bordered={false}
                 className={"classification-card"}
                 extra={
-                    <Link to={{pathname: '/goodsList'}} target="_blank">
+                    <Link to={{pathname: '/goodsList'}}>
                         <span>查看更多</span>
                     </Link>
                 }
@@ -30,7 +30,6 @@ export class ClassificationCard extends React.Component{
                        <Link to={{
                            pathname: '/detail',
                            search: '?id=' + this.props.goods.goodsId}}
-                             target="_blank"
                        >
                            <Card
                                hoverable
