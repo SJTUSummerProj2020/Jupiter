@@ -1,5 +1,6 @@
 package com.se128.jupiter.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -18,12 +19,14 @@ public class User {
     @Column(name = "user_name")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
     private String phone;
     private Integer userType;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Order> orders;
 

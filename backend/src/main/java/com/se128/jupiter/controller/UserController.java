@@ -130,8 +130,8 @@ public class UserController {
 
     @RequestMapping("/getOrdersByUserId")
     public Msg getOrdersByUserId(@RequestBody Map<String, String> params) {
-        Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-        logger.info("getOrdersByUserId = " + userId);
+        JSONObject user = SessionUtil.getAuth();
+        Integer userId = user.getInt(Constant.USER_ID);
         List<Order> orders = userService.getOrdersByUserId(userId);
 
         JSONArray orderList = JSONArray.fromObject(orders);

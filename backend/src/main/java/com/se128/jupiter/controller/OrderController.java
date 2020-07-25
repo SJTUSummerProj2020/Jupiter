@@ -2,9 +2,11 @@ package com.se128.jupiter.controller;
 
 import com.se128.jupiter.entity.Order;
 import com.se128.jupiter.service.OrderService;
+import com.se128.jupiter.util.constant.Constant;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import com.se128.jupiter.util.sessionutils.SessionUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -36,7 +38,8 @@ public class OrderController {
 
         Order order = new Order();
 
-        Integer userId = Integer.valueOf(params.get("userId"));
+        JSONObject user = SessionUtil.getAuth();
+        Integer userId = user.getInt(Constant.USER_ID);
         Integer number = Integer.valueOf(params.get("number"));
         Integer detailId = Integer.valueOf(params.get("detailId"));
 

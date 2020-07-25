@@ -16,9 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class JupiterApplicationTests {
     @Test
     void testContext() {
-
     }
-    
+
     @Test
     void main()
     {

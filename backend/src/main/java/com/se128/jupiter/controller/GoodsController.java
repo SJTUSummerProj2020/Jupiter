@@ -7,6 +7,7 @@ import com.se128.jupiter.util.constant.Constant;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import com.se128.jupiter.util.sessionutils.SessionUtil;
 import io.swagger.annotations.Api;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -18,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -117,8 +122,8 @@ public class GoodsController {
     @RequestMapping("/getRecommendGoods")
     public Msg getRecommendGoods(@RequestBody Map<String, String> params) {
         Integer number = Integer.valueOf(params.get(Constant.NUMBER));
-        String userId1 = params.get(Constant.USER_ID);
-        if (userId1 == null) {
+        JSONObject user = SessionUtil.getAuth();
+        if (user == null) {
             logger.info("getRecommendGoodsInAll" + "number: " + number);
             List<Goods> goods = goodsService.getRecommendGoodsInAll(number);
             JSONArray jsonArray = JSONArray.fromObject(goods);
@@ -126,7 +131,7 @@ public class GoodsController {
             data.put("goods", jsonArray.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } else {
-            Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
+            Integer userId = user.getInt(Constant.USER_ID);
             logger.info("getRecommendGoodsByUserId" + userId + "number" + number);
             List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId, number);
             JSONArray jsonArray = JSONArray.fromObject(goods);
@@ -174,11 +179,23 @@ public class GoodsController {
     }
 
     @RequestMapping("/getAllAuctions")
-    public Msg getAllAuctions() {
+    public Msg getAllAuctions() throws ParseException {
         logger.info("getAllAuctions");
         List<Auction> auctions = goodsService.getAllAuctions();
+        Date now = new Date();
+        List<Auction> ret = new LinkedList<>();
+        for (Auction auction : auctions)
+        {
+            SimpleDateFormat simpleDateFormat =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = simpleDateFormat.parse(auction.getStartTime());
+            Date end = new Date(start.getTime()+1000*auction.getDuration());
+            if(now.before(end))
+            {
+                ret.add(auction);
+            }
+        }
         JSONObject data = new JSONObject();
-        JSONArray auctionList = JSONArray.fromObject(auctions);
+        JSONArray auctionList = JSONArray.fromObject(ret);
         data.put("auctions", auctionList.toString());
         return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
@@ -206,7 +223,8 @@ public class GoodsController {
     public Msg updateAuction(@RequestBody Map<String, String> params) {
         Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
         Double offer = Double.valueOf(params.get(Constant.OFFER));
-        Integer userId = Integer.valueOf(params.get((Constant.USER_ID)));
+        JSONObject user = SessionUtil.getAuth();
+        Integer userId = user.getInt(Constant.USER_ID);
         logger.info("updateAuction auctionsId = " + AuctionId+ " userId = " + userId);
         Auction auction = goodsService.updateAuction(AuctionId,userId,offer);
         if(auction.getBestOffer().equals(offer)) {

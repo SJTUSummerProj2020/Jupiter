@@ -140,7 +140,7 @@ export class AuctionList extends React.Component{
                                                         <div className={"detailAuctionName"}>
                                                         <span>
                                                             {
-                                                                item.goods.name.length > 20 ? item.goods.name.substring(0,20) + "..." : item.name
+                                                                item.goods.name.length > 20 ? item.goods.name.substring(0,20) + "..." : item.goods.name
                                                             }
                                                         </span>
                                                         </div>
@@ -156,7 +156,7 @@ export class AuctionList extends React.Component{
                                                                     (<span className={"canceled"}>演出取消</span>) :
                                                                     (
                                                                         <span>
-                                                                        ￥{item.goodsDetail.price}起
+                                                                        起拍价：￥{item.startingPrice}
                                                                     </span>
                                                                     )
                                                             }
@@ -215,6 +215,7 @@ export class AuctionList extends React.Component{
                     onClose={this.close}
                     visible={this.state.visible}
                     bodyStyle={{ paddingBottom: 80 }}
+                    destroyOnClose={true}
                 >
                     <EditAuction
                         name={this.state.name}

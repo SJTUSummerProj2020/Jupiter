@@ -77,7 +77,7 @@ class UserServiceTest {
     void getOrdersByUserId() {
         Integer userId = 1;
         Order anOrder = new Order();
-        anOrder.setUserId(userId);
+       // anOrder.setUserId(userId);
         anOrder.setOrderId(1);
         anOrder.setPrice(1.0);
         anOrder.setNumber(1);
