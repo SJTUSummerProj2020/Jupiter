@@ -75,14 +75,15 @@ export class DetailView extends React.Component {
                     user={this.state.user}
                     logout={this.logout}
                 />
-                <DetailCard
-                    info={OrderData}
-                    loggedIn={this.state.loggedIn}
-                    user={this.state.user}
-                />
-                <Row align = "top" gutter={16}>
+                    <DetailCard
+                        info={OrderData}
+                        loggedIn={this.state.loggedIn}
+                        user={this.state.user}
+                    />
+
+                <Row align = "top" gutter={16} className={"detail-view-recommend"}>
                     <Col span={16}>
-                        <DetailShowTab info={goodsData}/>
+                        <DetailShowTab info={goodsData} classname={"detail-view-show-tab"}/>
                     </Col>
                     <Col className={"recommend"}>
                         <Recommendation

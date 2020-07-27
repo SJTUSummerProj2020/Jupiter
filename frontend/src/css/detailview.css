@@ -2,3 +2,12 @@
     margin-top:60px;
     margin-left: 50px;
 }
+.detail-view-recommend{
+    width:100%;
+    margin: 0 8% !important;
+    text-align: center;
+    margin: 0 auto !important;
+}
+.detail-view-show-tab{
+    margin: 10px auto !important;
+}
