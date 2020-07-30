@@ -23,29 +23,30 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/login")
-                .excludePathPatterns("/register")
-                .excludePathPatterns("/getAllGoods")
-                .excludePathPatterns("/getAllAuctions")
-                .excludePathPatterns("/getAuctionByAuctionId")
-                .excludePathPatterns("/getGoodsByType")
-                .excludePathPatterns("/getGoodsByName")
-                .excludePathPatterns("/getGoodsByGoodsId")
-                .excludePathPatterns("/getPopularGoods")
-                .excludePathPatterns("/getRecommendGoods")
-                .excludePathPatterns("/checkSession");
-
-        registry.addInterceptor(adminValidateInterceptor())
-                .addPathPatterns("/deleteGoodsByGoodsId")
-                .addPathPatterns("/editGoods")
-                .addPathPatterns("/addAuction")
-                .addPathPatterns("/deleteAuctionByAuctionId")
-                .addPathPatterns("/updateAuction")
-                .addPathPatterns("/editAuction")
-                .addPathPatterns("/changeUserStatusByUserId")
-                .addPathPatterns("/getAllOrders")
-                .addPathPatterns("/getUserById");
+//        registry.addInterceptor(sessionValidateInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/login")
+//                .excludePathPatterns("/register")
+//                .excludePathPatterns("/getAllGoods")
+//                .excludePathPatterns("/getAllAuctions")
+//                .excludePathPatterns("/getAuctionByAuctionId")
+//                .excludePathPatterns("/getGoodsByType")
+//                .excludePathPatterns("/getGoodsByName")
+//                .excludePathPatterns("/getGoodsByGoodsId")
+//                .excludePathPatterns("/getPopularGoods")
+//                .excludePathPatterns("/getRecommendGoods")
+//                .excludePathPatterns("/checkSession");
+//
+//        registry.addInterceptor(adminValidateInterceptor())
+//                .addPathPatterns("/deleteGoodsByGoodsId")
+//                .addPathPatterns("/editGoods")
+//                .addPathPatterns("/addAuction")
+//                .addPathPatterns("/addGoods")
+//                .addPathPatterns("/deleteAuctionByAuctionId")
+//                .addPathPatterns("/updateAuction")
+//                .addPathPatterns("/editAuction")
+//                .addPathPatterns("/changeUserStatusByUserId")
+//                .addPathPatterns("/getAllOrders")
+//                .addPathPatterns("/getUserById");
     }
 
     private CorsConfiguration buildConfig() {
