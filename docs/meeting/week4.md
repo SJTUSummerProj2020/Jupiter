@@ -30,5 +30,20 @@ points：
 
 ## Day5(7.31)
 
+## WEEK SUMMARY
 
+- 前端：加入eslint，router跳转优化
+- 前后端交互：restful api
+- 后端：user，order分离，提升速度
+- 压力测试
+- spring cloud demo编写
+
+## FUTURE SCHEDULE
+
+- spring cloud 后端完善（尝试，不一定可行
+- 前端管理员monitor & Observability
+- Logging, Merics, Tracing
+- 功能性，加功能
+- 非功能性：不同workload指标
+- 多考虑微服务架构
 
