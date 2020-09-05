@@ -25,6 +25,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 
+
 def split_time(time_str):
     rule = re.compile(r'[0-9]{4}\.[0-9]{2}\.[0-9]{2}')
     rule1 = re.compile(r'-[0-9]{2}\.[0-9]{2}')
@@ -46,6 +47,7 @@ def split_price(price_str):
     else:
         return 0
 
+
 if __name__ == '__main__':
     # option = webdriver.ChromeOptions()
     # option.add_experimental_option('excludeSwitches', ['enable-automation'])
@@ -65,7 +67,7 @@ if __name__ == '__main__':
     db = mongo_conn['jupiter_test']
     collection = db['goodsdetail']
     document = {'id': 1, 'detail': 'ttttttttttt'}
-    one_insert = collection.insert_one(document = document)
+    one_insert = collection.insert_one(document=document)
 
     # mysql_conn = connect(
     #     host='localhost',

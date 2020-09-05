@@ -1,51 +1,41 @@
 # -*- coding:utf-8 -*-
+# 大麦网
 from bs4 import BeautifulSoup
 import urllib.request
 import urllib.parse
 import urllib.error
 import urllib
 import http.cookiejar
-import re
-import sys
-import string
 import threading
 import queue
-import os
 import re
-import pickle
 import time
-import json
 from pymysql import *
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
 
 
-def get_cookies(url):
-    values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin': 'true'}
-    postdata = urllib.parse.urlencode(values).encode()
-    user_agent = r'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
-    headers = {'User-Agent': user_agent}
-
-    cookie_filename = 'cookie.txt'
-    cookie = http.cookiejar.LWPCookieJar(cookie_filename)
-    handler = urllib.request.HTTPCookieProcessor(cookie)
-    opener = urllib.request.build_opener(handler)
-
-    request = urllib.request.Request(url, postdata, headers)
-    request.add_header("Connection", "keep-alive")
-
-    try:
-        response = opener.open(request)
-    except urllib.error.URLError as e:
-        print(e.reason)
-
-    cookie.save(ignore_discard=True, ignore_expires=True)
-    for item in cookie:
-        print(item.name + ':' + item.value)
+# def get_cookies(url):
+#     values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin': 'true'}
+#     postdata = urllib.parse.urlencode(values).encode()
+#     user_agent = r'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
+#     headers = {'User-Agent': user_agent}
+#
+#     cookie_filename = 'cookie.txt'
+#     cookie = http.cookiejar.LWPCookieJar(cookie_filename)
+#     handler = urllib.request.HTTPCookieProcessor(cookie)
+#     opener = urllib.request.build_opener(handler)
+#
+#     request = urllib.request.Request(url, postdata, headers)
+#     request.add_header("Connection", "keep-alive")
+#
+#     try:
+#         response = opener.open(request)
+#     except urllib.error.URLError as e:
+#         print(e.reason)
+#
+#     cookie.save(ignore_discard=True, ignore_expires=True)
+#     for item in cookie:
+#         print(item.name + ':' + item.value)
 
 
 def get_page(url, browser):
@@ -80,6 +70,7 @@ def get_mainpage_links(page, content):
     return links
 
 
+# detail
 def rollpage(browser):
     next_btn = browser.find_element_by_xpath('//button[@class="btn-next"]')
     is_disabled = next_btn.get_attribute('disabled')
@@ -123,7 +114,7 @@ def get_ticket_info(soup):
     tickets = []
     tickets_container = None
     for i in soup.findAll('div', {'class': 'perform__order__select'}):
-        if (str(i.contents[0].get_text()) == '票档'):
+        if str(i.contents[0].get_text()) == '票档':
             tickets_container = i
     if tickets_container is not None:
         for i in tickets_container.contents[2].findAll('div', {'class': 'sku_item'}):
@@ -239,11 +230,12 @@ def split_price(price_str):
 
 
 def save_data():
+    # TODO:user&password
     conn = connect(
         host='localhost',
         port=3306,
         user='root',
-        password='123456',
+        password='root',
         database='jupiter',
         charset='utf8'
     )
@@ -359,10 +351,14 @@ if __name__ == "__main__":
     maxpage = 10
     NUM = 4
     performance_type = 6  # 演出类型标记
-    # seed = 'https://www.damai.cn/'
-    # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC%86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99'
-    # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5%BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8%8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
-    seed = 'https://search.damai.cn/search.htm?spm=a2oeg.home.category.ditem_7.577723e1Nby1vX&ctl=%E8%88%9E%E8%B9%88%E8%8A%AD%E8%95%BE&order=1&cty='
+    # seed = 'https://www.damai.cn/' seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0
+    # .57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC
+    # %86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99' seed =
+    # 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5
+    # %BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8
+    # %8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
+    seed = 'https://search.damai.cn/search.htm?spm=a2oeg.home.category.ditem_7.577723e1Nby1vX&ctl=%E8%88%9E%E8%B9%88' \
+           '%E8%8A%AD%E8%95%BE&order=1&cty= '
     varLock = threading.Lock()
     dataLock = threading.Lock()
     countLock = threading.Lock()
