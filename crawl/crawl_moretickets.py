@@ -240,8 +240,8 @@ def save_data():
         host='localhost',
         port=3306,
         user='root',
-        password='123456',
-        database='jupiter',
+        password='root',
+        database='jupiter_update',
         charset='utf8'
     )
     mysql_cur = mysql_conn.cursor()
@@ -365,10 +365,10 @@ def working(flag, count, n):
 if __name__ == '__main__':
     flag = True
     count = 0
-    maxpage = 6
+    maxpage = 3
     NUM = 4
     performance_type = 6  # 演出类型
-    seed = 'https://www.moretickets.com/list/3101-dance/hottest'
+    seed = 'https://www.moretickets.com/list/3205-dance/hottest'
     varLock = threading.Lock()
     dataLock = threading.Lock()
     countLock = threading.Lock()
