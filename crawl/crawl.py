@@ -1,51 +1,41 @@
 # -*- coding:utf-8 -*-
+# 大麦网
 from bs4 import BeautifulSoup
 import urllib.request
 import urllib.parse
 import urllib.error
 import urllib
 import http.cookiejar
-import re
-import sys
-import string
 import threading
 import queue
-import os
 import re
-import pickle
 import time
-import json
 from pymysql import *
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
 
 
-def get_cookies(url):
-    values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin': 'true'}
-    postdata = urllib.parse.urlencode(values).encode()
-    user_agent = r'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
-    headers = {'User-Agent': user_agent}
-
-    cookie_filename = 'cookie.txt'
-    cookie = http.cookiejar.LWPCookieJar(cookie_filename)
-    handler = urllib.request.HTTPCookieProcessor(cookie)
-    opener = urllib.request.build_opener(handler)
-
-    request = urllib.request.Request(url, postdata, headers)
-    request.add_header("Connection", "keep-alive")
-
-    try:
-        response = opener.open(request)
-    except urllib.error.URLError as e:
-        print(e.reason)
-
-    cookie.save(ignore_discard=True, ignore_expires=True)
-    for item in cookie:
-        print(item.name + ':' + item.value)
+# def get_cookies(url):
+#     values = {'loginId': '18721569162', 'password2': 'xxx', 'keepLogin': 'true'}
+#     postdata = urllib.parse.urlencode(values).encode()
+#     user_agent = r'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
+#     headers = {'User-Agent': user_agent}
+#
+#     cookie_filename = 'cookie.txt'
+#     cookie = http.cookiejar.LWPCookieJar(cookie_filename)
+#     handler = urllib.request.HTTPCookieProcessor(cookie)
+#     opener = urllib.request.build_opener(handler)
+#
+#     request = urllib.request.Request(url, postdata, headers)
+#     request.add_header("Connection", "keep-alive")
+#
+#     try:
+#         response = opener.open(request)
+#     except urllib.error.URLError as e:
+#         print(e.reason)
+#
+#     cookie.save(ignore_discard=True, ignore_expires=True)
+#     for item in cookie:
+#         print(item.name + ':' + item.value)
 
 
 def get_page(url, browser):
@@ -80,6 +70,7 @@ def get_mainpage_links(page, content):
     return links
 
 
+# detail
 def rollpage(browser):
     next_btn = browser.find_element_by_xpath('//button[@class="btn-next"]')
     is_disabled = next_btn.get_attribute('disabled')
@@ -123,7 +114,7 @@ def get_ticket_info(soup):
     tickets = []
     tickets_container = None
     for i in soup.findAll('div', {'class': 'perform__order__select'}):
-        if (str(i.contents[0].get_text()) == '票档'):
+        if str(i.contents[0].get_text()) == '票档':
             tickets_container = i
     if tickets_container is not None:
         for i in tickets_container.contents[2].findAll('div', {'class': 'sku_item'}):
@@ -239,12 +230,13 @@ def split_price(price_str):
 
 
 def save_data():
+    # TODO:user&password
     conn = connect(
         host='localhost',
         port=3306,
         user='root',
         password='root',
-        database='jupiter_update',
+        database='jupiter',
         charset='utf8'
     )
     cur = conn.cursor()
