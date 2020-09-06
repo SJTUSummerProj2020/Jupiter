@@ -348,17 +348,13 @@ def working(flag, count, n):
 if __name__ == "__main__":
     flag = True
     count = 0
-    maxpage = 10
+    maxpage = 22
     NUM = 4
     performance_type = 6  # 演出类型标记
-    # seed = 'https://www.damai.cn/' seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0
-    # .57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC
-    # %86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99' seed =
-    # 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5
-    # %BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8
-    # %8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
-    seed = 'https://search.damai.cn/search.htm?spm=a2oeg.home.category.ditem_7.577723e1Nby1vX&ctl=%E8%88%9E%E8%B9%88' \
-           '%E8%8A%AD%E8%95%BE&order=1&cty= '
+    # seed = 'https://www.damai.cn/'
+    # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.57224d15EkqdYm&id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC%86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99'
+    # seed = 'https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.67a24d15JgTiXc&id=622013617460&clicktitle=%E5%BC%80%E5%BF%83%E9%BA%BB%E8%8A%B1%E7%88%86%E7%AC%91%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%AA%97%E5%89%8D%E4%B8%8D%E6%AD%A2%E6%98%8E%E6%9C%88%E5%85%89%E3%80%8B'
+    seed = 'https://search.damai.cn/search.htm?spm=a2oeg.home.category.ditem_7.59bc23e1TYDFJK&ctl=%E8%88%9E%E8%B9%88%E8%8A%AD%E8%95%BE&order=1&cty='
     varLock = threading.Lock()
     dataLock = threading.Lock()
     countLock = threading.Lock()

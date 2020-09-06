@@ -71,17 +71,20 @@ def get_data():
         host='localhost',
         port=3306,
         user='root',
-        password='123456',
-        database='jupiter',
+        password='root',
+        database='jupiter_update',
         charset='utf8'
     )
     cur = conn.cursor()
 
+    rules = re.compile(r'.*damai.*')
     cur.execute('select goods_id, website from goods')
     results = cur.fetchall()
     for row in results:
         goods_id = row[0]
         website = row[1]
+        if not rules.match(str(website)):
+            continue
         obj = {
             'goods_id': goods_id,
             'website': website
@@ -151,7 +154,7 @@ def working(flag, count, n):
 if __name__ == '__main__':
     flag = True
     count = 0
-    maxpage = 348
+    maxpage = 544
     NUM = 4
     varLock = threading.Lock()
     dataLock = threading.Lock()
