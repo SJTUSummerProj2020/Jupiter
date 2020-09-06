@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 06/09/2020 15:32:12
+ Date: 06/09/2020 15:37:58
 */
 
 SET NAMES utf8mb4;
@@ -18092,7 +18092,7 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'root', 'root', 'root', '1', 0, 1, 3, 1, 0, 0, 0);
-INSERT INTO `user` VALUES (2, 'user', '', 'user2', '1111', 1, 0, 0, 0, 0, 0, 0);
+INSERT INTO `user` VALUES (2, 'user', 'user', 'user', '1111', 1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `user` VALUES (3, 'ban', 'ban', 'ban', '3', -1, 0, 0, 0, 0, 0, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
