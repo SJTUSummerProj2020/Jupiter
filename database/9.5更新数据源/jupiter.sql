@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : MYSQL57
+ Source Server         : MySQL
  Source Server Type    : MySQL
  Source Server Version : 50725
  Source Host           : localhost:3306
- Source Schema         : jupiter_cloud
+ Source Schema         : jupiter
 
  Target Server Type    : MySQL
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 06/09/2020 11:11:09
+ Date: 06/09/2020 15:14:45
 */
 
 SET NAMES utf8mb4;
@@ -40,13 +40,15 @@ CREATE TABLE `auction`  (
   INDEX `auction_user`(`user_id`) USING BTREE,
   CONSTRAINT `detail_forein` FOREIGN KEY (`detail_id`) REFERENCES `goodsdetail` (`detail_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `goods_forein` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auction
 -- ----------------------------
-INSERT INTO `auction` VALUES (1, 11970, 2734, 1, 100, 10, 200, '2020-07-16 10:00:00', '1', NULL, NULL, NULL);
+INSERT INTO `auction` VALUES (1, 11970, 2734, 1, 100, 10, 200, '2020-07-16 10:00:00', '-1', NULL, NULL, NULL);
 INSERT INTO `auction` VALUES (2, 11971, 2734, 1, 100, 20, 200, '2020-07-26 10:00:00', '1', NULL, NULL, NULL);
+INSERT INTO `auction` VALUES (7, 11970, 2734, 1, 0, 10, 60, '2020-09-06 14:37:00', '3600000', NULL, NULL, NULL);
+INSERT INTO `auction` VALUES (8, 11970, 2734, 1, 0, 10, 0, '2020-7-17 9:40', '3600', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for goods
@@ -64,13 +66,12 @@ CREATE TABLE `goods`  (
   `view_counter` int(255) NOT NULL DEFAULT 0,
   `buy_counter` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`goods_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5823 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5828 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, 'test', '0000-00-00', '0000-00-00', 'addr', 'https://', -1, 'test', 0, 0);
-INSERT INTO `goods` VALUES (2734, '【陵水黎族自治县】雅居乐清水湾·2020海南草莓音乐节', '2020-11-28', '2020-11-29', '场馆：陵水黎族自治县 | 雅居乐清水湾旅游区沙滩', 'https://detail.damai.cn/item.htm?id=626465123104&clicktitle=%E9%9B%85%E5%B1%85%E4%B9%90%E6%B8%85%E6%B0%B4%E6%B9%BE%C2%B72020%E6%B5%B7%E5%8D%97%E8%8D%89%E8%8E%93%E9%9F%B3%E4%B9%90%E8%8A%82', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN01osrfp02GdSGA1obOn_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (2734, '【陵水黎族自治县】雅居乐清水湾·2020海南草莓音乐节', '2020-11-28', '2020-11-29', '场馆：陵水黎族自治县 | 雅居乐清水湾旅游区沙滩', 'https://detail.damai.cn/item.htm?id=626465123104&clicktitle=%E9%9B%85%E5%B1%85%E4%B9%90%E6%B8%85%E6%B0%B4%E6%B9%BE%C2%B72020%E6%B5%B7%E5%8D%97%E8%8D%89%E8%8E%93%E9%9F%B3%E4%B9%90%E8%8A%82', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN01osrfp02GdSGA1obOn_!!2251059038.jpg_q60.jpg_.webp', 0, 1);
 INSERT INTO `goods` VALUES (2735, '【淄博】2020淄博麦田音乐节', '2020-09-19', '2020-09-20', '场馆：淄博市 | 淄博市孝妇河湿地公园阳光沙滩', 'https://detail.damai.cn/item.htm?id=626090270463&clicktitle=2020%E6%B7%84%E5%8D%9A%E9%BA%A6%E7%94%B0%E9%9F%B3%E4%B9%90%E8%8A%82', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN015ho3SM2GdSGHxEovY_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (2736, '【南京】2020银城·森林音乐狂欢节 大型户外音乐节', '2020-10-06', '2020-10-07', '场馆：南京市 | 南京雨发生态旅游区', 'https://detail.damai.cn/item.htm?id=626110123610&clicktitle=2020%E9%93%B6%E5%9F%8E%C2%B7%E6%A3%AE%E6%9E%97%E9%9F%B3%E4%B9%90%E7%8B%82%E6%AC%A2%E8%8A%82%20%E5%A4%A7%E5%9E%8B%E6%88%B7%E5%A4%96%E9%9F%B3%E4%B9%90%E8%8A%82', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01DKm40q2GdSGDbQfr4_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (2737, '【北京】白举纲“白日梦境”2020全国巡演-北京站', '2020-12-25', '2020-12-25', '场馆：北京市 | 糖果TANGO-雍和宫店三层', 'https://detail.damai.cn/item.htm?id=625426224493&clicktitle=%E7%99%BD%E4%B8%BE%E7%BA%B2%E2%80%9C%E7%99%BD%E6%97%A5%E6%A2%A6%E5%A2%83%E2%80%9D2020%E5%85%A8%E5%9B%BD%E5%B7%A1%E6%BC%94-%E5%8C%97%E4%BA%AC%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN010bMAh42GdSGD4AuEa_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
@@ -152,7 +153,7 @@ INSERT INTO `goods` VALUES (2812, '【广州】「夜猫俱乐部」全场畅饮
 INSERT INTO `goods` VALUES (2813, '【成都】曹轩宾「我」2020年巡回演唱会 成都站', '2020-10-17', '2020-10-17', '场馆：成都市 | MAO Livehouse成都', 'https://detail.damai.cn/item.htm?id=625038727563&clicktitle=%E6%9B%B9%E8%BD%A9%E5%AE%BE%E3%80%8C%E6%88%91%E3%80%8D2020%E5%B9%B4%E5%B7%A1%E5%9B%9E%E6%BC%94%E5%94%B1%E4%BC%9A%20%E6%88%90%E9%83%BD%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01r2OSLT2GdSFxzaQcS_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (2814, '【上海】猫头鹰喜剧脱口秀', '2020-09-05', '2020-09-05', '场馆：上海市 | THE BOXX新偶像演艺空间', 'https://detail.damai.cn/item.htm?id=626216441417&clicktitle=%E7%8C%AB%E5%A4%B4%E9%B9%B0%E5%96%9C%E5%89%A7%E8%84%B1%E5%8F%A3%E7%A7%80', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01lcWpG62GdSGO65MZr_!!2251059038.png_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (2815, '【长沙】Project Ace 1st Round 长沙站', '2020-09-18', '2020-09-18', '场馆：长沙市 | MAO Livehouse长沙', 'https://detail.damai.cn/item.htm?id=624874096247&clicktitle=Project%20Ace%201st%20Round%20%E9%95%BF%E6%B2%99%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01ux2bLH2GdSGD32rpz_!!2-item_pic.png_q60.jpg_.webp', 0, 0);
-INSERT INTO `goods` VALUES (2816, '【长沙】纪念BEYOND家驹逝世27载巡回演唱会 长沙站', '2020-10-17', '2020-10-17', '场馆：长沙市 | MAO Livehouse长沙', 'https://detail.damai.cn/item.htm?id=625381533775&clicktitle=%E7%BA%AA%E5%BF%B5BEYOND%E5%AE%B6%E9%A9%B9%E9%80%9D%E4%B8%9627%E8%BD%BD%E5%B7%A1%E5%9B%9E%E6%BC%94%E5%94%B1%E4%BC%9A%20%E9%95%BF%E6%B2%99%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01rmxPJ72GdSGAJttlh_!!2-item_pic.png_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (2816, '【长沙】纪念BEYOND家驹逝世27载巡回演唱会 长沙站', '2020-10-17', '2020-10-17', '场馆：长沙市 | MAO Livehouse长沙', 'https://detail.damai.cn/item.htm?id=625381533775&clicktitle=%E7%BA%AA%E5%BF%B5BEYOND%E5%AE%B6%E9%A9%B9%E9%80%9D%E4%B8%9627%E8%BD%BD%E5%B7%A1%E5%9B%9E%E6%BC%94%E5%94%B1%E4%BC%9A%20%E9%95%BF%E6%B2%99%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01rmxPJ72GdSGAJttlh_!!2-item_pic.png_q60.jpg_.webp', 2, 0);
 INSERT INTO `goods` VALUES (2817, '【杭州】刘莉旻“少女如春娇”2020全国巡演&新专辑首唱会', '2020-11-15', '2020-11-15', '场馆：杭州市 | 大麦66LiveHouse杭州', 'https://detail.damai.cn/item.htm?id=625876975261&clicktitle=%E5%88%98%E8%8E%89%E6%97%BB%E2%80%9C%E5%B0%91%E5%A5%B3%E5%A6%82%E6%98%A5%E5%A8%87%E2%80%9D2020%E5%85%A8%E5%9B%BD%E5%B7%A1%E6%BC%94%26%E6%96%B0%E4%B8%93%E8%BE%91%E9%A6%96%E5%94%B1%E4%BC%9A', 0, '//img.alicdn.com/bao/uploaded/i4/2251059038/O1CN01bOmuPf2GdSGDTJPEl_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (2818, '【南昌】翻糖乐队《平凡世界》2020巡演 南昌站', '2020-09-12', '2020-09-12', '场馆：南昌市 | 黑铁现场', 'https://detail.damai.cn/item.htm?id=626079150275&clicktitle=%E7%BF%BB%E7%B3%96%E4%B9%90%E9%98%9F%E3%80%8A%E5%B9%B3%E5%87%A1%E4%B8%96%E7%95%8C%E3%80%8B2020%E5%B7%A1%E6%BC%94%20%E5%8D%97%E6%98%8C%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN010O4JBa2GdSGITAVme_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (2819, '【兰州】《民谣在路上十周年·张尕怂专场》', '2020-09-12', '2020-09-12', '场馆：兰州市 | 甘肃大剧院', 'https://detail.damai.cn/item.htm?id=625102307578&clicktitle=%E3%80%8A%E6%B0%91%E8%B0%A3%E5%9C%A8%E8%B7%AF%E4%B8%8A%E5%8D%81%E5%91%A8%E5%B9%B4%C2%B7%E5%BC%A0%E5%B0%95%E6%80%82%E4%B8%93%E5%9C%BA%E3%80%8B', 0, '//img.alicdn.com/bao/uploaded/i1/2251059038/O1CN01ss7sKQ2GdSG32Jryw_!!2-item_pic.png_q60.jpg_.webp', 0, 0);
@@ -408,7 +409,7 @@ INSERT INTO `goods` VALUES (3068, '【上海】2020洪辰《HER ART/HEART》新�
 INSERT INTO `goods` VALUES (3069, '【上海】S.T.D. Presents Stormzy The World Tour 2020 Shanghai', '2020-11-07', '2020-11-07', '场馆：上海市 | 上海Arkham俱乐部', 'https://detail.damai.cn/item.htm?id=610817008966&clicktitle=S.T.D.%20Presents%20Stormzy%20The%20World%20Tour%202020%20Shanghai', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01aRJT552GdSEBIUfcH_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3070, '【上海】三月街头漫游|DSPS＆雾虹联合巡演 上海站', '2020-03-08', '2020-12-31', '场馆：上海市 | 育音堂(音乐公园店)', 'https://detail.damai.cn/item.htm?id=611422891307&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%7CDSPS%EF%BC%86%E9%9B%BE%E8%99%B9%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E4%B8%8A%E6%B5%B7%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01aw6rdK2GdSE0sOGdN_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3071, '【宁波】三月街头漫游：DSPS＆雾虹 联合巡演 宁波站', '2020-10-18', '2020-10-18', '场馆：宁波市 | 宁波灯塔音乐现场', 'https://detail.damai.cn/item.htm?id=611240907584&clicktitle=%E4%B8%89%E6%9C%88%E8%A1%97%E5%A4%B4%E6%BC%AB%E6%B8%B8%EF%BC%9ADSPS%EF%BC%86%E9%9B%BE%E8%99%B9%20%E8%81%94%E5%90%88%E5%B7%A1%E6%BC%94%20%E5%AE%81%E6%B3%A2%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01zD0V9D2GdSDmLvP8M_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
-INSERT INTO `goods` VALUES (3072, 'RUEL FREE TIME WORLD TOUR HONG KONG', '2020-09-20', '2020-09-20', '场馆：中国香港 | 九龙湾国际展贸中心Music Zone', 'https://detail.damai.cn/item.htm?id=609903138510&clicktitle=RUEL%20FREE%20TIME%20WORLD%20TOUR%20HONG%20KONG', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01SovksR2GdSEGdLYDV_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (3072, 'RUEL FREE TIME WORLD TOUR HONG KONG', '2020-09-20', '2020-09-20', '场馆：中国香港 | 九龙湾国际展贸中心Music Zone', 'https://detail.damai.cn/item.htm?id=609903138510&clicktitle=RUEL%20FREE%20TIME%20WORLD%20TOUR%20HONG%20KONG', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01SovksR2GdSEGdLYDV_!!2251059038.jpg_q60.jpg_.webp', 2, 0);
 INSERT INTO `goods` VALUES (3073, '【中山】王若琳爱的呼唤巡回演唱会-中山站', '2020-02-15', '2020-12-31', '场馆：中山市 | 中山体育馆', 'https://detail.damai.cn/item.htm?id=599170255171&clicktitle=%E7%8E%8B%E8%8B%A5%E7%90%B3%E7%88%B1%E7%9A%84%E5%91%BC%E5%94%A4%E5%B7%A1%E5%9B%9E%E6%BC%94%E5%94%B1%E4%BC%9A-%E4%B8%AD%E5%B1%B1%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01YgonPe2GdSDiuRzG9_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3074, '【广州】仙羽 “悬崖的花” TOUR 2020 广州站', '2020-03-20', '2020-12-31', '场馆：广州市 | MAO Livehouse广州', 'https://detail.damai.cn/item.htm?id=611704451720&clicktitle=%E4%BB%99%E7%BE%BD%20%E2%80%9C%E6%82%AC%E5%B4%96%E7%9A%84%E8%8A%B1%E2%80%9D%20TOUR%202020%20%E5%B9%BF%E5%B7%9E%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i2/2251059038/O1CN01oXOvgS2GdSE0CdKRg_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3075, '【广州】2020戴爱玲“爱你爱你”演唱会广州站', '2020-03-21', '2020-12-31', '场馆：广州市 | 广州中山纪念堂', 'https://detail.damai.cn/item.htm?id=607255467046&clicktitle=2020%E6%88%B4%E7%88%B1%E7%8E%B2%E2%80%9C%E7%88%B1%E4%BD%A0%E7%88%B1%E4%BD%A0%E2%80%9D%E6%BC%94%E5%94%B1%E4%BC%9A%E5%B9%BF%E5%B7%9E%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01MQCFf52GdSDBNwbgU_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
@@ -1176,7 +1177,7 @@ INSERT INTO `goods` VALUES (3836, '【重庆】百老汇式儿童剧——《阿
 INSERT INTO `goods` VALUES (3837, '【郑州】第四届理想国国际儿童戏剧节 百老汇多媒体音乐剧《莫扎特和我》', '2020-10-24', '2020-10-25', '场馆：郑州市 | 普罗理想国艺术文化中心', 'https://detail.damai.cn/item.htm?id=625956451251&clicktitle=%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%90%86%E6%83%B3%E5%9B%BD%E5%9B%BD%E9%99%85%E5%84%BF%E7%AB%A5%E6%88%8F%E5%89%A7%E8%8A%82%20%E7%99%BE%E8%80%81%E6%B1%87%E5%A4%9A%E5%AA%92%E4%BD%93%E9%9F%B3%E4%B9%90%E5%89%A7%E3%80%8A%E8%8E%AB%E6%89%8E%E7%89%B9%E5%92%8C%E6%88%91%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/i4/2251059038/O1CN01x7Lz3e2GdSG8DwYyv_!!2-item_pic.png_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3838, '【北京】大型神话木偶剧《八仙过海》', '2020-10-31', '2020-10-31', '场馆：北京市 | 中国木偶剧院-大剧场', 'https://detail.damai.cn/item.htm?id=626216281620&clicktitle=%E5%A4%A7%E5%9E%8B%E7%A5%9E%E8%AF%9D%E6%9C%A8%E5%81%B6%E5%89%A7%E3%80%8A%E5%85%AB%E4%BB%99%E8%BF%87%E6%B5%B7%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/i4/2251059038/O1CN01WwsyfK2GdSGGpKHM9_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3839, '【北京】课本戏铁枝木偶剧《小鼹鼠寻梦记》', '2020-10-01', '2020-10-08', '场馆：北京市 | 中国木偶剧院-小铃铛精品剧场', 'https://detail.damai.cn/item.htm?id=626584914271&clicktitle=%E8%AF%BE%E6%9C%AC%E6%88%8F%E9%93%81%E6%9E%9D%E6%9C%A8%E5%81%B6%E5%89%A7%E3%80%8A%E5%B0%8F%E9%BC%B9%E9%BC%A0%E5%AF%BB%E6%A2%A6%E8%AE%B0%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/i3/2251059038/O1CN01rXDy5T2GdSGKDdkDB_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
-INSERT INTO `goods` VALUES (3840, '【北京】大型史诗舞台剧《精卫传奇》', '2020-10-24', '2020-10-25', '场馆：北京市 | 中国木偶剧院-大剧场', 'https://detail.damai.cn/item.htm?id=625970048100&clicktitle=%E5%A4%A7%E5%9E%8B%E5%8F%B2%E8%AF%97%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%B2%BE%E5%8D%AB%E4%BC%A0%E5%A5%87%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01zkQmwb2GdSGJRwahl_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (3840, '【北京】大型史诗舞台剧《精卫传奇》', '2020-10-24', '2020-10-25', '场馆：北京市 | 中国木偶剧院-大剧场', 'https://detail.damai.cn/item.htm?id=625970048100&clicktitle=%E5%A4%A7%E5%9E%8B%E5%8F%B2%E8%AF%97%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E7%B2%BE%E5%8D%AB%E4%BC%A0%E5%A5%87%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i4/2251059038/O1CN01zkQmwb2GdSGJRwahl_!!2251059038.jpg_q60.jpg_.webp', 3, 0);
 INSERT INTO `goods` VALUES (3841, '【西安】2020.10.31互动梦幻儿童剧《米胡太空奇遇记》西安站', '2020-10-31', '2020-10-31', '场馆：西安市 | 西演LIVE·大华1935玖剧场', 'https://detail.damai.cn/item.htm?id=626532286046&clicktitle=2020.10.31%E4%BA%92%E5%8A%A8%E6%A2%A6%E5%B9%BB%E5%84%BF%E7%AB%A5%E5%89%A7%E3%80%8A%E7%B1%B3%E8%83%A1%E5%A4%AA%E7%A9%BA%E5%A5%87%E9%81%87%E8%AE%B0%E3%80%8B%E8%A5%BF%E5%AE%89%E7%AB%99', 2, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01fdQo2Z2GdSGIvHsrw_!!2-item_pic.png_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3842, '【合肥】第七届安徽文惠项目——多媒体美术启蒙儿童剧《从达芬奇到毕加索》', '2020-10-24', '2020-10-24', '场馆：合肥市 | 安徽大剧院', 'https://detail.damai.cn/item.htm?id=626449730140&clicktitle=%E7%AC%AC%E4%B8%83%E5%B1%8A%E5%AE%89%E5%BE%BD%E6%96%87%E6%83%A0%E9%A1%B9%E7%9B%AE%E2%80%94%E2%80%94%E5%A4%9A%E5%AA%92%E4%BD%93%E7%BE%8E%E6%9C%AF%E5%90%AF%E8%92%99%E5%84%BF%E7%AB%A5%E5%89%A7%E3%80%8A%E4%BB%8E%E8%BE%BE%E8%8A%AC%E5%A5%87%E5%88%B0%E6%AF%95%E5%8A%A0%E7%B4%A2%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/i2/2251059038/O1CN01c4197K2GdSGMG0gLW_!!0-item_pic.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (3843, '【绍兴】儿童剧《哪吒“闹”海》', '2020-09-19', '2020-09-19', '场馆：绍兴市 | 蓝天大剧院', 'https://detail.damai.cn/item.htm?id=625797880654&clicktitle=%E5%84%BF%E7%AB%A5%E5%89%A7%E3%80%8A%E5%93%AA%E5%90%92%E2%80%9C%E9%97%B9%E2%80%9D%E6%B5%B7%E3%80%8B', 2, '//img.alicdn.com/bao/uploaded/i3/2251059038/O1CN01JhVG442GdSGFGznf2_!!2-item_pic.png_q60.jpg_.webp', 0, 0);
@@ -2244,12 +2245,10 @@ INSERT INTO `goods` VALUES (4904, '【北京】舞剧《永不消逝的电波》
 INSERT INTO `goods` VALUES (4905, '【广州】杨丽萍作品大型多媒体舞台剧《平潭映象》', '2020-11-08', '2020-11-08', '场馆：广州市 | 广东艺术剧院', 'https://detail.damai.cn/item.htm?id=610371000232&clicktitle=%E6%9D%A8%E4%B8%BD%E8%90%8D%E4%BD%9C%E5%93%81%E5%A4%A7%E5%9E%8B%E5%A4%9A%E5%AA%92%E4%BD%93%E8%88%9E%E5%8F%B0%E5%89%A7%E3%80%8A%E5%B9%B3%E6%BD%AD%E6%98%A0%E8%B1%A1%E3%80%8B', 6, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01d2N5la2GdSDxlDWuO_!!2251059038.png_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (4906, '【深圳】唐诗逸领衔舞剧《昭君》', '2020-05-12', '2020-12-31', '场馆：深圳市 | 深圳保利剧院', 'https://detail.damai.cn/item.htm?id=611791315903&clicktitle=%E5%94%90%E8%AF%97%E9%80%B8%E9%A2%86%E8%A1%94%E8%88%9E%E5%89%A7%E3%80%8A%E6%98%AD%E5%90%9B%E3%80%8B', 6, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN01LwkHHm2GdSE58JKHT_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 INSERT INTO `goods` VALUES (4907, '【北京】大型民族舞剧《孔子》', '2020-11-20', '2020-11-21', '场馆：北京市 | 北京展览馆剧场', 'https://detail.damai.cn/item.htm?id=607519442837&clicktitle=%E5%A4%A7%E5%9E%8B%E6%B0%91%E6%97%8F%E8%88%9E%E5%89%A7%E3%80%8A%E5%AD%94%E5%AD%90%E3%80%8B', 6, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i3/2251059038/O1CN01PGHGc22GdSE347S6e_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
-INSERT INTO `goods` VALUES (4908, '【上海站】Pearl’s Unplugged Concert  珍珠不插电演唱会 2020LVH1', '2020-09-05', '2020-09-05', '珍珠剧场（上海） ', 'https://www.moretickets.com/content/5f3a45ebe24c3a762a3e985a', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4909, '【上海站】1862LIVE2.0 开房间 上海魔都大乐队摩登市井音乐会《弄堂口》', '2020-10-05', '2020-10-05', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5f3632b2908c3819a6bbfa2e', 0, 'https://img0.tking.cn/mtl/default/img/RDk384rdZQ_.png', 0, 0);
 INSERT INTO `goods` VALUES (4910, '【上海站】「C-BLOCK」BESTIVAL @BEEHIVE CLUB 五天22厂牌30艺人', '2020-09-11', '2020-09-11', 'BEEHIVE ', 'https://www.moretickets.com/content/5f4f15f4a81bd03d6411d282', 0, 'https://img0.tking.cn/mtl/default/file/teCaBHaWFz_.gif', 0, 0);
 INSERT INTO `goods` VALUES (4911, '【上海站】「小河」 一个人的交响音乐会《河的第三岸》{1862LIVE2.0 开房间}', '2020-10-02', '2020-10-02', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5f363546d3521e38854f70ae', 0, 'https://img0.tking.cn/mtl/default/img/NiBsws5m4x_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4912, '【上海站】1862LIVE2.0 开房间 上海记忆音乐现场《上天入地》', '2020-10-01', '2020-10-01', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5f364148908c3819a6c951d2', 0, 'https://img0.tking.cn/mtl/default/img/ppZdHD434k_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (4913, '【上海站】劲爆低价 顶级潮牌夜店 Beehive CLUB 重磅归来', '2020-04-20', '2020-12-31', 'BEEHIVE（淮海中路店） ', 'https://www.moretickets.com/content/5e9d5a4ba81bd013b07c6fe2', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4914, '【上海站】「万晓利」开房间 Motion影像音乐会《万晓利：北方的北方》{1862LIVE2.0} ', '2020-10-03', '2020-10-04', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5f3633d4908c3819a6bc6fe7', 0, 'https://img0.tking.cn/mtl/default/img/ktGmxPxt7c_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4915, '【上海站】「痛仰」《二十四城记》巡演 LVH1', '2020-09-28', '2020-09-28', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f34d20b908c3819a6f65c5b', 0, 'https://img0.tking.cn/mtl/default/img/TcCpTkczYT_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4916, '【上海站】「廖效浓 」《 NONG Archive Tour》巡演 LVH1', '2020-09-06', '2020-09-06', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f0bd5c7c756b16055d558a5', 0, 'https://img0.tking.cn/mtl/default/img/xGXjnZwCYa_.jpg', 0, 0);
@@ -2263,7 +2262,6 @@ INSERT INTO `goods` VALUES (4923, '【上海站】「黄旭」《日正当午》
 INSERT INTO `goods` VALUES (4924, '【上海站】「野孩子」《地久天长》2020巡演 LVH1', '2020-09-23', '2020-09-24', '万代南梦宫上海文化中心-梦想剧场 ', 'https://www.moretickets.com/content/5f4e161fa81bd03d64ca1766', 0, 'https://img0.tking.cn/mtl/default/img/3hpxpGYwp4_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4925, '【上海站】Novo Amor 2021年巡演', '2021-06-11', '2021-06-12', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5df0d405908c38721fc5be0a', 0, 'https://img0.tking.cn/mtl/default/img/Hss2hPWM7a_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4926, '【上海站】【王嘉尔打卡夜店】 Space  plus  club', '2020-07-16', '2021-07-01', 'SPACE PLUS滨江大道1833号 ', 'https://www.moretickets.com/content/5f0fd3f299012d47fb2c52cd', 0, 'https://img0.moretickets.com/zbf/assets/img/rZzwJhDCTe_.png', 0, 0);
-INSERT INTO `goods` VALUES (4927, '【上海站】 【顶级夜生活体验】 ERAA  CLUB   超值酒水套餐', '2020-06-17', '2020-12-31', 'ERAA ', 'https://www.moretickets.com/content/5ee9d318e24c3a2632809909', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4928, '【上海站】【全场畅饮】恶魔·游园夜The Last Mind of Evil巡演LVH1', '2020-09-06', '2020-09-06', 'MAO LiveHouse 上海 ', 'https://www.moretickets.com/content/5f3e43669fcad801bbddd15c', 0, 'https://img0.tking.cn/mtl/default/img/bbdiy4AtZK_.png', 0, 0);
 INSERT INTO `goods` VALUES (4929, '【全国站】【看乐队的夏天 赢优惠券】谁是你心中的HOT5？', '2020-12-30', '2021-01-31', 'what ', 'https://www.moretickets.com/content/5f1ea196d3521e4b55668402', 0, 'https://img0.tking.cn/mtl/default/img/wTWQYkdamA_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4930, '【上海站】「泥鳅Zinco」《老板好》2020巡演 LVH1', '2020-09-25', '2020-09-25', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f30b9b1c756b115fd95c8df', 0, 'https://img0.tking.cn/mtl/default/img/Mc2AyYYti5_.jpg', 0, 0);
@@ -2275,14 +2273,7 @@ INSERT INTO `goods` VALUES (4935, '【上海站】「宿羽阳」《请允许我
 INSERT INTO `goods` VALUES (4936, '【上海站】「动物园钉子户」《春游要去动物园》2020全国巡演 LVH1', '2020-11-07', '2020-11-07', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5e1fcff7d3521e4bf5775a90', 0, 'https://img0.tking.cn/mtl/default/img/fYkeCkH2d2_.png', 0, 0);
 INSERT INTO `goods` VALUES (4937, '【上海站】加拿大当红复古梦幻团Men I Trust 2021巡演LVH1', '2021-03-19', '2021-03-19', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5edddd8b908c386af0f0f625', 0, 'https://img0.tking.cn/mtl/default/img/M3enc4GH5b_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4938, '【上海站】「RW BEN」《绳与艺 3.0》2020巡演 LVH1', '2020-09-19', '2020-09-19', '上海 LOFAS ', 'https://www.moretickets.com/content/5e93c9e9908c3873899792b4', 0, 'https://img0.tking.cn/mtl/default/img/Z6C8nZSS2D_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (4939, '【上海站】果味VC「拥抱之城」2020全国巡演', '2020-09-11', '2020-09-11', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5e60a355d3521e2066c783a0', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (4940, '【上海站】【百大DJ常驻地】MODU CLUB', '2020-07-16', '2021-07-01', 'MODU CLUB 恒丰路299号 ', 'https://www.moretickets.com/content/5f0ff11c99012d47fb2c594f', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (4941, '【上海站】曼谷热带流行乐团 Gym and Swim 2020中国巡演', '2020-12-03', '2020-12-03', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5e266b85908c3868d7cc668f', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (4942, '【上海站】S.T.D. Presents Stormzy The World Tour 2020 Shanghai', '2020-11-07', '2020-11-07', 'Arkham Club（上海） ', 'https://www.moretickets.com/content/5e254a05ef21ef044e5b03c5', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4943, '【上海站】「肆囍 」《Filter》2020巡演 LVH1', '2020-09-12', '2020-09-12', '上海BUDX VAS ', 'https://www.moretickets.com/content/5ee86513d3521e432f135be9', 0, 'https://img0.tking.cn/mtl/default/img/TxNHfxRhPm_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (4944, '【爱豆专属现金券】五条人乐队', '2020-09-03', '2021-02-01', 'what ', 'https://www.moretickets.com/content/5f509d35908c387de533a94c', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (4945, '【上海站】「打扰一下」《世界不会轻易崩塌》2020全国巡演 LVH1', '2020-10-31', '2020-10-31', '上海BUDX VAS ', 'https://www.moretickets.com/content/5f1805e2908c38313b51ae31', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (4946, '【上海站】【超时代概念CLUB】New Beat  酒吧蹦迪特惠套餐', '2020-07-10', '2021-12-31', 'NEW BEAT ', 'https://www.moretickets.com/content/5f0837e5e24c3a1b03872264', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4947, '【上海站】「隔壁团」《KISS》2020全国巡演 LVH1', '2020-10-02', '2020-10-02', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5ee86b1a908c381cc997923e', 0, 'https://img0.tking.cn/mtl/default/img/hxAjNT6nsJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4948, '【上海站】「海朋森」《成长小说》2020巡演 LVH1', '2020-09-19', '2020-09-19', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f06b3d4a81bd073110f81af', 0, 'https://img0.tking.cn/mtl/default/img/TAfjxx3rWZ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4949, '【上海站】LINX CLUB', '2020-07-16', '2021-07-01', 'LINX 淮海中路98号 ', 'https://www.moretickets.com/content/5f0fee0de24c3a1b03887722', 0, 'https://img0.moretickets.com/zbf/assets/img/mphjcZSWt7_.png', 0, 0);
@@ -2311,7 +2302,6 @@ INSERT INTO `goods` VALUES (4971, '【上海站】「翻糖乐队」《平凡世
 INSERT INTO `goods` VALUES (4972, '【上海站】「大粉乐队」《飞出个未来》2020新专辑巡演 LVH', '2020-11-07', '2020-11-07', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5efeecf1908c386f34e17dae', 0, 'https://img0.tking.cn/mtl/default/img/DbzRxBNba2_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4973, '【上海站】「卧轨的火车」《大陆》2020新专辑巡演 LVH1', '2020-09-26', '2020-09-26', '万代南梦宫上海文化中心-梦想剧场 ', 'https://www.moretickets.com/content/5f166418d3521e3f122c4f24', 0, 'https://img0.tking.cn/mtl/default/img/re5EHykP7G_.png', 0, 0);
 INSERT INTO `goods` VALUES (4974, '【上海站】「斯斯与帆」《很可能是》2020全国巡演 LVH', '2020-10-16', '2020-10-16', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f3dd3b6c756b11e5c05dd02', 0, 'https://img0.tking.cn/mtl/default/img/TRkpGzjE5J_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (4975, '【上海站】 Linkin Park A Numetal Night  林肯公园&新金属合集 摇滚浪潮狂欢夜 LVH', '2020-09-11', '2020-09-18', '珍珠剧场（上海） ', 'https://www.moretickets.com/content/5f460764e24c3a3fd2b1d6da', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4976, '【上海站】「安子与九妹」《等你》2020全国巡演 LVH', '2020-10-11', '2020-10-11', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5f3f9457c756b11e5cbe7565', 0, 'https://img0.tking.cn/mtl/default/img/n67yifFWKz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4977, '【上海站】MT1990 “中”艺术家 三城巡演LVH1', '2020-09-16', '2020-09-16', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f3f3d0fa81bd00a6ede707d', 0, 'https://img0.tking.cn/mtl/default/img/xHbPhsaBSx_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4978, '【上海站】【新晋CLUB】FF VERB', '2020-08-08', '2020-12-31', 'FF VERB ', 'https://www.moretickets.com/content/5f0ff4bfe24c3a1b038879f7', 0, 'https://img0.moretickets.com/zbf/assets/img/rhbf2TDkrk_.png', 0, 0);
@@ -2324,7 +2314,6 @@ INSERT INTO `goods` VALUES (4984, '【上海站】「迷幻世界乐队」《她
 INSERT INTO `goods` VALUES (4985, '【上海站】「耳光乐队」《送瘟神》2020全国巡演 LVH', '2020-09-26', '2020-09-26', 'MAO LiveHouse 上海 ', 'https://www.moretickets.com/content/5f3de288908c3820db80a99f', 0, 'https://img0.tking.cn/mtl/default/img/WDAc5FTpX2_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4986, '【上海站】「派克特和坏妈咪」2020四城巡演 LVH', '2020-09-19', '2020-09-19', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f39f306c756b125dde5b5e9', 0, 'https://img0.tking.cn/mtl/default/img/zdh36FSmti_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4987, '【上海站】【Neo Rock By Future】DIRTY MOON坏月亮2020巡演LVH', '2020-09-13', '2020-09-13', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f1fb85a908c382b009cbf40', 0, 'https://img0.tking.cn/mtl/default/img/DhcKGBxJm6_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (4988, '【上海站】「 旋转保龄」《祝你平安》便携俱乐部2.0全国巡演 LVH1', '2020-09-18', '2020-09-18', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f351641a81bd058789d6002', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4989, '【上海站】LOFT BEACH 2020「海角天涯」秋日巡游LVH', '2020-11-21', '2020-11-21', '上海BUDX VAS ', 'https://www.moretickets.com/content/5f2a61c6908c3876fa9681b2', 0, 'https://img0.tking.cn/mtl/default/img/4aXeHyjxQ3_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4990, '【上海站】「SUBS/脏手指/荷尔蒙小姐」四城联合巡演{京A别闹} LVH', '2020-11-20', '2020-11-20', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f2cf3fb908c3876faf825a9', 0, 'https://img0.tking.cn/mtl/default/img/NECyxt4rDY_.png', 0, 0);
 INSERT INTO `goods` VALUES (4991, '【上海站】「对角巷乐队」《闪耀》2020巡演 LVH', '2020-12-27', '2020-12-27', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f30b5da908c3876fabad995', 0, 'https://img0.tking.cn/mtl/default/img/zN3iphRSpz_.png', 0, 0);
@@ -2332,22 +2321,16 @@ INSERT INTO `goods` VALUES (4992, '【上海站】「禁城之马」《打开感
 INSERT INTO `goods` VALUES (4993, '【上海站】「辛巴」《逐赤萍》2020四城巡演 LVH', '2020-10-06', '2020-10-06', '上海BUDX VAS ', 'https://www.moretickets.com/content/5f44a749908c3820dbe52fc0', 0, 'https://img0.tking.cn/mtl/default/img/xyZ2TcA36D_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4994, '【上海站】「周云蓬与乐队」《否极泰来》2020巡演 LVH', '2020-10-23', '2020-10-23', '万代南梦宫上海文化中心-梦想剧场 ', 'https://www.moretickets.com/content/5f3e1d79d3521e6a3bbd9f02', 0, 'https://img0.tking.cn/mtl/default/img/ZWscScW5te_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4995, '【上海站】《老上海风情怀旧金曲演唱会》', '2020-09-17', '2020-09-17', '浦东大戏院 ', 'https://www.moretickets.com/content/5f4ca444d3521e1e922f7f05', 0, 'https://img0.tking.cn/mtl/default/img/e5K2Sjj7kY_.png', 0, 0);
-INSERT INTO `goods` VALUES (4996, '【上海站】Broadway Cabaret SHOWSTOPPERS 百老汇歌舞经典之夜LVH', '2020-09-19', '2020-09-19', '珍珠剧场（上海） ', 'https://www.moretickets.com/content/5f4df77f99012d4024c5b97c', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (4997, '【上海站】《MVP》PSY.P ＆MELO 巡演', '2020-10-14', '2020-10-14', '上海BUDX VAS ', 'https://www.moretickets.com/content/5f50a29fc756b16c2f742017', 0, 'https://img0.tking.cn/mtl/default/img/sK2MT8GCNX_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4998, '【上海站】兵马司呈现 丨「​P.K.14 二零二零巡演」巡演LVH', '2020-10-06', '2020-10-06', '万代南梦宫上海文化中心-梦想剧场 ', 'https://www.moretickets.com/content/5f51b348908c385e575e281c', 0, 'https://img0.tking.cn/mtl/default/img/rAtfxBZkpS_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (4999, '【上海站】【紫禁之巔五週年】花墙乐队“全力推进演艺事业复工复产”专场巡演LVH', '2020-09-19', '2020-09-19', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5ee1cf45d3521e5f5389d022', 0, 'https://img0.tking.cn/mtl/default/img/acJ8HRNexa_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5000, '【上海站】【海派情调】何日君再来•邓氏情歌经典金曲演唱会', '2020-10-04', '2020-10-04', '浦东大戏院 ', 'https://www.moretickets.com/content/5f4ccc72d3521e1e92439112', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5001, '【上海站】「疯狂老鼠」2020全国巡演 LVH', '2020-09-05', '2020-09-05', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f152dbcd3521e6d7b718ff3', 0, 'https://img0.tking.cn/mtl/default/img/cPfFiCKk52_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5002, '【上海站】「冀行/贰巾」《望海西》2020联合巡演 LVH', '2020-10-29', '2020-10-29', '煤气灯 LIVE HOUSE ', 'https://www.moretickets.com/content/5f155344c756b17e9600133b', 0, 'https://img0.tking.cn/mtl/default/img/rKtyhGikZH_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5003, '【上海站】「 倪健」《唤你以星辰 》2020巡演 LVH', '2020-10-23', '2020-10-23', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f057fdad3521e380f15ebea', 0, 'https://img0.tking.cn/mtl/default/img/aemBSmZ5hj_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5004, '【上海站】无妄海巡演LVH', '2020-10-18', '2020-10-18', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5f463c07d3521e6a3b8cdde2', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5005, '【上海站】「皮痛乐队」《我要脑梗》2020新专辑全国巡演 LVH', '2020-09-23', '2020-09-23', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f238eacd3521e7be340f4a8', 0, 'https://img0.tking.cn/mtl/default/img/ERzT5Wj2Bt_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5006, '【上海站】「西游乐队」十周年巡演 LVH', '2020-10-15', '2020-10-15', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f1ff505908c382b00ac0e28', 0, 'https://img0.tking.cn/mtl/default/img/jkWanWYr8K_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5007, '【上海站】「冯佳界」2020《归来记》新专辑《英雄主义》主题巡演LVH', '2020-10-31', '2020-10-31', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f224b0fd3521e7be3b1bbf8', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5008, '【上海站】【全场畅饮】夜猫俱乐部巡演LVH', '2020-09-05', '2020-09-19', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5f4e0424d3521e1e92a6e672', 0, 'https://img0.tking.cn/mtl/default/img/wYYNsJGDyf_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5009, '【上海站】「Monster KaR」《笠云岛》2020巡演 LVH', '2020-11-20', '2020-11-20', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f238715a81bd0219d317d15', 0, 'https://img0.tking.cn/mtl/default/img/Phep2CaaYZ_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5010, '【上海站】「高嘉丰」《幻爱锐舞会》2020 电玩专辑巡演 LVH', '2020-09-12', '2020-09-12', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f2a4f2da81bd0219d151a3b', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5011, '【上海站】「安娜其乐队/CICI陈幼氰」《也太好看了吧》巡演 LVH', '2020-09-13', '2020-09-13', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f2928b1c756b115fdd724c2', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5012, '【上海站】「郁乐队」《Metempsychosis 重生》2020巡演 LVH', '2020-11-07', '2020-11-07', 'MAO LiveHouse 上海 ', 'https://www.moretickets.com/content/5f2bca77c756b115fd309bf5', 0, 'https://img0.tking.cn/mtl/default/img/8j4HN2Yeth_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5013, '【上海站】「青鹿」《太空症》首专首发巡演 LVH', '2020-09-20', '2020-09-20', '万代南梦宫上海文化中心-未来剧场 ', 'https://www.moretickets.com/content/5f2cf1dfd3521e7be38be07c', 0, 'https://img0.tking.cn/mtl/default/img/WYbizNYMF3_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5014, '【上海站】公益惠民系列故乡的云经典歌曲交响演唱会', '2020-10-08', '2020-10-08', '保利上海城市剧院 ', 'https://www.moretickets.com/content/5f2d1a04c756b115fde6ff45', 0, 'https://img0.tking.cn/mtl/default/img/QYFTimikAC_.png', 0, 0);
@@ -2375,8 +2358,6 @@ INSERT INTO `goods` VALUES (5035, '【上海站】「王欣宇」《浪漫宇宙
 INSERT INTO `goods` VALUES (5036, '【上海站】「大布偶」专场巡演 LVH', '2020-10-17', '2020-10-17', '万代南梦宫上海文化中心-未来剧场 ', 'https://www.moretickets.com/content/5f44d655c756b11e5c813d9e', 0, 'https://img0.tking.cn/mtl/default/img/TCfS4pwKTz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5037, '【上海站】沙棘草「失语」2020巡演LVH', '2020-10-24', '2020-10-24', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5f44b394d3521e6a3b080aa8', 0, 'https://img0.tking.cn/mtl/default/img/WKPtiRfipj_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5038, '【上海站】城市声林-古典电子专场巡演LVH', '2020-09-11', '2020-09-11', '上海 LOFAS ', 'https://www.moretickets.com/content/5f4872a5908c387de5589169', 0, 'https://img0.tking.cn/mtl/default/img/p27a35HeNd_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5039, '【上海站】Drag house party 变装家族闪耀魔力派对之夜LVH', '2020-09-12', '2020-09-12', '珍珠剧场（上海） ', 'https://www.moretickets.com/content/5f4df929e24c3a419e4574a1', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5040, '【上海站】【全场畅饮】夜猫俱乐部——粉红色的回忆，迪斯科的爬梯巡演LVH', '2020-09-11', '2020-09-11', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5f4e0684a81bd03d64c4eaf2', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5041, '【上海站】「消失半径/吴雪颖/游梦岛」自画像女孩 第三期巡演LVH', '2020-09-20', '2020-09-20', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f4f68cfa81bd03d6432641e', 0, 'https://img0.tking.cn/mtl/default/img/kjWBmC8jaE_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5042, '【上海站】重返袖珍时光 | 单曲黑胶《蓿》首发 ＆ 暨2020年巡演LVH', '2020-10-05', '2020-10-05', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5f4e2013908c387de564af13', 0, 'https://img0.tking.cn/mtl/default/img/RBJJwZpCCz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5043, '【上海站】与她生活节mini巡演LVH', '2020-10-07', '2020-10-07', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5f4f12f6a81bd03d6410def8', 0, 'https://img0.tking.cn/mtl/default/img/XkwiZAjRFH_.jpg', 0, 0);
@@ -2391,7 +2372,6 @@ INSERT INTO `goods` VALUES (5051, '【延期】【上海站】JJ 林俊杰《圣
 INSERT INTO `goods` VALUES (5052, '【延期】【上海站】202020当我们谈论爱情-梁静茹世界巡回演唱会', '2020-03-14', '2021-12-31', '梅赛德斯-奔驰文化中心（上海世博文化中心） ', 'https://www.moretickets.com/content/5dbfe8d5d3521e2e11280a89', 0, 'https://img0.tking.cn/mtl/default/img/4KGd3AT5tt_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5053, '【上海站】Taylor Swift 泰勒斯威夫特 2020年演唱会', '2020-10-24', '2020-10-25', '梅赛德斯-奔驰文化中心（上海世博文化中心） ', 'https://www.moretickets.com/content/5e54903da81bd04b356e0a3e', 0, 'https://img0.tking.cn/mtl/default/img/ncBrNdabSJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5054, '【延期】【上海站】蔡依林 Ugly Beauty 2020 世界巡回演唱会', '2020-02-21', '2021-12-31', '梅赛德斯-奔驰文化中心（上海世博文化中心） ', 'https://www.moretickets.com/content/5de8dd03d3521e019485c28d', 0, 'https://img0.tking.cn/mtl/default/img/nn8bRKAYpp_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5055, '【延期】【上海站】新裤子「最后的乐队」巡回演唱会2020', '2020-12-31', '2021-12-31', '梅赛德斯-奔驰文化中心（上海世博文化中心） ', 'https://www.moretickets.com/content/5e15723cd3521e7938a96bb7', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5056, '【上海站】WE ARE R.1.S.E —2019 R1SE全国巡回演唱会', '2020-02-08', '2021-12-31', '梅赛德斯-奔驰文化中心（上海世博文化中心） ', 'https://www.moretickets.com/content/5e1fd534908c3850a0d585b1', 0, 'https://img0.tking.cn/mtl/default/img/NsaGNzRrp5_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5057, '【上海站】Lauv how i’m feeling world tour Shanghai 2020', '2020-12-31', '2020-12-31', 'ModernSky LAB （上海） ', 'https://www.moretickets.com/content/5dd79877a81bd07fc53d4d93', 0, 'https://img0.tking.cn/mtl/default/img/Qpsbxm3cQz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5058, '【延期】【上海站】Tizzy T 2020 认·真 演唱会', '2020-02-22', '2021-12-31', '静安体育中心 ', 'https://www.moretickets.com/content/5e228eb2d3521e0a9c6f72ab', 0, 'https://img0.tking.cn/mtl/default/img/Q7PxfSHTYE_.jpg', 0, 0);
@@ -2414,7 +2394,6 @@ INSERT INTO `goods` VALUES (5074, '【上海站】【影响呈现】Suchmos Live
 INSERT INTO `goods` VALUES (5075, '【上海市】【帮扩领现金券】周杰伦全新单曲《MOJITO》首发', '2020-12-31', '2020-12-31', 'what ', 'https://www.moretickets.com/content/5ee09df9908c386af05f8442', 0, 'https://img0.tking.cn/mtl/default/img/QMbtnRTxih_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5076, '【延期】【上海站】Greg Laswell 2020 巡演', '2021-12-31', '2021-12-31', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5e1ec645d3521e4bf5be5f37', 0, 'https://img0.tking.cn/mtl/default/img/FZP8aH2nwF_.png', 0, 0);
 INSERT INTO `goods` VALUES (5077, '【上海站】陈壹千2020年「千语千巡」巡演', '2020-06-14', '2020-12-31', '育音堂（音乐公园店） ', 'https://www.moretickets.com/content/5e241e7bd3521e0a9cd27b8a', 0, 'https://img0.tking.cn/mtl/default/img/ikc5HsxjST_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5078, '【上海站】2020情人节演唱会“致亲爱的你”', '2020-02-14', '2020-02-14', 'MAO Livehouse（上海） ', 'https://www.moretickets.com/content/5e0f37fa99012d0ecc4328f9', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5079, '【延期】【上海站】《流金岁月》王维倩·戴军演唱会', '2020-02-14', '2021-12-31', '美琪大戏院 ', 'https://www.moretickets.com/content/5e16fe539b41f40356fea8e6', 0, 'https://img0.tking.cn/mtl/default/img/ZnQ467CNGB_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5080, '【上海站】【帮扩领现金券】听我们的歌 张杰线上直播音乐会', '2020-12-31', '2020-12-31', 'what ', 'https://www.moretickets.com/content/5f1e66f9a81bd06f6686ff68', 0, 'https://img0.tking.cn/mtl/default/img/ndn3SEj6wY_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5081, '【延期】【上海站】DOES LIVE 2020 EVOLUTION IN SHANGHAI / DOES「进化」上海演唱会', '2021-12-31', '2021-12-31', '上海-VAS瓦肆 ', 'https://www.moretickets.com/content/5e16f720d3521e5635b08ba1', 0, 'https://img0.tking.cn/mtl/default/img/BshiHBTbpY_.jpg', 0, 0);
@@ -2431,10 +2410,8 @@ INSERT INTO `goods` VALUES (5091, '【无锡站】「痛仰」《二十四城记
 INSERT INTO `goods` VALUES (5092, '【无锡站】「纣王老胡」《看见曙光》2020全国巡演 LVH', '2020-12-24', '2020-12-24', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5ef8547a908c38690cdffb6a', 0, 'https://img0.tking.cn/mtl/default/img/nyprKXTxMJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5093, '【无锡站】「宿羽阳」《请允许我成为你的夏季》2020全国巡演 LVH', '2020-09-19', '2020-09-19', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5efec97ca81bd054c07456a3', 0, 'https://img0.moretickets.com/zbf/assets/img/fYC3j44zyM_.png', 0, 0);
 INSERT INTO `goods` VALUES (5094, '【无锡站】「苏紫旭/The Paramecia」《混乱之子》2020巡演 LVH', '2020-09-20', '2020-09-20', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5ee87ac6a81bd0262aa7d3d9', 0, 'https://img0.tking.cn/mtl/default/img/RdHCkk8xb3_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5095, '【无锡站】「打扰一下」《世界不会轻易崩塌》2020全国巡演LVH1', '2020-11-01', '2020-11-01', '寅派动力（无锡新文化空间） ', 'https://www.moretickets.com/content/5f1806a9d3521e3f12acafd4', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5096, '【无锡站】「理想后花园」《云雾中的灯塔》2020巡演 LVH', '2020-11-01', '2020-11-01', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5f056c1fd3521e380f109cea', 0, 'https://img0.tking.cn/mtl/default/img/TSTkBXfXAi_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5097, '【无锡站】「冀行/贰巾」《望海西》2020联合巡演 LVH', '2020-10-30', '2020-10-30', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5f15535ec756b17e96001781', 0, 'https://img0.tking.cn/mtl/default/img/rKtyhGikZH_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5098, '【无锡站】锡哈制燥', '2020-10-16', '2020-10-16', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5f278723908c3876fa53653e', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5099, '【无锡站】「大粉乐队」《飞出个未来》2020新专辑巡演 LVH', '2020-11-06', '2020-11-06', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5efeec98d3521e12a9b2a413', 0, 'https://img0.tking.cn/mtl/default/img/DbzRxBNba2_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5100, '【无锡站】「翻糖乐队」《平凡世界》2020全国巡演 LVH', '2020-09-09', '2020-09-09', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5f28c89fc756b115fda8023c', 0, 'https://img0.tking.cn/mtl/default/img/z3HbsDedFQ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5101, '【无锡站】「青鹿」《太空症》首专首发巡演 LVH', '2020-09-18', '2020-09-18', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5f2cf1b0c756b115fdcfbaf2', 0, 'https://img0.tking.cn/mtl/default/img/WYbizNYMF3_.jpg', 0, 0);
@@ -2454,39 +2431,26 @@ INSERT INTO `goods` VALUES (5114, '【延期】【无锡站】刘若英 2020「�
 INSERT INTO `goods` VALUES (5115, '【延期】【无锡站】伍佰&China Blue RockStar 演唱会', '2020-05-16', '2021-12-31', '无锡市体育中心体育馆 ', 'https://www.moretickets.com/content/5e2569ac9b7ceb045f659cc7', 0, 'https://img0.tking.cn/mtl/default/img/4HAACBP4Xy_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5116, '【延期】【无锡站】李荣浩「年少有为」世界巡回演唱会', '2020-12-31', '2020-12-31', '无锡市体育中心体育馆 ', 'https://www.moretickets.com/content/5e25660af58031045f6bc6ac', 0, 'https://img0.tking.cn/mtl/default/img/i4eQp2wGBa_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5117, '【延期】【无锡】吴青峰“太空备忘记”巡回演唱会', '2020-02-29', '2021-12-31', '无锡市体育中心体育馆 ', 'https://www.moretickets.com/content/5df6f74d908c38045d8534d4', 0, 'https://static1.piaoxingqiu.com/PXQ/assets/img/JfxXXKxmWP_.jpeg', 0, 0);
-INSERT INTO `goods` VALUES (5118, '【无锡站】《你大可不必假装快乐》黑屋乐队2020巡演LVH', '2020-11-08', '2020-11-08', '活塞livehouse(无锡） ', 'https://www.moretickets.com/content/5f508c31908c387de52ca929', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5119, '【延期】【无锡站】旺福《旺情歌》2020 Live Tour ', '2021-12-31', '2021-12-31', '寅派动力（无锡新文化空间） ', 'https://www.moretickets.com/content/5e2417edd3521e0a9ccd5af1', 0, 'https://img0.tking.cn/mtl/default/img/PcRrn82tJ6_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5120, '【无锡站】2020情人节演唱会“致亲爱的你”', '2020-02-14', '2020-02-14', '寅派动力（无锡）（无效） ', 'https://www.moretickets.com/content/5e0f3bde99012d0ecc432ee2', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5121, '【延期】【无锡站】【加拿大华人乐队】「We Are  Various」2020巡演 LVH', '2021-12-31', '2021-12-31', '寅派动力（无锡新文化空间） ', 'https://www.moretickets.com/content/5ee1aad8a81bd05a1c16a29a', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5122, '【苏州站】「痛仰」《二十四城记》巡演 LVH1', '2020-09-22', '2020-09-22', '山丘livehouse红唐店 ', 'https://www.moretickets.com/content/5f34d19ca81bd058787858fb', 0, 'https://img0.tking.cn/mtl/default/img/TcCpTkczYT_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5123, '【苏州站】「法老/嘉宾：AThree/Eazy-Y/麦丽素」苏州游记LVH1', '2020-09-30', '2020-09-30', '苏州阳澄国际电竞馆 ', 'https://www.moretickets.com/content/5f4c8e6ad3521e1e9224f76c', 0, 'https://img0.tking.cn/mtl/default/img/8cReKfK4CF_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5124, '【苏州站】「宿羽阳」《请允许我成为你的夏季》2020全国巡演 LVH1', '2020-09-20', '2020-09-20', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5efec9dcc756b13044a35b95', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5125, '【苏州站】「隔壁团」《KISS》2020全国巡演 LVH1', '2020-10-04', '2020-10-04', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5ee86e71c756b12cfb22e18b', 0, 'https://img0.tking.cn/mtl/default/img/zHjcPPpEjB_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5126, '【苏州站】果味VC「拥抱之城」2020全国巡演', '2020-11-28', '2020-11-28', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5eb8cfa8c756b172cd6a4bec', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5127, '【苏州站】「西游乐队」十周年巡演 LVH1', '2020-10-16', '2020-10-16', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5eb8c04da81bd00a6d28ac66', 0, 'https://img0.tking.cn/mtl/default/img/MXdpQ8QGtB_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5128, '【苏州站】「尚士达」《来日方长》2020巡演 LVH1', '2020-10-10', '2020-10-10', '山丘livehouse红唐店 ', 'https://www.moretickets.com/content/5f1fd455c756b15133512af3', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5129, '【苏州站】「醒山」《我是我所有因果的唯一结果》2020巡演 LVH', '2020-12-06', '2020-12-06', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f0e7381c756b1605592a93f', 0, 'https://img0.tking.cn/mtl/default/img/AwDScXKp4R_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5130, '【苏州站】「打扰一下」《世界不会轻易崩塌》2020全国巡演LVH', '2020-10-30', '2020-10-30', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f1804ba908c38313b5157f3', 0, 'https://img0.tking.cn/mtl/default/img/tbrjCGyRJ6_.png', 0, 0);
-INSERT INTO `goods` VALUES (5131, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5ef85410c756b15857dd94ed', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5132, '【苏州站】「刘莱斯」《怦怦》2020全国巡演 LVH', '2020-11-21', '2020-11-21', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f0293cb908c386f34daae78', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5133, '【苏州站】「舌头乐队」《假如明天消失》2020新唱片首发巡演 LVH', '2020-10-11', '2020-10-11', '山丘livehouse红唐店 ', 'https://www.moretickets.com/content/5f3247a1a81bd05878729655', 0, 'https://img0.tking.cn/mtl/default/img/EnWaYGiXsN_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5134, '【苏州站】钢心乐队【宿醉之爱】苏州特别专场巡演LVH', '2020-07-15', '2020-07-15', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f02c8d9d3521e12a9bc75f9', 0, 'https://img0.tking.cn/mtl/default/img/4b2SSxPB7C_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5135, '【苏州站】「翻糖乐队」《平凡世界》2020全国巡演 LVH', '2020-09-08', '2020-09-08', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f28c832c756b115fda7e107', 0, 'https://img0.tking.cn/mtl/default/img/w5JcG4RNxw_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5136, '【苏州站】「雾虹 / DSPS」《三月街头漫游》联合巡演 LVH', '2020-10-17', '2020-10-17', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5e1c5e1ca81bd0769d1a7484', 0, 'https://img0.tking.cn/mtl/default/img/DwyzzsAdzG_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5137, '【苏州站】「苏紫旭/The Paramecia」《混乱之子》2020巡演 LVH', '2020-09-19', '2020-09-19', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5ee87aa3908c381cc99b743a', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5138, '【苏州站】「张浅潜」《浅浅吟唱》巡演 LVH', '2020-09-20', '2020-09-20', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f439300a81bd00a6e5fb80d', 0, 'https://img0.tking.cn/mtl/default/img/iCdHF8bWKP_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5139, '【苏州站】「贰佰」《天真的人请你忘了你自己》2020新专辑巡演 LVH1', '2020-10-25', '2020-10-25', '山丘livehouse红唐店 ', 'https://www.moretickets.com/content/5f4dc41b908c387de53fa8f6', 0, 'https://img0.tking.cn/mtl/default/img/426w7ezZtX_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5141, '【苏州站】「青鹿」《太空症》首专首发巡演 LVH', '2020-09-19', '2020-09-19', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f2cf1c8908c3876faf6dc39', 0, 'https://img0.tking.cn/mtl/default/img/WYbizNYMF3_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5142, '【苏州站】「冀行/贰巾」《望海西》2020联合巡演 LVH', '2020-10-31', '2020-10-31', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f155378d3521e6d7b7ab262', 0, 'https://img0.tking.cn/mtl/default/img/rKtyhGikZH_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5143, '【苏州站】「迷幻世界乐队」《她的迷幻世界》2020全国巡演 LVH', '2020-09-26', '2020-09-26', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f17ba8dd3521e3f12973ee8', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5144, '【苏州站】对角巷乐队2020《闪耀》巡演LVH', '2020-09-06', '2020-09-06', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f30ab5ec756b115fd8df03c', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5145, '【苏州站】「耳光乐队」《送瘟神》2020全国巡演 LVH', '2020-09-24', '2020-09-24', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f3de260a81bd00a6e5d2cb3', 0, 'https://img0.tking.cn/mtl/default/img/WDAc5FTpX2_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5146, '【苏州站】「刘东明」《万里之外有晴空》2020新专辑全国巡演 LVH', '2020-11-06', '2020-11-06', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f34a701d3521e388573f0dc', 0, 'https://img0.tking.cn/mtl/default/img/7AyfsxC5Yp_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5147, '【苏州站】「未艾 | Unfinished」 藤乐队“新专辑试听”巡演LVH ', '2020-09-25', '2020-09-25', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f446da7a81bd00a6e9d8abd', 0, 'https://img0.tking.cn/mtl/default/img/RQXKmxMe4e_.png', 0, 0);
-INSERT INTO `goods` VALUES (5148, '【苏州站】「安娜其乐队/CICI陈幼氰」《也太好看了吧》巡演 LVH', '2020-09-12', '2020-09-12', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f463532c756b11e5cf1c951', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5149, '【苏州站】《去野》 红白色与狮童乐队双专场巡演LVH', '2020-09-11', '2020-09-11', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f477bc4d3521e6a3b01cb34', 0, 'https://img0.tking.cn/mtl/default/img/fjYpxNMRP8_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5150, '【苏州站】沙棘草「失语」2020巡演LVH', '2020-10-16', '2020-10-16', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f44b17ac756b11e5c6e7236', 0, 'https://img0.tking.cn/mtl/default/img/H3h4bQWbCc_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5151, '【苏州站】《你大可不必假装快乐》黑屋乐队2020巡演LVH', '2020-11-07', '2020-11-07', '山丘咖啡hillhouse ', 'https://www.moretickets.com/content/5f508be2a81bd03d649640e7', 0, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5152, '【苏州站】「郁乐队」《Metempsychosis 重生》2020巡演 LVH', '2020-10-17', '2020-10-17', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f2bc83dc756b115fd2f7c39', 0, 'https://img0.tking.cn/mtl/default/img/8j4HN2Yeth_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5153, '【苏州站】3Bangz$未来星B3Rich《失败经验分享会》 巡演LVH', '2020-10-23', '2020-10-23', 'Mao livehouse（苏州） ', 'https://www.moretickets.com/content/5f51f03ba81bd047954b1b47', 0, 'https://img0.tking.cn/mtl/default/img/tpykdPGykJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5154, '【延期】【苏州站】2020张杰「未·LIVE」巡回演唱会', '2020-03-28', '2021-12-31', '苏州奥林匹克体育中心体育场 ', 'https://www.moretickets.com/content/5e02e2c3908c387ce7be741c', 0, 'https://static1.piaoxingqiu.com/PXQ/assets/img/BiTthWYPRm_.jpeg', 0, 0);
@@ -2496,10 +2460,8 @@ INSERT INTO `goods` VALUES (5157, '【上海站】郑棋元生日见面会', '20
 INSERT INTO `goods` VALUES (5158, '【上海站】尼莫喜剧X浦东大戏院单口喜剧之夜', '2020-09-11', '2020-10-06', '浦东大戏院 ', 'https://www.moretickets.com/content/5f4cafe5e24c3a419e452438', 1, 'https://img0.moretickets.com/zbf/assets/img/y4rGdNaa6m_.png', 0, 0);
 INSERT INTO `goods` VALUES (5159, '【上海站】【9/6 580票面特惠】阿加莎经典悬疑剧话剧《无人生还》', '2020-09-06', '2020-09-13', '美琪大戏院 ', 'https://www.moretickets.com/content/5f3b30a6d3521e6a3b8d2cb1', 1, 'https://img0.tking.cn/mtl/default/img/8mJF75meCh_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5160, '【上海站】口碑悬疑推理音乐剧《水曜日》', '2020-11-03', '2020-11-06', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5f44cced908c3820dbf82405', 1, 'https://img0.tking.cn/mtl/default/img/kxkn2WSbQN_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5161, '【上海站】超人气音乐剧《谋杀歌谣》2020版【刘令飞导演】', '2020-10-16', '2020-10-25', '上海中国大戏院 ', 'https://www.moretickets.com/content/5f3ddc16c756b11e5c092de5', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5162, '【上海站】「刘令飞」音乐剧《寻找声音的耳朵》', '2020-10-07', '2020-10-08', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5f2a73bfa81bd0219d29a275', 1, 'https://img0.tking.cn/mtl/default/img/pNXa2WrXti_.png', 0, 0);
 INSERT INTO `goods` VALUES (5163, '【上海站】东野圭吾虐心悬疑舞台剧《虚无的十字架》', '2020-09-18', '2020-09-20', '人民大舞台 ', 'https://www.moretickets.com/content/5f1e4eadc756b15133e6cea8', 1, 'https://img0.tking.cn/mtl/default/img/CHZ5jdKhki_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5164, '【上海站】东野圭吾成名小说改编舞台剧《放学后》', '2020-10-16', '2020-10-18', '人民大舞台 ', 'https://www.moretickets.com/content/5f1937d1a81bd06002578210', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5165, '【上海站】大型沉浸式互动剧场《1941·新和医院》', '2020-09-06', '2020-12-27', '古影仓城 ', 'https://www.moretickets.com/content/5ecb6f8f99012d4e7c2dd61d', 1, 'https://img0.moretickets.com/zbf/assets/img/bk34bdJeaz_.png', 0, 0);
 INSERT INTO `goods` VALUES (5166, '【上海站】浸入式戏剧《不眠之夜》Sleep No More', '2020-09-06', '2020-10-31', 'McKinnon酒店 ', 'https://www.moretickets.com/content/5e15708d7b42e30d4ce20167', 1, 'http://ticketdashi.oss-cn-hangzhou.aliyuncs.com/mtl/default/file/ZXhWmxmHs4_null', 0, 0);
 INSERT INTO `goods` VALUES (5167, '【上海站】特别喜剧《我只是比较容易放弃》北纬零度出品', '2020-09-11', '2020-10-25', '上海兰馨悦立方小剧场 ', 'https://www.moretickets.com/content/5f114f5fc756b17e961bb094', 1, 'https://img0.tking.cn/mtl/default/img/TKEYtB3Ekf_.jpg', 0, 0);
@@ -2540,7 +2502,6 @@ INSERT INTO `goods` VALUES (5201, '【上海站】话剧《12个人》', '2020-1
 INSERT INTO `goods` VALUES (5202, '【上海站】音乐剧《梵高》', '2020-12-23', '2020-12-27', '浦东大戏院 ', 'https://www.moretickets.com/content/5f46009e908c3820db578c5b', 1, 'https://img0.tking.cn/mtl/default/img/rT4RKSZ5JR_.png', 0, 0);
 INSERT INTO `goods` VALUES (5203, '【上海站】喜剧｜开心麻花《窗前不止明月光》', '2020-09-26', '2020-09-26', '九棵树（上海）未来艺术中心-大剧场 ', 'https://www.moretickets.com/content/5f2fc0309fcad87ed7913d48', 1, 'https://img0.tking.cn/mtl/default/img/BX2fY6bfhi_.png', 0, 0);
 INSERT INTO `goods` VALUES (5204, '【上海站】荒诞喜剧《一窝马蜂》', '2020-10-23', '2020-10-25', '浦东大戏院 ', 'https://www.moretickets.com/content/5f0c04bca81bd07f046f8768', 1, 'https://img0.tking.cn/mtl/default/img/fcC7sadwti_.png', 0, 0);
-INSERT INTO `goods` VALUES (5205, '【上海站】音乐剧《贝多芬》中文版', '2020-12-22', '2020-12-27', '虹桥艺术中心 ', 'https://www.moretickets.com/content/5f4789e0908c3820dbea4d5d', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5206, '【上海站】现代沪剧《挑山女人》', '2020-09-24', '2020-09-27', '上海中国大戏院 ', 'https://www.moretickets.com/content/5f3a2e369fcad86507cf78cc', 1, 'https://img0.tking.cn/mtl/default/img/YstYHwmnD7_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5207, '【上海站】音乐剧《重生》', '2020-10-30', '2020-11-01', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5f48b912d3521e1e92df49d2', 1, 'https://img0.tking.cn/mtl/default/img/SaQzsPmkMk_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5208, '【上海站】HAHA LAND喜剧秀之花好月圆', '2020-09-11', '2020-10-07', '亚洲大厦4楼星空间2号 ', 'https://www.moretickets.com/content/5f30e1fea81bd0219d57d428', 1, 'https://img0.tking.cn/mtl/default/img/xyrKzjDFFp_.jpg', 0, 0);
@@ -2560,7 +2521,6 @@ INSERT INTO `goods` VALUES (5221, '【延期】【上海站】法语音乐剧《
 INSERT INTO `goods` VALUES (5222, '【上海站】东野圭吾悬疑舞台剧-《回廊亭杀人事件》经典版', '2020-04-17', '2020-12-31', '美琪大戏院 ', 'https://www.moretickets.com/content/5dd611efa81bd07fc5ffc94f', 1, 'https://static1.piaoxingqiu.com/PXQ/assets/img/2AidnRFJ4r_.jpeg', 0, 0);
 INSERT INTO `goods` VALUES (5223, '【延期】【上海站】现象级浸入式剧场《秘密影院：007大战皇家赌场》', '2020-02-20', '2020-12-31', '上海待定-秘密影院 ', 'https://www.moretickets.com/content/5d6d39bd595b753adfe5a86b', 1, 'https://img0.tking.cn/mtl/default/img/xWsrynCTpp_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5224, '【延期】【上海站】百老汇现象级原版音乐剧《来自远方》', '2020-05-09', '2021-12-31', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5d9c57a0908c386e6edc6d19', 1, 'https://img1.tking.cn/assets/img/pSkFDGCFkx_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5225, '【延期】【上海】世界原版经典音乐剧《猫》CATS 【2020中国“猫”年震撼回归】', '2020-05-15', '2021-12-31', '上音歌剧院 ', 'https://www.moretickets.com/content/5dbfd6dda81bd01d6df3a5f8', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5226, '【延期】【上海站】【胡歌 赖声川】《如梦之梦》创作20周年纪念', '2020-02-13', '2021-12-31', '上剧场 ', 'https://www.moretickets.com/content/5dcc2f03a81bd0111a7d9b4d', 1, 'https://img2.tking.cn/assets/img/cTCxFHNAHJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5227, '【暂时停演】【上海站】黄磊 孙莉 何炅 陈明昊 赵子锌 赖声川经典话剧《暗恋桃花源》', '2020-12-31', '2020-12-31', '上剧场 ', 'https://www.moretickets.com/content/5da16ef7a81bd00c8798c65b', 1, 'https://img1.tking.cn/assets/img/4sZFBZ5FzT_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5228, '【上海站】陕西人艺话剧《白鹿原》', '2020-04-02', '2020-12-31', '上海大剧院-大剧场 ', 'https://www.moretickets.com/content/5e211ec7a81bd0173566d13d', 1, 'https://img0.tking.cn/mtl/default/img/pDQwNdRxyr_.jpg', 0, 0);
@@ -2596,7 +2556,6 @@ INSERT INTO `goods` VALUES (5257, '【上海站】沉浸式戏剧《奇幻书店
 INSERT INTO `goods` VALUES (5258, '【上海站】话剧《谎言背后》', '2020-12-31', '2020-12-31', '话剧艺术中心-戏剧沙龙 ', 'https://www.moretickets.com/content/5dad4d904db56f3b00a8e5b2', 1, 'https://img1.tking.cn/assets/img/EyHeZRGiwj_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5259, '【上海站】开心麻花王牌喜剧《乌龙山伯爵》', '2020-02-25', '2020-12-31', '人民大舞台 ', 'https://www.moretickets.com/content/5e1435d5a10f916908be555b', 1, 'http://mahuaimage.oss-cn-qingdao.aliyuncs.com/static/cycle/201911071008136c8349cc7260ae62e3b1396831a8398f.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5260, '【上海站】跨界音画音乐会——《情爱江南》', '2020-09-13', '2020-09-13', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5e0ed69ad3521e55ba773886', 1, 'https://img0.tking.cn/mtl/default/img/iSN8ABXYQS_.jpeg', 0, 0);
-INSERT INTO `goods` VALUES (5261, '【上海站】开心麻花爆笑舞台剧《牢友记》', '2020-04-28', '2020-12-31', '人民大舞台 ', 'https://www.moretickets.com/content/5e251d39595b75033eb3aa03', 1, 'https://pxqsellerbff.piaoxingqiu.cn/image/prod/20200301_35/15830532356822803.jpeg', 0, 0);
 INSERT INTO `goods` VALUES (5262, '【上海站】“椎·剧场”出品《呼吸》', '2020-03-18', '2020-12-31', '上海大剧院-别克中剧场 ', 'https://www.moretickets.com/content/5e0d59bf908c381934900817', 1, 'https://img0.tking.cn/mtl/default/img/ETEAW4tYmT_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5263, '【上海】舞台剧《剑网3·曲云传》', '2020-12-31', '2020-12-31', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5deda8bd908c387b8e7d9f1f', 1, 'https://static1.piaoxingqiu.com/PXQ/assets/img/3KGSziDMSf_.jpeg', 0, 0);
 INSERT INTO `goods` VALUES (5264, '【延期】【上海站】温情爆笑话剧《时间租赁馆》', '2020-03-07', '2020-12-31', '上海黄浦剧场-中剧场 ', 'https://www.moretickets.com/content/5dd50c64908c38625ebfc194', 1, 'https://img0.tking.cn/mtl/default/img/Dtmy6pDQNp_.jpg', 0, 0);
@@ -2604,39 +2563,28 @@ INSERT INTO `goods` VALUES (5265, '【延期】【上海站】贝多芬2020：�
 INSERT INTO `goods` VALUES (5266, '【上海站】上海话剧艺术中心·人文之光演出季  史诗音乐剧《烽火家书》', '2020-04-22', '2020-12-31', '话剧艺术中心-艺术剧院 ', 'https://www.moretickets.com/content/5def47d5a81bd02e60310b79', 1, 'https://img0.tking.cn/mtl/default/img/W4QK7DtZmA_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5267, '【延期】【上海站】新视像感官剧场：澳大利亚/英国时装影像音乐剧《Baba Yaga-穿Prada的俄罗斯女魔头》', '2020-07-17', '2021-12-31', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5e1e74e2908c3850a0c73898', 1, 'https://img0.tking.cn/mtl/default/img/G5M3XC6ePe_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5268, '【上海站】单人喜剧 《每一件美妙的小事》', '2020-04-02', '2020-12-31', '话剧艺术中心-戏剧沙龙 ', 'https://www.moretickets.com/content/5e007a99908c387ce75ed744', 1, 'https://img0.tking.cn/mtl/default/img/YeRckXEA5h_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5269, '【上海站】开心麻花爆笑舞台剧《窗前不止明月光》', '2020-02-25', '2020-12-31', '虹桥艺术中心 ', 'https://www.moretickets.com/content/5e130e794db56f0b0e52f4a8', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5270, '【延期】【上海站】爱情“多感官”音乐轻喜剧《咖啡因》中文版', '0000-00-00', '0000-00-00', '橙剧场·可当代艺术中心', 'https://www.moretickets.com/content/5e17f27f908c382f46cf64f4', 1, 'https://img0.tking.cn/mtl/default/img/46HDtzXTsW_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5271, '【延期】【上海站】喜剧【钦差没大臣 Ревизор】', '0000-00-00', '0000-00-00', '话剧艺术中心-戏剧沙龙', 'https://www.moretickets.com/content/5e169f3b908c3842d39029a2', 1, 'https://img0.tking.cn/mtl/default/img/rdXrhZpyQA_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5272, '【延期】【上海站】非常林奕华·舞台映画《华丽上班族之生活与生存》', '2020-06-20', '2021-12-31', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5edf3e0f908c386af02c7b49', 1, 'https://img0.tking.cn/mtl/default/img/KPPXXsBRmb_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5273, '【上海站】致命罗基斯LOKIS 立陶宛国家话剧院 | 导演：卢卡斯·特瓦科夫斯基', '2020-05-22', '2020-12-31', '上海大宁剧院 ', 'https://www.moretickets.com/content/5e390287a81bd042105258a9', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5274, '【延期】【上海站】文艺情怀话剧《好久不见》', '2020-03-08', '2020-12-31', '上海黄浦剧场-中剧场 ', 'https://www.moretickets.com/content/5dddd797a81bd0653dd259ac', 1, 'https://img0.tking.cn/mtl/default/img/4SR662bdam_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5275, '【延期】【上海站】玩库多媒体美术启蒙儿童剧《从达芬奇到毕加索》', '2021-12-31', '2021-12-31', '上海共舞台（ET聚场） ', 'https://www.moretickets.com/content/5e0aefb0d3521e19c96ebac6', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5276, '【无锡站】东野圭吾虐心悬疑舞台剧《虚无的十字架》', '2020-09-12', '2020-09-12', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f1fbde4908c382b009e160b', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5277, '【无锡站】开心麻花爆笑舞台剧《窗前不止明月光》', '2020-11-13', '2020-11-14', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f3b4fd5c756b11e5c0323bb', 1, 'https://img0.tking.cn/mtl/default/img/nJBmCHMcK5_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5278, '【无锡站】中国话剧扛鼎之作 陈忠实最满意版本 陕西人艺话剧《白鹿原》', '2020-09-18', '2020-09-19', '无锡大剧院 ', 'https://www.moretickets.com/content/5ef3120fa81bd0722a36745d', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5279, '【无锡站】话剧《12个人》', '2020-10-30', '2020-10-31', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f2cfe93c756b115fdd74afa', 1, 'https://img0.tking.cn/mtl/default/img/5YH2cQbbiE_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5280, '【无锡站】奥利弗奖最佳喜剧《糊涂戏班》', '2020-10-07', '2020-10-07', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f15722cd3521e6d7b82ae5a', 1, 'https://img0.tking.cn/mtl/default/img/Zj2px5hN5a_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5281, '【无锡站】原创话剧『弄堂』系列之一《金家花园》Garden of The Jins', '2020-09-22', '2020-09-23', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f28f195c756b115fdbaed62', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5282, '【无锡站】国家话剧院作品 话剧《大宅门》', '2020-11-10', '2020-11-11', '无锡大剧院 ', 'https://www.moretickets.com/content/5f47538fc756b11e5c53d4e4', 1, 'https://img0.tking.cn/mtl/default/img/6yxnXw2yDZ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5283, '【无锡站】音乐剧《拉赫玛尼诺夫》', '2020-11-07', '2020-11-07', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f45cf88c756b11e5cc8f139', 1, 'https://img0.tking.cn/mtl/default/img/zSJty3retk_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5284, '【宜兴站】 陕西人艺话剧  《白鹿原》', '2020-09-15', '2020-09-15', '宜兴保利大剧院-歌剧院 ', 'https://www.moretickets.com/content/5f23de36c756b115fdac43a2', 1, 'https://img0.tking.cn/mtl/default/img/XBxzdyPrHh_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5285, '【宜兴站】开心麻花爆笑舞台剧  《莎士比亚别生气》', '2020-09-18', '2020-09-18', '宜兴保利大剧院-歌剧院 ', 'https://www.moretickets.com/content/5f23dd81d3521e7be367e11d', 1, 'https://img0.tking.cn/mtl/default/img/mdX4dKbmns_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5286, '【无锡站】舞台剧《夔龙玉》', '2020-10-11', '2020-10-11', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f3f7729908c3820db21d620', 1, 'https://img0.tking.cn/mtl/default/img/5W5mHS7adz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5287, '【宜兴站】家庭音乐剧《素敵小魔女》', '2020-10-05', '2020-10-05', '宜兴保利大剧院-歌剧院 ', 'https://www.moretickets.com/content/5f461159c756b11e5ce4d66a', 1, 'https://img0.tking.cn/mtl/default/img/EBCYzysYTi_.png', 0, 0);
-INSERT INTO `goods` VALUES (5288, '【无锡站】无锡融创太湖秀  “烟雨江南上演高科技光影大SHOW”', '2020-02-27', '2020-12-31', '太湖秀剧场 ', 'https://www.moretickets.com/content/5dfb255f908c38045d324894', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5289, '【无锡站】韩雪 刘令飞领衔主演 音乐剧《白夜行》', '2020-05-09', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5ddb8672c756b14860da0fde', 1, 'https://img0.tking.cn/mtl/default/img/6Mk4K3sjN4_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5290, '【无锡站】刘晓庆主演 话剧《风华绝代》', '2020-12-31', '2020-12-31', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5d9fdfeec756b152b5e8e217', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5291, '【无锡站】沙溢、胡可主演 话剧《革命之路》', '2020-04-10', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5de9d368d3521e3c07ce2e36', 1, 'https://img0.tking.cn/mtl/default/img/CF7524W3Ja_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5292, '【无锡站】开心麻花爆笑舞台剧《窗前不止明月光》', '2020-02-14', '2020-02-15', '无锡大剧院 ', 'https://www.moretickets.com/content/5da91af3908c3844eb164e37', 1, 'https://img1.tking.cn/assets/img/rkCWS6Pbss_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5293, '【无锡站】林兆华导演 话剧《仲夏夜之梦》', '2020-02-19', '2020-02-19', '无锡大剧院 ', 'https://www.moretickets.com/content/5de0cd4fc756b148a498a363', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5294, '【无锡站】话剧《杏仁豆腐心》', '2020-04-17', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5e001ec2c756b13990a51efa', 1, 'https://img0.tking.cn/mtl/default/img/yBD5sxBSYJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5295, '【苏州站】高清放映·英国国家剧院《雷曼兄弟三部曲》', '2020-10-11', '2020-10-11', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f437f46c756b11e5c073565', 1, 'https://img0.tking.cn/mtl/default/img/PpC2AYijrF_.png', 0, 0);
 INSERT INTO `goods` VALUES (5296, '【昆山站】林兆华执导中国民俗版喜剧《仲夏夜之梦》', '2020-09-24', '2020-09-24', '昆山文化艺术中心-大剧场 ', 'https://www.moretickets.com/content/5f23dba4d3521e7be366bda7', 1, 'https://img0.tking.cn/mtl/default/img/HPdM2Dswfw_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5297, '【苏州站】非常林奕华 舞台映画 《命运建筑师之远大前程》', '2020-09-19', '2020-09-20', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f3ba5dac756b11e5c2dbb5d', 1, 'https://img0.tking.cn/mtl/default/img/EhKYA5iGiw_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5298, '【常熟站】中国话剧扛鼎之作——陈忠实最满意版本·陕西人艺话剧《白鹿原》【2020常熟城市话剧节】', '2020-10-04', '2020-10-04', '常熟大剧院 ', 'https://www.moretickets.com/content/5f17a27e908c38313b35df12', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5299, '【苏州站】高清放映·王尔德最受欢迎喜剧《认真的重要性》', '2020-10-31', '2020-10-31', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f437e49a81bd00a6e57e793', 1, 'https://img0.tking.cn/mtl/default/img/mmMTedxXF6_.png', 0, 0);
 INSERT INTO `goods` VALUES (5300, '【张家港站】“第五届张家港话剧节”系列演出——陕西人艺经典话剧《白鹿原》', '2020-09-09', '2020-09-09', '张家港保利大剧院 ', 'https://www.moretickets.com/content/5f292ba3d3521e7be3943d2a', 1, 'https://img0.tking.cn/mtl/default/img/3Qze33366W_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5301, '【苏州站】第二届吴中•保利运河戏剧节•原创话剧《弄堂》系列之一《金家花园》', '2020-09-12', '2020-09-13', '苏州保利大剧院-大剧场 ', 'https://www.moretickets.com/content/5f17d4b3d3521e3f129edfba', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5302, '【昆山站】都市情感音乐剧《隐婚男女》', '2020-09-19', '2020-09-19', '昆山文化艺术中心-大剧场 ', 'https://www.moretickets.com/content/5f23d7add3521e7be364a2f3', 1, 'https://img0.tking.cn/mtl/default/img/7YrQT4dYKZ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5303, '【昆山站】原创话剧“弄堂”系列之一《金家花园》', '2020-09-15', '2020-09-16', '昆山文化艺术中心-大剧场 ', 'https://www.moretickets.com/content/5f23dae5a81bd0219d5a9a93', 1, 'https://img0.tking.cn/mtl/default/img/YbrW5hXtA7_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5304, '【苏州站】第二届吴中•保利运河戏剧节•林兆华艺术总监•话剧《爸爸的马拉松》2020年', '2020-10-18', '2020-10-18', '苏州保利大剧院-大剧场 ', 'https://www.moretickets.com/content/5f278ef6a81bd0219ddf7b3e', 1, 'https://img0.tking.cn/mtl/default/img/DfYyhJsPcA_.jpg', 0, 0);
@@ -2653,7 +2601,6 @@ INSERT INTO `goods` VALUES (5314, '【张家港站】家庭音乐剧《素敵小
 INSERT INTO `goods` VALUES (5315, '【苏州站】高清放映·英国国家剧院《仲夏夜之梦》', '2020-11-21', '2020-11-21', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f437d1ba81bd00a6e578818', 1, 'https://img0.tking.cn/mtl/default/img/SFKF8nRtS7_.png', 0, 0);
 INSERT INTO `goods` VALUES (5316, '【苏州站】高清放映·普契尼歌剧之巅峰《图兰朵》', '2020-10-11', '2020-10-11', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f437ebc908c3820db7b77e5', 1, 'https://img0.tking.cn/mtl/default/img/r6YQ8DRRss_.png', 0, 0);
 INSERT INTO `goods` VALUES (5317, '【苏州站】高清放映·莫斯科轻歌剧院《基督山伯爵》', '2020-11-21', '2020-11-21', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f437b29d3521e6a3b9ea519', 1, 'https://img0.tking.cn/mtl/default/img/2i7EEirnPf_.png', 0, 0);
-INSERT INTO `goods` VALUES (5318, '【常熟站】漫改超级古风舞台剧《夔龙玉》', '2020-10-19', '2020-10-19', '常熟大剧院 ', 'https://www.moretickets.com/content/5f45fc8ea81bd00a6e2c3fc7', 1, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5319, '【苏州站】高清放映·王尔德招牌式幽默《理想丈夫》', '2020-10-31', '2020-10-31', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f437da8a81bd00a6e57b90a', 1, 'https://img0.tking.cn/mtl/default/img/sE3t4pKiGp_.png', 0, 0);
 INSERT INTO `goods` VALUES (5320, '【常熟站】林兆华监制话剧《爸爸的马拉松》【2020常熟城市话剧节】', '2020-10-14', '2020-10-14', '常熟大剧院 ', 'https://www.moretickets.com/content/5f45d869a81bd00a6e1ce041', 1, 'https://img0.tking.cn/mtl/default/img/F8nkbbFDK4_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5321, '【苏州站】高清放映·迈克尔·波尔和阿尔菲·博《重逢演唱会》', '2020-12-13', '2020-12-13', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5f475bfbc756b11e5c586105', 1, 'https://img0.tking.cn/mtl/default/img/PrcxD76ZMw_.png', 0, 0);
@@ -2670,163 +2617,83 @@ INSERT INTO `goods` VALUES (5331, '【苏州站】重喜剧《你若安好，那
 INSERT INTO `goods` VALUES (5332, '【苏州站】绝对喜剧《二八八的别结婚》北纬零度出品', '2020-10-24', '2020-10-24', '苏州开明大剧院 ', 'https://www.moretickets.com/content/5e0d5323908c3819348ba815', 1, 'https://img0.tking.cn/mtl/default/img/KQF8mPTkZm_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5333, '【昆山站】话剧《金家花园》', '2020-03-24', '2020-12-31', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5e096a4ec756b10bfe24b928', 1, 'https://img0.tking.cn/mtl/default/img/PP5KPTw5ZC_.png', 0, 0);
 INSERT INTO `goods` VALUES (5334, '【上海站】手提箱工作坊系列——《小星球的故事》', '2020-09-06', '2020-10-03', 'UCCA KIDS旗舰馆 ', 'https://www.moretickets.com/content/5f447c74a81bd00a6ea7e4e0', 2, 'https://img0.tking.cn/mtl/default/img/cQ7eRPXbsa_.png', 0, 0);
-INSERT INTO `goods` VALUES (5335, '【上海站】英国音乐剧《三只小熊》中文版 小顽家儿童戏剧出品', '2020-10-06', '2020-10-07', '浦东大戏院 ', 'https://www.moretickets.com/content/5f3b74a7a81bd00a6e67783b', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5336, '【上海站】【国庆来看戏】《皮影戏：四大名著》', '0000-00-00', '0000-00-00', '浦东大戏院', 'https://www.moretickets.com/content/5efd92efd3521e58cfcfed4a', 2, 'https://img0.moretickets.com/zbf/assets/img/WxAKcTaaep_.png', 0, 0);
 INSERT INTO `goods` VALUES (5337, '【上海站】卜卡文化互动亲子剧《大卫，不可以》上戏实验剧院出品', '0000-00-00', '0000-00-00', '美琪大戏院', 'https://www.moretickets.com/content/5f1fd981908c382b00a4c767', 2, 'https://img0.tking.cn/mtl/default/img/2HHjPNnFJ5_.png', 0, 0);
 INSERT INTO `goods` VALUES (5338, '【上海站】大演时代·美国原版授权科普亲子音乐剧《神奇校车·气候大挑战》', '0000-00-00', '0000-00-00', '上海商城剧院', 'https://www.moretickets.com/content/5e214829d3521e0a9c4af3e7', 2, 'https://img0.moretickets.com/zbf/assets/img/GcKtp5GCx5_.png', 0, 0);
 INSERT INTO `goods` VALUES (5339, '【上海站】大船文化·加拿大原版音乐启蒙·全场互动亲子剧 《你是演奏家2·超级金贝鼓》', '2020-09-11', '2020-09-12', '保利上海城市剧院 ', 'https://www.moretickets.com/content/5f3f9154a81bd00a6e0e527e', 2, 'https://img0.tking.cn/mtl/default/img/CYECenbPDn_.png', 0, 0);
-INSERT INTO `goods` VALUES (5340, '【上海站】正版授权 大型实景舞台剧《奥特曼·宇宙之光》', '2020-11-07', '2020-11-08', 'FANCL艺术中心 艺海剧院大剧场 ', 'https://www.moretickets.com/content/5f3b857dc756b11e5c1e2ed5', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5341, '【上海站】上海美术电影制片厂授权 大型儿童舞台剧《葫芦娃之葫芦兄弟》上海首演', '0000-00-00', '0000-00-00', '上海黄浦剧场-中剧场', 'https://www.moretickets.com/content/5f291667a81bd0219d7f2d90', 2, 'https://img0.tking.cn/mtl/default/img/PytXSwJEtw_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5342, '【上海站】亲密成长剧场：荷兰高定婴儿启智微剧场 《小鬼当家》 BB', '2021-05-28', '2021-05-29', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5e4c9c64c756b1780fddd4d1', 2, 'https://img0.tking.cn/mtl/default/img/iryzabdm8Q_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5343, '【上海站】世界经典童话音乐剧《小王子》', '2020-10-03', '2020-10-03', '小伙伴剧场 ', 'https://www.moretickets.com/content/5f4489f3d3521e6a3bf7a257', 2, 'https://img0.tking.cn/mtl/default/img/ndXp6xQQdC_.png', 0, 0);
 INSERT INTO `goods` VALUES (5344, '【上海站】儿童剧《皇帝的新衣》 中国福利会儿童艺术剧院', '2020-09-26', '2020-09-26', '马兰花剧场 ', 'https://www.moretickets.com/content/5f44784ed3521e6a3bed91e0', 2, 'https://img0.tking.cn/mtl/default/img/bCfGbinn3p_.png', 0, 0);
-INSERT INTO `goods` VALUES (5345, '【上海站】全国正版授权大型互动式儿童舞台剧 海底小纵队2—火山大冒险', '0000-00-00', '0000-00-00', '上海黄浦剧场-中剧场', 'https://www.moretickets.com/content/5f2a4381d3521e7be31a6d3b', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5346, '【上海站】经典母爱儿童剧灰姑娘Cinderella·DramaKids —“坚强而勇敢，仁慈而善良”', '2020-10-18', '2020-10-18', '上海梅赛德斯-奔驰文化中心（音乐俱乐部） ', 'https://www.moretickets.com/content/5f4f6e2aa81bd03d643430ea', 2, 'https://img0.tking.cn/mtl/default/img/whH2GxGhEP_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5347, '【上海站】合家欢民俗亲子剧《十二生笑大冒险》', '2020-10-10', '2020-10-10', '上海保利大剧院-大剧场 ', 'https://www.moretickets.com/content/5f1e6d27a81bd06f668850c3', 2, 'https://img0.tking.cn/mtl/default/img/B4RThbkJGQ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5348, '【上海站】手提箱工作坊系列——《做翅膀的人》', '2020-09-12', '2020-10-08', 'UCCA KIDS旗舰馆 ', 'https://www.moretickets.com/content/5f447d91908c3820dbd1fdaf', 2, 'https://img0.tking.cn/mtl/default/img/wsnJpiWPZQ_.png', 0, 0);
-INSERT INTO `goods` VALUES (5349, '【上海站】兜好玩艺术剧团 经典音乐童话舞台剧《白雪公主与七个小矮人》', '0000-00-00', '0000-00-00', '上海商城剧院', 'https://www.moretickets.com/content/5f472657a81bd00a6e8d2202', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5350, '【上海站】【非物质文化遗产】精美皮影戏《火焰山》&《武松打虎》百年皮影剧团', '0000-00-00', '0000-00-00', '嘉定影剧院', 'https://www.moretickets.com/content/5f2b6d2b99012d13edd6caa1', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5351, '【上海站】卜卡文化互动亲子剧《大卫，上学去》-大卫不可以系列剧-上戏实验剧院出品', '2020-12-05', '2020-12-06', '上海大宁剧院 ', 'https://www.moretickets.com/content/5f324583e24c3a762a3d3d4a', 2, 'https://img0.moretickets.com/zbf/assets/img/F4Kakifn3X_.png', 0, 0);
-INSERT INTO `goods` VALUES (5352, '【上海站】格林童话经典音乐剧《小红帽》', '2020-10-04', '2020-10-04', '小伙伴剧场 ', 'https://www.moretickets.com/content/5f4488a0c756b11e5c5e8155', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5353, '【上海站】爆笑互动童话舞台剧《三只小猪 》', '0000-00-00', '0000-00-00', '上海梅赛德斯-奔驰文化中心（音乐俱乐部）', 'https://www.moretickets.com/content/5f48b122d3521e1e92c68353', 2, 'https://img0.tking.cn/mtl/default/img/wWC2wSyYTa_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5354, '【上海站】DramaKids艺术剧团·安徒生童话剧《丑小鸭The Ugly Duckling》', '0000-00-00', '0000-00-00', '上海梅赛德斯-奔驰文化中心（音乐俱乐部）', 'https://www.moretickets.com/content/5f4f56eb99012d4024c65a4a', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5355, '【上海站】百年剧团国粹经典皮影《火焰山》+《武松打虎》', '0000-00-00', '0000-00-00', '嘉定影剧院', 'https://www.moretickets.com/content/5f2b9c03c756b115fd15c28e', 2, 'https://img0.tking.cn/mtl/default/img/rFM2HNPNFa_.png', 0, 0);
-INSERT INTO `goods` VALUES (5356, '【上海站】儿童剧《爱玩游戏的小白狗》', '0000-00-00', '0000-00-00', '马兰花剧场', 'https://www.moretickets.com/content/5f447a5a908c3820dbd08ab0', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5357, '【上海站】梦幻经典音乐童话舞台剧《白雪公主和七个小矮人》', '0000-00-00', '0000-00-00', '九棵树（上海）未来艺术中心-大剧场', 'https://www.moretickets.com/content/5f2cfc6b9fcad87ed7c7b5a1', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5358, '【上海站】爆笑互动家庭魔术秀《百变魔术秀》', '2020-11-07', '2020-11-08', '保利上海城市剧院 ', 'https://www.moretickets.com/content/5f4f39d7a81bd03d6420f14b', 2, 'https://img0.tking.cn/mtl/default/img/diPFrNWNsw_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5359, '【上海站】GAIA SPACE 九月亲子科学主题活动《中国科学之四大发明》', '2020-09-06', '2020-09-27', '上海·GAIA SPACE 盖亚科学探索中心 ', 'https://www.moretickets.com/content/5f4a1bea99012d4024c53dfd', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5360, '【上海站】儿童剧 你好！我是你姐姐', '0000-00-00', '0000-00-00', '马兰花剧场', 'https://www.moretickets.com/content/5f44798fc756b11e5c55b304', 2, 'https://img0.tking.cn/mtl/default/img/TTphDcaDFn_.png', 0, 0);
 INSERT INTO `goods` VALUES (5361, '【上海站】家庭音乐剧《素敵小魔女》', '2020-09-23', '2020-09-23', '上海保利大剧院-大剧场 ', 'https://www.moretickets.com/content/5f51d4c2908c385e576d1c5e', 2, 'https://img0.tking.cn/mtl/default/file/NW54hSCjWX_.gif', 0, 0);
 INSERT INTO `goods` VALUES (5362, '【上海站】趣味互动舞台剧《木偶奇遇记 Pinocchio》', '0000-00-00', '0000-00-00', '上海梅赛德斯-奔驰文化中心（音乐俱乐部）', 'https://www.moretickets.com/content/5f48aecfa81bd03d64e25a82', 2, 'https://img0.tking.cn/mtl/default/img/KctnRtEQRJ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5363, '【上海站】菊次郎的夏天—久石让轻音乐之旅钢琴音乐会', '2021-01-23', '2021-01-23', '上海黄浦剧场-中剧场 ', 'https://www.moretickets.com/content/5dddd982908c384b1c6d27e9', 2, 'https://img0.tking.cn/mtl/default/img/rJnAddxyJW_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5364, '【上海站】世界经典音乐童话剧《小王子》', '2020-02-22', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5d5e62a6908c3847b556e3b1', 2, 'https://img1.tking.cn/assets/img/MRMzxcFrfQ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5365, '【上海站】大型实景舞台剧《奥特曼 · 宇宙之光》', '2020-01-28', '2020-01-29', 'FANCL艺术中心 艺海剧院大剧场 ', 'https://www.moretickets.com/content/5db799dd4db56f4f71311213', 2, 'https://img1.tking.cn/assets/img/RJS2s5RWTb_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5366, '【延期】【上海站】DramaKids艺术剧团·亲子芭蕾舞剧《天鹅湖 Swan Lake》', '2020-12-31', '2020-12-31', '上海中国大戏院 ', 'https://www.moretickets.com/content/5e032e48c756b139909c0e19', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5367, '【上海站】美丽心灵---大师的启蒙钢琴音乐会', '2021-01-23', '2021-01-23', '黄浦剧场小剧场 ', 'https://www.moretickets.com/content/5dd75a62d3521e4832cc0033', 2, 'https://img0.tking.cn/mtl/default/img/GTpwrPcKnB_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5368, '【上海站】大船文化·百老汇互动亲子科学剧《物理秀》中文版', '2020-06-01', '2020-12-31', '美琪大戏院 ', 'https://www.moretickets.com/content/5df9a1b3a81bd05a7236beca', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5369, '【延期】【上海站】DramaKids欢乐互动童话剧《小红帽 》', '2020-02-16', '2021-12-31', '上海梅赛德斯-奔驰文化中心（音乐俱乐部） ', 'https://www.moretickets.com/content/5df8ad72d3521e377e6b2ac3', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5370, '【延期】【上海站】创联儿艺·原创中文版儿童音乐剧《猫》', '0000-00-00', '0000-00-00', '上海梅赛德斯-奔驰文化中心（音乐俱乐部）', 'https://www.moretickets.com/content/5e0f0d78908c381934a08d8f', 2, 'https://img0.tking.cn/mtl/default/img/XfmTMwYfyy_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5371, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5df347fc908c383b3fa88d62', 2, 'None', 0, 0);
 INSERT INTO `goods` VALUES (5372, '【上海站】格林童话盛典梦幻经典音乐童话舞台剧 《白雪公主和七个小矮人》', '2020-02-23', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5d5e5fd7908c3847b554677f', 2, 'https://img2.tking.cn/assets/img/Ykc67Fa78p_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5373, '【上海站】上海美术电影製片厂正版授权 经典体验式儿童剧《黑猫警长之城市猎人》', '2020-05-01', '2020-12-31', '上海黄浦剧场-中剧场 ', 'https://www.moretickets.com/content/5e042a9c908c387ce77b92d8', 2, 'https://img0.tking.cn/mtl/default/img/cEnfkyHYJz_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5374, '【上海站】动物总动员亲子音乐会', '0000-00-00', '0000-00-00', '美术馆剧场MTHEATRE', 'https://www.moretickets.com/content/5f489e8a908c387de57236e2', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5375, '【上海站】格林童话经典音乐童话剧《小红帽》', '2020-02-29', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5d5e66bb908c3847b55a68e0', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5376, '【上海站】儿童剧《皇帝的新衣》 中国福利会儿童艺术剧院', '0000-00-00', '0000-00-00', '马兰花剧场', 'https://www.moretickets.com/content/5db2758ca81bd04ed4b44727', 2, 'https://img0.tking.cn/assets/img/B3n4BJMJCD_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5377, '【上海站】儿童剧《泰坦尼克号》 中国福利会儿童艺术剧院', '0000-00-00', '0000-00-00', '马兰花剧场', 'https://www.moretickets.com/content/5db273b9908c38126ed7b675', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5378, '【上海站】南非人声互动剧《Aha》', '2020-02-08', '2020-02-09', '橙剧场·可当代艺术中心 ', 'https://www.moretickets.com/content/5e01d74c908c387ce727dc16', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5379, '【上海站】互动版经典大型音乐童话剧《小蝌蚪找妈妈》', '2020-02-22', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5d5e6483908c3847b5586b2d', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5380, '【上海站】大型远古恐龙写实舞台剧《重返侏罗纪》', '2020-02-23', '2020-12-31', 'FANCL艺术中心 艺海剧院大剧场 ', 'https://www.moretickets.com/content/5df32429d3521e217183c295', 2, 'https://img0.tking.cn/mtl/default/img/ZtmHhHtP4r_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5381, '【上海站】超级游戏互动小玩剧《两只小蜜蜂》', '2020-03-01', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5d5e60fda81bd0286174246c', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5382, '【上海站】经典机智互动游戏剧《聪明的阿凡提》', '2020-03-28', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5dcb7243c756b11249e06594', 2, 'https://img2.tking.cn/assets/img/enBzmhSGFE_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5383, '【上海站】DramaKids艺术剧团·经典童话歌舞剧《绿野仙踪·奇妙翡翠国》', '2020-02-29', '2020-12-31', '浦东新舞台 ', 'https://www.moretickets.com/content/5e005763c756b13990dedc4d', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5384, '【上海站】经典小英雄魔幻童话剧《小飞侠与虎克船长》', '2020-03-28', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5d5e6730a81bd028617986d4', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5385, '【上海站】小魔盒童话梦工坊第二季 《小蝌蚪找妈妈》《老鼠嫁女儿》《三个和尚》 中国福利会儿童艺术剧院', '0000-00-00', '0000-00-00', '马兰花剧场', 'https://www.moretickets.com/content/5db28f69c756b12cf10d115e', 2, 'https://img1.tking.cn/assets/img/XjKED3Hecw_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5386, '【上海站】大型励志亲子舞台剧《冰雪奇缘》', '2020-05-30', '2020-12-31', '上海商城剧院 ', 'https://www.moretickets.com/content/5e265715c756b1305d76082c', 2, 'https://img0.tking.cn/mtl/default/img/mrbEPti3Rm_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5387, '【上海站】兜好玩艺术剧团·ibuy亲子 趣味互动舞台剧《木偶奇遇记》', '2020-02-22', '2020-12-31', '人民大舞台 ', 'https://www.moretickets.com/content/5e048edea81bd046b6487ad2', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5388, '【上海站】兜好玩艺术剧团·ibuy亲子 爆笑互动童话舞台剧《三只小猪》', '2020-02-29', '2020-12-31', '人民大舞台 ', 'https://www.moretickets.com/content/5e057340c756b13990db8d09', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5389, '【延期】【上海站】创联儿艺|父爱如山·原创儿童音乐剧《狮子王》', '0000-00-00', '0000-00-00', '上海梅赛德斯-奔驰文化中心（音乐俱乐部）', 'https://www.moretickets.com/content/5e0f0c17a81bd073119747eb', 2, 'https://img0.tking.cn/mtl/default/img/i4FHmenPfz_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5390, '【延期】【上海站】玩库全息探险儿童剧《地心游记-名著里的科学》', '2020-12-31', '2020-12-31', '上海共舞台 ET聚场（无效） ', 'https://www.moretickets.com/content/5e099736a81bd06977e75f8c', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5391, '【上海站】中国小英雄故事经典音乐儿童剧《花木兰》', '2020-03-22', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5dcb7197c756b11249dfe02a', 2, 'https://img1.tking.cn/assets/img/XhbiYZFCtG_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5392, '【延期】【上海站】小顽家·英语原版音乐剧《花格子大象艾玛》', '0000-00-00', '0000-00-00', '上海共舞台（ET聚场）', 'https://www.moretickets.com/content/5e1c4987ff15e20379b6363f', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5393, '【上海站】正版授权 大型实景舞台剧《奥特曼·宇宙之光》', '2020-02-29', '2020-12-31', 'FANCL艺术中心 艺海剧院大剧场 ', 'https://www.moretickets.com/content/5e16a4a7f9dcca0355a2ddd3', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5394, '【上海站】DramaKids艺术剧团·音乐儿童剧《白雪公主与七个小矮人Snow White and the Seven Dwarfs》 ——“善良的内心才是真正的美丽”', '2020-02-22', '2020-12-31', '浦东新舞台 ', 'https://www.moretickets.com/content/5e01c220908c387ce71a6585', 2, 'https://img0.tking.cn/mtl/default/img/acjSzRpQaa_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5395, '【延期】【上海站】DramaKids艺术剧团·欢乐儿童剧《三只小猪》', '2020-03-28', '2020-12-31', '上海中国大戏院 ', 'https://www.moretickets.com/content/5e0f1109c756b16d93ed887b', 2, 'https://img0.tking.cn/mtl/default/img/ZCaHDQYkyG_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5396, '【上海站】魔幻经典音乐童话剧《木偶奇遇记》', '2020-02-29', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5dcb6e8cc756b11249dd8450', 2, 'https://img2.tking.cn/assets/img/FfYxfskMJK_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5397, '【上海站】2020年春季巧虎大型舞台剧《什么都有专卖店》', '2020-05-30', '2020-12-31', '美琪大戏院 ', 'https://www.moretickets.com/content/5e2654eec756b1305d7416dc', 2, 'https://img0.tking.cn/mtl/default/img/HdX7EWzRWR_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5398, '【上海站】兜好玩艺术剧团·Ibuy亲子 经典音乐童话舞台剧《白雪公主与七个小矮人》', '2020-03-22', '2020-12-31', '虹口工人文化宫 ', 'https://www.moretickets.com/content/5e05a744908c387ce75f0834', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5399, '【上海站】互动童话剧《丑小鸭》', '2020-03-08', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5dd62ec1908c38625e7157eb', 2, 'https://img0.tking.cn/mtl/default/img/58pJkbnHGQ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5400, '【上海站】小小云先生', '2020-12-31', '2020-12-31', '小不点大视界亲子微剧场 ', 'https://www.moretickets.com/content/5e144040e24c3a4521092639', 2, 'https://img0.moretickets.com/zbf/assets/img/ZhrDX5ry45_.jpeg', 0, 0);
-INSERT INTO `goods` VALUES (5401, '【上海站】《音乐的绘本》动物乐团六一狂想曲', '2020-05-16', '2020-12-31', '上海商城剧院 ', 'https://www.moretickets.com/content/5e16a267a81bd06144ee85ca', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5402, '【上海站】大船文化·百老汇互动亲子科学剧《物理秀》中文版', '0000-00-00', '0000-00-00', '上海共舞台（ET聚场）', 'https://www.moretickets.com/content/5ec4ccaf908c385c2a11fb3e', 2, 'https://img0.tking.cn/mtl/default/img/m3iBfJzPbG_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5403, '【上海站】兜好玩艺术剧团·ibuy亲子 全场互动科学秀《小鬼当家》', '2020-03-01', '2020-12-31', '上海梅赛德斯-奔驰文化中心（音乐俱乐部） ', 'https://www.moretickets.com/content/5e05a18dd3521e355bfda94f', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5404, '【上海站】新年必看·英国音乐剧《三只小熊》中文版', '2020-04-25', '2020-12-31', '上海大剧院-别克中剧场 ', 'https://www.moretickets.com/content/5e23d632d3521e0a9c930f82', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5405, '【上海站】西游记系列经典儿童剧《孙悟空大战玉面狐狸》', '2020-03-21', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5dcb6fb2a81bd0111aef8647', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5406, '【上海站】兜好玩艺术剧团·ibuy亲子 全新升级·魔幻童话音乐剧《阿拉丁神灯》', '2020-03-21', '2020-12-31', '虹口工人文化宫 ', 'https://www.moretickets.com/content/5e05a49bc756b1399003a5e8', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5407, '【上海站】经典新编探险童话剧《三只小猪奇遇记》', '2020-03-07', '2020-12-31', '小伙伴剧场 ', 'https://www.moretickets.com/content/5df068a6c756b1103a107db8', 2, 'https://img0.tking.cn/mtl/default/img/aAbraSHr8N_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5408, '【上海站】咿呀咿呀·《和汪汪一起玩·缤纷音乐秀》', '2020-09-12', '2020-09-13', '上戏实验剧院 ', 'https://www.moretickets.com/content/5f4628daa81bd00a6e3e64e8', 2, 'https://img0.tking.cn/mtl/default/img/ECxtGjdi4G_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5409, '【无锡站】合家欢民俗亲子剧《十二生笑大冒险》', '2020-09-30', '2020-09-30', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f2cf9efc756b115fdd4ba9a', 2, 'https://img0.tking.cn/mtl/default/img/JeMzhQm36D_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5410, '【无锡站】儿童剧《青蛙王子之魔法深渊》', '2020-07-15', '2020-07-15', '无锡大剧院 ', 'https://www.moretickets.com/content/5ee718b5a81bd038b72c3cd4', 2, 'https://img0.tking.cn/mtl/default/img/Zfn8Zn2k7p_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5411, '【无锡站】家庭音乐剧《素敵小魔女》', '2020-09-27', '2020-09-27', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f3a4e8cd3521e3885131750', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5412, '【无锡站】儿童木偶剧《神奇的宝盒》', '2020-10-08', '2020-10-08', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f4395f7908c3820db8a64f0', 2, 'https://img0.tking.cn/mtl/default/img/QZ5ANn8Shz_.png', 0, 0);
-INSERT INTO `goods` VALUES (5413, '【无锡站】大型3D多媒体科普儿童剧《神奇校车》', '0000-00-00', '0000-00-00', '无锡市人民大会堂', 'https://www.moretickets.com/content/5ef1762ca81bd054cfea2c50', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5414, '【宜兴站】合家欢民俗亲子剧《十二生笑大冒险》', '2020-10-02', '2020-10-02', '宜兴保利大剧院-歌剧院 ', 'https://www.moretickets.com/content/5f48a592a81bd03d64de2350', 2, 'https://img0.tking.cn/mtl/default/img/7Hz43wSH5X_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5415, '【无锡站】互动亲子儿童剧《大卫，不可以》', '2020-11-01', '2020-11-01', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f48849ed3521e1e92ae1d6b', 2, 'https://img0.tking.cn/mtl/default/img/x3eGWBdQzY_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5416, '【无锡站】大演时代·大型励志魔幻儿童剧《冰雪奇缘》', '2020-02-08', '2020-02-08', '无锡市人民大会堂 ', 'https://www.moretickets.com/content/5e0418e7d3521e355b12263f', 2, 'https://img0.tking.cn/mtl/default/img/5wB43YWYpK_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5417, '【无锡站】大型实景舞台剧《奥特曼宇宙之光》', '2020-02-16', '2020-02-16', '无锡大剧院 ', 'https://www.moretickets.com/content/5dd4e3f2c756b14860241f1d', 2, 'https://img0.tking.cn/mtl/default/img/QBz8whcwrK_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5418, '【无锡站】大型远古恐龙写实儿童剧《重返侏罗纪》', '2020-01-30', '2020-01-30', '无锡大剧院 ', 'https://www.moretickets.com/content/5d9ed3c1908c381409ec0baa', 2, 'https://img0.tking.cn/assets/img/Tr2BNrBwfP_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5419, '【无锡站】大型互动式多媒体舞台剧《海底小纵队5之深海探秘》', '2020-04-19', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5e212f39c756b160b2106c99', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5420, '【昆山站】儿童亲子剧《十二生笑大冒险》', '2020-10-04', '2020-10-04', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f3f8781908c3820db2bfed3', 2, 'https://img0.tking.cn/mtl/default/img/CsfkmDc8yd_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5421, '【苏州站】合家欢民俗亲子剧《十二生笑大冒险》2020年', '2020-09-27', '2020-09-27', '苏州保利大剧院 ', 'https://www.moretickets.com/content/5f29246aa81bd0219d857119', 2, 'https://img0.tking.cn/mtl/default/img/KFNRrtPF7y_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5422, '【昆山站】家庭音乐剧《素敌小魔女》', '2020-10-02', '2020-10-02', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4484ffc756b11e5c5aed68', 2, 'https://img0.tking.cn/mtl/default/img/mBbnwshzQN_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5423, '【苏州站】大演时代·大型励志魔幻儿童剧《冰雪奇缘》', '2020-02-09', '2020-02-09', '苏州独墅湖影剧院 ', 'https://www.moretickets.com/content/5e0417d0a81bd046b6f510ba', 2, 'https://img0.tking.cn/mtl/default/img/Z78B4ZEYjH_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5424, '【苏州站】科普·亲子·音乐剧《神奇校车·气候大挑战》美国原版授权', '2020-10-02', '2020-10-02', '苏州独墅湖影剧院 ', 'https://www.moretickets.com/content/5f068f9bd3521e380f54efa0', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5425, '【苏州站】《奥特曼宇宙之光》', '0000-00-00', '0000-00-00', '苏州保利大剧院', 'https://www.moretickets.com/content/5e1ea98a908c3850a0fa4b6f', 2, 'https://img0.tking.cn/mtl/default/img/3ynmSCKpZa_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5426, '【苏州站】美国原版授权科普亲子音乐剧《神奇校车·气候大挑战》', '2020-03-29', '2020-12-31', '苏州文化艺术中心大剧院 ', 'https://www.moretickets.com/content/5e057f44908c387ce73fa7b2', 2, 'https://img0.tking.cn/mtl/default/img/5bJxGpJ2Qd_.png', 0, 0);
 INSERT INTO `goods` VALUES (5427, '【延期】【苏州站】凡创文化·大型恐龙主题实景童话剧《你看起来好像很好吃》', '2021-12-31', '2021-12-31', '昆山文化艺术中心-大剧场 ', 'https://www.moretickets.com/content/5e145291908c385655ae361e', 2, 'https://img0.tking.cn/mtl/default/img/azrCQCbJEQ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5428, '【苏州站】沐澜文化·英国原版音乐剧《花格子大象艾玛》', '2020-05-22', '2020-12-31', '苏州独墅湖影剧院 ', 'https://www.moretickets.com/content/5e16be5ec756b14f9fe117a7', 2, 'https://img0.tking.cn/mtl/default/img/KtHh8a6JdB_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5429, '【延期】【苏州站】TravelStar.亲子动漫舞台剧《冲吧！汽车人》', '2020-05-30', '2021-12-31', '苏州独墅湖影剧院 ', 'https://www.moretickets.com/content/5e2016f9a81bd060586c4366', 2, 'https://img0.tking.cn/mtl/default/img/C2FPbWBkEc_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5430, '【苏州站】百老汇互动亲子科学剧《物理秀》中文版', '2020-06-06', '2020-12-31', '苏州文化艺术中心大剧院 ', 'https://www.moretickets.com/content/5e213afca81bd01735829eff', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5431, '【苏州站】西班牙多媒体动画互动剧《猫飞狗跳》', '2020-03-05', '2020-12-31', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5e058102c756b13990e7df67', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5432, '【延期】【苏州站】加拿大原版经典绘本剧  《猜猜我有多爱你》', '2020-04-19', '2020-12-31', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5e21387a908c384d27ddc4b2', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5433, '【延期】【苏州站】大船文化·百老汇互动亲子科学剧《化学秀》中文版', '2020-05-17', '2021-12-31', '苏州文化艺术中心 ', 'https://www.moretickets.com/content/5e1546b7d3521e79388e4da1', 2, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5434, '【常熟站】【天乐汇】2020贺岁新剧·英国BBC正版大型海洋探险舞台剧《海底小纵队之深海探秘》', '2020-02-22', '2020-12-31', '常熟大剧院 ', 'https://www.moretickets.com/content/5de086b2d3521e3fae53c005', 2, 'https://img0.tking.cn/mtl/default/img/EDHTYrDxSD_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5435, '【常熟站】经典儿童冒险互动亲子剧《节奏总动员2：亚马逊丛林大冒险》【八喜·打开艺术之门】', '2020-07-15', '2020-07-15', '常熟大剧院 ', 'https://www.moretickets.com/content/5ee049c3d3521e5f53491e04', 2, 'https://img0.tking.cn/mtl/default/img/Hxs85hcPDh_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5436, '【张家港站】小丑动物嘉年华之反斗动物城', '2020-02-04', '2020-02-04', '张家港保利大剧院 ', 'https://www.moretickets.com/content/5e00676bd3521e355beb4cbf', 2, 'https://img0.tking.cn/mtl/default/img/RTDjsBF4SE_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5437, '【上海站】K11建筑艺术节 木构复兴', '2020-08-15', '2020-10-18', 'chi K11美术馆 ', 'https://www.moretickets.com/content/5f2bd6f5e24c3a01743240a9', 3, 'https://img0.moretickets.com/zbf/assets/img/5dii7wscA8_.png', 0, 0);
-INSERT INTO `goods` VALUES (5438, '【上海站】「早鸟票即将售罄」重磅真迹！莫奈《日出·印象》展', '2020-09-17', '2021-01-03', 'Bund One Art Museum ', 'https://www.moretickets.com/content/5f1807f9e24c3a5d56380945', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5439, '【上海站】【经典原作】“梦回江户——浮世绘艺术大展”', '2020-07-03', '2020-11-08', '上海外滩壹号 ', 'https://www.moretickets.com/content/5ecd1c9799012d1a850db1cb', 3, 'https://img0.moretickets.com/zbf/assets/img/rM6ctKbpni_.png', 0, 0);
-INSERT INTO `goods` VALUES (5440, '【上海站】以花之名  In the Name of Flower', '2020-08-08', '2020-12-06', '明珠美术馆 ', 'https://www.moretickets.com/content/5f27a8bb99012d0b8c736d2c', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5441, '【上海站】3x3x3 Project —— 音乐艺术节', '2020-09-11', '2020-09-13', '八号桥艺术空间-1908粮仓 ', 'https://www.moretickets.com/content/5f4df31c99012d4024c5a9b0', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5442, '【上海站】大型当代艺术群展《More，More，More》', '2020-08-13', '2021-01-31', '油罐艺术中心 ', 'https://www.moretickets.com/content/5f34e5a999012d07e7b3f476', 3, 'https://img0.moretickets.com/zbf/assets/img/SQnXFBwrCA_.png', 0, 0);
-INSERT INTO `goods` VALUES (5443, '【上海站】【提前闭展】展览“C”数字交互艺术实验', '2020-08-11', '2020-09-20', '油罐艺术中心（上海） ', 'https://www.moretickets.com/content/5f32314de24c3a762a3d3588', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5444, '【上海站】【特惠套票 | 有效期至10.31】EPSON teamLab无界美术馆', '2020-05-06', '2020-12-31', 'teamLab无界美术馆 ', 'https://www.moretickets.com/content/5d720115d3521e246dc7e20d', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5445, '【上海站】 火星2035 沉浸式科学艺术展', '2020-07-17', '2020-10-08', '上海环球港 L4演艺中心 ', 'https://www.moretickets.com/content/5ee9c76299012d17e63a216f', 3, 'https://img0.moretickets.com/zbf/assets/img/KnSiwsYtbj_.png', 0, 0);
 INSERT INTO `goods` VALUES (5446, '【上海站】魔卡少女樱展——被施下魔法的美术馆', '2020-06-20', '2020-09-06', '静安大悦城北座4F ', 'https://www.moretickets.com/content/5ed8b9a10ac8a418b3b815a8', 3, 'https://img0.tking.cn/mtl/default/img/hzRzDPC5aH_.png', 0, 0);
-INSERT INTO `goods` VALUES (5447, '【上海站】【中国首次个展】我与你：埃里克•索斯（The Space Between Us）', '2020-08-01', '2020-11-20', '上海·摄影艺术中心 ', 'https://www.moretickets.com/content/5f069137e24c3a298e040922', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5448, '【上海站】国家地理·深蓝EXPLORING BLUE', '2020-07-09', '2020-09-15', '兴业太古汇L1层L138 ', 'https://www.moretickets.com/content/5ef3397ee24c3a4cb47e9495', 3, 'https://img0.moretickets.com/zbf/assets/img/fdyiWb3me3_.png', 0, 0);
-INSERT INTO `goods` VALUES (5449, '【上海站】被打断的饭局（Interrupted Meals）', '2020-08-08', '2020-10-31', '昊美术馆 ', 'https://www.moretickets.com/content/5f215120e24c3a7b0322f35d', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5450, '【上海站】赛梦微缩世界 Miniature World', '2020-03-01', '2020-12-31', '上海白玉兰广场 ', 'https://www.moretickets.com/content/5c18623c908c384ce1a9c9a8', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5451, '【上海站】扭蛋全明星--解忧夜市摩天轮特供套餐', '2020-07-10', '2020-09-30', '凯德虹口商业中心 ', 'https://www.moretickets.com/content/5f07ec8de24c3a1b0387018e', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5452, '【上海站】「暑期档限时特惠」三体·时空沉浸展', '2020-01-10', '2021-02-28', '上海中心展览馆 ', 'https://www.moretickets.com/content/5db115b6e24c3a51c3864a7a', 3, 'https://img0.moretickets.com/zbf/assets/img/CTtcmh8MzC_.png', 0, 0);
-INSERT INTO `goods` VALUES (5453, '【上海站】樱桃小丸子动画30周年特展', '2020-07-18', '2020-09-27', '上海高岛屋百货 ', 'https://www.moretickets.com/content/5ef3241799012d23c27a68e5', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5454, '【上海站】 80年代博物馆 80‘s Museum', '2020-07-03', '2020-10-31', '华润时代广场 ', 'https://www.moretickets.com/content/5efb023fe24c3a2816f74c92', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5455, '【上海站】【展期变更】【重磅真迹 | 5折倒计时+限量礼品】莫奈和印象派大师展', '2021-03-18', '2021-08-01', '外滩壹号 ', 'https://www.moretickets.com/content/5e1595d099012d6d61f5da02', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5456, '【上海站】顽酷运动工厂', '2020-08-08', '2020-12-31', '博绣荟文创园 ', 'https://www.moretickets.com/content/5f27e245e24c3a75771112d8', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5457, '【上海站】千年绮华-从敦煌到高昌宝石壁画沉浸式展览', '2020-06-29', '2020-10-10', '中海环宇荟1楼 ', 'https://www.moretickets.com/content/5edf4ad699012d65eda713df', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5458, '【上海站】【门票5折】中国首家“火影忍者世界”主题乐园', '2020-09-06', '2020-09-30', '新世界城11楼 ', 'https://www.moretickets.com/content/5ebbca89e24c3a402a7365c8', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5459, '【上海站】“厉害治懒诊所”特展', '2020-06-13', '2020-10-11', '百联曲阳购物中心4楼 ', 'https://www.moretickets.com/content/5ecf5ac0e24c3a6ed36844c6', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5460, '【上海站】起氪行動 百位艺术家集结•讓城市起風浪 / The Chic Pop Act', '2020-06-20', '2020-09-10', '上海撚雀艺术制造所 ', 'https://www.moretickets.com/content/5eba4afce24c3a402a731adb', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5461, '【上海站】傀儡娃娃艺术大赏', '2020-10-20', '2021-01-10', '上海撚雀画廊（NianChou Gallery） ', 'https://www.moretickets.com/content/5edf648599012d65eda717b4', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5462, '【上海站】【开馆中】上海震旦博物馆', '2020-01-01', '2020-12-31', '上海震旦博物馆 ', 'https://www.moretickets.com/content/5e1d8efae24c3a635b81653e', 3, 'https://img0.moretickets.com/zbf/assets/img/B3A37f5SBD_.jpeg', 0, 0);
-INSERT INTO `goods` VALUES (5463, '【上海站】御世上咖——大耳查布清凉派对', '2020-07-10', '2020-09-06', '上海长风大悦城1F中央广场 ', 'https://www.moretickets.com/content/5ef317c299012d23c27a683c', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5464, '【上海站】独角兽星空艺术馆 田子坊旗舰店', '2020-01-01', '2021-01-31', '独角兽星空艺术馆（上海） ', 'https://www.moretickets.com/content/5e69ea89e24c3a0ba25f45a0', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5465, '【上海站】上海迪士尼乐园门票 开学特惠9折起', '2020-09-06', '2020-10-01', '上海迪士尼度假区 ', 'https://www.moretickets.com/content/5eb53178a81bd00a6db1ec82', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5466, '【上海站】幻觉艺术博物馆 MOI', '2019-11-03', '2020-12-31', 'MOI幻觉艺术博物馆 ', 'https://www.moretickets.com/content/5e158e32e24c3a45210a3948', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5467, '【上海站】不可思议减压馆3.0-奇葩减压36计', '2019-04-04', '2020-12-31', '淮海755四楼 ', 'https://www.moretickets.com/content/5c77bb77c756b105488d2a4e', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5468, '【上海站】【常年开放】豫园星空梦幻馆', '2020-01-01', '2020-12-31', '上海豫园星空梦幻馆（丽水路安平街交叉口） ', 'https://www.moretickets.com/content/5e15ab6de24c3a45210a5956', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5469, '【上海站】上海恋爱博物馆 独角兽田子坊旗舰店', '2020-01-01', '2021-01-31', '独角兽星空艺术馆（田子坊旗舰店） ', 'https://www.moretickets.com/content/5e6a0727e24c3a0ba25f48c1', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5470, '【上海站】《我做了一个红楼梦》剧幕式互动光影艺术馆', '2019-11-01', '2020-12-31', '十六铺水岸中心 B2 ', 'https://www.moretickets.com/content/5dbbe8a499012d4976a64818', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5471, '【上海站】昊美术馆 · Move on China 2019 美丽新世界——张培力、汪建伟、冯梦波联展', '2019-12-12', '2020-10-18', '昊美术馆（上海） ', 'https://www.moretickets.com/content/5dd7802299012d3956410db3', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5472, '【上海站】2020上海乐享生活嘉年华', '2020-12-12', '2020-12-13', '上海世博展览馆4号馆 ', 'https://www.moretickets.com/content/5dd6376ce24c3a590349be87', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5473, '【上海站】【火爆开展】上海奇境迷宫探险馆--魔都首个模拟户外探险馆', '2020-08-08', '2021-08-07', '淮海755五楼 ', 'https://www.moretickets.com/content/5f1fc42ce24c3a7b03225176', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5474, '【上海站】2020扭蛋全明星——扭蛋公仔【特惠4折起】', '2020-03-10', '2020-12-31', '上海 凯德龙之梦虹口一楼 中厅 ', 'https://www.moretickets.com/content/5e67744a99012d2f26beb7b9', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5475, '【上海站】2020亚洲插画年度大赏——“色彩平行宇宙”亚洲巡回展首站', '2020-08-15', '2020-10-09', '城市会客中心 ', 'https://www.moretickets.com/content/5f3106b299012d7e13d1fda8', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5476, '【上海站】上海失恋博物馆', '2020-03-20', '2021-03-20', '悦荟广场4楼 ', 'https://www.moretickets.com/content/5d524ce8908c38138cb9603c', 3, 'https://img0.tking.cn/assets/img/NseDpnfa4E_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5477, '【上海站】爱你，是终极的孤独｜空间体验之旅 Seahello造梦师 x 小狮森林', '2020-08-29', '2020-10-28', '小狮家 ', 'https://www.moretickets.com/content/5f3270c6e24c3a762a3d55c0', 3, 'https://img0.moretickets.com/zbf/assets/img/GGcEdNHe2m_.jpeg', 0, 0);
-INSERT INTO `goods` VALUES (5478, '【上海站】2020上海水族展●龟谷世界名龟展●中国爬宠狂欢节', '2020-10-17', '2020-10-19', '上海农业展览馆 ', 'https://www.moretickets.com/content/5f48d8e499012d4024c50c54', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5479, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5f50930899012d4024c6a1eb', 3, 'None', 0, 0);
 INSERT INTO `goods` VALUES (5480, '【上海站】【常年开放】惊魂密境 沉浸式剧情体验', '2019-12-31', '2020-12-31', '上海悦荟广场一楼 ', 'https://www.moretickets.com/content/5de4cd7de24c3a25654a0309', 3, 'https://img0.moretickets.com/zbf/assets/img/HETifA7667_.jpeg', 0, 0);
 INSERT INTO `goods` VALUES (5481, '【上海站】超级飞侠：夏日飞行大冒险', '2020-07-03', '2020-09-13', '上海虹桥天地 ', 'https://www.moretickets.com/content/5ef32c5399012d23c27a697e', 3, 'https://img0.moretickets.com/zbf/assets/img/iS3hGh5RWx_.png', 0, 0);
-INSERT INTO `goods` VALUES (5482, '【上海站】叶妮&梁海音双个展：空与丛', '2020-08-29', '2020-09-20', '艺术外滩浦西馆 ', 'https://www.moretickets.com/content/5f44d21fe24c3a3fd2b17b23', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5483, '【上海站】江畔跨年音乐秀《天真·自得3.0》', '0000-00-00', '0000-00-00', '1862时尚艺术中心', 'https://www.moretickets.com/content/5f4e0e40c756b16c2f9c9edd', 3, 'https://img0.tking.cn/mtl/default/img/4madP8nnHk_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5484, '【上海站】王德培年中演讲：2020年将决定什么？', '2020-09-08', '2020-09-08', '上海国际会议中心 ', 'https://www.moretickets.com/content/5f3a419399012d07e7b4b8fc', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5485, '【上海站】重启2020·8342艺术空间登陆群展', '2020-08-28', '2020-09-13', '长三角路演中心 ', 'https://www.moretickets.com/content/5f3e331199012d37d412a2e8', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5486, '西岸专属测试项目', '2020-09-01', '2020-09-30', '棱力测试场馆 ', 'https://www.moretickets.com/content/5f34fba00ac8a405e1e7d275', 3, 'https://img0.moretickets.com/assets/icon/mtl-default-bg.png', 0, 0);
 INSERT INTO `goods` VALUES (5487, '【上海站】大梦微城火车模型主题乐园', '2020-09-01', '2020-12-31', '香港名都2楼30-40 ', 'https://www.moretickets.com/content/5f4cb43f99012d4024c58680', 3, 'https://img0.moretickets.com/zbf/assets/img/RCiwBNnP7n_.png', 0, 0);
 INSERT INTO `goods` VALUES (5488, '【上海站】《鬼才毕加索的异想世界》艺术大展', '2020-02-29', '2021-01-31', '中海环宇荟 ', 'https://www.moretickets.com/content/5e0076bee24c3a2b7441cb8a', 3, 'https://img0.moretickets.com/zbf/assets/img/xwwezRCe6J_.jpeg', 0, 0);
-INSERT INTO `goods` VALUES (5489, '【上海站】Wonder Festival 2020', '2020-10-03', '2020-10-04', '上海新国际博览中心 ', 'https://www.moretickets.com/content/5f50bb11d3521e1e928b3f41', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5490, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5e5ceb05d3521e3cb1cbbed8', 3, 'None', 0, 0);
-INSERT INTO `goods` VALUES (5491, '【上海站】【延期待定】第二届CosGalaxy国风动漫嘉年华 暨 国风时裳洲', '2020-09-06', '2020-09-06', '上海光大会展中心二楼 ', 'https://www.moretickets.com/content/5de5cb9ce24c3a25654a3eb2', 3, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5492, '【上海站】M1NT外滩无敌江景晚餐DJ派对', '2020-06-13', '2020-12-31', 'M1NT餐厅 ', 'https://www.moretickets.com/content/5edf0b81e24c3a5817f5e48a', 3, 'https://img0.moretickets.com/zbf/assets/img/TrkN8td3Dz_.png', 0, 0);
 INSERT INTO `goods` VALUES (5493, '【上海站】上海迪士尼乐园年卡', '2020-05-12', '2020-12-31', '上海迪士尼度假区 ', 'https://www.moretickets.com/content/5eba5db6d3521e4f5ae0621a', 3, 'https://img0.tking.cn/mtl/default/img/YyQFTC2ebS_.png', 0, 0);
 INSERT INTO `goods` VALUES (5494, '【上海站】豫园趣玩网红美拍馆', '2019-11-01', '2020-12-31', '上海豫园趣玩网红美拍馆 ', 'https://www.moretickets.com/content/5dc4fb5ce24c3a51c389097d', 3, 'https://img0.moretickets.com/zbf/assets/img/Frz2dZS6Ce_.jpeg', 0, 0);
@@ -2845,7 +2712,6 @@ INSERT INTO `goods` VALUES (5506, '【上海站】重归巴洛克-北极星和�
 INSERT INTO `goods` VALUES (5507, '【上海站】20200916晚高峰音乐会1', '2020-09-16', '2020-09-16', '上海交响乐团音乐厅-主厅 ', 'https://www.moretickets.com/content/5f27a918a81bd0219debae5a', 4, 'https://img0.tking.cn/mtl/default/img/PXz3f8SzpN_.png', 0, 0);
 INSERT INTO `goods` VALUES (5508, '【上海站】Summer 宫崎骏久石让经典动漫视听音乐会', '2020-10-11', '2020-10-11', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f3651b0d3521e3885647b12', 4, 'https://img0.tking.cn/mtl/default/img/JHYYaDW6iC_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5509, '【上海站】A night of music from Adele and Ed Sheeran 阿黛尔&艾德希兰 致敬音乐会LVH1', '2020-09-09', '2020-09-10', '珍珠剧场（上海） ', 'https://www.moretickets.com/content/5f3b9f7be24c3a3a0521f6a1', 4, 'https://img0.moretickets.com/zbf/assets/img/XHmpzzjRaF_.png', 0, 0);
-INSERT INTO `goods` VALUES (5510, '【上海站】《古琴不古》', '2020-09-13', '2020-09-26', '美术馆剧场 M THEATRE ', 'https://www.moretickets.com/content/5f33b4a9d3521e388519f22a', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5511, '【上海站】流动的时光——龚琳娜24节气古诗词音乐会', '2020-10-18', '2020-10-18', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f3f34f1c756b11e5c89b27a', 4, 'https://img0.tking.cn/mtl/default/img/mrk6NbWMkT_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5512, '【上海站】甜蜜蜜—邓丽君经典金曲音乐会', '2020-10-07', '2020-10-07', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5ef2fa24908c38690c7cdeda', 4, 'https://img0.tking.cn/mtl/default/img/j2GBYeMJWm_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5513, '【上海站】海上雅乐・李佳陆锦花琵琶与评弹音乐会', '2020-09-26', '2020-09-26', '东方艺术中心-演奏厅 ', 'https://www.moretickets.com/content/5ddf2e4ad3521e3fae0d6d80', 4, 'https://img0.tking.cn/mtl/default/img/8ZT7wpazMP_.jpg', 0, 0);
@@ -2856,7 +2722,6 @@ INSERT INTO `goods` VALUES (5517, '【上海站】夜色钢琴曲-赵海洋钢�
 INSERT INTO `goods` VALUES (5518, '【上海站】东方市民音乐会 我和我的祖国——上海栋梁爱乐合唱团专场', '2020-10-03', '2020-10-03', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f169c03d3521e3f123a31af', 4, 'https://img0.tking.cn/mtl/default/img/nXdbk6hXfz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5519, '【上海站】东方市民音乐会 黄河·东方——江苏东方交响管乐团专场', '2020-11-07', '2020-11-07', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f16957fa81bd0664ecce34f', 4, 'https://img0.tking.cn/mtl/default/img/nXdbk6hXfz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5520, '【上海站】宁峰与黄秋宁演绎贝多芬小提琴与钢琴奏鸣曲全集（二）', '2020-09-07', '2020-09-07', '上海交响乐团音乐厅-主厅 ', 'https://www.moretickets.com/content/5f435dd0908c3820db714a10', 4, 'https://img0.tking.cn/mtl/default/img/bP3kSbMiMT_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5521, '【上海站】超燃音乐系•二次元交响电声音乐会《海贼王-ルフィ猛攻!》', '2020-11-08', '2020-11-08', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f2a8354908c3876faa85824', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5522, '【上海站】东方市民音乐会 中外名曲音乐会——夏小曹领衔上海大学音乐学院演奏家们', '2020-11-21', '2020-11-21', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f16939ac756b15b49910e4b', 4, 'https://img0.tking.cn/mtl/default/img/nXdbk6hXfz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5523, '【上海站】海上雅乐·动物乐园音乐汇', '2020-10-31', '2020-10-31', '东方艺术中心-演奏厅 ', 'https://www.moretickets.com/content/5ef03f52c756b1133adb1ba8', 4, 'https://img0.tking.cn/mtl/default/img/BJfHyja4ZD_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5524, '【上海站】“天空之城”久石让 宫崎骏经典动漫作品交响音乐会', '2020-10-11', '2020-10-11', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5e17faa9a81bd042d12108d1', 4, 'https://img0.tking.cn/mtl/default/img/cyz5fCw5Sh_.jpg', 0, 0);
@@ -2996,19 +2861,13 @@ INSERT INTO `goods` VALUES (5657, '【上海站】徐惟聆从教二十周年师
 INSERT INTO `goods` VALUES (5658, '【上海站】奥皮茨演绎勃拉姆斯钢琴作品全集（四）', '2020-03-23', '2020-12-31', '上海交响乐团音乐厅-演艺厅 ', 'https://www.moretickets.com/content/5e1e80f0a81bd060582887da', 4, 'https://img0.tking.cn/mtl/default/img/ikEehm8Rta_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5659, '【上海站】经典夜上海·周末爵士沙龙 爱情的故事·心动旋律', '2020-03-27', '2020-12-31', '东方艺术中心-演奏厅 ', 'https://www.moretickets.com/content/5e1ffaa7908c3850a0fbf6e3', 4, 'https://img0.tking.cn/mtl/default/img/4z5CFFp743_.png', 0, 0);
 INSERT INTO `goods` VALUES (5660, '【延期】【上海站】致敬经典-金漭个人独奏音乐会', '2020-03-13', '2021-12-31', '东方艺术中心-演奏厅 ', 'https://www.moretickets.com/content/5e2545218342850444b00b49', 4, 'https://img0.tking.cn/mtl/default/img/s7zeYNkMis_.png', 0, 0);
-INSERT INTO `goods` VALUES (5661, '0711 SAT | 2020 「香蕉先生与冰西瓜」 纳凉音乐会', '2021-12-31', '2021-12-31', '育音堂（凯旋路店） ', 'https://www.moretickets.com/content/5eb8bf8ea81bd00a6d288732', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5662, '【上海站】《遇见莫扎特》--古典音乐启蒙钢琴经典名曲互动亲子音乐会', '2020-11-14', '2020-11-14', '保利上海城市剧院 ', 'https://www.moretickets.com/content/5f520300d3521e2a13ef6530', 4, 'https://img0.tking.cn/mtl/default/file/e7MhMfw3bJ_.gif', 0, 0);
 INSERT INTO `goods` VALUES (5663, '【上海站】市民晚场 “指尖·足尖”旅美钢琴博士孙钧音乐会', '2020-11-05', '2020-11-05', '东方艺术中心-音乐厅 ', 'https://www.moretickets.com/content/5f5208f2d3521e2a13f2fa77', 4, 'https://img0.tking.cn/mtl/default/img/FKaC4RD4GP_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5664, '【无锡站】《“鑫爱2020--致敬经典”田佳鑫钢琴独奏音乐会全国巡演》', '2020-09-25', '2020-09-25', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f30ee3ad3521e7be368a648', 4, 'https://img0.tking.cn/mtl/default/img/wsHERhxX2t_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5665, '【无锡站】《西风国韵——中外影视经典系列国风视听音乐会》', '2020-09-15', '2020-09-15', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f27b2ccd3521e7be3fb635e', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5666, '【无锡站】国粹京韵——国家京剧院戏曲音乐演唱会', '2020-09-08', '2020-09-08', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f27cc87c756b115fd4a299a', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5667, '【无锡站】缪斯女神李双寒独奏音乐会全国巡演', '2020-09-13', '2020-09-13', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f1e9fe9908c382b004fcf63', 4, 'https://img0.tking.cn/mtl/default/img/aDApMnHhjC_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5668, '【无锡站】《山下山上——中阮大师冯满天与满天四重奏音乐会》', '2020-10-05', '2020-10-05', '无锡大剧院-歌剧厅 ', 'https://www.moretickets.com/content/5f3a4a00d3521e388510e8f6', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5669, '【无锡站】《山下山上——中阮大师冯满天与满天四重奏音乐会》', '2020-05-14', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5de0be31a81bd024f8a6475f', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5670, '【宜兴站】《弹韵——琵琶与筝音乐会》', '2020-09-26', '2020-09-26', '宜兴保利大剧院-音乐厅 ', 'https://www.moretickets.com/content/5f3cda76c756b11e5cafead7', 4, 'https://img0.tking.cn/mtl/default/img/c5z7Tiy8cs_.png', 0, 0);
 INSERT INTO `goods` VALUES (5671, '【宜兴站】玮捷的奇思妙想·亲子钢琴音乐会', '2020-09-20', '2020-09-20', '宜兴保利大剧院-音乐厅 ', 'https://www.moretickets.com/content/5f3f44e4a81bd00a6ee2a743', 4, 'https://img0.tking.cn/mtl/default/img/wQsxikBfMR_.png', 0, 0);
 INSERT INTO `goods` VALUES (5672, '【无锡站】《大师有约——燃情岁月·男高音之夜保利院线20大城市巡演音乐会》', '2020-04-12', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5dfc7fded3521e26aa551774', 4, 'https://img0.tking.cn/mtl/default/img/rFKM2WRdms_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5673, '【无锡站】漫步人生路——朗嘎拉姆个人演唱会', '2020-03-19', '2020-12-31', '无锡大剧院 ', 'https://www.moretickets.com/content/5e0aee19a81bd04080eec31b', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5674, '【延期】【宜兴站】声音的琥珀——世界民谣室内乐音乐会', '2020-02-29', '2021-12-31', '宜兴保利大剧院-歌剧院 ', 'https://www.moretickets.com/content/5e17dacb908c382f469fd177', 4, 'https://img0.tking.cn/mtl/default/img/G5NBdAhfBN_.png', 0, 0);
 INSERT INTO `goods` VALUES (5675, '【苏州站】“亦闻·亦乐—梦回桃花坞”陆轶文二胡独奏音乐会', '2020-10-16', '2020-10-16', '苏州文化艺术中心大剧院 ', 'https://www.moretickets.com/content/5f28bd6bc756b115fda312bb', 4, 'https://img0.tking.cn/mtl/default/img/B4GkEz3ycG_.png', 0, 0);
 INSERT INTO `goods` VALUES (5676, '【张家港站】西风国韵——中外影视经典系列国风视听音乐会', '2020-09-16', '2020-09-16', '张家港保利大剧院 ', 'https://www.moretickets.com/content/5f27b46dc756b115fd401eb4', 4, 'https://img0.tking.cn/mtl/default/img/ZnzjdaWC5r_.jpg', 0, 0);
@@ -3029,7 +2888,6 @@ INSERT INTO `goods` VALUES (5690, '【苏州站】维也纳-柏林爱乐音乐�
 INSERT INTO `goods` VALUES (5691, '【苏州站】米洛什—古典吉他之声音乐会', '2020-05-22', '2020-12-31', '苏州文化艺术中心大剧院 ', 'https://www.moretickets.com/content/5e0ebadea81bd0731151b22b', 4, 'https://img0.tking.cn/mtl/default/img/EQMdJSDAE8_.png', 0, 0);
 INSERT INTO `goods` VALUES (5692, '【苏州站】舒曼与勃拉姆斯 苏州交响乐团19/20音乐季', '2020-03-07', '2021-12-31', '苏州金鸡湖音乐厅 ', 'https://www.moretickets.com/content/5d10a1e1c756b17dc40e90bf', 4, 'https://img0.tking.cn/assets/img/2tw7PCfk6t_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5693, '【苏州站】格调室内乐 她说——女作曲家专场', '2020-03-08', '2020-12-31', '苏州金鸡湖音乐厅 ', 'https://www.moretickets.com/content/5d48e578c756b11011ed9fe5', 4, 'https://img2.tking.cn/assets/img/kfzzShzsNN_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5694, '【延期】【苏州站】OUR TANGO乐团： “情迷探戈”音乐会', '2020-03-28', '2020-12-31', '苏州文化艺术中心·演艺厅 ', 'https://www.moretickets.com/content/5e057cbd908c387ce73d6f76', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5695, '【昆山站】《声音的琥珀——世界民谣室内乐音乐会》市民音乐会', '2020-02-23', '2020-12-31', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5e0958b7908c3836f1dedcb3', 4, 'https://img0.tking.cn/mtl/default/img/tnernhkt3R_.png', 0, 0);
 INSERT INTO `goods` VALUES (5696, '【常熟站】永远的贝多芬——纪念贝多芬诞辰250周年·萨尔茨堡州管乐交响乐团音乐会中国巡演【“一带一路·文化和鸣”国际精品演出季】', '2020-04-04', '2020-12-31', '常熟大剧院 ', 'https://www.moretickets.com/content/5e23b5fda81bd01735b5b9d4', 4, 'https://img0.tking.cn/mtl/default/img/nsr3afhCA6_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5697, '【苏州站】无论西东-方锦龙和他的朋友们音乐鉴赏会', '2020-10-23', '2020-10-23', '苏州文化艺术中心大剧院 ', 'https://www.moretickets.com/content/5f28fd01d3521e7be37c96dd', 4, 'https://img0.tking.cn/mtl/default/img/Yy7CdWA5pW_.png', 0, 0);
@@ -3037,21 +2895,12 @@ INSERT INTO `goods` VALUES (5698, '【苏州站】巴比伦民族古乐团—民
 INSERT INTO `goods` VALUES (5699, '【张家港站】意大利坎帕纳交响乐团歌剧选段音乐会', '2020-03-25', '2020-12-31', '张家港保利大剧院 ', 'https://www.moretickets.com/content/5e211e66908c384d27c3fefd', 4, 'https://img0.tking.cn/mtl/default/img/m4WM5yccNP_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5700, '【昆山站】《“遇见·摇滚”——费尔曼的中国行》', '2020-03-12', '2020-12-31', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5e180e16c756b17f3d122531', 4, 'https://img0.tking.cn/mtl/default/img/NmFJidkp33_.png', 0, 0);
 INSERT INTO `goods` VALUES (5701, '【苏州站】金宇钢琴独奏音乐会', '2020-09-06', '2020-09-06', '苏州文化艺术中心大剧院 ', 'https://www.moretickets.com/content/5f27c278d3521e7be301d43b', 4, 'https://img0.tking.cn/mtl/default/img/FXjSWEy8ej_.png', 0, 0);
-INSERT INTO `goods` VALUES (5702, '【苏州站】Summer Radio FM调频·汽车·露营音乐节', '2020-09-12', '2020-09-13', '乐营淀山湖国际营地 ', 'https://www.moretickets.com/content/5f4e06ca99012d4024c5fbc3', 4, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5703, '【上海站】【购票参与抽奖 百分百中奖】{六六}脱口秀喜剧大爆炸', '2020-09-06', '2020-10-07', '静安文化馆光影车间 ', 'https://www.moretickets.com/content/5f2151d099012d15dc09bda0', 5, 'https://img0.moretickets.com/zbf/assets/img/ZY47wH3DwF_.png', 0, 0);
 INSERT INTO `goods` VALUES (5704, '【上海站】六六喜剧开放麦演出', '2020-09-09', '2020-10-29', '静安文化馆光影车间 ', 'https://www.moretickets.com/content/5f1e4246e24c3a7b0321fac9', 5, 'https://img0.moretickets.com/zbf/assets/img/6WNK3eaiYD_.png', 0, 0);
-INSERT INTO `goods` VALUES (5705, '【上海站】尼莫脱口秀X宝龙美术馆单口喜剧小剧场', '2020-09-13', '2020-10-04', '上海·宝龙美术馆 ', 'https://www.moretickets.com/content/5f4cac1099012d4024c575f0', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5706, '【上海站】【每周三/周日】小剧场演出{贰叁叁脱口秀}', '2020-09-06', '2020-12-31', 'THE BOXX ', 'https://www.moretickets.com/content/5e20693d99012d7320ff622f', 5, 'https://img0.moretickets.com/zbf/assets/img/rzscXssaA2_.png', 0, 0);
 INSERT INTO `goods` VALUES (5707, '【上海站】【橙剧场】解压周末 I 硬核喜剧脱口秀', '2020-09-06', '2020-09-27', '橙剧场·可当代艺术中心 ', 'https://www.moretickets.com/content/5ed7867da81bd03f9bbfbbb5', 5, 'https://img0.tking.cn/mtl/default/img/BQtat4NKC6_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5708, '【上海站】笑丫喜剧周末脱口秀（相爷府）', '2020-09-06', '2020-09-25', '相爷府茶楼5楼（上海） ', 'https://www.moretickets.com/content/5f4f4833e24c3a419e45eaa2', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5709, '【上海站】乐合爆笑单口喜剧（脱口秀）周三周四开放麦', '2020-09-09', '2020-09-30', '上海康铂餐厅 ', 'https://www.moretickets.com/content/5eb3a295e24c3a64058cf09d', 5, 'https://img0.moretickets.com/zbf/assets/img/MdN4hBXixe_.png', 0, 0);
-INSERT INTO `goods` VALUES (5710, '【上海站】尼莫喜剧开放麦演出', '2020-09-08', '2020-11-24', '长江剧场-黑匣子 ', 'https://www.moretickets.com/content/5f05bae299012d5cc6d63ead', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5711, '【上海站】史依弘京剧专场演出《凤还巢》', '2020-09-25', '2020-09-25', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5f17aeb7c756b15b49ec68aa', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5712, '【上海站】【2020大宁剧院复演季】{上海越剧院红楼团} 大型宫闱喜剧 《孟丽君》', '2020-09-12', '2020-09-12', '上海大宁剧院 ', 'https://www.moretickets.com/content/5efd8b15908c385a6603664e', 5, 'https://img0.tking.cn/mtl/default/img/e5rdjy82ir_.png', 0, 0);
-INSERT INTO `goods` VALUES (5713, '【上海站】史依弘京剧专场演出《锁麟囊》', '2020-09-24', '2020-09-24', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5f17afc2908c38313b3998f7', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5714, '【上海站】「史依弘」上海京剧院“梨园天骄”演出季《白蛇传》', '2020-09-12', '2020-09-12', '上海大剧院-大剧场 ', 'https://www.moretickets.com/content/5f3a390f908c3819a676aba7', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5715, '【上海站】来点喜剧周末脱口秀', '2020-09-11', '2020-10-08', '上海市徐汇区文定路208号A座329（德必WE） ', 'https://www.moretickets.com/content/5dd2482fe24c3a5903439114', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5716, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5f3a387fa81bd05878f8b5ca', 5, 'None', 0, 0);
 INSERT INTO `goods` VALUES (5717, '【上海站】橘子脱口秀开放麦|周五', '2020-09-11', '2020-09-25', '读者外滩旗舰店 ', 'https://www.moretickets.com/content/5f41e51be24c3a26f3e81e7a', 5, 'https://img0.moretickets.com/zbf/assets/img/dRSm3s68yS_.png', 0, 0);
 INSERT INTO `goods` VALUES (5718, '【上海站】上海越剧院红楼团 大型古装越剧 《西园记》', '2020-09-13', '2020-09-13', '上海大宁剧院 ', 'https://www.moretickets.com/content/5efd8995908c385a6602f666', 5, 'https://img0.tking.cn/mtl/default/img/5ztWp8WE4y_.png', 0, 0);
 INSERT INTO `goods` VALUES (5719, '【上海站】滑稽戏《弄堂里向》', '2020-09-26', '2020-09-27', '美琪大戏院 ', 'https://www.moretickets.com/content/5f3cced89fcad84da8b9d8ec', 5, 'https://img0.tking.cn/mtl/default/img/2QNJrhREAj_.jpg', 0, 0);
@@ -3061,19 +2910,13 @@ INSERT INTO `goods` VALUES (5722, '【上海站】中国大戏院90周年戏曲�
 INSERT INTO `goods` VALUES (5723, '【上海站】上海京剧院“梨园天骄”演出季《宋士杰》', '2020-09-13', '2020-09-13', '上海大剧院-大剧场 ', 'https://www.moretickets.com/content/5f3a398c908c3819a676dc36', 5, 'https://img0.tking.cn/mtl/default/img/a2xjyTfjac_.png', 0, 0);
 INSERT INTO `goods` VALUES (5724, '【上海站】国庆节里来看戏 经典越剧《红楼梦》（精选版）', '2020-10-03', '2020-10-03', '浦东大戏院 ', 'https://www.moretickets.com/content/5f1027a8c756b17e96d2d8de', 5, 'https://img0.tking.cn/mtl/default/img/pt37ZKM3Kb_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5725, '【上海站】上海昆剧团 昆剧《长生殿》精华版', '2020-09-11', '2020-09-11', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5f48d5d3d3521e1e92eed612', 5, 'https://img0.tking.cn/mtl/default/img/fGMiAw3AmS_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5726, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5f4c9e53908c387de5e03207', 5, 'None', 0, 0);
 INSERT INTO `goods` VALUES (5727, '【上海站】笑乐汇相声-相爷府（全年无休，除每周一）郭德纲弟子高鹤彩领衔主演', '2020-09-06', '2020-10-15', '相爷府茶楼 ', 'https://www.moretickets.com/content/5f213de1e24c3a7b0322eb53', 5, 'https://img0.moretickets.com/zbf/assets/img/pbeSAW2btS_.png', 0, 0);
 INSERT INTO `goods` VALUES (5728, '【上海站】《印象派与巴黎的美好年代》——罗依尔艺术脱口秀', '2020-09-07', '2020-09-07', '人民大舞台 ', 'https://www.moretickets.com/content/5f29293fc756b115fdd74d47', 5, 'https://img0.tking.cn/mtl/default/img/FKdFnkFZbQ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5729, '【仅售45元】沪上脱口秀开放麦演出通兑券', '2020-07-03', '2020-12-31', '商品中心 ', 'https://www.moretickets.com/content/5eff0b0f908c386f34eb159c', 5, 'https://img0.tking.cn/mtl/default/img/x3Wt5sjpAk_.png', 0, 0);
 INSERT INTO `goods` VALUES (5730, '【上海站】国庆节里来看戏 经典黄梅戏《梁祝》（精选版）', '2020-10-02', '2020-10-02', '浦东大戏院 ', 'https://www.moretickets.com/content/5f102455a81bd01ffd1db190', 5, 'https://img0.tking.cn/mtl/default/img/GHcwnT5zEb_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5731, 'None', '0000-00-00', '0000-00-00', 'None', 'https://www.moretickets.com/content/5efd8594a81bd01ecd966a4f', 5, 'None', 0, 0);
-INSERT INTO `goods` VALUES (5732, '【上海】大世界原创非遗驻场秀《ShangHIGH奇梦》', '2020-09-18', '2020-11-15', '上海大世界一楼中庭大舞台 ', 'https://www.moretickets.com/content/5f509a0699012d4024c6a6bd', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5733, '【上海站】国庆节里来看戏 黄梅戏《女驸马》（精选版）', '2020-10-02', '2020-10-02', '浦东大戏院 ', 'https://www.moretickets.com/content/5f10270dc756b17e96d2b1a2', 5, 'https://img0.tking.cn/mtl/default/img/ATf5YGJJXT_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5734, '【上海站】老上海风情戏 大型情景沪剧《石榴裙下》', '2020-10-17', '2020-10-18', '保利上海城市剧院 ', 'https://www.moretickets.com/content/5f3a49e3908c3819a67e8c8a', 5, 'https://img0.tking.cn/mtl/default/img/AiBFEHZMKc_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5735, '【上海站】城市之星越剧王子的艺术人生', '2020-09-26', '2020-09-26', '保利上海城市剧院 ', 'https://www.moretickets.com/content/5f1a5d22d3521e3ad49631cc', 5, 'https://img0.tking.cn/mtl/default/img/BHMfjjt3tQ_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5736, '【上海站】笑丫喜剧脱口秀开放麦（相爷府）', '2020-09-07', '2020-09-29', '相爷府茶楼5楼（上海） ', 'https://www.moretickets.com/content/5f505f03e24c3a419e46333d', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5737, '【上海站】《金岩的童话镇》品欢相声会馆经典专场', '2020-09-12', '2020-10-03', '浦东大戏院 ', 'https://www.moretickets.com/content/5f02b5eaa81bd054c085408c', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
-INSERT INTO `goods` VALUES (5738, '【上海站】笑丫喜剧脱口秀开放麦（陆家嘴）', '2020-09-06', '2020-09-30', '有戏电影酒店(上海陆家嘴店) ', 'https://www.moretickets.com/content/5f4883e899012d4024c4ce6d', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5739, '【上海站】周末去浦东大戏院 经典越剧《孔雀东南飞》（精选版）', '2020-10-18', '2020-10-18', '浦东大戏院 ', 'https://www.moretickets.com/content/5f1e5583c756b15133e8a716', 5, 'https://img0.tking.cn/mtl/default/img/mkaAPK53bi_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5740, '【上海站】喜剧联盒国-【全程上海话】爆笑脱口秀演出', '2020-09-16', '2020-09-16', '人民大舞台 ', 'https://www.moretickets.com/content/5f488b73d3521e1e92b33dc0', 5, 'https://img0.tking.cn/mtl/default/img/hmbZabS4BW_.png', 0, 0);
 INSERT INTO `goods` VALUES (5741, '【上海站】上海昆剧团 昆剧《拜月亭记》', '2020-09-09', '2020-09-09', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5f48d818a81bd03d640d0806', 5, 'https://img0.tking.cn/mtl/default/img/YrzEepP5fa_.jpg', 0, 0);
@@ -3085,9 +2928,7 @@ INSERT INTO `goods` VALUES (5746, '【上海站】上海沪剧院 沪剧《雷�
 INSERT INTO `goods` VALUES (5747, '【延期】【上海站】原创滑稽戏《弄堂里向》', '2020-05-17', '2021-12-31', '美琪大戏院 ', 'https://www.moretickets.com/content/5df9a08ca81bd05a72356d26', 5, 'https://img0.tking.cn/mtl/default/img/bwaszC8y3t_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5748, '【延期】【上海站】魏春荣 邵峥领衔主演——昆曲《长生殿》', '2021-12-31', '2021-12-31', '上海中国大戏院 ', 'https://www.moretickets.com/content/5e2561c3a447470462ad6d56', 5, 'https://img0.tking.cn/mtl/default/img/mYWif88QsZ_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5749, '【上海站】于魁智、李胜素领衔中国国家京剧院一团：《白蛇传·断桥》《失街亭·空城计·斩马谡》《凤还巢》《龙凤呈祥》', '2020-11-13', '2020-11-15', '美琪大戏院 ', 'https://www.moretickets.com/content/5e030d13a81bd046b662232c', 5, 'https://img0.tking.cn/mtl/default/img/EmTxmic3n4_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5750, '【延期】【上海站】魏春荣 邵峥领衔主演——昆曲《牡丹亭》', '2021-12-31', '2021-12-31', '上海中国大戏院 ', 'https://www.moretickets.com/content/5e256722bd7b840444494c79', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5751, '【延期】【上海站】杭州越剧院 大型经典越剧《红楼梦》', '2020-03-21', '2021-12-31', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5e145494d3521e79380e185a', 5, 'https://img0.tking.cn/mtl/default/img/QhmK7WWFe2_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5752, '【上海站】猫头鹰喜剧脱口秀', '2020-09-05', '2020-09-05', 'THE BOXX ', 'https://www.moretickets.com/content/5f4cab4699012d4024c575c2', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5753, '【上海】第十二届东方名家名剧月开幕演出 京剧《新龙门客栈》', '2020-03-13', '2021-12-31', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5de601b8d3521e3fae276702', 5, 'https://static1.piaoxingqiu.com/PXQ/assets/img/SBWPcp5TWi_.jpeg', 0, 0);
 INSERT INTO `goods` VALUES (5754, '【上海站】《周末喜剧之夜》上喜脱口秀精品大会--爆笑单口开心果&解压演出（佳都剧场）', '2020-09-06', '2020-12-20', '佳都剧场 ', 'https://www.moretickets.com/content/5ef80ed3c756b15857ca43d0', 5, 'https://img0.tking.cn/mtl/default/img/CxMRYXBSxp_.png', 0, 0);
 INSERT INTO `goods` VALUES (5755, '【延期】【上海站】《姑苏韵·贺新春》苏州评弹专场', '2021-12-31', '2021-12-31', '上海中国大戏院 ', 'https://www.moretickets.com/content/5de4ab20c756b148a40f97c0', 5, 'https://img0.tking.cn/mtl/default/img/TFeSRdnhrH_.jpg', 0, 0);
@@ -3119,12 +2960,10 @@ INSERT INTO `goods` VALUES (5780, '【昆山站】山东柳子戏《张飞闯辕
 INSERT INTO `goods` VALUES (5781, '【昆山站】港澳台戏曲周粤剧《胡不归》', '2020-11-18', '2020-11-18', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c93b5d3521e1e92279c37', 5, 'https://img0.tking.cn/mtl/default/img/363ENYkckz_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5782, '【苏州站】第二届中国苏州江南文化艺术•国际旅游节•原创现代京剧《梅兰芳•蓄须记》', '2020-09-20', '2020-09-20', '苏州保利大剧院-大剧场 ', 'https://www.moretickets.com/content/5f4c8b6ca81bd03d643f73f7', 5, 'https://img0.tking.cn/mtl/default/img/eXGxpBjT6R_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5783, '【昆山站】云南滇剧《京娘》', '2020-10-27', '2020-10-27', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c8cbec756b16c2f156429', 5, 'https://img0.tking.cn/mtl/default/img/2dFwZMPec6_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5784, '【昆山站】山西蒲州梆子《薛刚反朝》', '2020-10-19', '2020-10-19', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c6cbec756b16c2fffa9e2', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5785, '【昆山站】湖南祁剧《目连救母》', '2020-11-14', '2020-11-14', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c923cd3521e1e92271903', 5, 'https://img0.tking.cn/mtl/default/img/r6Z2GsnTNs_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5786, '【昆山站】山东枣梆《珍珠塔》', '2020-11-01', '2020-11-01', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c8f44908c387de5d99e97', 5, 'https://img0.tking.cn/mtl/default/img/YQnwsREGmW_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5787, '【昆山站】陕西眉户戏《梁秋燕》', '2020-11-06', '2020-11-06', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c9002a81bd03d6442effb', 5, 'https://img0.tking.cn/mtl/default/img/yCjBk2Gi7K_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5788, '【昆山站】湖北荆州花鼓戏《站花墙》', '2020-10-17', '2020-10-17', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f4c6c08c756b16c2fff5f3e', 5, 'https://img0.tking.cn/mtl/default/img/ET8fbmRYAD_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5789, '【延期】【苏州站】滑稽戏《陈奂生的吃饭问题》', '2020-02-22', '2020-12-31', '苏州保利大剧院 ', 'https://www.moretickets.com/content/5de4767fa81bd024f8fd31db', 5, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5790, '【昆山站】开幕大戏 歌仔戏《陈三五娘》', '2020-10-11', '2020-10-11', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5f48bddbc756b16c2fd32b92', 5, 'https://img0.tking.cn/mtl/default/img/8jcYsMiXZN_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5791, '【上海站】胡沈员作品 现代舞剧《流浪Nomadic》 2020中国巡演', '2020-10-30', '2020-10-31', '上海大宁剧院 ', 'https://www.moretickets.com/content/5e21179bc756b160b2f86589', 6, 'https://img0.tking.cn/mtl/default/img/GfdJXhDaBp_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5792, '【上海站】上海歌剧院原创舞剧《嫦娥之月亮传说》', '2020-09-11', '2020-09-12', '上汽·上海文化广场 ', 'https://www.moretickets.com/content/5f3a4aac908c3819a67ee79e', 6, 'https://img0.tking.cn/mtl/default/img/FXEcnz3piG_.png', 0, 0);
@@ -3132,9 +2971,7 @@ INSERT INTO `goods` VALUES (5793, '【上海站】贝多芬2020：加拿大/比�
 INSERT INTO `goods` VALUES (5794, '【上海站】荷兰沉浸式游戏电音舞蹈剧场 《俄罗斯方块》TETRIS Mon Amour', '2021-01-08', '2021-01-10', '1862时尚艺术中心 ', 'https://www.moretickets.com/content/5dd7b52ea81bd07fc55ec80b', 6, 'https://static1.piaoxingqiu.com/PXQ/assets/img/mGwCNRpFNh_.jpeg', 0, 0);
 INSERT INTO `goods` VALUES (5795, '【上海站】中央芭蕾舞团 舞剧《仙女》《阿莱城的姑娘》《卡门》', '2020-10-04', '2020-10-05', '东方艺术中心-歌剧厅 ', 'https://www.moretickets.com/content/5f43421ea81bd00a6e43421b', 6, 'https://img0.tking.cn/mtl/default/img/hPDzrkmWR3_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5796, '【上海站】上海金星舞蹈团《海上探戈》', '2020-10-15', '2020-10-16', '上海大剧院-大剧场 ', 'https://www.moretickets.com/content/5f51f674a81bd047954e431d', 6, 'https://img0.tking.cn/mtl/default/img/zEmQKSaNbx_.jpg', 0, 0);
-INSERT INTO `goods` VALUES (5797, '【上海站】大型原创民族舞剧 《一把酸枣》', '2020-12-30', '2020-12-30', '上海大宁剧院 ', 'https://www.moretickets.com/content/5f50aed6908c387de539f9f8', 6, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5798, '【上海站】2019年度国家艺术基金资助项目 大型原创舞剧 《粉墨春秋》', '2020-12-28', '2020-12-28', '上海大宁剧院 ', 'https://www.moretickets.com/content/5f50b008908c387de53a7f45', 6, 'https://img0.tking.cn/mtl/default/img/5pJCN8MY6M_.png', 0, 0);
-INSERT INTO `goods` VALUES (5799, '【上海站】辽宁芭蕾舞团芭蕾舞剧《花木兰》', '2020-10-19', '2020-10-19', '上海保利大剧院-大剧场 ', 'https://www.moretickets.com/content/5f51b887a81bd0479531b088', 6, '/images/loading_detail-a4ec5fa884.png', 0, 0);
 INSERT INTO `goods` VALUES (5800, '【上海站】俄罗斯莫斯科芭蕾舞团《天鹅湖》· 2020新春巡演', '2020-01-26', '2020-01-27', '上海大剧院-大剧场 ', 'https://www.moretickets.com/content/5d832cb7a81bd033b8d133f7', 6, 'https://img1.tking.cn/assets/img/dx6TiwmKPF_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5801, '【延期】【上海站】金星舞蹈团20周年后首部全新舞蹈作品 现代舞《擦肩而过》', '0000-00-00', '0000-00-00', '上海国际舞蹈中心—大剧场', 'https://www.moretickets.com/content/5e17dbb0c756b17f3db58437', 6, 'https://img0.tking.cn/mtl/default/img/D5Fis5fKCy_.jpg', 0, 0);
 INSERT INTO `goods` VALUES (5802, '【上海站】芭蕾舞剧《罗密欧与朱丽叶》', '2020-09-06', '2021-12-31', '上海国际舞蹈中心—大剧场 ', 'https://www.moretickets.com/content/5e0448f2d3521e355b328836', 6, 'https://img0.tking.cn/mtl/default/img/yyNsz6QD7J_.jpg', 0, 0);
@@ -3158,6 +2995,10 @@ INSERT INTO `goods` VALUES (5819, '【延期】【苏州站】高清放映·马�
 INSERT INTO `goods` VALUES (5820, '【昆山站】阿根廷舞蹈《探戈传奇》', '2020-03-13', '2020-12-31', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5e180e9cc756b17f3d13020a', 6, 'https://img0.tking.cn/mtl/default/img/am2ShmWpQC_.png', 0, 0);
 INSERT INTO `goods` VALUES (5821, '【昆山站】芭蕾舞剧《胡桃夹子》', '2020-03-10', '2020-12-31', '昆山文化艺术中心 ', 'https://www.moretickets.com/content/5e096547c756b10bfe20bae0', 6, 'https://img0.tking.cn/mtl/default/img/4K3HBDf6yp_.png', 0, 0);
 INSERT INTO `goods` VALUES (5822, '【张家港站】芭蕾舞剧《胡桃夹子》', '2020-03-07', '2020-12-31', '张家港保利大剧院 ', 'https://www.moretickets.com/content/5e003496d3521e355bb74d23', 6, 'https://img0.tking.cn/mtl/default/img/SceFGfT63P_.jpg', 0, 0);
+INSERT INTO `goods` VALUES (5823, '【杭州】【万有音乐系】《 LARA 梁心颐 - HOME 演唱会》--杭州站', '2020-03-26', '2020-12-31', '场馆：杭州市 | MAO Livehouse杭州', 'https://detail.damai.cn/item.htm?id=610134716338&clicktitle=%E3%80%90%E4%B8%87%E6%9C%89%E9%9F%B3%E4%B9%90%E7%B3%BB%E3%80%91%E3%80%8A%20LARA%20%E6%A2%81%E5%BF%83%E9%A2%90%20-%20HOME%20%E6%BC%94%E5%94%B1%E4%BC%9A%E3%80%8B--%E6%9D%AD%E5%B7%9E%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01wMIdwG2GdSDh7sAMs_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (5824, '【杭州】【万有音乐系】《 LARA 梁心颐 - HOME 演唱会》--杭州站', '2020-03-26', '2020-12-31', '场馆：杭州市 | MAO Livehouse杭州', 'https://detail.damai.cn/item.htm?id=610134716338&clicktitle=%E3%80%90%E4%B8%87%E6%9C%89%E9%9F%B3%E4%B9%90%E7%B3%BB%E3%80%91%E3%80%8A%20LARA%20%E6%A2%81%E5%BF%83%E9%A2%90%20-%20HOME%20%E6%BC%94%E5%94%B1%E4%BC%9A%E3%80%8B--%E6%9D%AD%E5%B7%9E%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01wMIdwG2GdSDh7sAMs_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (5825, '【杭州】【万有音乐系】《 LARA 梁心颐 - HOME 演唱会》--杭州站', '2020-03-26', '2020-12-31', '场馆：杭州市 | MAO Livehouse杭州', 'https://detail.damai.cn/item.htm?id=610134716338&clicktitle=%E3%80%90%E4%B8%87%E6%9C%89%E9%9F%B3%E4%B9%90%E7%B3%BB%E3%80%91%E3%80%8A%20LARA%20%E6%A2%81%E5%BF%83%E9%A2%90%20-%20HOME%20%E6%BC%94%E5%94%B1%E4%BC%9A%E3%80%8B--%E6%9D%AD%E5%B7%9E%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01wMIdwG2GdSDh7sAMs_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
+INSERT INTO `goods` VALUES (5826, '【杭州】【万有音乐系】《 LARA 梁心颐 - HOME 演唱会》--杭州站', '2020-03-26', '2020-12-31', '场馆：杭州市 | MAO Livehouse杭州', 'https://detail.damai.cn/item.htm?id=610134716338&clicktitle=%E3%80%90%E4%B8%87%E6%9C%89%E9%9F%B3%E4%B9%90%E7%B3%BB%E3%80%91%E3%80%8A%20LARA%20%E6%A2%81%E5%BF%83%E9%A2%90%20-%20HOME%20%E6%BC%94%E5%94%B1%E4%BC%9A%E3%80%8B--%E6%9D%AD%E5%B7%9E%E7%AB%99', 0, '//img.alicdn.com/bao/uploaded/https://img.alicdn.com/imgextra/i1/2251059038/O1CN01wMIdwG2GdSDh7sAMs_!!2251059038.jpg_q60.jpg_.webp', 0, 0);
 
 -- ----------------------------
 -- Table structure for goodsdetail
@@ -3172,13 +3013,12 @@ CREATE TABLE `goodsdetail`  (
   `ticket_type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`detail_id`) USING BTREE,
   INDEX `FK_Reference_3`(`goods_id`) USING BTREE,
-  CONSTRAINT `FK_Reference_3` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 27463 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+  CONSTRAINT `FK_Reference_3` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 27476 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of goodsdetail
 -- ----------------------------
-INSERT INTO `goodsdetail` VALUES (1, 1, 0, 0, 'time', '-1');
 INSERT INTO `goodsdetail` VALUES (11970, 2734, 300, 1, '2020-11-28 周六 15:00-22:30', '预售单日票300元');
 INSERT INTO `goodsdetail` VALUES (11971, 2734, 520, 1, '2020-11-28 周六 15:00-22:30', 'pro单日票520元');
 INSERT INTO `goodsdetail` VALUES (11972, 2734, 540, 1, '2020-11-28 周六 15:00-22:30', '预售友友单日票（双人）540元');
@@ -15731,11 +15571,6 @@ INSERT INTO `goodsdetail` VALUES (24518, 4911, 580, 0, '2020.10.02 周五 19:30'
 INSERT INTO `goodsdetail` VALUES (24519, 4912, 180, 1, '2020.10.01 周四 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (24520, 4912, 280, 1, '2020.10.01 周四 19:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (24521, 4912, 580, 0, '2020.10.01 周四 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (24522, 4913, 188, 1, '超值套餐', '188票面 BEES EARTH蜂@共同体（鸡尾酒*1）');
-INSERT INTO `goodsdetail` VALUES (24523, 4913, 368, 1, '超值套餐', '368票面 蜂拥而至（青岛啤酒*6）');
-INSERT INTO `goodsdetail` VALUES (24524, 4913, 498, 1, '超值套餐', '498票面 GOLDEN BEE加勒比海蜂（鸡尾酒*1）');
-INSERT INTO `goodsdetail` VALUES (24525, 4913, 1088, 1, '超值套餐', '1088票面 BEESWISH心愿蜜蜂（鸡尾酒*1）');
-INSERT INTO `goodsdetail` VALUES (24526, 4913, 1688, 1, '超值套餐', '1688票面 蜂拥立方体（洋酒开口乐*1）');
 INSERT INTO `goodsdetail` VALUES (24527, 4914, 180, 1, '2020.10.03 周六 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (24528, 4914, 280, 1, '2020.10.03 周六 19:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (24529, 4914, 580, 0, '2020.10.03 周六 19:30', '580票面 ');
@@ -15783,11 +15618,6 @@ INSERT INTO `goodsdetail` VALUES (24570, 4926, 1000, 1, '2020-07-16至2021-07-01
 INSERT INTO `goodsdetail` VALUES (24571, 4926, 1488, 1, '2020-07-16至2021-07-01', '1488票面 ');
 INSERT INTO `goodsdetail` VALUES (24572, 4926, 1888, 1, '2020-07-16至2021-07-01', '1888票面 ');
 INSERT INTO `goodsdetail` VALUES (24573, 4926, 3888, 1, '2020-07-16至2021-07-01', '3888票面 ');
-INSERT INTO `goodsdetail` VALUES (24574, 4927, 388, 1, '2020-06-17至2020-12-31', '388票面 精选鸡尾酒套餐');
-INSERT INTO `goodsdetail` VALUES (24575, 4927, 448, 1, '2020-06-17至2020-12-31', '448票面 精选一口杯鸡尾酒套餐');
-INSERT INTO `goodsdetail` VALUES (24576, 4927, 468, 1, '2020-06-17至2020-12-31', '468票面 精选百威啤酒套餐');
-INSERT INTO `goodsdetail` VALUES (24577, 4927, 1128, 1, '2020-06-17至2020-12-31', '1128票面 SKY伏特加套餐');
-INSERT INTO `goodsdetail` VALUES (24578, 4927, 1788, 1, '2020-06-17至2020-12-31', '1788票面 百御蜜桔朗姆利口酒套餐');
 INSERT INTO `goodsdetail` VALUES (24579, 4928, 100, 1, '2020.09.06 周日 20:00', '100票面 单人预售');
 INSERT INTO `goodsdetail` VALUES (24580, 4928, 120, 1, '2020.09.06 周日 20:00', '120票面 单人全价');
 INSERT INTO `goodsdetail` VALUES (24581, 4928, 180, 1, '2020.09.06 周日 20:00', '180票面 双人预售');
@@ -15832,29 +15662,9 @@ INSERT INTO `goodsdetail` VALUES (24619, 4938, 159, 1, '2020.09.19 周六 20:30'
 INSERT INTO `goodsdetail` VALUES (24620, 4938, 179, 1, '2020.09.19 周六 20:30', '179票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24621, 4938, 229, 1, '2020.09.19 周六 20:30', '229票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24622, 4938, 319, 1, '2020.09.19 周六 20:30', '319票面 双人票');
-INSERT INTO `goodsdetail` VALUES (24623, 4939, 99, 1, '2020.09.11 周五 20:30', '99票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24624, 4939, 120, 1, '2020.09.11 周五 20:30', '120票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24625, 4940, 198, 1, '2020-07-16至2021-07-01', '198票面 （2扎啤酒+小吃1份）');
-INSERT INTO `goodsdetail` VALUES (24626, 4940, 398, 1, '2020-07-16至2021-07-01', '398票面 （3扎洋酒+果盘一份）');
-INSERT INTO `goodsdetail` VALUES (24627, 4940, 520, 1, '2020-07-16至2021-07-01', '520票面 （香槟一份+果盘一份+小吃一份）');
-INSERT INTO `goodsdetail` VALUES (24628, 4940, 1780, 1, '2020-07-16至2021-07-01', '1780票面 （香槟+洋酒+果盘+小吃）');
-INSERT INTO `goodsdetail` VALUES (24629, 4941, 120, 1, '2020.12.03 周四 20:30', '120票面 预售');
-INSERT INTO `goodsdetail` VALUES (24630, 4941, 150, 1, '2020.12.03 周四 20:30', '150票面 全价');
-INSERT INTO `goodsdetail` VALUES (24631, 4942, 280, 0, '2020.11.07 周六 21:00', '280票面 预售');
-INSERT INTO `goodsdetail` VALUES (24632, 4942, 280, 1, '2020.11.07 周六 21:00', '280票面 预售');
-INSERT INTO `goodsdetail` VALUES (24633, 4942, 350, 0, '2020.11.07 周六 21:00', '350票面 现场');
-INSERT INTO `goodsdetail` VALUES (24634, 4942, 350, 1, '2020.11.07 周六 21:00', '350票面 现场');
 INSERT INTO `goodsdetail` VALUES (24635, 4943, 100, 1, '2020.09.12 周六 20:00', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24636, 4943, 120, 1, '2020.09.12 周六 20:00', '120票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24637, 4943, 190, 1, '2020.09.12 周六 20:00', '190票面 双人票');
-INSERT INTO `goodsdetail` VALUES (24638, 4944, 10, 1, '2020-09-03至2021-02-01', '10票面 ');
-INSERT INTO `goodsdetail` VALUES (24639, 4945, 160, 1, '2020.10.31 周六 20:00', '160票面 单人票');
-INSERT INTO `goodsdetail` VALUES (24640, 4945, 280, 1, '2020.10.31 周六 20:00', '280票面 VIP票');
-INSERT INTO `goodsdetail` VALUES (24641, 4945, 280, 1, '2020.10.31 周六 20:00', '280票面 双人票');
-INSERT INTO `goodsdetail` VALUES (24642, 4946, 398, 1, '2020-07-10至2021-12-31', '398票面 【特惠】平日散台蹦迪套餐（酒类三选一）');
-INSERT INTO `goodsdetail` VALUES (24643, 4946, 598, 1, '2020-07-10至2021-12-31', '598票面 【特惠】周末散台蹦迪套餐（酒类三选一）');
-INSERT INTO `goodsdetail` VALUES (24644, 4946, 1480, 1, '2020-07-10至2021-12-31', '1480票面 平日拿破仑VSOP  豪华卡座套餐');
-INSERT INTO `goodsdetail` VALUES (24645, 4946, 1580, 1, '2020-07-10至2021-12-31', '1580票面 平日野格利口酒  豪华卡座套餐');
 INSERT INTO `goodsdetail` VALUES (24646, 4947, 180, 1, '2020.10.02 周五 20:30', '180票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24647, 4948, 80, 0, '2020.09.19 周六 20:30', '80票面 学生票');
 INSERT INTO `goodsdetail` VALUES (24648, 4948, 100, 0, '2020.09.19 周六 20:30', '100票面 预售票');
@@ -15934,10 +15744,6 @@ INSERT INTO `goodsdetail` VALUES (24721, 4973, 130, 1, '2020.09.26 周六 20:30'
 INSERT INTO `goodsdetail` VALUES (24722, 4974, 100, 1, '2020.10.16 周五 20:30', '100票面 早鸟票');
 INSERT INTO `goodsdetail` VALUES (24723, 4974, 120, 1, '2020.10.16 周五 20:30', '120票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24724, 4974, 150, 1, '2020.10.16 周五 20:30', '150票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24725, 4975, 120, 1, '2020.09.11 周五 21:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (24726, 4975, 150, 1, '2020.09.11 周五 21:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (24727, 4975, 120, 1, '2020.09.18 周五 21:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (24728, 4975, 150, 1, '2020.09.18 周五 21:30', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (24729, 4976, 90, 1, '2020.10.11 周日 20:00', '90票面 早鸟票');
 INSERT INTO `goodsdetail` VALUES (24730, 4976, 100, 1, '2020.10.11 周日 20:00', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24731, 4976, 120, 1, '2020.10.11 周日 20:00', '120票面 全价票');
@@ -15971,8 +15777,6 @@ INSERT INTO `goodsdetail` VALUES (24758, 4986, 220, 1, '2020.09.19 周六 20:30'
 INSERT INTO `goodsdetail` VALUES (24759, 4986, 260, 1, '2020.09.19 周六 20:30', '260票面 现场票');
 INSERT INTO `goodsdetail` VALUES (24760, 4987, 80, 1, '2020.09.13 周日 20:30', '80票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24761, 4987, 100, 1, '2020.09.13 周日 20:30', '100票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24762, 4988, 120, 1, '2020.09.18 周五 20:30', '120票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24763, 4988, 150, 1, '2020.09.18 周五 20:30', '150票面 	 现场票');
 INSERT INTO `goodsdetail` VALUES (24764, 4989, 80, 1, '2020.11.21 周六 20:30', '80票面 踏浪票');
 INSERT INTO `goodsdetail` VALUES (24765, 4989, 100, 1, '2020.11.21 周六 20:30', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24766, 4989, 120, 1, '2020.11.21 周六 20:30', '120票面 全价票');
@@ -15991,32 +15795,20 @@ INSERT INTO `goodsdetail` VALUES (24778, 4995, 80, 1, '2020.09.17 周四 19:30',
 INSERT INTO `goodsdetail` VALUES (24779, 4995, 120, 1, '2020.09.17 周四 19:30', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (24780, 4995, 150, 1, '2020.09.17 周四 19:30', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (24781, 4995, 180, 1, '2020.09.17 周四 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (24782, 4996, 150, 1, '2020.09.19 周六 20:00', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (24783, 4996, 180, 1, '2020.09.19 周六 20:00', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (24784, 4997, 240, 1, '2020.10.14 周三 20:00', '240票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24785, 4997, 450, 1, '2020.10.14 周三 20:00', '450票面 VIP');
 INSERT INTO `goodsdetail` VALUES (24786, 4998, 160, 1, '2020.10.06 周二 20:30', '160票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24787, 4998, 200, 1, '2020.10.06 周二 20:30', '200票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24788, 4999, 80, 1, '2020.09.19 周六 20:30', '80票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24789, 4999, 100, 1, '2020.09.19 周六 20:30', '100票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24790, 5000, 60, 1, '2020.10.04 周日 19:30', '60票面 60（60.00）');
-INSERT INTO `goodsdetail` VALUES (24791, 5000, 160, 1, '2020.10.04 周日 19:30', '160票面 160（160.00）');
-INSERT INTO `goodsdetail` VALUES (24792, 5000, 180, 1, '2020.10.04 周日 19:30', '180票面 180（180.00）');
-INSERT INTO `goodsdetail` VALUES (24793, 5000, 260, 1, '2020.10.04 周日 19:30', '260票面 260（260.00）');
-INSERT INTO `goodsdetail` VALUES (24794, 5000, 360, 1, '2020.10.04 周日 19:30', '360票面 360（360.00）');
 INSERT INTO `goodsdetail` VALUES (24795, 5002, 70, 1, '2020.10.29 周四 20:30', '70票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24796, 5002, 90, 1, '2020.10.29 周四 20:30', '90票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24797, 5003, 100, 1, '2020.10.23 周五 20:30', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24798, 5003, 120, 1, '2020.10.23 周五 20:30', '120票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24799, 5004, 120, 1, '2020.10.18 周日 18:30', '120票面 盲鸟票');
 INSERT INTO `goodsdetail` VALUES (24800, 5005, 80, 1, '2020.09.23 周三 20:30', '80票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24801, 5005, 100, 1, '2020.09.23 周三 20:30', '100票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24802, 5006, 100, 1, '2020.10.15 周四 20:30', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24803, 5006, 120, 1, '2020.10.15 周四 20:30', '120票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24804, 5007, 69, 1, '2020.10.31 周六 20:30', '69票面 学生票');
-INSERT INTO `goodsdetail` VALUES (24805, 5007, 99, 1, '2020.10.31 周六 20:30', '99票面 早鸟票');
-INSERT INTO `goodsdetail` VALUES (24806, 5007, 109, 1, '2020.10.31 周六 20:30', '109票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24807, 5007, 129, 1, '2020.10.31 周六 20:30', '129票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24808, 5008, 60, 1, '2020.09.05 周六 23:00', '60票面 早鸟票');
 INSERT INTO `goodsdetail` VALUES (24809, 5008, 100, 1, '2020.09.05 周六 23:00', '100票面 单人票');
 INSERT INTO `goodsdetail` VALUES (24810, 5008, 180, 1, '2020.09.05 周六 23:00', '180票面 双人票');
@@ -16031,11 +15823,6 @@ INSERT INTO `goodsdetail` VALUES (24818, 5008, 100, 1, '2020.09.19 周六 23:00'
 INSERT INTO `goodsdetail` VALUES (24819, 5008, 180, 1, '2020.09.19 周六 23:00', '180票面 双人票');
 INSERT INTO `goodsdetail` VALUES (24820, 5009, 120, 1, '2020.11.20 周五 19:30', '120票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24821, 5009, 150, 1, '2020.11.20 周五 19:30', '150票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24822, 5010, 80, 1, '2020.09.12 周六 20:30', '80票面 早鸟票');
-INSERT INTO `goodsdetail` VALUES (24823, 5010, 100, 1, '2020.09.12 周六 20:30', '100票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24824, 5010, 120, 1, '2020.09.12 周六 20:30', '120票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24825, 5011, 80, 1, '2020.09.13 周日 20:30', '80票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24826, 5011, 100, 1, '2020.09.13 周日 20:30', '100票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24827, 5012, 100, 1, '2020.11.07 周六 20:30', '100票面 学生票');
 INSERT INTO `goodsdetail` VALUES (24828, 5012, 120, 1, '2020.11.07 周六 20:30', '120票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24829, 5012, 150, 1, '2020.11.07 周六 20:30', '150票面 全价票');
@@ -16101,11 +15888,6 @@ INSERT INTO `goodsdetail` VALUES (24888, 5037, 80, 1, '2020.10.24 周六 20:30',
 INSERT INTO `goodsdetail` VALUES (24889, 5037, 100, 1, '2020.10.24 周六 20:30', '100票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24890, 5038, 100, 1, '2020.09.11 周五 20:00', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24891, 5038, 120, 1, '2020.09.11 周五 20:00', '120票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24892, 5039, 150, 1, '2020.09.12 周六 21:00', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (24893, 5039, 180, 1, '2020.09.12 周六 21:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (24894, 5040, 60, 1, '2020.09.11 周五 23:00', '60票面 早鸟票');
-INSERT INTO `goodsdetail` VALUES (24895, 5040, 100, 1, '2020.09.11 周五 23:00', '100票面 单人票');
-INSERT INTO `goodsdetail` VALUES (24896, 5040, 180, 1, '2020.09.11 周五 23:00', '180票面 双人票');
 INSERT INTO `goodsdetail` VALUES (24897, 5041, 70, 1, '2020.09.20 周日 20:30', '70票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24898, 5041, 90, 1, '2020.09.20 周日 20:30', '90票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24899, 5042, 100, 1, '2020.10.05 周一 20:30', '100票面 预售票');
@@ -16140,15 +15922,10 @@ INSERT INTO `goodsdetail` VALUES (24927, 5092, 80, 1, '2020.12.24 周四 20:30',
 INSERT INTO `goodsdetail` VALUES (24928, 5092, 100, 1, '2020.12.24 周四 20:30', '100票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24929, 5094, 120, 1, '2020.09.20 周日 20:30', '120票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24930, 5094, 150, 1, '2020.09.20 周日 20:30', '150票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24931, 5095, 160, 1, '2020.11.01 周日 20:00', '160票面 单人票');
-INSERT INTO `goodsdetail` VALUES (24932, 5095, 280, 1, '2020.11.01 周日 20:00', '280票面 VIP票');
-INSERT INTO `goodsdetail` VALUES (24933, 5095, 280, 1, '2020.11.01 周日 20:00', '280票面 双人票');
 INSERT INTO `goodsdetail` VALUES (24934, 5096, 100, 1, '2020.11.01 周日 20:30', '100票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24935, 5096, 120, 1, '2020.11.01 周日 20:30', '120票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24936, 5097, 70, 1, '2020.10.30 周五 20:30', '70票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24937, 5097, 90, 1, '2020.10.30 周五 20:30', '90票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24938, 5098, 49, 1, '2020.10.16 周五 20:00', '49票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24939, 5098, 69, 1, '2020.10.16 周五 20:00', '69票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24940, 5100, 80, 1, '2020.09.09 周三 20:30', '80票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24941, 5100, 100, 1, '2020.09.09 周三 20:30', '100票面 全价票');
 INSERT INTO `goodsdetail` VALUES (24942, 5101, 55, 1, '2020.09.18 周五 20:30', '55票面 学生票');
@@ -16177,9 +15954,6 @@ INSERT INTO `goodsdetail` VALUES (24964, 5136, 258, 1, '2020.10.17 周六 19:30'
 INSERT INTO `goodsdetail` VALUES (24965, 5141, 55, 1, '2020.09.19 周六 20:30', '55票面 学生票');
 INSERT INTO `goodsdetail` VALUES (24966, 5141, 66, 1, '2020.09.19 周六 20:30', '66票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24967, 5141, 88, 1, '2020.09.19 周六 20:30', '88票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24968, 5144, 80, 1, '2020.09.06 周日 20:00', '80票面 预售票');
-INSERT INTO `goodsdetail` VALUES (24969, 5144, 100, 1, '2020.09.06 周日 20:00', '100票面 全价票');
-INSERT INTO `goodsdetail` VALUES (24970, 5144, 140, 1, '2020.09.06 周日 20:00', '140票面 双人票');
 INSERT INTO `goodsdetail` VALUES (24971, 5152, 100, 1, '2020.10.17 周六 20:30', '100票面 学生票');
 INSERT INTO `goodsdetail` VALUES (24972, 5152, 120, 1, '2020.10.17 周六 20:30', '120票面 预售票');
 INSERT INTO `goodsdetail` VALUES (24973, 5152, 150, 1, '2020.10.17 周六 20:30', '150票面 全价票');
@@ -16277,11 +16051,6 @@ INSERT INTO `goodsdetail` VALUES (25064, 5160, 580, 1, '2020.11.06 周五 19:30'
 INSERT INTO `goodsdetail` VALUES (25065, 5160, 580, 1, '2020.11.06 周五 19:30', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (25066, 5160, 680, 1, '2020.11.06 周五 19:30', '680票面 ');
 INSERT INTO `goodsdetail` VALUES (25067, 5160, 680, 1, '2020.11.06 周五 19:30', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (25068, 5161, 180, 0, '2020.10.21 周三 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (25069, 5161, 280, 1, '2020.10.21 周三 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (25070, 5161, 380, 1, '2020.10.21 周三 19:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (25071, 5161, 480, 1, '2020.10.21 周三 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (25072, 5161, 680, 1, '2020.10.21 周三 19:30', '680票面 ');
 INSERT INTO `goodsdetail` VALUES (25073, 5162, 80, 0, '2020.10.07 周三 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (25074, 5162, 80, 1, '2020.10.07 周三 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (25075, 5162, 280, 1, '2020.10.07 周三 19:30', '280票面 ');
@@ -16336,30 +16105,6 @@ INSERT INTO `goodsdetail` VALUES (25123, 5163, 288, 1, '2020.09.20 周日 19:30'
 INSERT INTO `goodsdetail` VALUES (25124, 5163, 388, 1, '2020.09.20 周日 19:30', '388票面 ');
 INSERT INTO `goodsdetail` VALUES (25125, 5163, 488, 1, '2020.09.20 周日 19:30', '488票面 ');
 INSERT INTO `goodsdetail` VALUES (25126, 5163, 588, 1, '2020.09.20 周日 19:30', '588票面 ');
-INSERT INTO `goodsdetail` VALUES (25127, 5164, 88, 0, '2020.10.16 周五 19:30', '88票面 ');
-INSERT INTO `goodsdetail` VALUES (25128, 5164, 188, 1, '2020.10.16 周五 19:30', '188票面 ');
-INSERT INTO `goodsdetail` VALUES (25129, 5164, 288, 1, '2020.10.16 周五 19:30', '288票面 ');
-INSERT INTO `goodsdetail` VALUES (25130, 5164, 388, 1, '2020.10.16 周五 19:30', '388票面 ');
-INSERT INTO `goodsdetail` VALUES (25131, 5164, 488, 1, '2020.10.16 周五 19:30', '488票面 ');
-INSERT INTO `goodsdetail` VALUES (25132, 5164, 588, 1, '2020.10.16 周五 19:30', '588票面 ');
-INSERT INTO `goodsdetail` VALUES (25133, 5164, 88, 0, '2020.10.17 周六 14:00', '88票面 ');
-INSERT INTO `goodsdetail` VALUES (25134, 5164, 188, 1, '2020.10.17 周六 14:00', '188票面 ');
-INSERT INTO `goodsdetail` VALUES (25135, 5164, 288, 1, '2020.10.17 周六 14:00', '288票面 ');
-INSERT INTO `goodsdetail` VALUES (25136, 5164, 388, 1, '2020.10.17 周六 14:00', '388票面 ');
-INSERT INTO `goodsdetail` VALUES (25137, 5164, 488, 1, '2020.10.17 周六 14:00', '488票面 ');
-INSERT INTO `goodsdetail` VALUES (25138, 5164, 588, 1, '2020.10.17 周六 14:00', '588票面 ');
-INSERT INTO `goodsdetail` VALUES (25139, 5164, 88, 0, '2020.10.17 周六 19:30', '88票面 ');
-INSERT INTO `goodsdetail` VALUES (25140, 5164, 188, 1, '2020.10.17 周六 19:30', '188票面 ');
-INSERT INTO `goodsdetail` VALUES (25141, 5164, 288, 1, '2020.10.17 周六 19:30', '288票面 ');
-INSERT INTO `goodsdetail` VALUES (25142, 5164, 388, 1, '2020.10.17 周六 19:30', '388票面 ');
-INSERT INTO `goodsdetail` VALUES (25143, 5164, 488, 1, '2020.10.17 周六 19:30', '488票面 ');
-INSERT INTO `goodsdetail` VALUES (25144, 5164, 588, 1, '2020.10.17 周六 19:30', '588票面 ');
-INSERT INTO `goodsdetail` VALUES (25145, 5164, 88, 0, '2020.10.18 周日 14:00', '88票面 ');
-INSERT INTO `goodsdetail` VALUES (25146, 5164, 188, 1, '2020.10.18 周日 14:00', '188票面 ');
-INSERT INTO `goodsdetail` VALUES (25147, 5164, 288, 1, '2020.10.18 周日 14:00', '288票面 ');
-INSERT INTO `goodsdetail` VALUES (25148, 5164, 388, 1, '2020.10.18 周日 14:00', '388票面 ');
-INSERT INTO `goodsdetail` VALUES (25149, 5164, 488, 1, '2020.10.18 周日 14:00', '488票面 ');
-INSERT INTO `goodsdetail` VALUES (25150, 5164, 588, 1, '2020.10.18 周日 14:00', '588票面 ');
 INSERT INTO `goodsdetail` VALUES (25151, 5165, 498, 1, '2020.09.26 周六 18:30', '498票面 普通票');
 INSERT INTO `goodsdetail` VALUES (25152, 5165, 498, 1, '2020.09.26 周六 18:30', '498票面 普通票');
 INSERT INTO `goodsdetail` VALUES (25153, 5165, 498, 1, '2020.09.26 周六 18:30', '498票面 普通票');
@@ -16967,11 +16712,6 @@ INSERT INTO `goodsdetail` VALUES (25754, 5204, 280, 1, '2020.10.25 周日 14:00'
 INSERT INTO `goodsdetail` VALUES (25755, 5204, 120, 1, '2020.10.25 周日 19:30', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (25756, 5204, 180, 1, '2020.10.25 周日 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (25757, 5204, 280, 1, '2020.10.25 周日 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (25758, 5205, 180, 1, '2020.12.25 周五 19:30', '180票面 180（180.00）');
-INSERT INTO `goodsdetail` VALUES (25759, 5205, 280, 1, '2020.12.25 周五 19:30', '280票面 280（280.00）');
-INSERT INTO `goodsdetail` VALUES (25760, 5205, 380, 1, '2020.12.25 周五 19:30', '380票面 380（380.00）');
-INSERT INTO `goodsdetail` VALUES (25761, 5205, 480, 1, '2020.12.25 周五 19:30', '480票面 480（480.00）');
-INSERT INTO `goodsdetail` VALUES (25762, 5205, 580, 0, '2020.12.25 周五 19:30', '580票面 580（580.00）');
 INSERT INTO `goodsdetail` VALUES (25763, 5206, 50, 0, '2020.09.24 周四 19:15', '50票面 50元');
 INSERT INTO `goodsdetail` VALUES (25764, 5206, 80, 1, '2020.09.24 周四 19:15', '80票面 80元');
 INSERT INTO `goodsdetail` VALUES (25765, 5206, 180, 1, '2020.09.24 周四 19:15', '180票面 180元');
@@ -17224,16 +16964,6 @@ INSERT INTO `goodsdetail` VALUES (26011, 5220, 380, 1, '2020.11.22 周日 14:00'
 INSERT INTO `goodsdetail` VALUES (26012, 5220, 480, 1, '2020.11.22 周日 14:00', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26013, 5220, 580, 1, '2020.11.22 周日 14:00', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (26014, 5220, 680, 1, '2020.11.22 周日 14:00', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (26015, 5276, 180, 1, '2020.09.12 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26016, 5276, 180, 1, '2020.09.12 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26017, 5276, 280, 1, '2020.09.12 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26018, 5276, 280, 1, '2020.09.12 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26019, 5276, 380, 0, '2020.09.12 周六 19:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26020, 5276, 380, 0, '2020.09.12 周六 19:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26021, 5276, 480, 1, '2020.09.12 周六 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26022, 5276, 480, 1, '2020.09.12 周六 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26023, 5276, 580, 0, '2020.09.12 周六 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26024, 5276, 580, 0, '2020.09.12 周六 19:30', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (26025, 5277, 100, 1, '2020.11.13 周五 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26026, 5277, 100, 1, '2020.11.13 周五 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26027, 5277, 180, 1, '2020.11.13 周五 19:30', '180票面 ');
@@ -17258,30 +16988,6 @@ INSERT INTO `goodsdetail` VALUES (26045, 5277, 480, 1, '2020.11.14 周六 19:30'
 INSERT INTO `goodsdetail` VALUES (26046, 5277, 480, 1, '2020.11.14 周六 19:30', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26047, 5277, 580, 1, '2020.11.14 周六 19:30', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (26048, 5277, 580, 1, '2020.11.14 周六 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26049, 5278, 180, 1, '2020.09.18 周五 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26050, 5278, 180, 1, '2020.09.18 周五 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26051, 5278, 280, 1, '2020.09.18 周五 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26052, 5278, 280, 1, '2020.09.18 周五 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26053, 5278, 480, 1, '2020.09.18 周五 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26054, 5278, 480, 1, '2020.09.18 周五 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26055, 5278, 580, 1, '2020.09.18 周五 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26056, 5278, 580, 1, '2020.09.18 周五 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26057, 5278, 680, 1, '2020.09.18 周五 19:30', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (26058, 5278, 680, 1, '2020.09.18 周五 19:30', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (26059, 5278, 880, 0, '2020.09.18 周五 19:30', '880票面 ');
-INSERT INTO `goodsdetail` VALUES (26060, 5278, 880, 1, '2020.09.18 周五 19:30', '880票面 ');
-INSERT INTO `goodsdetail` VALUES (26061, 5278, 180, 1, '2020.09.19 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26062, 5278, 180, 1, '2020.09.19 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26063, 5278, 280, 1, '2020.09.19 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26064, 5278, 280, 1, '2020.09.19 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26065, 5278, 480, 0, '2020.09.19 周六 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26066, 5278, 480, 1, '2020.09.19 周六 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26067, 5278, 580, 1, '2020.09.19 周六 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26068, 5278, 580, 1, '2020.09.19 周六 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26069, 5278, 680, 1, '2020.09.19 周六 19:30', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (26070, 5278, 680, 1, '2020.09.19 周六 19:30', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (26071, 5278, 880, 0, '2020.09.19 周六 19:30', '880票面 ');
-INSERT INTO `goodsdetail` VALUES (26072, 5278, 880, 1, '2020.09.19 周六 19:30', '880票面 ');
 INSERT INTO `goodsdetail` VALUES (26073, 5279, 180, 1, '2020.10.30 周五 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26074, 5279, 180, 1, '2020.10.30 周五 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26075, 5279, 280, 1, '2020.10.30 周五 19:30', '280票面 ');
@@ -17314,18 +17020,6 @@ INSERT INTO `goodsdetail` VALUES (26101, 5280, 480, 1, '2020.10.07 周三 19:30'
 INSERT INTO `goodsdetail` VALUES (26102, 5280, 480, 1, '2020.10.07 周三 19:30', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26103, 5280, 580, 1, '2020.10.07 周三 19:30', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (26104, 5280, 580, 1, '2020.10.07 周三 19:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26105, 5281, 100, 1, '2020.09.23 周三 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26106, 5281, 100, 1, '2020.09.23 周三 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26107, 5281, 150, 1, '2020.09.23 周三 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26108, 5281, 150, 1, '2020.09.23 周三 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26109, 5281, 180, 0, '2020.09.23 周三 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26110, 5281, 180, 1, '2020.09.23 周三 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26111, 5281, 100, 1, '2020.09.23 周三 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26112, 5281, 100, 1, '2020.09.23 周三 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26113, 5281, 150, 1, '2020.09.23 周三 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26114, 5281, 150, 1, '2020.09.23 周三 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26115, 5281, 180, 0, '2020.09.23 周三 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26116, 5281, 180, 1, '2020.09.23 周三 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26117, 5282, 180, 0, '2020.11.10 周二 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26118, 5282, 280, 1, '2020.11.10 周二 19:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26119, 5282, 480, 1, '2020.11.10 周二 19:30', '480票面 ');
@@ -17385,24 +17079,9 @@ INSERT INTO `goodsdetail` VALUES (26172, 5297, 200, 1, '2020.09.19 周六 19:30'
 INSERT INTO `goodsdetail` VALUES (26173, 5297, 100, 1, '2020.09.20 周日 14:00', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26174, 5297, 150, 1, '2020.09.20 周日 14:00', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (26175, 5297, 200, 1, '2020.09.20 周日 14:00', '200票面 ');
-INSERT INTO `goodsdetail` VALUES (26176, 5298, 80, 0, '2020.10.04 周日 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26177, 5298, 180, 0, '2020.10.04 周日 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26178, 5298, 280, 1, '2020.10.04 周日 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26179, 5298, 480, 1, '2020.10.04 周日 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26180, 5298, 600, 0, '2020.10.04 周日 19:30', '600套票 480*2');
-INSERT INTO `goodsdetail` VALUES (26181, 5298, 680, 1, '2020.10.04 周日 19:30', '680票面 ');
-INSERT INTO `goodsdetail` VALUES (26182, 5298, 850, 0, '2020.10.04 周日 19:30', '850套票 680*2');
 INSERT INTO `goodsdetail` VALUES (26183, 5299, 100, 1, '2020.10.31 周六 14:00', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26184, 5299, 150, 1, '2020.10.31 周六 14:00', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (26185, 5299, 200, 1, '2020.10.31 周六 14:00', '200票面 ');
-INSERT INTO `goodsdetail` VALUES (26186, 5301, 100, 1, '2020.09.12 周六 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26187, 5301, 180, 1, '2020.09.12 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26188, 5301, 280, 1, '2020.09.12 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26189, 5301, 480, 1, '2020.09.12 周六 19:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26190, 5301, 100, 0, '2020.09.13 周日 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26191, 5301, 180, 1, '2020.09.13 周日 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26192, 5301, 280, 1, '2020.09.13 周日 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26193, 5301, 480, 1, '2020.09.13 周日 19:30', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26194, 5302, 80, 1, '2020.09.19 周六 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26195, 5302, 100, 1, '2020.09.19 周六 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26196, 5302, 180, 1, '2020.09.19 周六 19:30', '180票面 ');
@@ -17479,10 +17158,6 @@ INSERT INTO `goodsdetail` VALUES (26266, 5316, 200, 1, '2020.10.11 周日 19:30'
 INSERT INTO `goodsdetail` VALUES (26267, 5317, 100, 1, '2020.11.21 周六 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26268, 5317, 150, 1, '2020.11.21 周六 19:30', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (26269, 5317, 200, 1, '2020.11.21 周六 19:30', '200票面 ');
-INSERT INTO `goodsdetail` VALUES (26270, 5318, 80, 1, '2020.10.19 周一 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26271, 5318, 180, 1, '2020.10.19 周一 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26272, 5318, 280, 1, '2020.10.19 周一 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26273, 5318, 480, 1, '2020.10.19 周一 19:30', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26274, 5319, 100, 1, '2020.10.31 周六 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26275, 5319, 150, 1, '2020.10.31 周六 19:30', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (26276, 5319, 200, 1, '2020.10.31 周六 19:30', '200票面 ');
@@ -17524,15 +17199,6 @@ INSERT INTO `goodsdetail` VALUES (26311, 5334, 400, 1, '2020.09.06 周日 14:00'
 INSERT INTO `goodsdetail` VALUES (26312, 5334, 180, 1, '2020.09.06 周日 16:00', '180票面 180元单人票（180.00）');
 INSERT INTO `goodsdetail` VALUES (26313, 5334, 300, 1, '2020.09.06 周日 16:00', '300票面 300元亲子票（一大一小）（300.00）');
 INSERT INTO `goodsdetail` VALUES (26314, 5334, 400, 1, '2020.09.06 周日 16:00', '400票面 400元家庭套票（两大一小）（400.00）');
-INSERT INTO `goodsdetail` VALUES (26315, 5335, 100, 1, '2020.10.06 周二 10:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26316, 5335, 180, 1, '2020.10.06 周二 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26317, 5335, 280, 1, '2020.10.06 周二 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26318, 5335, 100, 1, '2020.10.06 周二 14:00', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26319, 5335, 180, 1, '2020.10.06 周二 14:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26320, 5335, 280, 1, '2020.10.06 周二 14:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26321, 5335, 100, 1, '2020.10.07 周三 10:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26322, 5335, 180, 1, '2020.10.07 周三 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26323, 5335, 280, 1, '2020.10.07 周三 10:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26324, 5336, 80, 1, '2020.10.04 周日 10:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26325, 5336, 120, 1, '2020.10.04 周日 10:30', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (26326, 5336, 180, 1, '2020.10.04 周日 10:30', '180票面 ');
@@ -17624,84 +17290,6 @@ INSERT INTO `goodsdetail` VALUES (26411, 5339, 80, 1, '2020.09.12 周六 15:30',
 INSERT INTO `goodsdetail` VALUES (26412, 5339, 180, 1, '2020.09.12 周六 15:30', '180票面 180元');
 INSERT INTO `goodsdetail` VALUES (26413, 5339, 280, 1, '2020.09.12 周六 15:30', '280票面 280元');
 INSERT INTO `goodsdetail` VALUES (26414, 5339, 380, 1, '2020.09.12 周六 15:30', '380票面 380元');
-INSERT INTO `goodsdetail` VALUES (26415, 5340, 80, 0, '2020.11.07 周六 10:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26416, 5340, 80, 0, '2020.11.07 周六 10:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26417, 5340, 180, 0, '2020.11.07 周六 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26418, 5340, 180, 0, '2020.11.07 周六 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26419, 5340, 280, 1, '2020.11.07 周六 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26420, 5340, 280, 1, '2020.11.07 周六 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26421, 5340, 380, 1, '2020.11.07 周六 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26422, 5340, 380, 1, '2020.11.07 周六 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26423, 5340, 480, 1, '2020.11.07 周六 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26424, 5340, 480, 1, '2020.11.07 周六 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26425, 5340, 580, 0, '2020.11.07 周六 10:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26426, 5340, 580, 0, '2020.11.07 周六 10:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26427, 5340, 580, 1, '2020.11.07 周六 10:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26428, 5340, 80, 0, '2020.11.07 周六 15:00', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26429, 5340, 80, 0, '2020.11.07 周六 15:00', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26430, 5340, 180, 0, '2020.11.07 周六 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26431, 5340, 180, 0, '2020.11.07 周六 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26432, 5340, 280, 1, '2020.11.07 周六 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26433, 5340, 280, 1, '2020.11.07 周六 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26434, 5340, 380, 1, '2020.11.07 周六 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26435, 5340, 380, 1, '2020.11.07 周六 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26436, 5340, 480, 1, '2020.11.07 周六 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26437, 5340, 480, 1, '2020.11.07 周六 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26438, 5340, 580, 0, '2020.11.07 周六 15:00', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26439, 5340, 580, 0, '2020.11.07 周六 15:00', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26440, 5340, 580, 1, '2020.11.07 周六 15:00', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26441, 5340, 80, 0, '2020.11.07 周六 19:15', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26442, 5340, 80, 0, '2020.11.07 周六 19:15', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26443, 5340, 180, 0, '2020.11.07 周六 19:15', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26444, 5340, 180, 0, '2020.11.07 周六 19:15', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26445, 5340, 280, 1, '2020.11.07 周六 19:15', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26446, 5340, 280, 1, '2020.11.07 周六 19:15', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26447, 5340, 380, 1, '2020.11.07 周六 19:15', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26448, 5340, 380, 1, '2020.11.07 周六 19:15', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26449, 5340, 480, 1, '2020.11.07 周六 19:15', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26450, 5340, 480, 1, '2020.11.07 周六 19:15', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26451, 5340, 580, 1, '2020.11.07 周六 19:15', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26452, 5340, 580, 1, '2020.11.07 周六 19:15', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26453, 5340, 580, 1, '2020.11.07 周六 19:15', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26454, 5340, 80, 0, '2020.11.08 周日 10:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26455, 5340, 80, 0, '2020.11.08 周日 10:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26456, 5340, 180, 0, '2020.11.08 周日 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26457, 5340, 180, 0, '2020.11.08 周日 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26458, 5340, 280, 1, '2020.11.08 周日 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26459, 5340, 280, 1, '2020.11.08 周日 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26460, 5340, 380, 1, '2020.11.08 周日 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26461, 5340, 380, 1, '2020.11.08 周日 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26462, 5340, 480, 1, '2020.11.08 周日 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26463, 5340, 480, 1, '2020.11.08 周日 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26464, 5340, 580, 1, '2020.11.08 周日 10:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26465, 5340, 580, 1, '2020.11.08 周日 10:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26466, 5340, 580, 1, '2020.11.08 周日 10:30', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26467, 5340, 80, 0, '2020.11.08 周日 15:00', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26468, 5340, 80, 0, '2020.11.08 周日 15:00', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26469, 5340, 180, 0, '2020.11.08 周日 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26470, 5340, 180, 0, '2020.11.08 周日 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26471, 5340, 280, 1, '2020.11.08 周日 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26472, 5340, 280, 1, '2020.11.08 周日 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26473, 5340, 380, 1, '2020.11.08 周日 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26474, 5340, 380, 1, '2020.11.08 周日 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26475, 5340, 480, 1, '2020.11.08 周日 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26476, 5340, 480, 1, '2020.11.08 周日 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26477, 5340, 580, 1, '2020.11.08 周日 15:00', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26478, 5340, 580, 1, '2020.11.08 周日 15:00', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26479, 5340, 580, 1, '2020.11.08 周日 15:00', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26480, 5340, 80, 0, '2020.11.08 周日 19:15', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26481, 5340, 80, 0, '2020.11.08 周日 19:15', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26482, 5340, 180, 0, '2020.11.08 周日 19:15', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26483, 5340, 180, 0, '2020.11.08 周日 19:15', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26484, 5340, 280, 1, '2020.11.08 周日 19:15', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26485, 5340, 280, 1, '2020.11.08 周日 19:15', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26486, 5340, 380, 1, '2020.11.08 周日 19:15', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26487, 5340, 380, 1, '2020.11.08 周日 19:15', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26488, 5340, 480, 1, '2020.11.08 周日 19:15', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26489, 5340, 480, 1, '2020.11.08 周日 19:15', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26490, 5340, 580, 1, '2020.11.08 周日 19:15', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26491, 5340, 580, 1, '2020.11.08 周日 19:15', '580票面 ');
-INSERT INTO `goodsdetail` VALUES (26492, 5340, 580, 1, '2020.11.08 周日 19:15', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (26493, 5341, 80, 0, '2020.11.14 周六 10:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26494, 5341, 180, 1, '2020.11.14 周六 10:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26495, 5341, 280, 1, '2020.11.14 周六 10:30', '280票面 ');
@@ -17724,21 +17312,6 @@ INSERT INTO `goodsdetail` VALUES (26511, 5341, 380, 1, '2020.11.14 周六 15:30'
 INSERT INTO `goodsdetail` VALUES (26512, 5341, 480, 1, '2020.11.14 周六 15:30', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26513, 5344, 80, 1, '2020.09.26 周六 10:15', '80票面 80元');
 INSERT INTO `goodsdetail` VALUES (26514, 5344, 80, 1, '2020.09.26 周六 13:30', '80票面 80元');
-INSERT INTO `goodsdetail` VALUES (26515, 5345, 80, 0, '2020.11.15 周日 10:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26516, 5345, 180, 1, '2020.11.15 周日 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26517, 5345, 280, 1, '2020.11.15 周日 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26518, 5345, 380, 1, '2020.11.15 周日 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26519, 5345, 480, 1, '2020.11.15 周日 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26520, 5345, 80, 0, '2020.11.15 周日 13:00', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26521, 5345, 180, 1, '2020.11.15 周日 13:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26522, 5345, 280, 1, '2020.11.15 周日 13:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26523, 5345, 380, 1, '2020.11.15 周日 13:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26524, 5345, 480, 1, '2020.11.15 周日 13:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26525, 5345, 80, 0, '2020.11.15 周日 15:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26526, 5345, 180, 1, '2020.11.15 周日 15:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26527, 5345, 280, 1, '2020.11.15 周日 15:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26528, 5345, 380, 1, '2020.11.15 周日 15:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26529, 5345, 480, 1, '2020.11.15 周日 15:30', '480票面 ');
 INSERT INTO `goodsdetail` VALUES (26530, 5346, 180, 1, '2020.10.18 周日 10:30', '180票面 预售');
 INSERT INTO `goodsdetail` VALUES (26531, 5346, 180, 1, '2020.10.18 周日 10:30', '180票面 预售');
 INSERT INTO `goodsdetail` VALUES (26532, 5346, 280, 1, '2020.10.18 周日 10:30', '280票面 预售');
@@ -17759,14 +17332,6 @@ INSERT INTO `goodsdetail` VALUES (26546, 5347, 50, 0, '2020.10.10 周六 19:30',
 INSERT INTO `goodsdetail` VALUES (26547, 5347, 100, 1, '2020.10.10 周六 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26548, 5347, 180, 1, '2020.10.10 周六 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26549, 5347, 280, 1, '2020.10.10 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26550, 5349, 80, 1, '2020.09.20 周日 10:30', '80票面 四等座（80.00）');
-INSERT INTO `goodsdetail` VALUES (26551, 5349, 120, 1, '2020.09.20 周日 10:30', '120票面 三等座（120.00）');
-INSERT INTO `goodsdetail` VALUES (26552, 5349, 180, 0, '2020.09.20 周日 10:30', '180票面 二等座（180.00）');
-INSERT INTO `goodsdetail` VALUES (26553, 5349, 280, 0, '2020.09.20 周日 10:30', '280票面 一等座（280.00）');
-INSERT INTO `goodsdetail` VALUES (26554, 5349, 80, 1, '2020.09.20 周日 14:00', '80票面 四等座（80.00）');
-INSERT INTO `goodsdetail` VALUES (26555, 5349, 120, 1, '2020.09.20 周日 14:00', '120票面 三等座（120.00）');
-INSERT INTO `goodsdetail` VALUES (26556, 5349, 180, 0, '2020.09.20 周日 14:00', '180票面 二等座（180.00）');
-INSERT INTO `goodsdetail` VALUES (26557, 5349, 280, 0, '2020.09.20 周日 14:00', '280票面 一等座（280.00）');
 INSERT INTO `goodsdetail` VALUES (26558, 5351, 80, 1, '2020.12.05 周六 10:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26559, 5351, 180, 1, '2020.12.05 周六 10:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26560, 5351, 280, 1, '2020.12.05 周六 10:30', '280票面 ');
@@ -17803,7 +17368,6 @@ INSERT INTO `goodsdetail` VALUES (26590, 5351, 580, 1, '2020.12.06 周日 10:30'
 INSERT INTO `goodsdetail` VALUES (26591, 5351, 720, 1, '2020.12.06 周日 10:30', '720票面 ');
 INSERT INTO `goodsdetail` VALUES (26592, 5351, 920, 1, '2020.12.06 周日 10:30', '920票面 ');
 INSERT INTO `goodsdetail` VALUES (26593, 5351, 1320, 1, '2020.12.06 周日 10:30', '1320票面 ');
-INSERT INTO `goodsdetail` VALUES (26594, 5352, 80, 1, '2020.10.04 周日 10:30', '80票面 80元');
 INSERT INTO `goodsdetail` VALUES (26595, 5353, 120, 0, '2020.09.13 周日 10:30', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (26596, 5353, 180, 0, '2020.09.13 周日 10:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26597, 5353, 250, 0, '2020.09.13 周日 10:30', '250票面 ');
@@ -17819,20 +17383,6 @@ INSERT INTO `goodsdetail` VALUES (26606, 5353, 180, 0, '2020.09.13 周日 16:00'
 INSERT INTO `goodsdetail` VALUES (26607, 5353, 250, 1, '2020.09.13 周日 16:00', '250票面 ');
 INSERT INTO `goodsdetail` VALUES (26608, 5353, 280, 1, '2020.09.13 周日 16:00', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26609, 5353, 480, 1, '2020.09.13 周日 16:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26610, 5354, 180, 1, '2020.10.11 周日 10:30', '180票面 二等票');
-INSERT INTO `goodsdetail` VALUES (26611, 5354, 280, 1, '2020.10.11 周日 10:30', '280票面 一等票');
-INSERT INTO `goodsdetail` VALUES (26612, 5354, 500, 1, '2020.10.11 周日 10:30', '500套票 楼上三人卡座');
-INSERT INTO `goodsdetail` VALUES (26613, 5354, 800, 1, '2020.10.11 周日 10:30', '800套票 舞台层三人卡座');
-INSERT INTO `goodsdetail` VALUES (26614, 5354, 180, 1, '2020.10.11 周日 14:00', '180票面 二等票');
-INSERT INTO `goodsdetail` VALUES (26615, 5354, 280, 1, '2020.10.11 周日 14:00', '280票面 一等票');
-INSERT INTO `goodsdetail` VALUES (26616, 5354, 500, 1, '2020.10.11 周日 14:00', '500套票 楼上三人卡座');
-INSERT INTO `goodsdetail` VALUES (26617, 5354, 800, 1, '2020.10.11 周日 14:00', '800套票 舞台层三人卡座');
-INSERT INTO `goodsdetail` VALUES (26618, 5357, 80, 0, '2020.09.19 周六 10:30', '80票面 80');
-INSERT INTO `goodsdetail` VALUES (26619, 5357, 120, 1, '2020.09.19 周六 10:30', '120票面 120');
-INSERT INTO `goodsdetail` VALUES (26620, 5357, 180, 1, '2020.09.19 周六 10:30', '180票面 180');
-INSERT INTO `goodsdetail` VALUES (26621, 5357, 80, 0, '2020.09.19 周六 14:00', '80票面 80');
-INSERT INTO `goodsdetail` VALUES (26622, 5357, 120, 1, '2020.09.19 周六 14:00', '120票面 120');
-INSERT INTO `goodsdetail` VALUES (26623, 5357, 180, 1, '2020.09.19 周六 14:00', '180票面 180');
 INSERT INTO `goodsdetail` VALUES (26624, 5358, 80, 1, '2020.11.07 周六 15:00', '80票面 80 元');
 INSERT INTO `goodsdetail` VALUES (26625, 5358, 120, 1, '2020.11.07 周六 15:00', '120票面 120 元');
 INSERT INTO `goodsdetail` VALUES (26626, 5358, 180, 1, '2020.11.07 周六 15:00', '180票面 180 元');
@@ -17871,54 +17421,10 @@ INSERT INTO `goodsdetail` VALUES (26658, 5409, 180, 1, '2020.09.30 周三 19:30'
 INSERT INTO `goodsdetail` VALUES (26659, 5409, 180, 1, '2020.09.30 周三 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26660, 5409, 280, 1, '2020.09.30 周三 19:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26661, 5409, 280, 1, '2020.09.30 周三 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26662, 5411, 80, 0, '2020.09.27 周日 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26663, 5411, 80, 0, '2020.09.27 周日 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (26664, 5411, 100, 1, '2020.09.27 周日 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26665, 5411, 100, 0, '2020.09.27 周日 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (26666, 5411, 180, 1, '2020.09.27 周日 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26667, 5411, 180, 0, '2020.09.27 周日 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26668, 5411, 280, 1, '2020.09.27 周日 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26669, 5411, 280, 1, '2020.09.27 周日 19:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26670, 5412, 50, 1, '2020.10.08 周四 15:00', '50票面 ');
 INSERT INTO `goodsdetail` VALUES (26671, 5412, 80, 1, '2020.10.08 周四 15:00', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26672, 5412, 100, 1, '2020.10.08 周四 15:00', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26673, 5412, 150, 1, '2020.10.08 周四 15:00', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26674, 5413, 120, 0, '2020.10.04 周日 10:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26675, 5413, 120, 1, '2020.10.04 周日 10:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26676, 5413, 180, 0, '2020.10.04 周日 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26677, 5413, 180, 1, '2020.10.04 周日 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26678, 5413, 280, 0, '2020.10.04 周日 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26679, 5413, 280, 1, '2020.10.04 周日 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26680, 5413, 380, 0, '2020.10.04 周日 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26681, 5413, 380, 1, '2020.10.04 周日 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26682, 5413, 399, 0, '2020.10.04 周日 10:30', '399票面 380*2');
-INSERT INTO `goodsdetail` VALUES (26683, 5413, 399, 0, '2020.10.04 周日 10:30', '399套票 380*2');
-INSERT INTO `goodsdetail` VALUES (26684, 5413, 480, 0, '2020.10.04 周日 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26685, 5413, 480, 1, '2020.10.04 周日 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26686, 5413, 528, 0, '2020.10.04 周日 10:30', '528票面 480*2');
-INSERT INTO `goodsdetail` VALUES (26687, 5413, 528, 0, '2020.10.04 周日 10:30', '528套票 480*2');
-INSERT INTO `goodsdetail` VALUES (26688, 5413, 588, 0, '2020.10.04 周日 10:30', '588票面 380*3');
-INSERT INTO `goodsdetail` VALUES (26689, 5413, 588, 0, '2020.10.04 周日 10:30', '588套票 380*3');
-INSERT INTO `goodsdetail` VALUES (26690, 5413, 666, 0, '2020.10.04 周日 10:30', '666票面 480*3');
-INSERT INTO `goodsdetail` VALUES (26691, 5413, 666, 0, '2020.10.04 周日 10:30', '666套票 480*3');
-INSERT INTO `goodsdetail` VALUES (26692, 5413, 120, 0, '2020.10.04 周日 15:00', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26693, 5413, 120, 1, '2020.10.04 周日 15:00', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26694, 5413, 180, 0, '2020.10.04 周日 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26695, 5413, 180, 1, '2020.10.04 周日 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26696, 5413, 280, 0, '2020.10.04 周日 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26697, 5413, 280, 1, '2020.10.04 周日 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26698, 5413, 380, 0, '2020.10.04 周日 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26699, 5413, 380, 1, '2020.10.04 周日 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26700, 5413, 399, 0, '2020.10.04 周日 15:00', '399票面 380*2');
-INSERT INTO `goodsdetail` VALUES (26701, 5413, 399, 0, '2020.10.04 周日 15:00', '399套票 380*2');
-INSERT INTO `goodsdetail` VALUES (26702, 5413, 480, 0, '2020.10.04 周日 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26703, 5413, 480, 1, '2020.10.04 周日 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26704, 5413, 528, 0, '2020.10.04 周日 15:00', '528票面 480*2');
-INSERT INTO `goodsdetail` VALUES (26705, 5413, 528, 0, '2020.10.04 周日 15:00', '528套票 480*2');
-INSERT INTO `goodsdetail` VALUES (26706, 5413, 588, 0, '2020.10.04 周日 15:00', '588票面 380*3');
-INSERT INTO `goodsdetail` VALUES (26707, 5413, 588, 0, '2020.10.04 周日 15:00', '588套票 380*3');
-INSERT INTO `goodsdetail` VALUES (26708, 5413, 666, 0, '2020.10.04 周日 15:00', '666票面 480*3');
-INSERT INTO `goodsdetail` VALUES (26709, 5413, 666, 0, '2020.10.04 周日 15:00', '666套票 480*3');
 INSERT INTO `goodsdetail` VALUES (26710, 5414, 80, 0, '2020.10.02 周五 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26711, 5414, 180, 1, '2020.10.02 周五 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26712, 5414, 280, 1, '2020.10.02 周五 19:30', '280票面 ');
@@ -17943,101 +17449,16 @@ INSERT INTO `goodsdetail` VALUES (26730, 5422, 50, 1, '2020.10.02 周五 19:30',
 INSERT INTO `goodsdetail` VALUES (26731, 5422, 80, 1, '2020.10.02 周五 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26732, 5422, 100, 1, '2020.10.02 周五 19:30', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (26733, 5422, 180, 1, '2020.10.02 周五 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26734, 5424, 120, 1, '2020.10.02 周五 10:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26735, 5424, 180, 1, '2020.10.02 周五 10:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26736, 5424, 280, 1, '2020.10.02 周五 10:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26737, 5424, 380, 1, '2020.10.02 周五 10:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26738, 5424, 480, 1, '2020.10.02 周五 10:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26739, 5424, 760, 0, '2020.10.02 周五 10:30', '760票面 380*2');
-INSERT INTO `goodsdetail` VALUES (26740, 5424, 960, 0, '2020.10.02 周五 10:30', '960票面 480*2');
-INSERT INTO `goodsdetail` VALUES (26741, 5424, 1140, 0, '2020.10.02 周五 10:30', '1140票面 380*3');
-INSERT INTO `goodsdetail` VALUES (26742, 5424, 1440, 0, '2020.10.02 周五 10:30', '1440票面 480*3');
-INSERT INTO `goodsdetail` VALUES (26743, 5424, 120, 1, '2020.10.02 周五 15:00', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26744, 5424, 180, 1, '2020.10.02 周五 15:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26745, 5424, 280, 1, '2020.10.02 周五 15:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26746, 5424, 380, 1, '2020.10.02 周五 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26747, 5424, 480, 1, '2020.10.02 周五 15:00', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26748, 5424, 760, 0, '2020.10.02 周五 15:00', '760票面 380*2');
-INSERT INTO `goodsdetail` VALUES (26749, 5424, 960, 0, '2020.10.02 周五 15:00', '960票面 480*2');
-INSERT INTO `goodsdetail` VALUES (26750, 5424, 1140, 0, '2020.10.02 周五 15:00', '1140票面 380*3');
-INSERT INTO `goodsdetail` VALUES (26751, 5424, 1440, 0, '2020.10.02 周五 15:00', '1440票面 480*3');
 INSERT INTO `goodsdetail` VALUES (26752, 5437, 100, 0, '2020-08-15至2020-10-18', '100票面 单人早鸟票');
 INSERT INTO `goodsdetail` VALUES (26753, 5437, 100, 1, '2020-08-15至2020-10-18', '100票面 网络单人票');
 INSERT INTO `goodsdetail` VALUES (26754, 5437, 160, 1, '2020-08-15至2020-10-18', '160票面 网络双人票');
-INSERT INTO `goodsdetail` VALUES (26755, 5438, 158, 0, '2020-09-17至2021-01-03', '158票面 优惠票（全日制本科及以下，60岁以上，持有效残疾证人');
-INSERT INTO `goodsdetail` VALUES (26756, 5438, 218, 1, '2020-09-17至2021-01-03', '218票面 预售早鸟票');
-INSERT INTO `goodsdetail` VALUES (26757, 5438, 218, 0, '2020-09-17至2021-01-03', '218票面 通票');
-INSERT INTO `goodsdetail` VALUES (26758, 5441, 20, 1, '2020-09-11至2020-09-13', '20票面 白天展览票（仅含白天展览）');
-INSERT INTO `goodsdetail` VALUES (26759, 5441, 168, 1, '2020-09-11至2020-09-13', '168票面 单日预售票（含白天展览及晚上派对，三天任意一天使用）');
-INSERT INTO `goodsdetail` VALUES (26760, 5441, 248, 1, '2020-09-11至2020-09-13', '248票面 限量VIP票（含礼包及单日票）');
-INSERT INTO `goodsdetail` VALUES (26761, 5441, 268, 1, '2020-09-11至2020-09-13', '268票面 双人预售票（含两张单日票）');
-INSERT INTO `goodsdetail` VALUES (26762, 5443, 90, 1, '2020-08-11至2020-09-20', '90票面 单人票');
-INSERT INTO `goodsdetail` VALUES (26763, 5444, 199, 1, '特惠套票（有效期至2020.10.31） ', '199票面 ');
-INSERT INTO `goodsdetail` VALUES (26764, 5444, 199, 1, '9-10月全通票（限2020.9.1-10.31使用）', '199票面 ');
-INSERT INTO `goodsdetail` VALUES (26765, 5444, 199, 1, '9-10月平日票（限2020.9.1-10.30工作日使用）', '199票面 ');
-INSERT INTO `goodsdetail` VALUES (26766, 5444, 339, 1, '9-10月儿童票（限2020.9.1-10.31使用）', '339票面 亲子票（teamLab无界上海成人全通票1张+儿童票');
-INSERT INTO `goodsdetail` VALUES (26767, 5444, 398, 1, '9-10月儿童票（限2020.9.1-10.31使用）', '398票面 双人票（teamLab无界上海成人全通票2张），原价');
-INSERT INTO `goodsdetail` VALUES (26768, 5444, 498, 1, '9-10月儿童票（限2020.9.1-10.31使用）', '498票面 家庭票（teamLab无界上海成人全通票2张+儿童票');
 INSERT INTO `goodsdetail` VALUES (26769, 5446, 108, 1, '双人票（展期内任意日期使用）', '108票面 平日单人票');
 INSERT INTO `goodsdetail` VALUES (26770, 5446, 108, 1, '通票（展期内任意日期使用）', '108票面 平日单人票');
 INSERT INTO `goodsdetail` VALUES (26771, 5446, 108, 1, '平日票（展期内除法定节假日、双休日以外的任意日期使用）', '108票面 平日单人票');
-INSERT INTO `goodsdetail` VALUES (26772, 5450, 80, 1, '2020.3.1-2020.12.31（每周一闭馆）', '80票面 儿童票（1.4米以下，使用时间为周一-周日、节假日通用');
-INSERT INTO `goodsdetail` VALUES (26773, 5450, 150, 1, '2020.3.1-2020.12.31（每周一闭馆）', '150票面 成人票（使用时间为周一-周日、节假日通用（法定假日正');
-INSERT INTO `goodsdetail` VALUES (26774, 5450, 475, 1, '2020.3.1-2020.12.31（每周一闭馆）', '475票面 情侣精品套餐（双成人门票+精品工坊）');
-INSERT INTO `goodsdetail` VALUES (26775, 5450, 560, 1, '2020.3.1-2020.12.31（每周一闭馆）', '560票面 家庭套票（2大1小门票+工坊+食玩）');
 INSERT INTO `goodsdetail` VALUES (26776, 5452, 120, 1, '2020-01-10至2021-02-28', '120票面 优待票（儿童/学生/老人/军人及残疾人凭相关证件可购');
 INSERT INTO `goodsdetail` VALUES (26777, 5452, 140, 1, '2020-01-10至2021-02-28', '140票面 全通单人票（含三体宇宙市集10元现金券一张，单人单次');
 INSERT INTO `goodsdetail` VALUES (26778, 5452, 260, 1, '2020-01-10至2021-02-28', '260票面 全通双人票（含三体宇宙市集10元现金券两张，双人单次');
-INSERT INTO `goodsdetail` VALUES (26779, 5455, 188, 1, '限时体验（2021年03月18日-2021年 04月18日）', '188票面 早鸟单人展览通票');
-INSERT INTO `goodsdetail` VALUES (26780, 5455, 188, 1, '限时体验（2021年03月18日-2021年 04月18日）', '188票面 单人展览通票');
-INSERT INTO `goodsdetail` VALUES (26781, 5455, 616, 1, '限时体验（2021年03月18日-2021年 04月18日）', '616票面 单人早鸟套票（含展览通票1张+价值428元限量展览画');
-INSERT INTO `goodsdetail` VALUES (26782, 5455, 188, 1, '2021-03-18至2021-08-01', '188票面 早鸟单人展览通票');
-INSERT INTO `goodsdetail` VALUES (26783, 5455, 188, 1, '2021-03-18至2021-08-01', '188票面 单人展览通票');
-INSERT INTO `goodsdetail` VALUES (26784, 5455, 616, 1, '2021-03-18至2021-08-01', '616票面 单人早鸟套票（含展览通票1张+价值428元限量展览画');
-INSERT INTO `goodsdetail` VALUES (26785, 5458, 120, 1, '2020.09.06 周日 11:00', '120票面 儿童票（限时优惠）');
-INSERT INTO `goodsdetail` VALUES (26786, 5458, 120, 1, '2020.09.06 周日 11:00', '120票面 老人票（限时优惠）');
-INSERT INTO `goodsdetail` VALUES (26787, 5458, 170, 1, '2020.09.06 周日 11:00', '170票面 成人票（限时优惠）');
-INSERT INTO `goodsdetail` VALUES (26788, 5459, 25, 1, '2020-06-13至2020-10-11', '25票面 儿童票（限1.4米以下儿童，展期内1人1票1次入场有效');
-INSERT INTO `goodsdetail` VALUES (26789, 5459, 48, 1, '2020-06-13至2020-10-11', '48票面 单人票（展期内1人1票1次入场有效）');
-INSERT INTO `goodsdetail` VALUES (26790, 5459, 88, 1, '2020-06-13至2020-10-11', '88票面 双人票（展期内2人1票1次入场有效）');
-INSERT INTO `goodsdetail` VALUES (26791, 5460, 55, 1, '2020-06-20至2020-09-10', '55票面 单人票');
-INSERT INTO `goodsdetail` VALUES (26792, 5460, 99, 1, '2020-06-20至2020-09-10', '99票面 双人票');
-INSERT INTO `goodsdetail` VALUES (26793, 5460, 79, 1, '2020-06-20至2020-09-10', '79票面 单人VIP票 (含起氪行动艺术家限量联名作品集明信片)');
-INSERT INTO `goodsdetail` VALUES (26794, 5460, 129, 1, '2020-06-20至2020-09-10', '129票面 家庭票 (含2位大人，1位小朋友)');
-INSERT INTO `goodsdetail` VALUES (26795, 5460, 249, 1, '2020-06-20至2020-09-10', '249票面 单人VVIP票（每位艺术家限30人共360张,与艺术');
-INSERT INTO `goodsdetail` VALUES (26796, 5461, 20, 1, '2020-10-20至2021-01-10', '20票面 学生票');
-INSERT INTO `goodsdetail` VALUES (26797, 5461, 25, 1, '2020-10-20至2021-01-10', '25票面 单人票');
-INSERT INTO `goodsdetail` VALUES (26798, 5461, 40, 1, '2020-10-20至2021-01-10', '40票面 双人票');
-INSERT INTO `goodsdetail` VALUES (26799, 5461, 58, 1, '2020-10-20至2021-01-10', '58票面 家庭票 (含两位大人，一位小朋友)');
 INSERT INTO `goodsdetail` VALUES (26800, 5462, 60, 1, '2020-01-01至2020-12-31', '60票面 单人门票');
-INSERT INTO `goodsdetail` VALUES (26801, 5465, 299, 1, '2020.09.07 周一 09:00', '299票面 乐园一日儿童票');
-INSERT INTO `goodsdetail` VALUES (26802, 5465, 299, 0, '2020.09.07 周一 09:00', '299票面 乐园一日老人票');
-INSERT INTO `goodsdetail` VALUES (26803, 5465, 399, 0, '2020.09.07 周一 09:00', '399票面 乐园一日标准票');
-INSERT INTO `goodsdetail` VALUES (26804, 5466, 54, 1, 'MOI上海&阿纳迪酒店套餐', '54票面 医护票（中国含（港、澳、台）医护人员持有本人有效医护证');
-INSERT INTO `goodsdetail` VALUES (26805, 5466, 99, 1, 'MOI上海&阿纳迪酒店套餐', '99票面 学生票（仅限12周岁（含）至22周岁（含）持有本人有效');
-INSERT INTO `goodsdetail` VALUES (26806, 5466, 54, 1, '优待票', '54票面 医护票（中国含（港、澳、台）医护人员持有本人有效医护证');
-INSERT INTO `goodsdetail` VALUES (26807, 5466, 99, 1, '优待票', '99票面 学生票（仅限12周岁（含）至22周岁（含）持有本人有效');
-INSERT INTO `goodsdetail` VALUES (26808, 5466, 684, 0, '2020-05-01至2020-12-31', '684票面 MOI全通双人票&双人自助午餐套餐（周一至周六）有效');
-INSERT INTO `goodsdetail` VALUES (26809, 5466, 726, 0, '2020-05-01至2020-12-31', '726票面 MOI全通双人票&双人下午茶套餐，有效期至8月31日');
-INSERT INTO `goodsdetail` VALUES (26810, 5466, 884, 0, '2020-05-01至2020-12-31', '884票面 MOI全通双人票&双人自助晚餐套餐（周一至周日）有效');
-INSERT INTO `goodsdetail` VALUES (26811, 5466, 1898, 1, '2020-05-01至2020-12-31', '1898票面 MOI全通双人票&酒店家庭套房套餐，有效期至10月');
-INSERT INTO `goodsdetail` VALUES (26812, 5471, 100, 1, '2019-12-12至2020-10-18', '100票面 单人全天票（可看昊美术馆三层全部展览）');
-INSERT INTO `goodsdetail` VALUES (26813, 5473, 68, 1, '2020-08-08至2021-08-07', '68票面 儿童票1.5米含以下儿童须够儿童票，并须成人陪同入场（');
-INSERT INTO `goodsdetail` VALUES (26814, 5473, 78, 1, '2020-08-08至2021-08-07', '78票面 夜场票（使用时间：19：00-22:00）');
-INSERT INTO `goodsdetail` VALUES (26815, 5473, 180, 1, '2020-08-08至2021-08-07', '180票面 普通票');
-INSERT INTO `goodsdetail` VALUES (26816, 5473, 260, 1, '2020-08-08至2021-08-07', '260票面 VIP票（含门票+射箭12支+定制防滑袜一双）');
-INSERT INTO `goodsdetail` VALUES (26817, 5473, 400, 1, '2020-08-08至2021-08-07', '400票面 VVIP票（含门票+射箭36支+定制防滑袜一双）');
-INSERT INTO `goodsdetail` VALUES (26818, 5475, 30, 1, '王者荣耀争霸赛专场（9月12日）', '30票面 专场票');
-INSERT INTO `goodsdetail` VALUES (26819, 5475, 30, 1, '插画师布言空，顾伟佳签售专场（9月13日） ', '30票面 专场票');
-INSERT INTO `goodsdetail` VALUES (26820, 5475, 30, 1, '插画师贾克布签售会（9月19日-9月20日）', '30票面 专场票');
-INSERT INTO `goodsdetail` VALUES (26821, 5475, 30, 1, '2020-08-15至2020-10-09', '30票面 专场票');
-INSERT INTO `goodsdetail` VALUES (26822, 5478, 30, 0, '2020-10-17至2020-10-19', '30票面 单人现场票');
-INSERT INTO `goodsdetail` VALUES (26823, 5478, 30, 1, '2020-10-17至2020-10-19', '30票面 单人票');
-INSERT INTO `goodsdetail` VALUES (26824, 5478, 60, 1, '2020-10-17至2020-10-19', '60票面 双人票');
-INSERT INTO `goodsdetail` VALUES (26825, 5478, 90, 1, '2020-10-17至2020-10-19', '90票面 三人票');
-INSERT INTO `goodsdetail` VALUES (26826, 5478, 120, 1, '2020-10-17至2020-10-19', '120票面 四人票');
-INSERT INTO `goodsdetail` VALUES (26827, 5478, 150, 1, '2020-10-17至2020-10-19', '150票面 五人票');
-INSERT INTO `goodsdetail` VALUES (26828, 5478, 180, 1, '2020-10-17至2020-10-19', '180票面 六人票');
 INSERT INTO `goodsdetail` VALUES (26829, 5480, 160, 1, '2020年通票（当天9点前可购）', '160票面 法定节假日学生/儿童票（8岁以上，当日早上9点前可预');
 INSERT INTO `goodsdetail` VALUES (26830, 5480, 180, 1, '2020年通票（当天9点前可购）', '180票面 成人票（10.1~10.8不可用）');
 INSERT INTO `goodsdetail` VALUES (26831, 5480, 200, 1, '2020年通票（当天9点前可购）', '200票面 法定节假日成人票（当日早上9点前可预订，适用时间详见');
@@ -18052,8 +17473,6 @@ INSERT INTO `goodsdetail` VALUES (26839, 5483, 180, 0, '2020.12.31 周四 22:30'
 INSERT INTO `goodsdetail` VALUES (26840, 5483, 280, 1, '2020.12.31 周四 22:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26841, 5483, 380, 1, '2020.12.31 周四 22:30', '380票面 ');
 INSERT INTO `goodsdetail` VALUES (26842, 5483, 480, 1, '2020.12.31 周四 22:30', '480票面 ');
-INSERT INTO `goodsdetail` VALUES (26843, 5484, 1288, 1, '2020.09.08 周二 13:00', '1288票面 ');
-INSERT INTO `goodsdetail` VALUES (26844, 5484, 1888, 1, '2020.09.08 周二 13:00', '1888票面 ');
 INSERT INTO `goodsdetail` VALUES (26845, 5486, 0.01, 0, '2020-09-01至2020-09-30', '0.01票面 ');
 INSERT INTO `goodsdetail` VALUES (26846, 5486, 1, 1, '2020-09-01至2020-09-30', '1票面 ');
 INSERT INTO `goodsdetail` VALUES (26847, 5496, 180, 1, '2020.09.19 周六 19:30', '180票面 ');
@@ -18106,14 +17525,6 @@ INSERT INTO `goodsdetail` VALUES (26893, 5509, 120, 1, '2020.09.09 周三 20:00'
 INSERT INTO `goodsdetail` VALUES (26894, 5509, 180, 1, '2020.09.09 周三 20:00', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26895, 5509, 120, 1, '2020.09.10 周四 20:00', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (26896, 5509, 180, 1, '2020.09.10 周四 20:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26897, 5510, 120, 1, '2020.09.13 周日 10:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26898, 5510, 150, 1, '2020.09.13 周日 10:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26899, 5510, 120, 1, '2020.09.13 周日 13:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26900, 5510, 150, 1, '2020.09.13 周日 13:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26901, 5510, 120, 1, '2020.09.26 周六 10:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26902, 5510, 150, 1, '2020.09.26 周六 10:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (26903, 5510, 120, 1, '2020.09.26 周六 13:30', '120票面 ');
-INSERT INTO `goodsdetail` VALUES (26904, 5510, 150, 1, '2020.09.26 周六 13:30', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (26905, 5511, 180, 1, '2020.10.18 周日 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26906, 5511, 280, 1, '2020.10.18 周日 19:30', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (26907, 5511, 380, 1, '2020.10.18 周日 19:30', '380票面 ');
@@ -18162,10 +17573,6 @@ INSERT INTO `goodsdetail` VALUES (26949, 5519, 130, 0, '2020.11.07 周六 10:00'
 INSERT INTO `goodsdetail` VALUES (26950, 5520, 80, 1, '2020.09.07 周一 19:45', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (26951, 5520, 180, 1, '2020.09.07 周一 19:45', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (26952, 5520, 280, 1, '2020.09.07 周一 19:45', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26953, 5521, 180, 1, '2020.11.08 周日 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (26954, 5521, 280, 1, '2020.11.08 周日 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (26955, 5521, 380, 1, '2020.11.08 周日 19:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (26956, 5521, 580, 1, '2020.11.08 周日 19:30', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (26957, 5522, 30, 0, '2020.11.21 周六 10:00', '30票面 ');
 INSERT INTO `goodsdetail` VALUES (26958, 5522, 50, 1, '2020.11.21 周六 10:00', '50票面 ');
 INSERT INTO `goodsdetail` VALUES (26959, 5522, 80, 1, '2020.11.21 周六 10:00', '80票面 ');
@@ -18354,36 +17761,12 @@ INSERT INTO `goodsdetail` VALUES (27141, 5664, 120, 1, '2020.09.25 周五 19:30'
 INSERT INTO `goodsdetail` VALUES (27142, 5664, 120, 1, '2020.09.25 周五 19:30', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (27143, 5664, 150, 1, '2020.09.25 周五 19:30', '150票面 ');
 INSERT INTO `goodsdetail` VALUES (27144, 5664, 150, 1, '2020.09.25 周五 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (27145, 5665, 80, 1, '2020.09.15 周二 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (27146, 5665, 80, 1, '2020.09.15 周二 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (27147, 5665, 100, 1, '2020.09.15 周二 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27148, 5665, 100, 1, '2020.09.15 周二 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27149, 5665, 150, 1, '2020.09.15 周二 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (27150, 5665, 150, 1, '2020.09.15 周二 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (27151, 5665, 180, 1, '2020.09.15 周二 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27152, 5665, 180, 1, '2020.09.15 周二 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27153, 5666, 100, 1, '2020.09.08 周二 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27154, 5666, 100, 1, '2020.09.08 周二 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27155, 5666, 180, 1, '2020.09.08 周二 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27156, 5666, 180, 1, '2020.09.08 周二 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27157, 5666, 280, 1, '2020.09.08 周二 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (27158, 5666, 280, 1, '2020.09.08 周二 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (27159, 5666, 380, 1, '2020.09.08 周二 19:30', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (27160, 5666, 380, 1, '2020.09.08 周二 19:30', '380票面 ');
 INSERT INTO `goodsdetail` VALUES (27161, 5667, 100, 1, '2020.09.13 周日 15:00', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (27162, 5667, 100, 1, '2020.09.13 周日 15:00', '100票面 ');
 INSERT INTO `goodsdetail` VALUES (27163, 5667, 180, 1, '2020.09.13 周日 15:00', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (27164, 5667, 180, 1, '2020.09.13 周日 15:00', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (27165, 5667, 380, 0, '2020.09.13 周日 15:00', '380票面 ');
 INSERT INTO `goodsdetail` VALUES (27166, 5667, 380, 0, '2020.09.13 周日 15:00', '380票面 ');
-INSERT INTO `goodsdetail` VALUES (27167, 5668, 80, 0, '2020.10.05 周一 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (27168, 5668, 80, 1, '2020.10.05 周一 19:30', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (27169, 5668, 100, 1, '2020.10.05 周一 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27170, 5668, 100, 1, '2020.10.05 周一 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27171, 5668, 150, 1, '2020.10.05 周一 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (27172, 5668, 150, 1, '2020.10.05 周一 19:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (27173, 5668, 180, 1, '2020.10.05 周一 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27174, 5668, 180, 1, '2020.10.05 周一 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (27175, 5670, 80, 0, '2020.09.26 周六 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (27176, 5670, 180, 1, '2020.09.26 周六 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (27177, 5670, 280, 1, '2020.09.26 周六 19:30', '280票面 ');
@@ -18412,26 +17795,8 @@ INSERT INTO `goodsdetail` VALUES (27199, 5697, 380, 1, '2020.10.23 周五 19:30'
 INSERT INTO `goodsdetail` VALUES (27200, 5697, 580, 1, '2020.10.23 周五 19:30', '580票面 ');
 INSERT INTO `goodsdetail` VALUES (27201, 5697, 680, 1, '2020.10.23 周五 19:30', '680票面 ');
 INSERT INTO `goodsdetail` VALUES (27202, 5704, 49, 1, '2020.09.09 周三 19:30', '49票面 49 含软饮一份');
-INSERT INTO `goodsdetail` VALUES (27203, 5705, 78, 1, '2020.09.13 周日 16:00', '78票面 后排');
-INSERT INTO `goodsdetail` VALUES (27204, 5705, 98, 1, '2020.09.13 周日 16:00', '98票面 前排');
-INSERT INTO `goodsdetail` VALUES (27205, 5705, 78, 1, '2020.09.20 周日 16:00', '78票面 后排');
-INSERT INTO `goodsdetail` VALUES (27206, 5705, 98, 1, '2020.09.20 周日 16:00', '98票面 前排');
-INSERT INTO `goodsdetail` VALUES (27207, 5705, 78, 1, '2020.10.01 周四 16:00', '78票面 后排');
-INSERT INTO `goodsdetail` VALUES (27208, 5705, 98, 1, '2020.10.01 周四 16:00', '98票面 前排');
-INSERT INTO `goodsdetail` VALUES (27209, 5705, 78, 1, '2020.10.02 周五 16:00', '78票面 后排');
-INSERT INTO `goodsdetail` VALUES (27210, 5705, 98, 1, '2020.10.02 周五 16:00', '98票面 前排');
-INSERT INTO `goodsdetail` VALUES (27211, 5705, 78, 1, '2020.10.03 周六 16:00', '78票面 后排');
-INSERT INTO `goodsdetail` VALUES (27212, 5705, 98, 1, '2020.10.03 周六 16:00', '98票面 前排');
-INSERT INTO `goodsdetail` VALUES (27213, 5705, 78, 1, '2020.10.04 周日 16:00', '78票面 后排');
-INSERT INTO `goodsdetail` VALUES (27214, 5705, 98, 1, '2020.10.04 周日 16:00', '98票面 前排');
 INSERT INTO `goodsdetail` VALUES (27215, 5706, 99, 1, '2020.09.06 周日 16:00', '99票面 预售票');
 INSERT INTO `goodsdetail` VALUES (27216, 5706, 99, 1, '2020.09.06 周日 19:00', '99票面 预售票');
-INSERT INTO `goodsdetail` VALUES (27217, 5708, 99, 1, '2020.09.06 周日 19:30', '99票面 ');
-INSERT INTO `goodsdetail` VALUES (27218, 5708, 99, 1, '2020.09.11 周五 19:30', '99票面 ');
-INSERT INTO `goodsdetail` VALUES (27219, 5708, 99, 1, '2020.09.18 周五 19:30', '99票面 ');
-INSERT INTO `goodsdetail` VALUES (27220, 5708, 99, 1, '2020.09.19 周六 19:30', '99票面 ');
-INSERT INTO `goodsdetail` VALUES (27221, 5708, 99, 1, '2020.09.20 周日 19:30', '99票面 ');
-INSERT INTO `goodsdetail` VALUES (27222, 5708, 99, 1, '2020.09.25 周五 19:30', '99票面 ');
 INSERT INTO `goodsdetail` VALUES (27223, 5709, 36, 1, '2020.09.09 周三 19:30', '36票面 单人票');
 INSERT INTO `goodsdetail` VALUES (27224, 5709, 70, 1, '2020.09.09 周三 19:30', '70票面 双人套票');
 INSERT INTO `goodsdetail` VALUES (27225, 5718, 99, 0, '2020.09.13 周日 19:15', '99票面 ');
@@ -18475,10 +17840,6 @@ INSERT INTO `goodsdetail` VALUES (27262, 5730, 50, 1, '2020.10.02 周五 13:30',
 INSERT INTO `goodsdetail` VALUES (27263, 5730, 80, 1, '2020.10.02 周五 13:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (27264, 5730, 120, 1, '2020.10.02 周五 13:30', '120票面 ');
 INSERT INTO `goodsdetail` VALUES (27265, 5730, 150, 1, '2020.10.02 周五 13:30', '150票面 ');
-INSERT INTO `goodsdetail` VALUES (27266, 5732, 180, 1, '2020.09.18 周五 19:00', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27267, 5732, 280, 1, '2020.09.18 周五 19:00', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (27268, 5732, 180, 1, '2020.09.18 周五 20:45', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27269, 5732, 280, 1, '2020.09.18 周五 20:45', '280票面 ');
 INSERT INTO `goodsdetail` VALUES (27270, 5733, 50, 1, '2020.10.02 周五 19:00', '50票面 ');
 INSERT INTO `goodsdetail` VALUES (27271, 5733, 80, 1, '2020.10.02 周五 19:00', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (27272, 5733, 120, 1, '2020.10.02 周五 19:00', '120票面 ');
@@ -18486,13 +17847,6 @@ INSERT INTO `goodsdetail` VALUES (27273, 5733, 150, 1, '2020.10.02 周五 19:00'
 INSERT INTO `goodsdetail` VALUES (27274, 5734, 80, 1, '2020.10.17 周六 19:30', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (27275, 5734, 80, 1, '2020.10.18 周日 14:00', '80票面 ');
 INSERT INTO `goodsdetail` VALUES (27276, 5735, 80, 1, '2020.09.26 周六 14:00', '80票面 ');
-INSERT INTO `goodsdetail` VALUES (27277, 5737, 100, 1, '2020.09.12 周六 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27278, 5737, 180, 1, '2020.09.12 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27279, 5737, 280, 1, '2020.09.12 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (27280, 5737, 100, 1, '2020.10.03 周六 19:30', '100票面 ');
-INSERT INTO `goodsdetail` VALUES (27281, 5737, 180, 1, '2020.10.03 周六 19:30', '180票面 ');
-INSERT INTO `goodsdetail` VALUES (27282, 5737, 280, 1, '2020.10.03 周六 19:30', '280票面 ');
-INSERT INTO `goodsdetail` VALUES (27283, 5738, 49, 1, '2020.09.06 周日 19:30', '49票面 ');
 INSERT INTO `goodsdetail` VALUES (27284, 5740, 150, 1, '2020.09.16 周三 19:30', '150票面 150（全程上海话）（150.00）');
 INSERT INTO `goodsdetail` VALUES (27285, 5740, 235, 1, '2020.09.16 周三 19:30', '235票面 235（全程上海话）（235.00）');
 INSERT INTO `goodsdetail` VALUES (27286, 5740, 298, 1, '2020.09.16 周三 19:30', '298票面 298（全程上海话）（298.00）');
@@ -18672,6 +18026,18 @@ INSERT INTO `goodsdetail` VALUES (27459, 5817, 100, 0, '2020.09.13 周日 19:30'
 INSERT INTO `goodsdetail` VALUES (27460, 5817, 180, 0, '2020.09.13 周日 19:30', '180票面 ');
 INSERT INTO `goodsdetail` VALUES (27461, 5817, 380, 1, '2020.09.13 周日 19:30', '380票面 ');
 INSERT INTO `goodsdetail` VALUES (27462, 5817, 580, 0, '2020.09.13 周日 19:30', '580票面 ');
+INSERT INTO `goodsdetail` VALUES (27463, 5823, 180, 0, '2020-03-26 周四 19:30', '180元（早鸟票）');
+INSERT INTO `goodsdetail` VALUES (27464, 5823, 220, 0, '2020-03-26 周四 19:30', '220元（预售票）');
+INSERT INTO `goodsdetail` VALUES (27465, 5823, 280, 0, '2020-03-26 周四 19:30', '280元（现场票）');
+INSERT INTO `goodsdetail` VALUES (27466, 5824, 180, 0, '2020-03-26 周四 19:30', '180元（早鸟票）');
+INSERT INTO `goodsdetail` VALUES (27467, 5824, 220, 0, '2020-03-26 周四 19:30', '220元（预售票）');
+INSERT INTO `goodsdetail` VALUES (27468, 5824, 280, 0, '2020-03-26 周四 19:30', '280元（现场票）');
+INSERT INTO `goodsdetail` VALUES (27469, 5825, 180, 0, '2020-03-26 周四 19:30', '180元（早鸟票）');
+INSERT INTO `goodsdetail` VALUES (27470, 5825, 220, 0, '2020-03-26 周四 19:30', '220元（预售票）');
+INSERT INTO `goodsdetail` VALUES (27471, 5825, 280, 0, '2020-03-26 周四 19:30', '280元（现场票）');
+INSERT INTO `goodsdetail` VALUES (27472, 5826, 180, 0, '2020-03-26 周四 19:30', '180元（早鸟票）');
+INSERT INTO `goodsdetail` VALUES (27473, 5826, 220, 0, '2020-03-26 周四 19:30', '220元（预售票）');
+INSERT INTO `goodsdetail` VALUES (27474, 5826, 280, 0, '2020-03-26 周四 19:30', '280元（现场票）');
 
 -- ----------------------------
 -- Table structure for orderlist
@@ -18692,13 +18058,14 @@ CREATE TABLE `orderlist`  (
   INDEX `deatil_forein1`(`detail_id`) USING BTREE,
   INDEX `goods_forein1`(`goods_id`) USING BTREE,
   CONSTRAINT `deatil_forein1` FOREIGN KEY (`detail_id`) REFERENCES `goodsdetail` (`detail_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_forein` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `goods_forein1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单' ROW_FORMAT = DYNAMIC;
+  CONSTRAINT `goods_forein1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`goods_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_forein` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of orderlist
 -- ----------------------------
+INSERT INTO `orderlist` VALUES (1, 1, 11970, 2734, 1, 300, '54749110', 0, '2020-09-06 14:46:31');
 
 -- ----------------------------
 -- Table structure for user
@@ -18719,15 +18086,16 @@ CREATE TABLE `user`  (
   `buy5` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE INDEX `user_name_index`(`user_name`) USING BTREE COMMENT 'user_name的index'
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'root', 'root', 'root', '1', 0, 0, 3, 1, 0, 0, 0);
-INSERT INTO `user` VALUES (2, 'user', 'user', 'user', '2', 1, 0, 0, 0, 0, 0, 0);
+INSERT INTO `user` VALUES (1, 'root', 'root', 'root', '1', 0, 1, 3, 1, 0, 0, 0);
+INSERT INTO `user` VALUES (2, 'user2', '', 'user2', '1111', 1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `user` VALUES (3, 'ban', 'ban', 'ban', '3', -1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `user` VALUES (4, 'user3', 'user3', 'user3', '3', 1, 0, 0, 0, 0, 0, 0);
 INSERT INTO `user` VALUES (6, 'user4', 'user4', 'user4', '3', 1, 0, 0, 0, 0, 0, 0);
+INSERT INTO `user` VALUES (7, 'user5', 'user5', 'user5', '1', 1, 0, 0, 0, 0, 0, 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
