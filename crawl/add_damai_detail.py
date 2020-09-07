@@ -25,6 +25,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 
+
 def get_page(url, browser):
     browser.get(url)
     js = "var q=document.documentElement.scrollTop=10000"
@@ -53,7 +54,7 @@ def analysis_detailpage(goods, content):
         detail_content = 'None'
     else:
         detail_content = str(detail).replace(u'\xa0', u'').replace('\n', '')
-    
+
     raw_data = {
         'goods_id': goods_id,
         'detail': detail_content
@@ -70,28 +71,31 @@ def get_data():
         host='localhost',
         port=3306,
         user='root',
-        password='123456',
-        database='jupiter',
+        password='root',
+        database='jupiter_update',
         charset='utf8'
     )
     cur = conn.cursor()
 
+    rules = re.compile(r'.*damai.*')
     cur.execute('select goods_id, website from goods')
     results = cur.fetchall()
     for row in results:
         goods_id = row[0]
         website = row[1]
+        if not rules.match(str(website)):
+            continue
         obj = {
             'goods_id': goods_id,
             'website': website
         }
         q.put(obj)
-    
+
     conn.commit()
     cur.close()
     conn.close()
 
-    obj = {         # 填充
+    obj = {  # 填充
         'goods_id': -1,
         'website': '-'
     }
@@ -117,7 +121,7 @@ def working(flag, count, n):
     global NUM
     option = webdriver.ChromeOptions()
     browser = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe", options=option)
-    
+
     while flag:
         goods = q.get()  # page = {'goodid':1, 'website':'https://xxx'}
         if goods['website'] == '-':
@@ -150,7 +154,7 @@ def working(flag, count, n):
 if __name__ == '__main__':
     flag = True
     count = 0
-    maxpage = 348
+    maxpage = 544
     NUM = 4
     varLock = threading.Lock()
     dataLock = threading.Lock()
@@ -159,11 +163,11 @@ if __name__ == '__main__':
     crawled = []
     threads = []
     data = []  # 演出detail数据
-    
+
     get_data()
-    
+
     for i in range(NUM):
-        t = threading.Thread(target = working, args = (flag, count, i))
+        t = threading.Thread(target=working, args=(flag, count, i))
         t.setDaemon(True)
         threads.append(t)
 
@@ -171,7 +175,7 @@ if __name__ == '__main__':
     mark = True
     for t in threads:
         t.start()
-    
+
     # join threads
     for t in threads:
         t.join()

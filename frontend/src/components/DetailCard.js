@@ -29,7 +29,14 @@ export class DetailCard extends React.Component{
     }
 
     componentDidMount() {
+        // debugger;
         const callback = (data) => {
+            let userInfoStr = sessionStorage.getItem('user');
+            if(userInfoStr != null){
+                let userInfo = JSON.parse(userInfoStr);
+                this.setState({user:userInfo.userId});
+            }
+            // this.setState({user:data.data.userId});
             this.setState({goodsData:data.data});
             this.setState({goodsDetailTime:data.data.goodsDetails[0].time});
             this.setState({ticketsType:data.data.goodsDetails[0].ticketType});
@@ -41,42 +48,10 @@ export class DetailCard extends React.Component{
         };
         if(this.props.info === null)
             return;
-        const requestData = {goodsId:this.props.info};
+        const requestData = {goodsId:this.props.info.tmpId};
         getGoodsByGoodsId(requestData,callback);
 
-        // let userItem = localStorage.getItem("user");
-        // console.log('DetailCard里的用户',userItem);
-        // if(userItem != null){
-        //     let user = JSON.parse(userItem);
-        //     this.setState(
-        //         {
-        //             loggedIn:true,
-        //             user:user
-        //         }
-        //     )
-        // }
 
-
-        const callback_checkSession = (data) => {
-            if(data.status === 0){
-                this.setState(
-                    {
-                        user:data.data
-                    }
-                );
-                const callback = (data) => {
-                    console.log(data);
-                    this.setState({orderList:data})
-                };
-                const requestData = {userId:data.data.userId};
-                getOrdersByUserId(requestData,callback);
-            }
-            else{
-                message.warning(data.msg);
-                history.push('login');
-            }
-        };
-        checkSession(callback_checkSession);
     }
 
     onChange1=(e) =>{
@@ -86,6 +61,7 @@ export class DetailCard extends React.Component{
         // this.setState({goodsDetailTime:e.target.value});
         this.setState(()=>({goodsDetailTime:e.target.value}));
         // console.log('场次',this.state.goodsDetailTime);
+        this.getSurplus();
     }
 
     onChange2=(e)=> {
@@ -94,6 +70,7 @@ export class DetailCard extends React.Component{
         this.setState(()=>({ticketsType:e.target.value}));
         let unitValue=this.getUnitPrice(this.state.goodsData,e.target.value);
         this.getTotalPrice(this.state.goodsData,this.state.ticketsNum,unitValue);
+        this.getSurplus();
     }
 
     onChange3=(value)=> {
@@ -179,8 +156,10 @@ export class DetailCard extends React.Component{
     clickSurplus=()=>{
         this.getSurplus();
         this.setState((state)=>({surplus:state.surplus}))
+
     }
     displaySurplus=()=>{
+        console.log(this.state.surplus)
         if(this.state.surplus === 0){
             return"无货"
         }
@@ -219,10 +198,11 @@ export class DetailCard extends React.Component{
     }
 
     buyNow=()=>{
-        if(this.state.user !== null){
+        // debugger;
+        if(this.props.user !== null){
             this.clickSurplus();
             if(this.allMatch()){
-                let userId = this.state.user.userId;
+                let userId = this.props.user;
                 let detailId = this.getDetailId();
                 let number = this.state.ticketsNum;
                 let json = {
@@ -247,7 +227,16 @@ export class DetailCard extends React.Component{
         }
         else{
             message.error("请登录");
+            history.push('/login');
+            return;
         }
+    }
+
+    getPath=()=>{
+        if(this.props.user === null){
+            return 'login';
+        }
+        return 'detailOrder';
     }
 
     render(){
@@ -322,7 +311,7 @@ export class DetailCard extends React.Component{
                             <Col className={"detail-card-yuan"}>元</Col>
                         </Row>
                         <Row>
-                            <Link to={{ pathname: this.user!==null? '/detailOrder':'/login' , state : this.state}}>
+                            <Link to={{ pathname: this.getPath() , state : this.state}}>
                             <button className={"detail-card-buy-button"} onClick={this.buyNow}>
                                     立即购买
                                 </button>

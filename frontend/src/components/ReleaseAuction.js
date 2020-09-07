@@ -8,17 +8,18 @@ const {Option} = Select;
 export class ReleaseAuction extends React.Component{
     constructor(props) {
         super(props);
+        this.state={endTime:null}
     }
 
-    close2 = () => {
-        this.props.close2();
+
+    close = () => {
+        this.props.close();
     }
 
     onFinish = (values) =>{
-        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:MM");
-        console.log(startTime);
+        let startTime = dayjs(values.startTime).format("YYYY-MM-DD HH:mm:ss");
         const data = {
-            detailId: values.goodsDetails,
+            detailId: this.props.goodsDetails[values.goodsDetails].detailId,
             goodsId: this.props.goodsId,
             startingPrice:values.startingPrice,
             addingPrice:values.addingPrice,
@@ -28,35 +29,54 @@ export class ReleaseAuction extends React.Component{
         const callback = (data) => {
             if(data.status === 0){
                 message.success(data.msg);
-                this.close2();
+                this.close();
             }
         };
         addAuction(data,callback);
     }
 
     disabledDate = (date) => {
-        let endTime = new Date(this.props.endTime);
-        return endTime < date;
+        let ticketTime = this.state.endTime.substr(0,10);
+        let endTime = new Date(ticketTime);
+        let startTime = new Date(this.props.startTime);
+        if(isNaN(endTime.getTime())){
+            return startTime < date;
+        }
+        else{
+            return endTime < date;
+        }
     }
 
     render() {
         let items = [];
         for(let i = 0;i < this.props.goodsDetails.length;++i){
             items.push(
-                <Option value={this.props.goodsDetails[i].detailId}>
-                ID:{this.props.goodsDetails[i].detailId} {this.props.goodsDetails[i].ticketType}
+                <Option
+                    key={i}
+                >
+                    ID:{this.props.goodsDetails[i].detailId} {this.props.goodsDetails[i].ticketType}
                 </Option>
             );
         }
+
+        const initialValues = {
+            name:this.props.name,
+            goodsId:this.props.goodsId
+        };
         return(
-            <Form layout="vertical" hideRequiredMark={true} onFinish={this.onFinish}>
+            <Form
+                layout="vertical"
+                hideRequiredMark={true}
+                onFinish={this.onFinish}
+                initialValues={initialValues}
+            >
                 <Row gutter={16}>
                     <Col span={12}>
                         <Form.Item
                             name="name"
                             label="商品名"
                         >
-                            <Input placeholder="商品名" defaultValue={this.props.name} />
+                            <Input placeholder="商品名"/>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -64,7 +84,7 @@ export class ReleaseAuction extends React.Component{
                             name="goodsId"
                             label="商品ID"
                         >
-                            <Input placeholder="商品ID" defaultValue={this.props.goodsId} />
+                            <Input placeholder="商品ID"/>
                         </Form.Item>
                     </Col>
                 </Row>
@@ -75,7 +95,13 @@ export class ReleaseAuction extends React.Component{
                             label="票档"
                             rules={[{ required: true, message: '请选择票档' }]}
                         >
-                            <Select placeholder="请选择票档">
+                            <Select
+                                placeholder="请选择票档"
+                                onChange={(value)=>{
+                                    this.setState({endTime:this.props.goodsDetails[value].time});
+                                    console.log(value);
+                                }}
+                            >
                                 {items}
                             </Select>
                         </Form.Item>
@@ -97,7 +123,9 @@ export class ReleaseAuction extends React.Component{
                             label="持续时间(s)"
                             rules={[{ required: true, message: '请输入持续时间' }]}
                         >
-                            <InputNumber/>
+                            <InputNumber
+                                min={0}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -108,7 +136,11 @@ export class ReleaseAuction extends React.Component{
                             label="起拍价(￥)"
                             rules={[{ required: true, message: '请输入起拍价' }]}
                         >
-                            <InputNumber/>
+                            <InputNumber
+                                formatter={value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                parser={value => value.replace(/\￥\s?|(,*)/g, '')}
+                                min={0}
+                            />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -117,7 +149,11 @@ export class ReleaseAuction extends React.Component{
                             label="加价幅度(￥)"
                             rules={[{ required: true, message: '请输入加价幅度' }]}
                         >
-                            <InputNumber/>
+                            <InputNumber
+                                formatter={value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                parser={value => value.replace(/\￥\s?|(,*)/g, '')}
+                                min={0}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -134,3 +170,4 @@ export class ReleaseAuction extends React.Component{
         );
     }
 }
+

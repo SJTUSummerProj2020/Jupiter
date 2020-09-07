@@ -1,19 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : MySQL
- Source Server Type    : MySQL
- Source Server Version : 50725
- Source Host           : localhost:3306
- Source Schema         : jupiter
-
- Target Server Type    : MySQL
- Target Server Version : 50725
- File Encoding         : 65001
-
- Date: 16/07/2020 15:11:59
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -46,7 +30,7 @@ CREATE TABLE `auction`  (
 -- ----------------------------
 -- Records of auction
 -- ----------------------------
-INSERT INTO `auction` VALUES (1, 1890, 513, 1, 160, 10, 190, '2020-07-16 10:00:00', '1:00:00', NULL, NULL, NULL);
+INSERT INTO `auction` VALUES (1, 1890, 513, 1, 160, 10, 190, '2020-07-20 10:00:00', '36000000', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for goods

@@ -3,14 +3,14 @@ import {Header} from "../components/Header";
 import {DetailCard} from "../components/DetailCard";
 import{DetailShowTab} from "../components/DetailShowTab";
 import{Recommendation} from "../components/Recommendation";
-import {Row, Col, Card, Tabs, message, BackTop} from 'antd';
+import {Row, Col, message, BackTop} from 'antd';
 import {getGoodsByGoodsId} from "../services/goodsService";
 import {checkSession} from "../services/userService";
 import {logout} from "../services/userService";
 import "../css/detailview.css";
 
-let tmpId = null;
 let goodsData = null;
+let OrderData={tmpId:null,userId:null}
 export class DetailView extends React.Component {
     constructor(props) {
         super(props);
@@ -24,19 +24,17 @@ export class DetailView extends React.Component {
     componentDidMount() {
         const query = this.props.location.search;
         const arr = query.split('?');
-        tmpId = arr[1].substr(3);
-        this.setState({goodsId:tmpId});
+        OrderData.tmpId = arr[1].substr(3);
+        this.setState({goodsId:OrderData.tmpId});
 
         const callback = (data) =>{
             goodsData = data.data;
             this.setState({goodsData:data.data});
         }
-        if(tmpId === null){
-            return;
-        }
-        const requestData = {goodsId:tmpId};
+        const requestData = {goodsId:OrderData.tmpId};
         getGoodsByGoodsId(requestData,callback);
         const checkSession_callback = (data) => {
+            console.log(data);
             if(data.status === 0){
                 this.setState(
                     {
@@ -66,7 +64,7 @@ export class DetailView extends React.Component {
 
     render(){
         console.log('goodsID',this.state.goodsId)
-        if(tmpId === null)
+        if(OrderData.tmpId === null)
             return null;
         if(goodsData === null)
             return null;
@@ -77,10 +75,15 @@ export class DetailView extends React.Component {
                     user={this.state.user}
                     logout={this.logout}
                 />
-                <DetailCard info={tmpId} />
-                <Row align = "top" gutter={16}>
+                    <DetailCard
+                        info={OrderData}
+                        loggedIn={this.state.loggedIn}
+                        user={this.state.user}
+                    />
+
+                <Row align = "top" gutter={16} className={"detail-view-recommend"}>
                     <Col span={16}>
-                        <DetailShowTab info={goodsData}/>
+                        <DetailShowTab info={goodsData} classname={"detail-view-show-tab"}/>
                     </Col>
                     <Col className={"recommend"}>
                         <Recommendation

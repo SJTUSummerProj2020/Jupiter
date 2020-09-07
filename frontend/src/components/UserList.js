@@ -4,6 +4,9 @@ import {UserOutlined, NumberOutlined, PhoneOutlined, LockOutlined, SafetyCertifi
 import {changeUserStatusByUserId} from "../services/userService";
 
 export class UserList extends React.Component{
+    constructor(props) {
+        super(props);
+    }
 
     changeUserStatus = (userId) => {
         const data = {userId:userId};
@@ -40,10 +43,9 @@ export class UserList extends React.Component{
                                         用户类别: {
                                         (()=>{
                                             switch (item.userType) {
-                                                case -1: return (<span>封禁用户</span>);
-                                                case 0: return(<span>管理员</span>);
-                                                case 1: return(<span>普通用户</span>);
-                                                default: return (<span>错误类型</span>)
+                                                case -1: return (<span>封禁用户</span>);break;
+                                                case 0: return(<span>管理员</span>);break;
+                                                case 1: return(<span>普通用户</span>);break;
                                             }
                                         })()
                                     }

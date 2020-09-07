@@ -4,25 +4,33 @@ import com.se128.jupiter.entity.Auction;
 import com.se128.jupiter.entity.Goods;
 import com.se128.jupiter.service.GoodsService;
 import com.se128.jupiter.util.constant.Constant;
-import com.se128.jupiter.util.logutils.LogUtil;
 import com.se128.jupiter.util.msgutils.Msg;
 import com.se128.jupiter.util.msgutils.MsgCode;
 import com.se128.jupiter.util.msgutils.MsgUtil;
+import com.se128.jupiter.util.sessionutils.SessionUtil;
+import io.swagger.annotations.Api;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping(value = "/goods")
+@Api(value = "票务管理类")
 public class GoodsController {
 
     private final GoodsService goodsService;
+    private static final Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     @Autowired
     public GoodsController(GoodsService goodsService) {
@@ -31,7 +39,7 @@ public class GoodsController {
 
     @RequestMapping("/addGoods")
     public Msg addGoods(@RequestBody Goods goods) {
-        LogUtil.info("addGoods");
+        logger.info("addGoods" + goods);
         goods.setBuyCounter(0);
         goods.setViewCounter(0);
         Goods goods1 = goodsService.addGoods(goods);
@@ -42,7 +50,7 @@ public class GoodsController {
     @RequestMapping("/deleteGoodsByGoodsId")
     public Msg deleteGoodsByGoodsId(@RequestBody Map<String, String> params) {
         Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
-        LogUtil.info("deleteGoodsWithGoodsId = " + goodsId);
+        logger.info("deleteGoodsWithGoodsId = " + goodsId);
         goodsService.deleteGoodsByGoodsId(goodsId);
         return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
     }
@@ -51,7 +59,7 @@ public class GoodsController {
     public Msg getGoodsByGoodsId(@RequestBody Map<String, String> params) {
         try {
             Integer goodsId = Integer.valueOf(params.get(Constant.GOODS_ID));
-            LogUtil.info("getGoodsByGoodsId = " + goodsId);
+            logger.info("getGoodsByGoodsId = " + goodsId);
             Goods goods = goodsService.getGoodsByGoodsId(goodsId);
             if (goods.getGoodsType() < 0) {
                 return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "商品已下架");
@@ -68,7 +76,7 @@ public class GoodsController {
     @RequestMapping("/getGoodsByName")
     public Msg getGoodsByName(@RequestBody Map<String, String> params) {
         String name = params.get(Constant.NAME);
-        LogUtil.info("getGoodsByName = " + name);
+        logger.info("getGoodsByName = " + name);
         List<Goods> goods = goodsService.getGoodsByName(name);
         JSONObject data = new JSONObject();
         JSONArray goodsList = JSONArray.fromObject(goods);
@@ -79,6 +87,7 @@ public class GoodsController {
 
     @RequestMapping("/getAllGoods")
     public Msg getAllGoods(@RequestBody Map<String, String> params) {
+        logger.info("getAllGoods");
         Integer pageId = Integer.valueOf(params.get(Constant.PAGE_ID));
         Integer pageSize = Integer.valueOf(params.get(Constant.PAGE_SIZE));
         Integer goodsType = Integer.valueOf(params.get(Constant.GOODS_TYPE));
@@ -93,7 +102,7 @@ public class GoodsController {
 
     @RequestMapping("/getPopularGoods")
     public Msg getPopularGoods(@RequestBody Map<String, String> params) {
-        LogUtil.info("getPopularGoods");
+        logger.info("getPopularGoods");
         Integer number = Integer.valueOf(params.get(Constant.NUMBER));
         JSONObject data = new JSONObject();
         for (int goodsType = -1; goodsType < Constant.NUMBER_OF_TYPE; goodsType++) {
@@ -111,17 +120,17 @@ public class GoodsController {
     @RequestMapping("/getRecommendGoods")
     public Msg getRecommendGoods(@RequestBody Map<String, String> params) {
         Integer number = Integer.valueOf(params.get(Constant.NUMBER));
-        String userId1 = params.get(Constant.USER_ID);
-        if (userId1 == null) {
-            LogUtil.info("getRecommendGoodsInAll" + "number: " + number);
+        JSONObject user = SessionUtil.getAuth();
+        if (user == null) {
+            logger.info("getRecommendGoodsInAll" + "number: " + number);
             List<Goods> goods = goodsService.getRecommendGoodsInAll(number);
             JSONArray jsonArray = JSONArray.fromObject(goods);
             JSONObject data = new JSONObject();
             data.put("goods", jsonArray.toString());
             return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
         } else {
-            Integer userId = Integer.valueOf(params.get(Constant.USER_ID));
-            LogUtil.info("getRecommendGoodsByUserId" + userId + "number" + number);
+            Integer userId = user.getInt(Constant.USER_ID);
+            logger.info("getRecommendGoodsByUserId" + userId + "number" + number);
             List<Goods> goods = goodsService.getRecommendGoodsByUserId(userId, number);
             JSONArray jsonArray = JSONArray.fromObject(goods);
             JSONObject data = new JSONObject();
@@ -132,7 +141,7 @@ public class GoodsController {
 
     @RequestMapping("/editGoods")
     public Msg editGoods(@RequestBody Goods goods) {
-        LogUtil.info("editGoods");
+        logger.info("editGoods");
         Goods goods1 = goodsService.editGoods(goods);
         JSONObject data = JSONObject.fromObject(goods1);
         return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS, data);
@@ -140,7 +149,7 @@ public class GoodsController {
 
     @RequestMapping("/addAuction")
     public Msg addAuction(@RequestBody Map<String, String> params) {
-        LogUtil.info("addAuction");
+        logger.info("addAuction");
         Auction auction = new Auction();
         Integer detailId = Integer.valueOf(params.get("detailId"));
         Integer goodsId = Integer.valueOf(params.get("goodsId"));
@@ -162,17 +171,29 @@ public class GoodsController {
     @RequestMapping("/deleteAuctionByAuctionId")
     public Msg deleteAuctionByAuctionId(@RequestBody Map<String, String> params) {
         Integer auctionId = Integer.valueOf(params.get("auctionId"));
-        LogUtil.info("deleteAuctionByAuctionId");
+        logger.info("deleteAuctionByAuctionId");
         goodsService.deleteAuctionByAuctionId(auctionId);
         return MsgUtil.makeMsg(MsgCode.DELETE_SUCCESS);
     }
 
     @RequestMapping("/getAllAuctions")
-    public Msg getAllAuctions() {
-        LogUtil.info("getAllAuctions");
+    public Msg getAllAuctions() throws ParseException {
+        logger.info("getAllAuctions");
         List<Auction> auctions = goodsService.getAllAuctions();
+        Date now = new Date();
+        List<Auction> ret = new LinkedList<>();
+        for (Auction auction : auctions)
+        {
+            SimpleDateFormat simpleDateFormat =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date start = simpleDateFormat.parse(auction.getStartTime());
+            Date end = new Date(start.getTime()+1000*auction.getDuration());
+            if(now.before(end))
+            {
+                ret.add(auction);
+            }
+        }
         JSONObject data = new JSONObject();
-        JSONArray auctionList = JSONArray.fromObject(auctions);
+        JSONArray auctionList = JSONArray.fromObject(ret);
         data.put("auctions", auctionList.toString());
         return MsgUtil.makeMsg(MsgCode.DATA_SUCCESS, data);
     }
@@ -181,7 +202,7 @@ public class GoodsController {
     public Msg getAuctionByAuctionId(@RequestBody Map<String, String> params) {
         try {
             Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
-            LogUtil.info("getAuctionByAuctionsId = " + AuctionId);
+            logger.info("getAuctionByAuctionsId = " + AuctionId);
             Auction auction = goodsService.getAuctionByAuctionId(AuctionId);
             if(auction == null){
                 return MsgUtil.makeMsg(MsgCode.DATA_ERROR, "No such auctionId");
@@ -200,8 +221,9 @@ public class GoodsController {
     public Msg updateAuction(@RequestBody Map<String, String> params) {
         Integer AuctionId = Integer.valueOf(params.get(Constant.AUCTION_ID));
         Double offer = Double.valueOf(params.get(Constant.OFFER));
-        Integer userId = Integer.valueOf(params.get((Constant.USER_ID)));
-        LogUtil.info("updateAuction auctionsId = " + AuctionId+ " userId = " + userId);
+        JSONObject user = SessionUtil.getAuth();
+        Integer userId = user.getInt(Constant.USER_ID);
+        logger.info("updateAuction auctionsId = " + AuctionId+ " userId = " + userId);
         Auction auction = goodsService.updateAuction(AuctionId,userId,offer);
         if(auction.getBestOffer().equals(offer)) {
             return MsgUtil.makeMsg(MsgCode.EDIT_SUCCESS);
@@ -213,7 +235,7 @@ public class GoodsController {
 
     @RequestMapping("/editAuction")
     public Msg editAuction(@RequestBody Map<String, String> params) {
-        LogUtil.info("editAuction");
+        logger.info("editAuction");
         Auction auction = new Auction();
         Integer auctionId = Integer.valueOf(params.get("auctionId"));
         Integer detailId = Integer.valueOf(params.get("detailId"));

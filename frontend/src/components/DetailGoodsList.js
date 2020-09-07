@@ -11,8 +11,7 @@ export class DetailGoodsList extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            visible1:false,
-            visible2:false,
+            visible:false,
             goodsId:null,
             goodsDetails:[],
             name:null,
@@ -22,8 +21,9 @@ export class DetailGoodsList extends React.Component{
     }
 
     releaseAuction = (goodsId,name,goodsDetails,startTime,endTime) => {
+        console.log("Release auction",goodsId);
         this.setState({
-            visible2: true,
+            visible: true,
             goodsId:goodsId,
             name:name,
             goodsDetails:goodsDetails,
@@ -32,9 +32,9 @@ export class DetailGoodsList extends React.Component{
         });
     };
 
-    close2 = () => {
+    close = () => {
         this.setState({
-            visible2: false,
+            visible: false,
         });
     };
 
@@ -56,14 +56,11 @@ export class DetailGoodsList extends React.Component{
     }
 
     handleClick = (goodsId,name,goodsDetails,startTime,endTime,e) => {
-        console.log(goodsId);
         console.log(e);
         switch(e.key){
             case "1":
                 this.deleteGoods(goodsId);break;
             case "2":
-                break;
-            case "3":
                 this.releaseAuction(goodsId,name,goodsDetails,startTime,endTime);break;
             default:
                 break;
@@ -198,7 +195,7 @@ export class DetailGoodsList extends React.Component{
                                                         <div className={"detailGoodsName"}>
                                     <span>
                                         {
-                                            item.name.length > 23 ? item.name.substring(0,23) + "..." : item.name
+                                            item.name.length > 20 ? item.name.substring(0,20) + "..." : item.name
                                         }
                                     </span>
                                                         </div>
@@ -228,7 +225,6 @@ export class DetailGoodsList extends React.Component{
                                                                 this.props.user.userType === 0 ?
                                                                     (
                                                                         <Dropdown
-                                                                            placement="topRight"
                                                                             overlay={
                                                                                 <Menu
                                                                                     onClick={
@@ -246,16 +242,13 @@ export class DetailGoodsList extends React.Component{
                                                                                         下架
                                                                                     </Menu.Item>
                                                                                     <Menu.Item key="2">
-                                                                                        编辑
-                                                                                    </Menu.Item>
-                                                                                    <Menu.Item key="3">
                                                                                         竞拍
                                                                                     </Menu.Item>
                                                                                 </Menu>
                                                                             }
                                                                         >
-                                                                            <Button style={{marginTop: 235}}>
-                                                                                <SettingOutlined />管理 <UpOutlined />
+                                                                            <Button>
+                                                                                <SettingOutlined />
                                                                             </Button>
                                                                         </Dropdown>
                                                                     ):
@@ -276,9 +269,10 @@ export class DetailGoodsList extends React.Component{
                 <Drawer
                     title="发布竞拍"
                     width={720}
-                    onClose={this.close2}
-                    visible={this.state.visible2}
+                    onClose={this.close}
+                    visible={this.state.visible}
                     bodyStyle={{ paddingBottom: 80 }}
+                    destroyOnClose={true}
                 >
                     <ReleaseAuction
                         goodsId={this.state.goodsId}
@@ -286,7 +280,7 @@ export class DetailGoodsList extends React.Component{
                         goodsDetails={this.state.goodsDetails}
                         startTime={this.state.startTime}
                         endTime={this.state.endTime}
-                        close2={this.close2}
+                        close={this.close}
                     />
                 </Drawer>
             </div>

@@ -36,6 +36,7 @@ export class AuctionView extends React.Component{
         getAuctionByAuctionId(requestData,callback);
 
         const checkSession_callback = (data) => {
+            console.log(data);
             if(data.status === 0){
                 this.setState(
                     {
@@ -72,7 +73,9 @@ export class AuctionView extends React.Component{
                     user={this.state.user}
                     logout={this.logout}
                 />
-                <AuctionCard info={auctionData}/>
+                <AuctionCard info={auctionData}
+                                loggedIn={this.state.loggedIn}
+                                user={this.state.user}/>
             </Row>
         );
     }
