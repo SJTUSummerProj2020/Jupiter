@@ -4,6 +4,7 @@
   * 程可: [CKKKKKKKKK](https://github.com/CKKKKKKKKK)
   * 邓诗羿: [HeyCat-svg](https://github.com/HeyCat-svg)
   * 刘慎恒 [shenhliu](https://github.com/shenhliu)
+* [最终项目文档](Document/)
 * [Project Introduction](Project Introduction.md)
 * [Meeting Minutes](meeting/)
 * [Schedule](schedule.md)
